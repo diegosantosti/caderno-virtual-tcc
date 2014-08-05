@@ -2,16 +2,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="@drawable/main_content"
+	android:background="@color/bg_main"
     tools:context=".MainActivity" >
-	
-    <Button 
+    
+    <TextView 
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
+        android:text="@string/app_name"
+        style="@style/text_titulo_main"
+        android:padding="10dp"/>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:layout_marginRight="10dp"
-        android:text="Adicionar Caderno"/>
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp">
+        
+        <Button 
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:background="@drawable/button_circle_mais"
+        	android:layout_margin="@dimen/margin_button_circle"
+        	style="@style/button_circle_main"/>
+        
+        <Button 
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:background="@drawable/button_circle_calendar"
+        	android:layout_margin="@dimen/margin_button_circle"
+        	style="@style/button_circle_main"/>
+        
+        <Button 
+        	android:layout_height="65dp"
+        	android:layout_width="65dp"
+        	android:background="@drawable/button_circle_settings"
+        	android:layout_margin="@dimen/margin_button_circle"
+        	style="@style/button_circle_main"/>
+        
+        <Button 
+        	android:layout_height="wrap_content"
+        	android:layout_width="wrap_content"
+        	android:background="@drawable/button_circle_about"
+        	android:layout_margin="@dimen/margin_button_circle"
+        	style="@style/button_circle_main"/>
+        
+        
+        
+    </LinearLayout>
+	
+    
     
     <Button 
         android:layout_height="wrap_content"

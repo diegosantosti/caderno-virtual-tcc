@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="button_circle_main">
+        <item name="android:padding">@dimen/margin_button_circle</item>
+    </style>
+    
+    <style name="text_titulo_main">
+       	<item name="android:textColor">@color/text_titulo_main</item>
+       	<item name="android:gravity">center</item>
+       	<item name="android:textStyle">bold</item>
+       	<item name="android:textSize">25sp</item>
+    </style>
+    
+</resources>
