@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arquivo responsável por desenhar o botão redondo e fazer a "animação" ao pressionar -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Para botão pressionado -->
+    <item android:state_pressed="true">
+		<layer-list >
+		    <!-- Desenha circulo -->
+		    <item>
+		        <shape android:shape="oval" >
+		            <solid android:color="@color/bg_button_main"/>
+		        </shape>
+		    </item>
+		    <!-- Desenha imagem -->
+		    <item android:drawable="@drawable/btn_calendar"/>
+		    <!-- Desenha circulo transparente para efeito -->
+		    <item>
+		        <shape android:shape="oval" >
+		            <solid android:color="@color/bg_button_main_pressed"/>
+		        </shape>
+		    </item>
+		</layer-list>
+	</item>
+	<!-- Para botão normal -->	
+	<item>
+		<layer-list >
+		    <!-- Desenha circulo -->
+		    <item>
+		        <shape android:shape="oval" >
+		            <solid android:color="@color/bg_button_main"/>
+		        </shape>
+		    </item>
+		    <!-- Desenha imagem -->
+		    <item android:drawable="@drawable/btn_calendar"/>
+		</layer-list>
+	</item>	
+
+</selector>
+
