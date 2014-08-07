@@ -12,4 +12,5 @@
     <color name="font_text_pop_up">#28659A</color>
     <color name="borda_edit">#919191</color>
     <color name="font_edit">#666666</color>
+    <color name="font_text_about">#EDEDED</color>
 </resources>

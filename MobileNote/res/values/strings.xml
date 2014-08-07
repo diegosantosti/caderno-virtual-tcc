@@ -16,8 +16,9 @@
     <string name="henrique">HENRIQUE CATELANI</string>
     <string name="wesley">WESLEY RODRIGUES</string>
     <string name="diego">DIEGO TIBÚRCIO</string>
-    <string name="prof">PROFESSOR COORDENADOR</string>
+    <string name="prof">PROFESSOR COORDENADOR:</string>
     <string name="coordenador">ANDRÉ LUIZ DIAS RIBEIRO</string>
     <string name="usjt">UNIVERSIDADE SÃO JUDAS TADEU</string>
+    <string name="integrantes">INTEGRANTES:</string>
 
 </resources>
