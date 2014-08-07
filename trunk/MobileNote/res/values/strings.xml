@@ -3,6 +3,21 @@
 
     <string name="app_name">Mobile Note</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="text_pesq_hint">Pesquisar</string>
+    <string name="text_novo_caderno">Novo caderno</string>
+    <string name="edit_nome_caderno_hint">Nome do caderno</string>
+    <string name="text_cor_capa">Cor da capa</string>
+    
+    
+    <!-- Integrantes e coordenador -->
+    <string name="willian">WILLIAN VALERIO</string>
+    <string name="andre">ANDRÉ PENER</string>
+    <string name="victor">VICTOR RODRIGUES</string>
+    <string name="henrique">HENRIQUE CATELANI</string>
+    <string name="wesley">WESLEY RODRIGUES</string>
+    <string name="diego">DIEGO TIBÚRCIO</string>
+    <string name="prof">PROFESSOR COORDENADOR</string>
+    <string name="coordenador">ANDRÉ LUIZ DIAS RIBEIRO</string>
+    <string name="usjt">UNIVERSIDADE SÃO JUDAS TADEU</string>
 
 </resources>

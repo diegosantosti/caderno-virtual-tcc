@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_popup"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_novo_caderno"
+        android:layout_margin="@dimen/margin_components_popoup"
+        style="@style/text_pop_up"/>
+    <EditText 
+        android:id="@+id/edtNomeCaderno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_nome_caderno_hint"
+        android:layout_margin="@dimen/margin_components_popoup"
+        style="@style/edit_text_pop_up"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_cor_capa"
+        android:layout_margin="@dimen/margin_components_popoup"
+        style="@style/text_pop_up"/>
+    <Spinner 
+        android:id="@+id/spinner_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_components_popoup"/>
+    
+    
+
+</LinearLayout>
