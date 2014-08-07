@@ -4,5 +4,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="margin_button_circle">8dp</dimen>
+    <dimen name="padding_edit_pesq">6dp</dimen>
+    <dimen name="margin_edit_pesq">20dp</dimen>
+    <dimen name="linear_buttons_top">40dp</dimen>
+    <dimen name="linear_buttons_side">10dp</dimen>
+    <dimen name="radius_edit">8dp</dimen>
+    <dimen name="margin_components_popoup">10dp</dimen>
 
 </resources>
