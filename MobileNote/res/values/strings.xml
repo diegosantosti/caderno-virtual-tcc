@@ -7,6 +7,8 @@
     <string name="text_novo_caderno">Novo caderno</string>
     <string name="edit_nome_caderno_hint">Nome do caderno</string>
     <string name="text_cor_capa">Cor da capa</string>
+    <string name="ok">OK</string>
+    <string name="cancelar">Cancelar</string>
     
     
     <!-- Integrantes e coordenador -->
