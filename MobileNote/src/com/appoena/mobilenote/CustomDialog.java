@@ -1,31 +1,91 @@
+/**
+ * @author willianvalerio
+ * Classe responsável por inflar o xml da activity, exibir a janela de diálogo e devolver o resultado para classe anterior.
+ */
+
+
 package com.appoena.mobilenote;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.EditText;
 
-public class CustomDialog extends DialogFragment implements OnClickListener{
-
-	public CustomDialog() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		// TODO Auto-generated method stub
-		
+public class CustomDialog extends DialogFragment{
+	
+	View view; //responsável por inflar o xml.
+	Bundle params; // reponsável por enviar os parâmetros para a classe que chamou.	
+    CustomDialogListener mListener; // Usa essa instância da interface para entregar eventos de ação
+	
+	static CustomDialog newInstance(){
+		CustomDialog dialog= new CustomDialog();
+		return dialog;
 	}
 	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_adicionar_caderno, null);
-		
-		return view;
+	/*
+	 * A activity que criar uma instância desse dialog fragment deve implementar
+	 * essa interface para receber os retornos da chamada do evento.
+	 */
+	public interface CustomDialogListener{
+		public void onDialogPositiveClick(DialogFragment dialog, Bundle params);
+		public void onDialogNegativeClick(DialogFragment dialog);
 	}
+	
+
+	
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		view = View.inflate(getActivity(), R.layout.activity_adicionar_caderno, null);
+		
+		params = new Bundle();
+		
+		Dialog myDialog = new AlertDialog.Builder(getActivity())
+			.setView(view)
+			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
+					EditText teste = (EditText) view.findViewById(R.id.edtNomeCaderno);
+					params.putString("CADERNO", teste.getText().toString());
+					mListener.onDialogPositiveClick(CustomDialog.this, params);
+					
+					
+				}
+			})
+			.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// Dispara o evento onDialogNegativeClick para a activity que estiver escutando
+					mListener.onDialogNegativeClick(CustomDialog.this);
+					
+				}
+			}).create();
+		
+		
+		return myDialog;
+	}
+	
+	// Sobrescreve o método onAttach para instanciar o CustomDialog
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		// Verifica se a activity implementa a interface de callbacks
+		try {
+			// Instancia o CustomDialog para que possamos enviar eventos para o host
+			mListener = (CustomDialogListener) activity;
+		} catch (Exception e) {
+			// Essa activity não implementa a interface, levanta exceção
+			throw new ClassCastException(activity.toString()+"deve implementar CustomDialogListener");
+
+		}
+	}
+	
+	
 
 }
