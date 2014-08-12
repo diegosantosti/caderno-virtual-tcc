@@ -34,6 +34,11 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
+        /** 
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    
+         */
         public static final int button_circle_main=0x7f060009;
         public static final int linear_buttons_side=0x7f060006;
         public static final int linear_buttons_top=0x7f060005;

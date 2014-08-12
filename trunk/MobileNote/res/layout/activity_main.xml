@@ -25,32 +25,32 @@
         <Button
             android:id="@+id/btn_add_caderno"
             style="@style/button_circle_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_circle_main"
+            android:layout_height="@dimen/button_circle_main"
             android:layout_margin="@dimen/margin_button_circle"
             android:background="@drawable/button_circle_mais" />
 
         <Button
             android:id="@+id/btn_calendar"
             style="@style/button_circle_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_circle_main"
+            android:layout_height="@dimen/button_circle_main"
             android:layout_margin="@dimen/margin_button_circle"
             android:background="@drawable/button_circle_calendar" />
 
         <Button
             android:id="@+id/btn_settings"
             style="@style/button_circle_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_circle_main"
+            android:layout_height="@dimen/button_circle_main"
             android:layout_margin="@dimen/margin_button_circle"
             android:background="@drawable/button_circle_settings" />
 
         <Button
             android:id="@+id/btn_about"
             style="@style/button_circle_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_circle_main"
+            android:layout_height="@dimen/button_circle_main"
             android:layout_margin="@dimen/margin_button_circle"
             android:background="@drawable/button_circle_about" />
     </LinearLayout>
