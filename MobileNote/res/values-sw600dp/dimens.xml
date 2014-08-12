@@ -4,5 +4,6 @@
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     -->
-
+	<dimen name="button_circle_main">65dp</dimen>
+	<dimen name="margin_button_circle">20dp</dimen>
 </resources>

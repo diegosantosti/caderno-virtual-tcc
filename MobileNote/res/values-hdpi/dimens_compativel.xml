@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Inserir aqui as dimensões aplicáveis as dimensões High Density  -->
 <resources>
     <dimen name="button_circle_main">43.3dp</dimen>
+    <dimen name="margin_button_circle">12dp</dimen>
     
 </resources>
