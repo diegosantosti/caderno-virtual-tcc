@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CustomDialog extends DialogFragment{
 	
@@ -54,6 +55,8 @@ public class CustomDialog extends DialogFragment{
 					params.putString("CADERNO", teste.getText().toString());
 					mListener.onDialogPositiveClick(CustomDialog.this, params);
 					
+					dismiss();
+					
 					
 				}
 			})
@@ -84,6 +87,13 @@ public class CustomDialog extends DialogFragment{
 			throw new ClassCastException(activity.toString()+"deve implementar CustomDialogListener");
 
 		}
+	}
+	
+	@Override
+	public void dismiss() {
+		// TODO Auto-generated method stub
+		//super.dismiss();
+		Toast.makeText(getActivity(), "teste", 2).show();
 	}
 	
 	

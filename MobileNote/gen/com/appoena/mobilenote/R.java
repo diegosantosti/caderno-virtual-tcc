@@ -11,6 +11,12 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        /**  Cores do tema 
+         */
+        public static final int bg_actionBar=0x7f04000f;
+        /**  Cores agenda 
+         */
+        public static final int bg_agenda=0x7f04000d;
         public static final int bg_button_main=0x7f040003;
         public static final int bg_button_main_pressed=0x7f040004;
         public static final int bg_edit_main=0x7f040006;
@@ -23,6 +29,7 @@ public final class R {
         public static final int font_edit_main=0x7f040008;
         public static final int font_text_about=0x7f04000c;
         public static final int font_text_pop_up=0x7f040009;
+        public static final int fonte_list_agenda=0x7f04000e;
         public static final int text_titulo_main=0x7f040005;
     }
     public static final class dimen {
@@ -59,55 +66,77 @@ public final class R {
         public static final int button_circle_settings=0x7f020007;
         public static final int edit_text=0x7f020008;
         public static final int edit_text_pesquisa=0x7f020009;
-        public static final int ic_launcher=0x7f02000a;
-        public static final int logo_sobre=0x7f02000b;
-        public static final int main_content=0x7f02000c;
-        public static final int splash_background=0x7f02000d;
-        public static final int splash_content=0x7f02000e;
+        public static final int ic_calendario=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_relogio=0x7f02000c;
+        public static final int ic_tag=0x7f02000d;
+        public static final int logo_sobre=0x7f02000e;
+        public static final int main_content=0x7f02000f;
+        public static final int splash_background=0x7f020010;
+        public static final int splash_content=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f090007;
-        public static final int btn_about=0x7f090006;
-        public static final int btn_add_caderno=0x7f090003;
-        public static final int btn_calendar=0x7f090004;
-        public static final int btn_settings=0x7f090005;
+        public static final int action_settings=0x7f09000f;
+        public static final int addAgenda=0x7f090010;
+        public static final int btn_about=0x7f090007;
+        public static final int btn_add_caderno=0x7f090004;
+        public static final int btn_calendar=0x7f090005;
+        public static final int btn_settings=0x7f090006;
+        public static final int dataAgenda=0x7f09000c;
         public static final int edtNomeCaderno=0x7f090000;
-        public static final int linearLayout1=0x7f090002;
+        public static final int horaAgenda=0x7f09000a;
+        public static final int icData=0x7f090009;
+        public static final int icHora=0x7f09000b;
+        public static final int icMateria=0x7f09000d;
+        public static final int linearLayout1=0x7f090003;
+        public static final int listAgenda=0x7f090002;
+        public static final int materiaAgenda=0x7f09000e;
+        public static final int pesqAgenda=0x7f090011;
+        public static final int sortAgenda=0x7f090012;
         public static final int spinner_color=0x7f090001;
+        public static final int titAgenda=0x7f090008;
     }
     public static final class layout {
         public static final int activity_adicionar_caderno=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_materias=0x7f030002;
-        public static final int activity_sobre=0x7f030003;
-        public static final int activity_splash=0x7f030004;
+        public static final int activity_agenda=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_materias=0x7f030003;
+        public static final int activity_sobre=0x7f030004;
+        public static final int activity_splash=0x7f030005;
+        public static final int row_agenda=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f080000;
+        public static final int menu_agenda=0x7f080001;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int andre=0x7f070009;
+        public static final int action_settings=0x7f070002;
+        public static final int add=0x7f070009;
+        public static final int agenda=0x7f070001;
+        public static final int andre=0x7f07000d;
         public static final int app_name=0x7f070000;
-        public static final int cancelar=0x7f070007;
-        public static final int coordenador=0x7f07000f;
-        public static final int diego=0x7f07000d;
-        public static final int edit_nome_caderno_hint=0x7f070004;
-        public static final int henrique=0x7f07000b;
-        public static final int integrantes=0x7f070011;
-        public static final int ok=0x7f070006;
-        public static final int prof=0x7f07000e;
-        public static final int text_cor_capa=0x7f070005;
-        public static final int text_novo_caderno=0x7f070003;
-        public static final int text_pesq_hint=0x7f070002;
-        public static final int usjt=0x7f070010;
-        public static final int victor=0x7f07000a;
-        public static final int wesley=0x7f07000c;
+        public static final int cancelar=0x7f070008;
+        public static final int coordenador=0x7f070013;
+        public static final int diego=0x7f070011;
+        public static final int edit_nome_caderno_hint=0x7f070005;
+        public static final int henrique=0x7f07000f;
+        public static final int integrantes=0x7f070015;
+        public static final int ok=0x7f070007;
+        public static final int ordenar=0x7f07000b;
+        public static final int pesquisar=0x7f07000a;
+        public static final int prof=0x7f070012;
+        public static final int text_cor_capa=0x7f070006;
+        public static final int text_novo_caderno=0x7f070004;
+        public static final int text_pesq_hint=0x7f070003;
+        public static final int usjt=0x7f070014;
+        public static final int victor=0x7f07000e;
+        public static final int wesley=0x7f070010;
         /**  Integrantes e coordenador 
          */
-        public static final int willian=0x7f070008;
+        public static final int willian=0x7f07000c;
     }
     public static final class style {
+        public static final int ActionBar_Solid_MobileNote=0x7f05000f;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -122,18 +151,26 @@ public final class R {
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
  API 11 theme customizations can go here. 
-
+         */
+        public static final int AppBaseTheme=0x7f05000b;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f05000c;
+        /**  Tema personalizado 
+         */
+        public static final int ThemeMobileNote=0x7f05000e;
+        /**  Tema sem ActionBar 
+         */
+        public static final int ThemeMobileNote_NoActionBar=0x7f05000d;
+        /** 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050009;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f05000a;
+        public static final int ThemeNoActionBar=0x7f050010;
         public static final int button_circle_main=0x7f050000;
         /**   <item name="android:focusable">false</item>
          */
@@ -141,9 +178,11 @@ public final class R {
         /**   <item name="android:focusable">false</item>
          */
         public static final int edit_text_pop_up=0x7f050003;
+        public static final int text_agenda=0x7f050009;
         public static final int text_app_name_about=0x7f050008;
         public static final int text_integrantes=0x7f050005;
         public static final int text_pop_up=0x7f050004;
+        public static final int text_titulo_agenda=0x7f05000a;
         public static final int text_titulo_main=0x7f050001;
         public static final int text_titulos_integrantes=0x7f050006;
         public static final int text_usjt=0x7f050007;
