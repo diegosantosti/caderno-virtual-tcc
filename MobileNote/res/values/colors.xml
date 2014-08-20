@@ -13,4 +13,12 @@
     <color name="borda_edit">#919191</color>
     <color name="font_edit">#666666</color>
     <color name="font_text_about">#EDEDED</color>
+    
+    <!-- Cores agenda -->
+    
+    <color name="bg_agenda">#FFFFFF</color>
+    <color name="fonte_list_agenda">#666666</color>
+    
+    <!-- Cores do tema -->
+    <color name="bg_actionBar">#1D6793</color>
 </resources>
