@@ -2,6 +2,7 @@ package com.appoena.mobilenote;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		setContentView(R.layout.activity_main);
 		clickAddCaderno();
 		clickAbout();
+		clickAgenda();
 	}
 	
 	//Método responsável pela ação no botão "Adicionar caderno"
@@ -41,13 +43,27 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			
 			@Override
 			public void onClick(View v) {
-				setContentView(R.layout.activity_sobre);
-				
+				Intent it = new Intent(MainActivity.this, ActivitySobre.class);
+				startActivity(it);
 			}
 		});
 		
 	}
 	
+	private void clickAgenda() {
+		
+		Button btnAgenda = (Button) findViewById(R.id.btn_calendar);
+		btnAgenda.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent it = new Intent(MainActivity.this, ActivityAgenda.class);
+				startActivity(it);
+			}
+		});
+
+	}
 
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
