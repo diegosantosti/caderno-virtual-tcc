@@ -4,13 +4,13 @@
     <item 
         android:id="@+id/addAgenda"
         android:title="@string/add"
-        android:icon="@android:drawable/ic_menu_more"
+        android:icon="@drawable/ic_action_add"
         android:showAsAction="always"/>
     
     <item 
         android:id="@+id/pesqAgenda"
         android:title="@string/pesquisar"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_action_pesquisar"
         android:showAsAction="always"/>
     
     <item 

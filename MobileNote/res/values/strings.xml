@@ -14,6 +14,23 @@
     <string name="pesquisar">Pesquisar</string>
     <string name="ordenar">Ordenar</string>
     
+    <!-- Tela adicionar matéria -->
+    <string name="nova_materia">Nova Matéria</string>
+    <string name="hint_nome_materia">Nome da Matéria</string>
+    <string name="dia_semana">Dia da semana</string>
+    <string-array name="array_semana">
+        <item>Domingo</item>
+        <item>Segunda-feira</item>
+        <item>Terça-feira</item>
+        <item>Quarta-feira</item>
+        <item>Quinta-feira</item>
+        <item>Sexta-feira</item>
+        <item>Sábado</item>
+    </string-array>
+    <string name="hint_nome_professor">Nome do professor</string>
+    <string name="hint_email_professor">E-mail do professor</string>
+    <string name="hint_sala">Sala</string>
+    
     
     <!-- Integrantes e coordenador -->
     <string name="willian">WILLIAN VALERIO</string>

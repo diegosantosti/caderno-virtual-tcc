@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+	android:background="@color/bg_popup"
+    android:layout_height="fill_parent" >
+    
+	<LinearLayout 
+	    android:layout_width="match_parent"
+
+	    android:paddingLeft="20dp"
+	    android:paddingRight="20dp"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	    <TextView 
+	        android:layout_height="wrap_content"
+	        android:layout_width="match_parent"
+	        android:text="@string/nova_materia"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/text_pop_up"/>
+	    
+	    <EditText 
+	        android:id="@+id/edtNomeMateria"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/hint_nome_materia"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/edit_text_pop_up"/>
+	
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/dia_semana"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/text_pop_up"/>
+	    
+	    <Spinner 
+	        android:id="@+id/spinnerDiaSemana"
+	        android:layout_height="wrap_content"
+	        android:layout_width="match_parent"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"/>
+	    
+	    <EditText 
+	        android:id="@+id/edtNomeProfessor"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/edit_text_pop_up"
+	        android:hint="@string/hint_nome_professor"/>
+	    
+	    <EditText 
+	        android:id="@+id/edtEmailProfessor"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="textEmailAddress"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/edit_text_pop_up"
+	        android:hint="@string/hint_email_professor"/>
+	    
+	    <EditText 
+	        android:id="@+id/edtSala"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/edit_text_pop_up"
+	        android:hint="@string/hint_sala"/>
+	    
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/text_cor_capa"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        style="@style/text_pop_up"/>
+	    
+	    <Spinner 
+	        android:id="@+id/spinnerCapaMateria"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        android:layout_width="match_parent"/>
+	
+	</LinearLayout>
+</ScrollView>
