@@ -10,5 +10,6 @@
     <dimen name="linear_buttons_side">10dp</dimen>
     <dimen name="radius_edit">8dp</dimen>
     <dimen name="margin_components_popoup">10dp</dimen>
+    <dimen name="margin_components_popoup_materia">6dp</dimen>
 
 </resources>

@@ -13,6 +13,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,19 +45,13 @@ public class CustomDialog extends DialogFragment{
 		
 		params = new Bundle();
 		
-		Dialog myDialog = new AlertDialog.Builder(getActivity())
+		final AlertDialog myDialog = new AlertDialog.Builder(getActivity())
 			.setView(view)
-			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			.setPositiveButton(R.string.ok, new Dialog.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
-					EditText teste = (EditText) view.findViewById(R.id.edtNomeCaderno);
-					params.putString("CADERNO", teste.getText().toString());
-					mListener.onDialogPositiveClick(CustomDialog.this, params);
-					
-					dismiss();
-					
+					//em branco, vai ser sobrescrito pelo onclick
 					
 				}
 			})
@@ -69,6 +64,30 @@ public class CustomDialog extends DialogFragment{
 					
 				}
 			}).create();
+		
+		myDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+			
+			@Override
+			public void onShow(DialogInterface dialog) {
+				
+				Button b = myDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+				//Sobrescreve o onClick do positive button para poder conferir os dados antes de fechar 
+				b.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
+						EditText teste = (EditText) view.findViewById(R.id.edtNomeCaderno);
+						params.putString("CADERNO", teste.getText().toString());
+						mListener.onDialogPositiveClick(CustomDialog.this, params);
+						
+						myDialog.dismiss();
+						
+					}
+				});
+				
+			}
+		});
 		
 		
 		return myDialog;
@@ -88,14 +107,6 @@ public class CustomDialog extends DialogFragment{
 
 		}
 	}
-	
-	@Override
-	public void dismiss() {
-		// TODO Auto-generated method stub
-		//super.dismiss();
-		Toast.makeText(getActivity(), "teste", 2).show();
-	}
-	
 	
 
 }
