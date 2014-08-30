@@ -54,14 +54,31 @@
             android:layout_margin="@dimen/margin_button_circle"
             android:background="@drawable/button_circle_about" />
     </LinearLayout>
+    
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="70dp"
+        android:layout_below="@+id/linearLayout1"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp">
+    </GridView>
 
-    <EditText 
+    <EditText
+        android:id="@+id/editText1"
+        style="@style/edit_pesquisa"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/text_pesq_hint"
         android:layout_alignParentBottom="true"
+        android:layout_above="@+id/gridView1"
         android:layout_margin="@dimen/margin_edit_pesq"
-        android:inputType="text"
-        style="@style/edit_pesquisa"/>
+        android:hint="@string/text_pesq_hint"
+        android:inputType="text" />
+
+    
 
 </RelativeLayout>
