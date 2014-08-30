@@ -4,7 +4,7 @@
  */
 
 
-package com.appoena.mobilenote;
+package com.appoena.mobilenote.Screens;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +15,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import com.appoena.mobilenote.AdapterListColors;
+import com.appoena.mobilenote.R;
 
 public class CustomDialog extends DialogFragment{
 	
@@ -41,7 +45,7 @@ public class CustomDialog extends DialogFragment{
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		view = View.inflate(getActivity(), R.layout.activity_adicionar_caderno, null);
-		
+		setColorSpinner();
 		params = new Bundle();
 		
 		final AlertDialog myDialog = new AlertDialog.Builder(getActivity())
@@ -88,7 +92,6 @@ public class CustomDialog extends DialogFragment{
 			}
 		});
 		
-		
 		return myDialog;
 	}
 	
@@ -105,6 +108,18 @@ public class CustomDialog extends DialogFragment{
 			throw new ClassCastException(activity.toString()+"deve implementar CustomDialogListener");
 
 		}
+	}
+	
+	
+	public void setColorSpinner() {
+		Spinner spinnerColor = (Spinner)view.findViewById(R.id.spinner_color);
+		AdapterListColors adapter = new AdapterListColors(getActivity(), 
+															R.layout.item_color,
+															getResources().getStringArray(R.array.array_colors));
+		spinnerColor.setAdapter(adapter);
+		
+		
+
 	}
 	
 

@@ -1,18 +1,19 @@
 package com.appoena.mobilenote;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
-public class AdapterGrid extends BaseAdapter{
+public class AdapterGridCaderno extends BaseAdapter{
 	
 	private String[] lista;
 	private LayoutInflater inflater;
 
-	public AdapterGrid(Context context, String[] lista) {
+	public AdapterGridCaderno(Context context, String[] lista) {
 		
 
 		this.lista = lista;
@@ -44,6 +45,9 @@ public class AdapterGrid extends BaseAdapter{
 		
 		Button btnCaderno = (Button) convertView.findViewById(R.id.btnCaderno);
 		btnCaderno.setText(lista[position]);
+		//Color color = new ColorDrawable();
+		
+		btnCaderno.setBackgroundColor(Color.parseColor("#267819"));
 		
 		return convertView;
 	}

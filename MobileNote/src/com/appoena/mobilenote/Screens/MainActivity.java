@@ -1,4 +1,4 @@
-package com.appoena.mobilenote;
+package com.appoena.mobilenote.Screens;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
+import com.appoena.mobilenote.AdapterGridCaderno;
+import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.Screens.CustomDialog.CustomDialogListener;
 
 public class MainActivity extends Activity implements CustomDialogListener{
 	
@@ -23,10 +25,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
-		
 		//teste
 		gridView= (GridView) findViewById(R.id.gridView1);
-		gridView.setAdapter(new AdapterGrid(this, cadernos));
+		gridView.setAdapter(new AdapterGridCaderno(this, cadernos));
 	}
 	
 	//Método responsável pela ação no botão "Adicionar caderno"

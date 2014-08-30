@@ -9,7 +9,10 @@ package com.appoena.mobilenote;
 
 public final class R {
     public static final class array {
-        public static final int array_semana=0x7f080000;
+        /**  array de cores 
+         */
+        public static final int array_colors=0x7f050000;
+        public static final int array_semana=0x7f050001;
     }
     public static final class attr {
     }
@@ -42,22 +45,22 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
         /** 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw600dp devices (e.g. 7" tablets) here.
     
          */
-        public static final int button_circle_main=0x7f06000a;
-        public static final int linear_buttons_side=0x7f060006;
-        public static final int linear_buttons_top=0x7f060005;
-        public static final int margin_button_circle=0x7f060002;
-        public static final int margin_components_popoup=0x7f060008;
-        public static final int margin_components_popoup_materia=0x7f060009;
-        public static final int margin_edit_pesq=0x7f060004;
-        public static final int padding_edit_pesq=0x7f060003;
-        public static final int radius_edit=0x7f060007;
+        public static final int button_circle_main=0x7f07000a;
+        public static final int linear_buttons_side=0x7f070006;
+        public static final int linear_buttons_top=0x7f070005;
+        public static final int margin_button_circle=0x7f070002;
+        public static final int margin_components_popoup=0x7f070008;
+        public static final int margin_components_popoup_materia=0x7f070009;
+        public static final int margin_edit_pesq=0x7f070004;
+        public static final int padding_edit_pesq=0x7f070003;
+        public static final int radius_edit=0x7f070007;
     }
     public static final class drawable {
         public static final int btn_about=0x7f020000;
@@ -82,18 +85,19 @@ public final class R {
         public static final int splash_content=0x7f020013;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a001c;
+        public static final int action_settings=0x7f0a001d;
         public static final int actionbar_cancel=0x7f0a0010;
         public static final int actionbar_done=0x7f0a0012;
-        public static final int addAgenda=0x7f0a001d;
+        public static final int addAgenda=0x7f0a001e;
         public static final int btnCaderno=0x7f0a0014;
+        public static final int btnColor=0x7f0a0015;
         public static final int btn_about=0x7f0a000d;
         public static final int btn_add_caderno=0x7f0a000a;
         public static final int btn_calendar=0x7f0a000b;
         public static final int btn_settings=0x7f0a000c;
         public static final int cancel=0x7f0a0011;
         public static final int confirmar=0x7f0a0013;
-        public static final int dataAgenda=0x7f0a0019;
+        public static final int dataAgenda=0x7f0a001a;
         public static final int editText1=0x7f0a000f;
         public static final int edtEmailProfessor=0x7f0a0005;
         public static final int edtNomeCaderno=0x7f0a0000;
@@ -101,19 +105,19 @@ public final class R {
         public static final int edtNomeProfessor=0x7f0a0004;
         public static final int edtSala=0x7f0a0006;
         public static final int gridView1=0x7f0a000e;
-        public static final int horaAgenda=0x7f0a0017;
-        public static final int icData=0x7f0a0016;
-        public static final int icHora=0x7f0a0018;
-        public static final int icMateria=0x7f0a001a;
+        public static final int horaAgenda=0x7f0a0018;
+        public static final int icData=0x7f0a0017;
+        public static final int icHora=0x7f0a0019;
+        public static final int icMateria=0x7f0a001b;
         public static final int linearLayout1=0x7f0a0009;
         public static final int listAgenda=0x7f0a0008;
-        public static final int materiaAgenda=0x7f0a001b;
-        public static final int pesqAgenda=0x7f0a001e;
-        public static final int sortAgenda=0x7f0a001f;
+        public static final int materiaAgenda=0x7f0a001c;
+        public static final int pesqAgenda=0x7f0a001f;
+        public static final int sortAgenda=0x7f0a0020;
         public static final int spinnerCapaMateria=0x7f0a0007;
         public static final int spinnerDiaSemana=0x7f0a0003;
         public static final int spinner_color=0x7f0a0001;
-        public static final int titAgenda=0x7f0a0015;
+        public static final int titAgenda=0x7f0a0016;
     }
     public static final class layout {
         public static final int activity_adicionar_caderno=0x7f030000;
@@ -126,48 +130,49 @@ public final class R {
         public static final int include_cancel_button=0x7f030007;
         public static final int include_done_button=0x7f030008;
         public static final int item_caderno=0x7f030009;
-        public static final int row_agenda=0x7f03000a;
+        public static final int item_color=0x7f03000a;
+        public static final int row_agenda=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f090000;
         public static final int menu_agenda=0x7f090001;
     }
     public static final class string {
-        public static final int action_settings=0x7f070002;
-        public static final int add=0x7f070009;
-        public static final int agenda=0x7f070001;
-        public static final int andre=0x7f070013;
-        public static final int app_name=0x7f070000;
-        public static final int cancelar=0x7f070008;
-        public static final int coordenador=0x7f070019;
-        public static final int dia_semana=0x7f07000e;
-        public static final int diego=0x7f070017;
-        public static final int edit_nome_caderno_hint=0x7f070005;
-        public static final int henrique=0x7f070015;
-        public static final int hint_email_professor=0x7f070010;
-        public static final int hint_nome_materia=0x7f07000d;
-        public static final int hint_nome_professor=0x7f07000f;
-        public static final int hint_sala=0x7f070011;
-        public static final int integrantes=0x7f07001b;
+        public static final int action_settings=0x7f080002;
+        public static final int add=0x7f080009;
+        public static final int agenda=0x7f080001;
+        public static final int andre=0x7f080013;
+        public static final int app_name=0x7f080000;
+        public static final int cancelar=0x7f080008;
+        public static final int coordenador=0x7f080019;
+        public static final int dia_semana=0x7f08000e;
+        public static final int diego=0x7f080017;
+        public static final int edit_nome_caderno_hint=0x7f080005;
+        public static final int henrique=0x7f080015;
+        public static final int hint_email_professor=0x7f080010;
+        public static final int hint_nome_materia=0x7f08000d;
+        public static final int hint_nome_professor=0x7f08000f;
+        public static final int hint_sala=0x7f080011;
+        public static final int integrantes=0x7f08001b;
         /**  Tela adicionar matéria 
          */
-        public static final int nova_materia=0x7f07000c;
-        public static final int ok=0x7f070007;
-        public static final int ordenar=0x7f07000b;
-        public static final int pesquisar=0x7f07000a;
-        public static final int prof=0x7f070018;
-        public static final int text_cor_capa=0x7f070006;
-        public static final int text_novo_caderno=0x7f070004;
-        public static final int text_pesq_hint=0x7f070003;
-        public static final int usjt=0x7f07001a;
-        public static final int victor=0x7f070014;
-        public static final int wesley=0x7f070016;
+        public static final int nova_materia=0x7f08000c;
+        public static final int ok=0x7f080007;
+        public static final int ordenar=0x7f08000b;
+        public static final int pesquisar=0x7f08000a;
+        public static final int prof=0x7f080018;
+        public static final int text_cor_capa=0x7f080006;
+        public static final int text_novo_caderno=0x7f080004;
+        public static final int text_pesq_hint=0x7f080003;
+        public static final int usjt=0x7f08001a;
+        public static final int victor=0x7f080014;
+        public static final int wesley=0x7f080016;
         /**  Integrantes e coordenador 
          */
-        public static final int willian=0x7f070012;
+        public static final int willian=0x7f080012;
     }
     public static final class style {
-        public static final int ActionBar_Solid_MobileNote=0x7f05000f;
+        public static final int ActionBar_Solid_MobileNote=0x7f06000f;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -183,17 +188,17 @@ public final class R {
     
  API 11 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f05000b;
+        public static final int AppBaseTheme=0x7f06000b;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f05000c;
+        public static final int AppTheme=0x7f06000c;
         /**  Tema personalizado 
          */
-        public static final int ThemeMobileNote=0x7f05000e;
+        public static final int ThemeMobileNote=0x7f06000e;
         /**  Tema sem ActionBar 
          */
-        public static final int ThemeMobileNote_NoActionBar=0x7f05000d;
+        public static final int ThemeMobileNote_NoActionBar=0x7f06000d;
         /** 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
@@ -201,21 +206,21 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int ThemeNoActionBar=0x7f050010;
-        public static final int button_circle_main=0x7f050000;
+        public static final int ThemeNoActionBar=0x7f060010;
+        public static final int button_circle_main=0x7f060000;
         /**   <item name="android:focusable">false</item>
          */
-        public static final int edit_pesquisa=0x7f050002;
+        public static final int edit_pesquisa=0x7f060002;
         /**   <item name="android:focusable">false</item>
          */
-        public static final int edit_text_pop_up=0x7f050003;
-        public static final int text_agenda=0x7f050009;
-        public static final int text_app_name_about=0x7f050008;
-        public static final int text_integrantes=0x7f050005;
-        public static final int text_pop_up=0x7f050004;
-        public static final int text_titulo_agenda=0x7f05000a;
-        public static final int text_titulo_main=0x7f050001;
-        public static final int text_titulos_integrantes=0x7f050006;
-        public static final int text_usjt=0x7f050007;
+        public static final int edit_text_pop_up=0x7f060003;
+        public static final int text_agenda=0x7f060009;
+        public static final int text_app_name_about=0x7f060008;
+        public static final int text_integrantes=0x7f060005;
+        public static final int text_pop_up=0x7f060004;
+        public static final int text_titulo_agenda=0x7f06000a;
+        public static final int text_titulo_main=0x7f060001;
+        public static final int text_titulos_integrantes=0x7f060006;
+        public static final int text_usjt=0x7f060007;
     }
 }
