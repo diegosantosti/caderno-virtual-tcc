@@ -1,10 +1,12 @@
-package com.appoena.mobilenote;
+package com.appoena.mobilenote.Screens;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import com.appoena.mobilenote.R;
 
 public class ActivitySobre extends Activity {
 

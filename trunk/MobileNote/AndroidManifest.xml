@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.appoena.mobilenote.MainActivity"
+            android:name="com.appoena.mobilenote.Screens.MainActivity"
             android:theme="@style/ThemeMobileNote.NoActionBar"
             android:label="@string/app_name" >
             <intent-filter>
@@ -24,18 +24,18 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="com.appoena.mobilenote.CustomDialog"
+            android:name="com.appoena.mobilenote.Screens.CustomDialog"
             android:theme="@style/ThemeMobileNote.NoActionBar">
             
         </activity>
         <activity 
-            android:name="com.appoena.mobilenote.ActivityAgenda"
+            android:name="com.appoena.mobilenote.Screens.ActivityAgenda"
             android:label="@string/agenda"
             android:theme="@style/ThemeMobileNote">
         </activity>
         
         <activity 
-            android:name="com.appoena.mobilenote.ActivitySobre"
+            android:name="com.appoena.mobilenote.Screens.ActivitySobre"
             android:theme="@style/ThemeNoActionBar">
         </activity>
         

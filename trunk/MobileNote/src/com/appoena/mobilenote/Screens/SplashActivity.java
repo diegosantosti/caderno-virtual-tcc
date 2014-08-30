@@ -1,8 +1,10 @@
-package com.appoena.mobilenote;
+package com.appoena.mobilenote.Screens;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.appoena.mobilenote.R;
 
 public class SplashActivity extends Activity implements Runnable{
 	

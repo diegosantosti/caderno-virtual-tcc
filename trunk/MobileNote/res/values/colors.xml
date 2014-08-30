@@ -21,4 +21,12 @@
     
     <!-- Cores do tema -->
     <color name="bg_actionBar">#1D6793</color>
+    
+    <!-- array de cores -->
+    <string-array name="array_colors">
+   		<item>#FF9326</item>
+   		<item>#A3D900</item>
+   		<item>#00B2B2</item>
+   		<item>#FF7373</item>
+    </string-array>
 </resources>
