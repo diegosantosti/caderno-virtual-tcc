@@ -1,22 +1,20 @@
 package com.appoena.mobilenote;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 
 public class MainActivity extends Activity implements CustomDialogListener{
 	
-
+	private String[] cadernos = {"USJT", "FISK", "ULM", "IMPACTA", "EXCEL", "GLOBO"}; //teste
+	private GridView gridView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +23,10 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
+		
+		//teste
+		gridView= (GridView) findViewById(R.id.gridView1);
+		gridView.setAdapter(new AdapterGrid(this, cadernos));
 	}
 	
 	//Método responsável pela ação no botão "Adicionar caderno"
