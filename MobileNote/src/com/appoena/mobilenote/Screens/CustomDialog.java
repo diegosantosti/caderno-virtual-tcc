@@ -80,10 +80,13 @@ public class CustomDialog extends DialogFragment{
 					@Override
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
-						EditText teste = (EditText) view.findViewById(R.id.edtNomeCaderno);
-						params.putString("CADERNO", teste.getText().toString());
+						EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
+						Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
+						int i = spn.getSelectedItemPosition();
+						String color[] = getResources().getStringArray(R.array.array_colors);	
+						params.putString("CADERNO", edt.getText().toString());
+						params.putString("COR", color[i]);
 						mListener.onDialogPositiveClick(CustomDialog.this, params);
-						
 						myDialog.dismiss();
 						
 					}
