@@ -7,8 +7,11 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.Caderno;
@@ -27,15 +30,23 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		arrayCaderno = new ArrayList<Caderno>();
+		arrayCaderno.add(new Caderno("USJT","#FF9326"));
+		arrayCaderno.add(new Caderno("FISK","#A3D900"));
+		arrayCaderno.add(new Caderno("ULM","#00B2B2"));
+		arrayCaderno.add(new Caderno("ABCD","#FF7373"));
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
 		//teste
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(new AdapterGridCaderno(this, arrayCaderno));
+		onClickItemGrid();
+		
 	}
 	
-	//Método responsável pela ação no botão "Adicionar caderno"
+	/*
+	 * Método responsável pela ação no botão "Adicionar caderno"
+	 */
 	private void clickAddCaderno() {
 		Button btnAddCaderno = (Button) findViewById(R.id.btn_add_caderno);
 		btnAddCaderno.setOnClickListener( new View.OnClickListener() {
@@ -43,12 +54,14 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onClick(View v) {
-				showDialog();
+				showDialog("ADD_CADERNO");
 			}
 		});
 	}
 	
-	//Método responsável pela ação no botão "Sobre"
+	/*
+	 * Método responsável pela ação no botão "Sobre"
+	 */
 	private void clickAbout() {
 		Button btnAbout = (Button) findViewById(R.id.btn_about);
 		btnAbout.setOnClickListener( new View.OnClickListener() {
@@ -62,6 +75,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		
 	}
 	
+	/*
+	 * Método responsável pela ação no botão "Agenda"
+	 */
 	private void clickAgenda() {
 		
 		Button btnAgenda = (Button) findViewById(R.id.btn_calendar);
@@ -73,6 +89,24 @@ public class MainActivity extends Activity implements CustomDialogListener{
 				Intent it = new Intent(MainActivity.this, ActivityAgenda.class);
 				startActivity(it);
 			}
+		});
+
+	}
+	
+	/*
+	 * Método responsável pelo clique no item do gridView
+	 */
+	
+	private void onClickItemGrid() {
+		gridView.setOnItemClickListener(new GridView.OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position,long id) {
+				Caderno c = arrayCaderno.get(position);
+				Toast.makeText(getBaseContext(), c.getNome(), Toast.LENGTH_SHORT).show();
+				
+			}
+			
 		});
 
 	}
@@ -93,9 +127,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		
 	}
 	
-	void showDialog(){
+	void showDialog(String tag){
 		CustomDialog customDialog = CustomDialog.newInstance();
-		customDialog.show(getFragmentManager(), null);
+		customDialog.show(getFragmentManager(), tag);
 		
 	}
 

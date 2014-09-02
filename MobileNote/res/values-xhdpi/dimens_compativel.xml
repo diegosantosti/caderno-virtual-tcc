@@ -3,5 +3,6 @@
 <resources>
     <dimen name="button_circle_main">130dp</dimen>
     <dimen name="margin_button_circle">20dp</dimen>
+    <dimen name="caderno_size">160dp</dimen>
     
 </resources>

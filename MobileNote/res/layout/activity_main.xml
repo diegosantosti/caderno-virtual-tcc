@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
+        android:layout_centerHorizontal="true"
         android:paddingBottom="70dp"
         android:layout_below="@+id/linearLayout1"
         android:numColumns="2"
