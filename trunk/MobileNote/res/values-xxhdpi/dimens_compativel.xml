@@ -2,5 +2,6 @@
 <!-- Inserir aqui as dimensões aplicáveis as dimensões XXHigh Density  -->
 <resources>
     <dimen name="button_circle_main">195dp</dimen>
+    <dimen name="caderno_size">240dp</dimen>
     
 </resources>

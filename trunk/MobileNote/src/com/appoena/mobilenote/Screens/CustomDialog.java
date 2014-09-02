@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterListColors;
 import com.appoena.mobilenote.R;
@@ -80,14 +81,8 @@ public class CustomDialog extends DialogFragment{
 					@Override
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
-						EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
-						Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
-						int i = spn.getSelectedItemPosition();
-						String color[] = getResources().getStringArray(R.array.array_colors);	
-						params.putString("CADERNO", edt.getText().toString());
-						params.putString("COR", color[i]);
-						mListener.onDialogPositiveClick(CustomDialog.this, params);
-						myDialog.dismiss();
+						if(devolverCaderno())myDialog.dismiss();
+						else				 Toast.makeText(getActivity(), "Informe o nome do caderno", Toast.LENGTH_SHORT).show();
 						
 					}
 				});
@@ -98,7 +93,9 @@ public class CustomDialog extends DialogFragment{
 		return myDialog;
 	}
 	
-	// Sobrescreve o método onAttach para instanciar o CustomDialog
+	/*
+	 * Sobrescreve o método onAttach para instanciar o CustomDialog 
+	 */
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -120,9 +117,21 @@ public class CustomDialog extends DialogFragment{
 															R.layout.item_color,
 															getResources().getStringArray(R.array.array_colors));
 		spinnerColor.setAdapter(adapter);
-		
-		
-
+	}
+	
+	private boolean devolverCaderno(){
+		EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
+		Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
+		int i = spn.getSelectedItemPosition();
+		String color[] = getResources().getStringArray(R.array.array_colors);
+		if(!edt.getText().toString().isEmpty() && !color[i].isEmpty()){
+			params.putString("CADERNO", edt.getText().toString());
+			params.putString("COR", color[i]);
+			mListener.onDialogPositiveClick(CustomDialog.this, params);
+			return true;			
+		}else{
+			return false;
+		}
 	}
 	
 
