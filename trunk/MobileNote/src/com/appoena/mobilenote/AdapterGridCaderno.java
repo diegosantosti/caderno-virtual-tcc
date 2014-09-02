@@ -1,5 +1,7 @@
 package com.appoena.mobilenote;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,26 +12,26 @@ import android.widget.Button;
 
 public class AdapterGridCaderno extends BaseAdapter{
 	
-	private String[] lista;
+	private ArrayList<Caderno> cadernos;
 	private LayoutInflater inflater;
 
-	public AdapterGridCaderno(Context context, String[] lista) {
+	public AdapterGridCaderno(Context context, ArrayList<Caderno> cadernos) {
 		
 
-		this.lista = lista;
+		this.cadernos = cadernos;
 		inflater = LayoutInflater.from(context);
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return lista.length;
+		return cadernos.size();
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Caderno getItem(int position) {
 		// TODO Auto-generated method stub
-		return lista[position];
+		return cadernos.get(position);
 	}
 
 	@Override
@@ -44,10 +46,9 @@ public class AdapterGridCaderno extends BaseAdapter{
 		convertView = inflater.inflate(R.layout.item_caderno, null);
 		
 		Button btnCaderno = (Button) convertView.findViewById(R.id.btnCaderno);
-		btnCaderno.setText(lista[position]);
-		//Color color = new ColorDrawable();
-		
-		btnCaderno.setBackgroundColor(Color.parseColor("#267819"));
+		Caderno c = getItem(position);
+		btnCaderno.setText(c.getNome());
+		btnCaderno.setBackgroundColor(Color.parseColor(c.getColor()));
 		
 		return convertView;
 	}
