@@ -6,11 +6,14 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.Caderno;
@@ -22,6 +25,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 	private GridView gridView;
 	private ArrayList<Caderno> arrayCaderno;
+	private AdapterGridCaderno adapter;
 
 
 	@Override
@@ -29,17 +33,20 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		arrayCaderno = new ArrayList<Caderno>();
-		arrayCaderno.add(new Caderno("USJT","#FF9326"));
-		arrayCaderno.add(new Caderno("FISK","#A3D900"));
-		arrayCaderno.add(new Caderno("ULM","#00B2B2"));
-		arrayCaderno.add(new Caderno("ABCD","#FF7373"));
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
 		//teste
+		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
+		adapter.addItem(new Caderno("USJT",0));
+		adapter.addItem(new Caderno("FISK",1));
+		adapter.addItem(new Caderno("ULM",2));
+		adapter.addItem(new Caderno("ABCD",3));
+		adapter.notifyDataSetChanged();
 		gridView= (GridView) findViewById(R.id.gridView1);
-		gridView.setAdapter(new AdapterGridCaderno(this, arrayCaderno));
+		gridView.setAdapter(adapter);
 		onClickItemGrid();
+		registerForContextMenu(gridView);
 		
 	}
 	
@@ -53,7 +60,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onClick(View v) {
-				showDialog("ADD_CADERNO");
+				showDialog(null);
 			}
 		});
 	}
@@ -101,9 +108,8 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,long id) {
-				Caderno c = arrayCaderno.get(position);
-				Toast.makeText(getBaseContext(), c.getNome(), Toast.LENGTH_SHORT).show();
-				
+				Intent it = new Intent(MainActivity.this, ActivityMateria.class);
+				startActivity(it);				
 			}
 			
 		});
@@ -118,18 +124,54 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
-		String caderno = params.getString("CADERNO");
-		String cor = params.getString("COR");
+		String caderno = params.getString("NOME_CADERNO");
+		int cor = params.getInt("COR_CADERNO");
 		Caderno c = new Caderno(caderno, cor);
-		arrayCaderno.add(c);
-		gridView.setAdapter(new AdapterGridCaderno(getApplicationContext(), arrayCaderno));
+		
+		if (!params.getBoolean("EDICAO")) {
+			adapter.addItem(c);
+		}else{
+			int position = params.getInt("INDEX_CADERNO");
+			adapter.setItemAtPosition(c, position);
+		}
+		
+		adapter.notifyDataSetChanged();
 		
 	}
 	
-	void showDialog(String tag){
+	void showDialog(Bundle params){
 		CustomDialog customDialog = CustomDialog.newInstance();
-		customDialog.show(getFragmentManager(), tag);
+		customDialog.setArguments(params);
+		customDialog.show(getFragmentManager(), null);
 		
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		getMenuInflater().inflate(R.menu.actions_caderno, menu);
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		switch (item.getItemId()) {
+		case R.id.menu_del_caderno:
+			adapter.removeItemAtPosition(info.position);
+			adapter.notifyDataSetChanged();
+			break;
+
+		case R.id.menu_edit_caderno:
+			Bundle params = new Bundle();
+			Caderno c = adapter.getItem(info.position);
+			params.putString("NOME_CADERNO", c.getNome());
+			params.putInt("COR_CADERNO", c.getColor());
+			params.putInt("INDEX_CADERNO", info.position);
+			showDialog(params);
+			break;
+		}
+		return super.onContextItemSelected(item);
 	}
 
 

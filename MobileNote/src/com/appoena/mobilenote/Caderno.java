@@ -4,19 +4,19 @@ package com.appoena.mobilenote;
 public class Caderno {
 	
 	private String nome;
-	private String color;
+	private int color;
 
-	public Caderno(String nome, String color) {
+	public Caderno(String nome, int color) {
 
 		setNome(nome);
 		setColor(color);
 	}
 
-	public String getColor() {
+	public int getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(int color) {
 		this.color = color;
 	}
 

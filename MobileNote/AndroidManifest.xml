@@ -35,6 +35,12 @@
         </activity>
         
         <activity 
+            android:name="com.appoena.mobilenote.screens.ActivityMateria"
+            android:label="@string/materia"
+            android:theme="@style/ThemeMobileNote">
+        </activity>
+        
+        <activity 
             android:name="com.appoena.mobilenote.screens.ActivitySobre"
             android:theme="@style/ThemeNoActionBar">
         </activity>
