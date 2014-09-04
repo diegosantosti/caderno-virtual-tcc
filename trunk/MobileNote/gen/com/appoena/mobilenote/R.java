@@ -88,10 +88,10 @@ public final class R {
         public static final int splash_content=0x7f020014;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a001d;
+        public static final int action_settings=0x7f0a001f;
         public static final int actionbar_cancel=0x7f0a0010;
         public static final int actionbar_done=0x7f0a0012;
-        public static final int addAgenda=0x7f0a001e;
+        public static final int addAgenda=0x7f0a0020;
         public static final int btnCaderno=0x7f0a0014;
         public static final int btnColor=0x7f0a0015;
         public static final int btn_about=0x7f0a000d;
@@ -115,8 +115,10 @@ public final class R {
         public static final int linearLayout1=0x7f0a0009;
         public static final int listAgenda=0x7f0a0008;
         public static final int materiaAgenda=0x7f0a001c;
-        public static final int pesqAgenda=0x7f0a001f;
-        public static final int sortAgenda=0x7f0a0020;
+        public static final int menu_del_caderno=0x7f0a001e;
+        public static final int menu_edit_caderno=0x7f0a001d;
+        public static final int pesqAgenda=0x7f0a0021;
+        public static final int sortAgenda=0x7f0a0022;
         public static final int spinnerCapaMateria=0x7f0a0007;
         public static final int spinnerDiaSemana=0x7f0a0003;
         public static final int spinner_color=0x7f0a0001;
@@ -137,42 +139,46 @@ public final class R {
         public static final int row_agenda=0x7f03000b;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int menu_agenda=0x7f090001;
+        public static final int actions_caderno=0x7f090000;
+        public static final int main=0x7f090001;
+        public static final int menu_agenda=0x7f090002;
     }
     public static final class string {
-        public static final int action_settings=0x7f080002;
-        public static final int add=0x7f080009;
+        public static final int action_settings=0x7f080003;
+        public static final int add=0x7f08000a;
         public static final int agenda=0x7f080001;
-        public static final int andre=0x7f080013;
+        public static final int andre=0x7f080016;
         public static final int app_name=0x7f080000;
-        public static final int cancelar=0x7f080008;
-        public static final int coordenador=0x7f080019;
-        public static final int dia_semana=0x7f08000e;
-        public static final int diego=0x7f080017;
-        public static final int edit_nome_caderno_hint=0x7f080005;
-        public static final int henrique=0x7f080015;
-        public static final int hint_email_professor=0x7f080010;
-        public static final int hint_nome_materia=0x7f08000d;
-        public static final int hint_nome_professor=0x7f08000f;
-        public static final int hint_sala=0x7f080011;
-        public static final int integrantes=0x7f08001b;
+        public static final int cancelar=0x7f080009;
+        public static final int coordenador=0x7f08001c;
+        public static final int del_caderno=0x7f08000e;
+        public static final int dia_semana=0x7f080011;
+        public static final int diego=0x7f08001a;
+        public static final int edit_caderno=0x7f08000d;
+        public static final int edit_nome_caderno_hint=0x7f080006;
+        public static final int henrique=0x7f080018;
+        public static final int hint_email_professor=0x7f080013;
+        public static final int hint_nome_materia=0x7f080010;
+        public static final int hint_nome_professor=0x7f080012;
+        public static final int hint_sala=0x7f080014;
+        public static final int integrantes=0x7f08001e;
+        public static final int materia=0x7f080002;
         /**  Tela adicionar matéria 
          */
-        public static final int nova_materia=0x7f08000c;
-        public static final int ok=0x7f080007;
-        public static final int ordenar=0x7f08000b;
-        public static final int pesquisar=0x7f08000a;
-        public static final int prof=0x7f080018;
-        public static final int text_cor_capa=0x7f080006;
-        public static final int text_novo_caderno=0x7f080004;
-        public static final int text_pesq_hint=0x7f080003;
-        public static final int usjt=0x7f08001a;
-        public static final int victor=0x7f080014;
-        public static final int wesley=0x7f080016;
+        public static final int nova_materia=0x7f08000f;
+        public static final int ok=0x7f080008;
+        public static final int ordenar=0x7f08000c;
+        public static final int pesquisar=0x7f08000b;
+        public static final int prof=0x7f08001b;
+        public static final int text_cor_capa=0x7f080007;
+        public static final int text_novo_caderno=0x7f080005;
+        public static final int text_pesq_hint=0x7f080004;
+        public static final int usjt=0x7f08001d;
+        public static final int victor=0x7f080017;
+        public static final int wesley=0x7f080019;
         /**  Integrantes e coordenador 
          */
-        public static final int willian=0x7f080012;
+        public static final int willian=0x7f080015;
     }
     public static final class style {
         public static final int ActionBar_Solid_MobileNote=0x7f06000f;
