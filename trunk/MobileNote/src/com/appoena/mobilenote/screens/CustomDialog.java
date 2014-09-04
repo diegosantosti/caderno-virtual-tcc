@@ -23,9 +23,10 @@ import com.appoena.mobilenote.R;
 
 public class CustomDialog extends DialogFragment{
 	
-	View view; //responsável por inflar o xml.
-	Bundle params; // reponsável por enviar os parâmetros para a classe que chamou.	
-    CustomDialogListener mListener; // Usa essa instância da interface para entregar eventos de ação
+	private View view; //responsável por inflar o xml.
+	private Bundle params; // reponsável por enviar os parâmetros para a classe que chamou.	
+    private CustomDialogListener mListener; // Usa essa instância da interface para entregar eventos de ação
+    private Boolean edicao=false;
 	
 	static CustomDialog newInstance(){
 		CustomDialog dialog= new CustomDialog();
@@ -47,7 +48,12 @@ public class CustomDialog extends DialogFragment{
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		view = View.inflate(getActivity(), R.layout.activity_adicionar_caderno, null);
 		setColorSpinner();
-		params = new Bundle();
+		params = getArguments();
+		if(params==null){
+			params = new Bundle();
+		}else{
+			popularDados();
+		}
 		
 		final AlertDialog myDialog = new AlertDialog.Builder(getActivity())
 			.setView(view)
@@ -93,6 +99,15 @@ public class CustomDialog extends DialogFragment{
 		return myDialog;
 	}
 	
+	private void popularDados() {
+		EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
+		Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
+		edt.setText(params.getString("NOME_CADERNO"));
+		spn.setSelection(params.getInt("COR_CADERNO"));
+		edicao = true;
+		
+	}
+
 	/*
 	 * Sobrescreve o método onAttach para instanciar o CustomDialog 
 	 */
@@ -123,10 +138,10 @@ public class CustomDialog extends DialogFragment{
 		EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
 		Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
 		int i = spn.getSelectedItemPosition();
-		String color[] = getResources().getStringArray(R.array.array_colors);
-		if(!edt.getText().toString().isEmpty() && !color[i].isEmpty()){
-			params.putString("CADERNO", edt.getText().toString());
-			params.putString("COR", color[i]);
+		if(!edt.getText().toString().isEmpty()){
+			params.putString("NOME_CADERNO", edt.getText().toString());
+			params.putInt("COR_CADERNO", i);
+			params.putBoolean("EDICAO", edicao);
 			mListener.onDialogPositiveClick(CustomDialog.this, params);
 			return true;			
 		}else{

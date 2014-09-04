@@ -3,7 +3,7 @@
 <resources>
     <dimen name="button_circle_main">43.3dp</dimen>
     <dimen name="margin_button_circle">12dp</dimen>
-    <dimen name="caderno_size">120dp</dimen>
+    <dimen name="caderno_size">150dp</dimen>
     <dimen name="margin_grid">10dp</dimen>
     
 </resources>

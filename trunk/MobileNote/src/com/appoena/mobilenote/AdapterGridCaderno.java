@@ -14,12 +14,14 @@ public class AdapterGridCaderno extends BaseAdapter{
 	
 	private ArrayList<Caderno> cadernos;
 	private LayoutInflater inflater;
+	private String[] color;
 
-	public AdapterGridCaderno(Context context, ArrayList<Caderno> cadernos) {
+	public AdapterGridCaderno(Context context, ArrayList<Caderno> cadernos,String color[]) {
 		
 
 		this.cadernos = cadernos;
 		inflater = LayoutInflater.from(context);
+		this.color = color;
 	}
 
 	@Override
@@ -39,6 +41,18 @@ public class AdapterGridCaderno extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return position;
 	}
+	
+	public void removeItemAtPosition(int position){
+		cadernos.remove(position);
+	}
+	
+	public void addItem(Caderno c){
+		cadernos.add(c);
+	}
+	
+	public void setItemAtPosition(Caderno c, int position){
+		cadernos.set(position, c);
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,7 +64,7 @@ public class AdapterGridCaderno extends BaseAdapter{
 		btnCaderno.setText(c.getNome());
 		btnCaderno.setClickable(false);
 		btnCaderno.setFocusable(false);
-		btnCaderno.setBackgroundColor(Color.parseColor(c.getColor()));
+		btnCaderno.setBackgroundColor(Color.parseColor(color[c.getColor()]));
 		
 		return convertView;
 	}
