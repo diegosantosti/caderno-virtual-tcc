@@ -16,10 +16,11 @@ import android.widget.Button;
 import android.widget.GridView;
 
 import com.appoena.mobilenote.AdapterGridCaderno;
-import com.appoena.mobilenote.Caderno;
+import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
+import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.R;
 
-public class MainActivity extends Activity implements com.appoena.mobilenote.CustomDialog.CustomDialogListener{
+public class MainActivity extends Activity implements CustomDialogListener{
 	
 
 	private GridView gridView;
@@ -37,7 +38,6 @@ public class MainActivity extends Activity implements com.appoena.mobilenote.Cus
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
-		//teste
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
 		adapter.addItem(new Caderno("USJT",0));
 		adapter.addItem(new Caderno("FISK",1));
@@ -63,20 +63,14 @@ public class MainActivity extends Activity implements com.appoena.mobilenote.Cus
 
 			@Override
 			public void onClick(View v) {
-				//Bundle params = new Bundle();
-				//params.putInt("OBJETO", R.layout.activity_adicionar_caderno);
 				setBundle();
 				showDialog(params);
-				//showDialog(null, INDEX_CADERNO);
+
 			}
 		});
 	}
 	
-	private void showDialog(Bundle params){
-		CustomDialogCaderno customDialog = CustomDialogCaderno.newInstance();
-		customDialog.setArguments(params);
-		customDialog.show(getFragmentManager(), null);
-	}
+	
 
 	/*
 	 * Método responsável pela ação no botão "Sobre"
@@ -148,9 +142,9 @@ public class MainActivity extends Activity implements com.appoena.mobilenote.Cus
 		case R.id.menu_edit_caderno:
             Caderno c = adapter.getItem(info.position);
             setBundle();
-            params.putString("NOME_CADERNO", c.getNome());
-            params.putInt("COR_CADERNO", c.getColor());
-            params.putInt("INDEX_CADERNO", info.position);
+            params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
+            params.putInt(getResources().getString(R.string.COR_CADERNO), c.getColor());
+            params.putInt(getResources().getString(R.string.INDEX_CADERNO), info.position);
             showDialog(params);
             
 			break;
@@ -158,17 +152,23 @@ public class MainActivity extends Activity implements com.appoena.mobilenote.Cus
 
 		return super.onContextItemSelected(item);
 	}
+	
+	private void showDialog(Bundle params){
+		CustomDialogCaderno customDialog = CustomDialogCaderno.newInstance();
+		customDialog.setArguments(params);
+		customDialog.show(getFragmentManager(), null);
+	}
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
-		String caderno = params.getString("NOME_CADERNO");
-        int cor = params.getInt("COR_CADERNO");
+		String caderno = params.getString(getResources().getString(R.string.NOME_CADERNO));
+        int cor = params.getInt(getResources().getString(R.string.COR_CADERNO));
         Caderno c = new Caderno(caderno, cor);
         
-        if (!params.getBoolean("EDICAO")) {
+        if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
                 adapter.addItem(c);
         }else{
-                int position = params.getInt("INDEX_CADERNO");
+                int position = params.getInt(getResources().getString(R.string.INDEX_CADERNO));
                 adapter.setItemAtPosition(c, position);
         }
         
@@ -184,7 +184,7 @@ public class MainActivity extends Activity implements com.appoena.mobilenote.Cus
 	
 	private void setBundle() {
 		params = new Bundle();
-		params.putInt("VIEW", R.layout.activity_adicionar_caderno);
+		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_caderno);
 
 	}
 

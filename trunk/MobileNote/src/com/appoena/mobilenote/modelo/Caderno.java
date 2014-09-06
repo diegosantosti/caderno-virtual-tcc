@@ -1,4 +1,4 @@
-package com.appoena.mobilenote;
+package com.appoena.mobilenote.modelo;
 
 
 public class Caderno {

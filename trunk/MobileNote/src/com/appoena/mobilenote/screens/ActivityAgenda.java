@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
+import com.appoena.mobilenote.R;
 
 public class ActivityAgenda extends Activity implements CustomDialogListener{
 
-	private int AGENDA = 1;
+	private Bundle params;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		setBundle();
 		
 	}
 	
@@ -39,9 +40,8 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			finish();
 			return true;
 		case R.id.menu_add_agenda:
-			Bundle params = new Bundle();
-			
-			//showDialog(null);
+			setBundle();
+			showDialog(params);
 			
 			return true;
 		default:
@@ -63,10 +63,17 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		
 	}
 	
-//	private void showDialog(Bundle params){
-//		CustomDialog  customDialog = CustomDialog.newInstance();
-//		customDialog.setArguments(params);
-//		customDialog.show(getFragmentManager(), null);
-//	}
+	private void setBundle() {
+		params = new Bundle();
+		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_agenda);
+
+	}
+	
+	private void showDialog(Bundle params){
+		CustomDialogAgenda customDialog = CustomDialogAgenda.newInstance();
+		customDialog.setArguments(params);
+		customDialog.show(getFragmentManager(), null);
+	}
+	
 
 }
