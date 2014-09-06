@@ -64,8 +64,8 @@ public class AdapterGridCaderno extends BaseAdapter{
 		btnCaderno.setText(c.getNome());
 		btnCaderno.setClickable(false);
 		btnCaderno.setFocusable(false);
+		btnCaderno.setBackgroundResource(R.drawable.button_caderno_grid);
 		btnCaderno.setBackgroundColor(Color.parseColor(color[c.getColor()]));
-		
 		return convertView;
 	}
 

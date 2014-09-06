@@ -91,7 +91,6 @@ public final class R {
         public static final int action_settings=0x7f0a001f;
         public static final int actionbar_cancel=0x7f0a0010;
         public static final int actionbar_done=0x7f0a0012;
-        public static final int addAgenda=0x7f0a0020;
         public static final int btnCaderno=0x7f0a0014;
         public static final int btnColor=0x7f0a0015;
         public static final int btn_about=0x7f0a000d;
@@ -115,10 +114,11 @@ public final class R {
         public static final int linearLayout1=0x7f0a0009;
         public static final int listAgenda=0x7f0a0008;
         public static final int materiaAgenda=0x7f0a001c;
+        public static final int menu_add_agenda=0x7f0a0020;
         public static final int menu_del_caderno=0x7f0a001e;
         public static final int menu_edit_caderno=0x7f0a001d;
-        public static final int pesqAgenda=0x7f0a0021;
-        public static final int sortAgenda=0x7f0a0022;
+        public static final int menu_pesq_agenda=0x7f0a0021;
+        public static final int menu_sort_agenda=0x7f0a0022;
         public static final int spinnerCapaMateria=0x7f0a0007;
         public static final int spinnerDiaSemana=0x7f0a0003;
         public static final int spinner_color=0x7f0a0001;

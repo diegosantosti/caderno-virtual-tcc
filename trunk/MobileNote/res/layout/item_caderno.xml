@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/button_caderno_grid"
     android:orientation="vertical" >
     
     <Button
         android:id="@+id/btnCaderno" 
         android:layout_width="@dimen/caderno_size"
-        android:layout_height="@dimen/caderno_size"/>
+        android:layout_height="@dimen/caderno_size"
+        />
     
 
 </LinearLayout>
