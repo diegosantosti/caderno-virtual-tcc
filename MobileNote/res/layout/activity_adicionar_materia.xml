@@ -75,7 +75,7 @@
 	        style="@style/text_pop_up"/>
 	    
 	    <Spinner 
-	        android:id="@+id/spinnerCapaMateria"
+	        android:id="@id/spinner_color"
 	        android:layout_height="wrap_content"
 	        android:layout_margin="@dimen/margin_components_popoup_materia"
 	        android:layout_width="match_parent"/>

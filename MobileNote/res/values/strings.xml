@@ -17,7 +17,7 @@
     <string name="edit_caderno">Editar Caderno</string>
     <string name="del_caderno">Excluir Caderno</string>
     
-    <!-- Tela adicionar matéria -->
+    <!-- Tela matéria -->
     <string name="nova_materia">Nova Matéria</string>
     <string name="hint_nome_materia">Nome da Matéria</string>
     <string name="dia_semana">Dia da semana</string>
@@ -34,6 +34,13 @@
     <string name="hint_email_professor">E-mail do professor</string>
     <string name="hint_sala">Sala</string>
     
+    <!-- Tela Agenda -->
+    
+    <string name="novo_lembrete">Novo Lembrete</string>
+    <string name="hist_descricao">Descricao</string>
+    <string name="prompt_sel_caderno">Selecione o caderno</string>
+    <string name="prompt_sel_materia">Selecione a Matéria</string>
+    <string name="vincular_materia">Vincular Matéria</string>
     
     <!-- Integrantes e coordenador -->
     <string name="willian">WILLIAN VALERIO</string>
@@ -46,5 +53,15 @@
     <string name="coordenador">ANDRÉ LUIZ DIAS RIBEIRO</string>
     <string name="usjt">UNIVERSIDADE SÃO JUDAS TADEU</string>
     <string name="integrantes">INTEGRANTES:</string>
+    
+    <!-- Mensagens e avisos -->
+    <string name="informe_nome_caderno">Informe o nome do caderno.</string>
+    
+    <!-- Chaves e parametros -->
+    <string name="NOME_CADERNO">NOME_CADERNO</string>
+    <string name="COR_CADERNO">COR_CADERNO</string>
+    <string name="INDEX_CADERNO">INDEX_CADERNO</string>
+    <string name="EDICAO">EDICAO</string>
+    <string name="VIEW">VIEW</string>
     
 </resources>

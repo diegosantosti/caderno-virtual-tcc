@@ -15,10 +15,16 @@ import com.appoena.mobilenote.R;
 
 public class CustomDialogCaderno extends CustomDialog{
 	
+	private EditText edtCaderno;
+	private Spinner spnColor;
+	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
-		setColorSpinner();
+		
+		edtCaderno = (EditText) view.findViewById(R.id.edtNomeCaderno);
+		spnColor = (Spinner) view.findViewById(R.id.spinner_color);
+		spnColor = setColorSpinner(spnColor);
 		try {
 			popularCaderno();
 		} catch (Exception e) {
@@ -37,7 +43,7 @@ public class CustomDialogCaderno extends CustomDialog{
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
 						if(devolverCaderno())myDialog.dismiss();
-						else				 Toast.makeText(getActivity(), "Informe o nome do caderno", Toast.LENGTH_SHORT).show();
+						else				 Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
 					}
 				});
 				
@@ -54,13 +60,12 @@ public class CustomDialogCaderno extends CustomDialog{
 	}
 	
 	private boolean devolverCaderno(){
-		EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
-		Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
-		int i = spn.getSelectedItemPosition();
-		if(!edt.getText().toString().isEmpty()){
-			params.putString("NOME_CADERNO", edt.getText().toString());
-			params.putInt("COR_CADERNO", i);
-			params.putBoolean("EDICAO", edicao);
+
+		int i = spnColor.getSelectedItemPosition();
+		if(!edtCaderno.getText().toString().isEmpty()){
+			params.putString(getResources().getString(R.string.NOME_CADERNO), edtCaderno.getText().toString());
+			params.putInt(getResources().getString(R.string.COR_CADERNO), i);
+			params.putBoolean(getResources().getString(R.string.EDICAO), edicao);
 			mListener.onDialogPositiveClick(CustomDialogCaderno.this, params);
 			return true;			
 		}else{
@@ -69,12 +74,12 @@ public class CustomDialogCaderno extends CustomDialog{
 	}
 	
 	private void popularCaderno() {
-		EditText edt = (EditText) view.findViewById(R.id.edtNomeCaderno);
-		Spinner spn = (Spinner) view.findViewById(R.id.spinner_color);
-		edt.setText(params.getString("NOME_CADERNO"));
-		spn.setSelection(params.getInt("COR_CADERNO"));
-		edicao = true;
-		
+		String nome = params.getString(getResources().getString(R.string.NOME_CADERNO));
+		if(nome!=null){
+			edicao = true;
+			edtCaderno.setText(nome);
+			spnColor.setSelection(params.getInt(getResources().getString(R.string.COR_CADERNO)));
+		}
 	}
 	
 

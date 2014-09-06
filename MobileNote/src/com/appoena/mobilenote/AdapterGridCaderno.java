@@ -2,6 +2,8 @@ package com.appoena.mobilenote;
 
 import java.util.ArrayList;
 
+import com.appoena.mobilenote.modelo.Caderno;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;

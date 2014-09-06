@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Spinner;
 
@@ -38,13 +39,15 @@ public class CustomDialog extends DialogFragment{
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		//carregar tema do dialog
+		ContextThemeWrapper context = new ContextThemeWrapper(getActivity(), R.style.AlertDialog_MobileNote);
 		params = getArguments();
 		if(params==null){
 			params = new Bundle();
 		}else{
-			view = View.inflate(getActivity(), params.getInt("VIEW"), null);			
+			view = View.inflate(getActivity(), params.getInt(getResources().getString(R.string.VIEW)), null);			
 		}
-		myDialog = new AlertDialog.Builder(getActivity())
+		myDialog = new AlertDialog.Builder(context)
 			.setView(view)
 			.setPositiveButton(R.string.ok, new Dialog.OnClickListener() {
 				
@@ -66,12 +69,12 @@ public class CustomDialog extends DialogFragment{
 		return myDialog;
 	}
 
-	public void setColorSpinner() {
-		Spinner spinnerColor = (Spinner)view.findViewById(R.id.spinner_color);
+	public Spinner setColorSpinner(Spinner spinner) {
 		AdapterListColors adapter = new AdapterListColors(getActivity(), 
 															R.layout.item_color,
 															getResources().getStringArray(R.array.array_colors));
-		spinnerColor.setAdapter(adapter);
+		spinner.setAdapter(adapter);
+		return spinner;
 	}
 
 	/*

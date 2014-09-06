@@ -27,12 +27,16 @@
     
     <style name="ThemeMobileNote" parent="@android:style/Theme.Holo">
         <item name="android:actionBarStyle">@style/ActionBar.Solid.MobileNote</item>
+        <item name="android:alertDialogStyle">@style/AlertDialog.MobileNote</item>
     </style>
     
     <style name="ActionBar.Solid.MobileNote" parent="@android:style/Widget.ActionBar">
         <item name="android:background">@color/bg_actionBar</item>
         <item name="android:logo">@android:color/transparent</item>
-        
+    </style>
+    
+    <style name="AlertDialog.MobileNote" parent="@android:style/Theme.Holo.Light.Dialog.NoActionBar">
+		<!-- Tema do AlertDialog branco -->
     </style>
 
 </resources>
