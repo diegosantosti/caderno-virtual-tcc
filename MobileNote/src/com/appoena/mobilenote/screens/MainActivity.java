@@ -18,14 +18,15 @@ import android.widget.GridView;
 import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.Caderno;
 import com.appoena.mobilenote.R;
-import com.appoena.mobilenote.screens.CustomDialog.CustomDialogListener;
 
-public class MainActivity extends Activity implements CustomDialogListener{
+public class MainActivity extends Activity implements com.appoena.mobilenote.CustomDialog.CustomDialogListener{
 	
 
 	private GridView gridView;
 	private ArrayList<Caderno> arrayCaderno;
 	private AdapterGridCaderno adapter;
+	private Bundle params;
+	//private int INDEX_CADERNO = -1;
 
 
 	@Override
@@ -47,6 +48,8 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		gridView.setAdapter(adapter);
 		onClickItemGrid();
 		registerForContextMenu(gridView);
+		setBundle();
+		
 		
 	}
 	
@@ -60,11 +63,21 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onClick(View v) {
-				showDialog(null);
+				//Bundle params = new Bundle();
+				//params.putInt("OBJETO", R.layout.activity_adicionar_caderno);
+				setBundle();
+				showDialog(params);
+				//showDialog(null, INDEX_CADERNO);
 			}
 		});
 	}
 	
+	private void showDialog(Bundle params){
+		CustomDialogCaderno customDialog = CustomDialogCaderno.newInstance();
+		customDialog.setArguments(params);
+		customDialog.show(getFragmentManager(), null);
+	}
+
 	/*
 	 * Método responsável pela ação no botão "Sobre"
 	 */
@@ -115,36 +128,6 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		});
 
 	}
-
-	@Override
-	public void onDialogNegativeClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
-		String caderno = params.getString("NOME_CADERNO");
-		int cor = params.getInt("COR_CADERNO");
-		Caderno c = new Caderno(caderno, cor);
-		
-		if (!params.getBoolean("EDICAO")) {
-			adapter.addItem(c);
-		}else{
-			int position = params.getInt("INDEX_CADERNO");
-			adapter.setItemAtPosition(c, position);
-		}
-		
-		adapter.notifyDataSetChanged();
-		
-	}
-	
-	void showDialog(Bundle params){
-		CustomDialog customDialog = CustomDialog.newInstance();
-		customDialog.setArguments(params);
-		customDialog.show(getFragmentManager(), null);
-		
-	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -163,15 +146,46 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			break;
 
 		case R.id.menu_edit_caderno:
-			Bundle params = new Bundle();
-			Caderno c = adapter.getItem(info.position);
-			params.putString("NOME_CADERNO", c.getNome());
-			params.putInt("COR_CADERNO", c.getColor());
-			params.putInt("INDEX_CADERNO", info.position);
-			showDialog(params);
+            Caderno c = adapter.getItem(info.position);
+            setBundle();
+            params.putString("NOME_CADERNO", c.getNome());
+            params.putInt("COR_CADERNO", c.getColor());
+            params.putInt("INDEX_CADERNO", info.position);
+            showDialog(params);
+            
 			break;
 		}
+
 		return super.onContextItemSelected(item);
+	}
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
+		String caderno = params.getString("NOME_CADERNO");
+        int cor = params.getInt("COR_CADERNO");
+        Caderno c = new Caderno(caderno, cor);
+        
+        if (!params.getBoolean("EDICAO")) {
+                adapter.addItem(c);
+        }else{
+                int position = params.getInt("INDEX_CADERNO");
+                adapter.setItemAtPosition(c, position);
+        }
+        
+        adapter.notifyDataSetChanged();
+		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void setBundle() {
+		params = new Bundle();
+		params.putInt("VIEW", R.layout.activity_adicionar_caderno);
+
 	}
 
 
