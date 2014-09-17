@@ -118,8 +118,8 @@ public final class R {
         public static final int listAgenda=0x7f0a000d;
         public static final int materiaAgenda=0x7f0a0021;
         public static final int menu_add_agenda=0x7f0a0025;
-        public static final int menu_del_caderno=0x7f0a0023;
-        public static final int menu_edit_caderno=0x7f0a0022;
+        public static final int menu_del=0x7f0a0023;
+        public static final int menu_edit=0x7f0a0022;
         public static final int menu_pesq_agenda=0x7f0a0026;
         public static final int menu_sort_agenda=0x7f0a0027;
         public static final int spinnerCaderno=0x7f0a0004;
@@ -145,7 +145,7 @@ public final class R {
         public static final int row_agenda=0x7f03000c;
     }
     public static final class menu {
-        public static final int actions_caderno=0x7f090000;
+        public static final int actions=0x7f090000;
         public static final int main=0x7f090001;
         public static final int menu_agenda=0x7f090002;
     }
@@ -164,10 +164,10 @@ public final class R {
         public static final int app_name=0x7f080000;
         public static final int cancelar=0x7f080009;
         public static final int coordenador=0x7f080021;
-        public static final int del_caderno=0x7f08000e;
+        public static final int del=0x7f08000e;
         public static final int dia_semana=0x7f080011;
         public static final int diego=0x7f08001f;
-        public static final int edit_caderno=0x7f08000d;
+        public static final int edit=0x7f08000d;
         public static final int edit_nome_caderno_hint=0x7f080006;
         public static final int henrique=0x7f08001d;
         public static final int hint_email_professor=0x7f080013;
