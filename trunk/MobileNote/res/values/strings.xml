@@ -14,8 +14,8 @@
     <string name="add">Adicionar</string>
     <string name="pesquisar">Pesquisar</string>
     <string name="ordenar">Ordenar</string>
-    <string name="edit_caderno">Editar Caderno</string>
-    <string name="del_caderno">Excluir Caderno</string>
+    <string name="edit">Editar</string>
+    <string name="del">Excluir</string>
     
     <!-- Tela matéria -->
     <string name="nova_materia">Nova Matéria</string>

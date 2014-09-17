@@ -126,7 +126,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		getMenuInflater().inflate(R.menu.actions_caderno, menu);
+		getMenuInflater().inflate(R.menu.actions, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 	
@@ -134,12 +134,12 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
-		case R.id.menu_del_caderno:
+		case R.id.menu_del:
 			adapter.removeItemAtPosition(info.position);
 			adapter.notifyDataSetChanged();
 			break;
 
-		case R.id.menu_edit_caderno:
+		case R.id.menu_edit:
             Caderno c = adapter.getItem(info.position);
             setBundle();
             params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
