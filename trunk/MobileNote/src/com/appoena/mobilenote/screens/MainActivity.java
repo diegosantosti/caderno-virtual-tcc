@@ -27,6 +27,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private ArrayList<Caderno> arrayCaderno;
 	private AdapterGridCaderno adapter;
 	private Bundle params;
+	private Caderno c;
 	//private int INDEX_CADERNO = -1;
 
 
@@ -34,15 +35,18 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		arrayCaderno = new ArrayList<Caderno>();
+		c = new Caderno();
+		arrayCaderno = c.listaCadernos(this);
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
+		
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
+		/*
 		adapter.addItem(new Caderno("USJT",0));
 		adapter.addItem(new Caderno("FISK",1));
 		adapter.addItem(new Caderno("ULM",2));
-		adapter.addItem(new Caderno("ABCD",3));
+		adapter.addItem(new Caderno("ABCD",3));*/
 		adapter.notifyDataSetChanged();
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(adapter);
@@ -54,7 +58,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	}
 	
 	/*
-	 * Método responsável pela ação no botão "Adicionar caderno"
+	 * M≈Ωtodo respons‚Ä°vel pela aÔøΩ‚Äπo no bot‚Äπo "Adicionar caderno"
 	 */
 	private void clickAddCaderno() {
 		Button btnAddCaderno = (Button) findViewById(R.id.btn_add_caderno);
@@ -73,7 +77,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	
 
 	/*
-	 * Método responsável pela ação no botão "Sobre"
+	 * M≈Ωtodo respons‚Ä°vel pela aÔøΩ‚Äπo no bot‚Äπo "Sobre"
 	 */
 	private void clickAbout() {
 		Button btnAbout = (Button) findViewById(R.id.btn_about);
@@ -89,7 +93,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	}
 	
 	/*
-	 * Método responsável pela ação no botão "Agenda"
+	 * M≈Ωtodo respons‚Ä°vel pela aÔøΩ‚Äπo no bot‚Äπo "Agenda"
 	 */
 	private void clickAgenda() {
 		
@@ -107,7 +111,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	}
 	
 	/*
-	 * Método responsável pelo clique no item do gridView
+	 * M≈Ωtodo respons‚Ä°vel pelo clique no item do gridView
 	 */
 	
 	private void onClickItemGrid() {
@@ -167,6 +171,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
         
         if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
                 adapter.addItem(c);
+                c.incluirCaderno(this,cor,caderno);
         }else{
                 int position = params.getInt(getResources().getString(R.string.INDEX_CADERNO));
                 adapter.setItemAtPosition(c, position);
