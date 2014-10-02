@@ -15,16 +15,16 @@ import com.appoena.mobilenote.R;
 
 public class CustomDialogCaderno extends CustomDialog{
 	
-	private EditText edtCaderno;
-	private Spinner spnColor;
+	private EditText 	edtCaderno;
+	private Spinner		spnColor;
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
 		
-		edtCaderno = (EditText) view.findViewById(R.id.edtNomeCaderno);
-		spnColor = (Spinner) view.findViewById(R.id.spinner_color);
-		spnColor = setColorSpinner(spnColor);
+		edtCaderno 	= (EditText) view.findViewById(R.id.edtNomeCaderno);
+		spnColor	= (Spinner) view.findViewById(R.id.spinner_color);
+		spnColor 	= setColorSpinner(spnColor);
 		try {
 			popularCaderno();
 		} catch (Exception e) {
