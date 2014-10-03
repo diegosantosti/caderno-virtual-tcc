@@ -139,10 +139,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			GridView g = (GridView) findViewById(R.id.gridView1);
-			g.setAdapter(adapter);
 			Caderno ca = adapter.getItem(info.position);
 			String nome = ca.getNome();
+			c.deletarCaderno(this, nome);
 			adapter.removeItemAtPosition(info.position);
 			ca.deletarCaderno(this, nome);
 			adapter.notifyDataSetChanged();
