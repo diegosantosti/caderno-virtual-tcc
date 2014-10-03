@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private ArrayList<Caderno> arrayCaderno;
 	private AdapterGridCaderno adapter;
 	private Bundle params;
-	private Caderno c;
+	//private Caderno c;
 	//private int INDEX_CADERNO = -1;
 
 
@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		c = new Caderno();
+		Caderno c = new Caderno();
 		arrayCaderno = c.listaCadernos(this);
 		clickAddCaderno();
 		clickAbout();
@@ -140,10 +140,8 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			Caderno ca = adapter.getItem(info.position);
-			String nome = ca.getNome();
-			c.deletarCaderno(this, nome);
+			ca.deletarCaderno(this, ca.getNome());
 			adapter.removeItemAtPosition(info.position);
-			ca.deletarCaderno(this, nome);
 			adapter.notifyDataSetChanged();
 			break;
 
