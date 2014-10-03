@@ -139,7 +139,12 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
+			GridView g = (GridView) findViewById(R.id.gridView1);
+			g.setAdapter(adapter);
+			Caderno ca = adapter.getItem(info.position);
+			String nome = ca.getNome();
 			adapter.removeItemAtPosition(info.position);
+			ca.deletarCaderno(this, nome);
 			adapter.notifyDataSetChanged();
 			break;
 
@@ -174,7 +179,10 @@ public class MainActivity extends Activity implements CustomDialogListener{
                 c.incluirCaderno(this,cor,caderno);
         }else{
                 int position = params.getInt(getResources().getString(R.string.INDEX_CADERNO));
+                Caderno cAntes = adapter.getItem(position);
+                String nomeAntigo = cAntes.getNome();
                 adapter.setItemAtPosition(c, position);
+                c.alterarCaderno(this, caderno, cor, nomeAntigo);
         }
         
         adapter.notifyDataSetChanged();
