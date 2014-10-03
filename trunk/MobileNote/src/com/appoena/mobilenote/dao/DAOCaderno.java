@@ -30,16 +30,16 @@ public class DAOCaderno {
 	}
 
 	// alterar caderno
-	public void alterarCaderno(String nome, int cor, int caderno){
+	public void alterarCaderno(String nome, int cor, String nomeAntigo){
 		ContentValues valores =  new ContentValues();
 		valores.put("nome", nome);
 		valores.put("cor_da_capa", cor);
-		bd.update("caderno", valores, "_id_caderno = "+caderno, null);
+		bd.update("caderno", valores, "nome = '"+nomeAntigo+"'", null);
 	}
 
 	// deletar caderno
-	public void deletarCaderno(int caderno){
-		bd.delete("caderno","_id_caderno = "+caderno, null);
+	public void deletarCaderno(String nome){
+		bd.delete("caderno","nome = '"+nome+"'", null);
 	}
 
 	// consultar caderno

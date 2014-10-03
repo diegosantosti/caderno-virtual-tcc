@@ -55,14 +55,14 @@ public class Caderno {
 	}	
 
 	// alterar caderno
-	public void alterarCaderno(Context ctx,String nome,int cor, int id){
+	public void alterarCaderno(Context ctx,String nome,int cor,String nomeAntigo){
 		DAOCaderno dc = new DAOCaderno(ctx);
-		dc.alterarCaderno(nome, cor, id);
+		dc.alterarCaderno(nome, cor,nomeAntigo);
 	}
 	// deletar caderno
-	public void deletarCaderno(Context ctx, int id){
+	public void deletarCaderno(Context ctx, String nome){
 		DAOCaderno dc = new DAOCaderno(ctx);
-		dc.deletarCaderno(id);
+		dc.deletarCaderno(nome);
 
 	}
 	// lista de caderno
