@@ -101,10 +101,8 @@ public final class R {
         public static final int confirmar=0x7f0a0018;
         public static final int dataAgenda=0x7f0a001f;
         public static final int editText1=0x7f0a0014;
-        public static final int edtData=0x7f0a0002;
         public static final int edtDescLembrete=0x7f0a0001;
         public static final int edtEmailProfessor=0x7f0a000b;
-        public static final int edtHora=0x7f0a0003;
         public static final int edtNomeCaderno=0x7f0a0006;
         public static final int edtNomeMateria=0x7f0a0008;
         public static final int edtNomeProfessor=0x7f0a000a;
@@ -127,6 +125,8 @@ public final class R {
         public static final int spinnerMateria=0x7f0a0005;
         public static final int spinner_color=0x7f0a0007;
         public static final int titAgenda=0x7f0a001b;
+        public static final int txtData=0x7f0a0002;
+        public static final int txtHora=0x7f0a0003;
         public static final int txtNovoLembrete=0x7f0a0000;
     }
     public static final class layout {
@@ -204,10 +204,6 @@ public final class R {
         public static final int willian=0x7f08001a;
     }
     public static final class style {
-        public static final int ActionBar_Solid_MobileNote=0x7f06000f;
-        /**  Tema do AlertDialog branco 
-         */
-        public static final int AlertDialog_MobileNote=0x7f060010;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -223,17 +219,19 @@ public final class R {
     
  API 11 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f06000b;
+        public static final int AppBaseTheme=0x7f06000c;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f06000c;
+        public static final int AppTheme=0x7f06000d;
+        public static final int MobileNote_ActionBar_Solid=0x7f060010;
+        public static final int MobileNote_ActionBarTextStyle=0x7f060011;
         /**  Tema personalizado 
          */
-        public static final int ThemeMobileNote=0x7f06000e;
+        public static final int ThemeMobileNote=0x7f06000f;
         /**  Tema sem ActionBar 
          */
-        public static final int ThemeMobileNote_NoActionBar=0x7f06000d;
+        public static final int ThemeMobileNote_NoActionBar=0x7f06000e;
         /** 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
@@ -241,7 +239,7 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int ThemeNoActionBar=0x7f060011;
+        public static final int ThemeNoActionBar=0x7f060012;
         public static final int button_circle_main=0x7f060000;
         /**   <item name="android:focusable">false</item>
          */
@@ -251,6 +249,7 @@ public final class R {
         public static final int edit_text_pop_up=0x7f060003;
         public static final int text_agenda=0x7f060009;
         public static final int text_app_name_about=0x7f060008;
+        public static final int text_dataHora=0x7f06000b;
         public static final int text_integrantes=0x7f060005;
         public static final int text_pop_up=0x7f060004;
         public static final int text_titulo_agenda=0x7f06000a;

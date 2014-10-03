@@ -1,11 +1,14 @@
 package com.appoena.mobilenote.screens;
 
+import java.util.Calendar;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;

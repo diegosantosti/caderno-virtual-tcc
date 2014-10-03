@@ -23,21 +23,23 @@
         style="@style/edit_text_pop_up"/>
     
     <TextView 
-        android:id="@+id/edtData"
+        android:id="@+id/txtData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_components_popoup"
-        android:text="01/07/2014"
         android:clickable="true"
-        style="@style/edit_text_pop_up"/>
+        android:drawableLeft="@drawable/ic_calendario"
+        android:drawablePadding="10dp"
+        style="@style/text_dataHora"/>
     
     <TextView 
-        android:id="@+id/edtHora"
+        android:id="@+id/txtHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="19H00"
         android:layout_margin="@dimen/margin_components_popoup"
-        style="@style/edit_text_pop_up"/>
+        android:drawableLeft="@drawable/ic_relogio"
+        android:drawablePadding="10dp"
+        style="@style/text_dataHora"/>
     
     <TextView
         android:layout_width="wrap_content"

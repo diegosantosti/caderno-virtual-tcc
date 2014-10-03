@@ -40,14 +40,14 @@ public class CustomDialog extends DialogFragment{
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		//carregar tema do dialog
-		ContextThemeWrapper context = new ContextThemeWrapper(getActivity(), R.style.AlertDialog_MobileNote);
+		//ContextThemeWrapper context = new ContextThemeWrapper(getActivity(), R.style.AlertDialog_MobileNote);
 		params = getArguments();
 		if(params==null){
 			params = new Bundle();
 		}else{
 			view = View.inflate(getActivity(), params.getInt(getResources().getString(R.string.VIEW)), null);			
 		}
-		myDialog = new AlertDialog.Builder(context)
+		myDialog = new AlertDialog.Builder(getActivity())
 			.setView(view)
 			.setPositiveButton(R.string.ok, new Dialog.OnClickListener() {
 				
