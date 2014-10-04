@@ -1,30 +1,33 @@
 package com.appoena.mobilenote;
 
-import java.util.Calendar;
-
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.ContextThemeWrapper;
-import android.widget.TimePicker;
 
-public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+public class TimePickerFragment extends DialogFragment {
+	
+	OnTimeSetListener onTimeSet;
+
+	public TimePickerFragment() {
+	}
+
+	public void setCallBack(OnTimeSetListener onTime) {
+		onTimeSet = onTime;
+	}
+
+	private int hourOfDay, minute;
+
+	@Override
+	public void setArguments(Bundle args) {
+		super.setArguments(args);
+		hourOfDay = args.getInt("hour");
+		minute = args.getInt("minute");
+	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		//ContextThemeWrapper context = new ContextThemeWrapper(getActivity(), R.style.AlertDialog_MobileNote);
-		// Use the current time as the default values for the picker
-		final Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int minute = c.get(Calendar.MINUTE);
-		// Create a new instance of TimePickerDialog and return it
-		return new TimePickerDialog(getActivity(), this, hour, minute,
-				DateFormat.is24HourFormat(getActivity()));
+		return new TimePickerDialog(getActivity(), onTimeSet, hourOfDay, minute, true);
 	}
-
-	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-		// Do something with the time chosen by the user
-	}
-}
+} 

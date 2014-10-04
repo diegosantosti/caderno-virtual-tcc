@@ -89,41 +89,41 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f0a0023;
-        public static final int actionbar_cancel=0x7f0a0015;
-        public static final int actionbar_done=0x7f0a0017;
-        public static final int btnCaderno=0x7f0a001a;
-        public static final int btnColor=0x7f0a001b;
-        public static final int btn_about=0x7f0a0012;
-        public static final int btn_add_caderno=0x7f0a000f;
-        public static final int btn_calendar=0x7f0a0010;
-        public static final int btn_settings=0x7f0a0011;
-        public static final int cancel=0x7f0a0016;
-        public static final int checkLembrar=0x7f0a0020;
-        public static final int confirmar=0x7f0a0018;
-        public static final int dataAgenda=0x7f0a001d;
-        public static final int editText1=0x7f0a0014;
+        public static final int actionbar_cancel=0x7f0a0016;
+        public static final int actionbar_done=0x7f0a0018;
+        public static final int btnCaderno=0x7f0a001b;
+        public static final int btnColor=0x7f0a001c;
+        public static final int btn_about=0x7f0a0013;
+        public static final int btn_add_caderno=0x7f0a0010;
+        public static final int btn_calendar=0x7f0a0011;
+        public static final int btn_settings=0x7f0a0012;
+        public static final int cancel=0x7f0a0017;
+        public static final int checkLembrar=0x7f0a0004;
+        public static final int confirmar=0x7f0a0019;
+        public static final int dataAgenda=0x7f0a001e;
+        public static final int editText1=0x7f0a0015;
         public static final int edtDescLembrete=0x7f0a0001;
-        public static final int edtEmailProfessor=0x7f0a000b;
-        public static final int edtNomeCaderno=0x7f0a0006;
-        public static final int edtNomeMateria=0x7f0a0008;
-        public static final int edtNomeProfessor=0x7f0a000a;
-        public static final int edtSala=0x7f0a000c;
-        public static final int gridView1=0x7f0a0013;
-        public static final int horaAgenda=0x7f0a001e;
-        public static final int linearBtnGrid=0x7f0a0019;
-        public static final int linearLayout1=0x7f0a000e;
-        public static final int listAgenda=0x7f0a000d;
-        public static final int materiaAgenda=0x7f0a001f;
+        public static final int edtEmailProfessor=0x7f0a000c;
+        public static final int edtNomeCaderno=0x7f0a0007;
+        public static final int edtNomeMateria=0x7f0a0009;
+        public static final int edtNomeProfessor=0x7f0a000b;
+        public static final int edtSala=0x7f0a000d;
+        public static final int gridView1=0x7f0a0014;
+        public static final int horaAgenda=0x7f0a001f;
+        public static final int linearBtnGrid=0x7f0a001a;
+        public static final int linearLayout1=0x7f0a000f;
+        public static final int listAgenda=0x7f0a000e;
+        public static final int materiaAgenda=0x7f0a0020;
         public static final int menu_add_agenda=0x7f0a0024;
         public static final int menu_del=0x7f0a0022;
         public static final int menu_edit=0x7f0a0021;
         public static final int menu_pesq_agenda=0x7f0a0025;
         public static final int menu_sort_agenda=0x7f0a0026;
-        public static final int spinnerCaderno=0x7f0a0004;
-        public static final int spinnerDiaSemana=0x7f0a0009;
-        public static final int spinnerMateria=0x7f0a0005;
-        public static final int spinner_color=0x7f0a0007;
-        public static final int titAgenda=0x7f0a001c;
+        public static final int spinnerCaderno=0x7f0a0005;
+        public static final int spinnerDiaSemana=0x7f0a000a;
+        public static final int spinnerMateria=0x7f0a0006;
+        public static final int spinner_color=0x7f0a0008;
+        public static final int titAgenda=0x7f0a001d;
         public static final int txtData=0x7f0a0002;
         public static final int txtHora=0x7f0a0003;
         public static final int txtNovoLembrete=0x7f0a0000;
@@ -149,13 +149,17 @@ public final class R {
         public static final int menu_agenda=0x7f090002;
     }
     public static final class string {
-        public static final int COR_CADERNO=0x7f080027;
-        public static final int EDICAO=0x7f080029;
-        public static final int INDEX_CADERNO=0x7f080028;
+        public static final int COR_CADERNO=0x7f080028;
+        public static final int DATA_AGENDA=0x7f08002d;
+        public static final int DESC_AGENDA=0x7f08002c;
+        public static final int EDICAO=0x7f08002a;
+        public static final int HORA_AGENDA=0x7f08002e;
+        public static final int INDEX=0x7f080029;
+        public static final int LEMBRAR=0x7f08002f;
         /**  Chaves e parametros 
          */
-        public static final int NOME_CADERNO=0x7f080026;
-        public static final int VIEW=0x7f08002a;
+        public static final int NOME_CADERNO=0x7f080027;
+        public static final int VIEW=0x7f08002b;
         public static final int action_settings=0x7f080003;
         public static final int add=0x7f08000a;
         public static final int agenda=0x7f080001;
@@ -174,6 +178,7 @@ public final class R {
         public static final int hint_nome_professor=0x7f080012;
         public static final int hint_sala=0x7f080014;
         public static final int hist_descricao=0x7f080016;
+        public static final int informe_descricao_agenda=0x7f080026;
         /**  Mensagens e avisos 
          */
         public static final int informe_nome_caderno=0x7f080025;
