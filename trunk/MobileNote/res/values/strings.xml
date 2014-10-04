@@ -41,6 +41,7 @@
     <string name="prompt_sel_caderno">Selecione o caderno</string>
     <string name="prompt_sel_materia">Selecione a Matéria</string>
     <string name="vincular_materia">Vincular Matéria</string>
+    <string name="lembrar">Lembrar-me</string>
     
     <!-- Integrantes e coordenador -->
     <string name="willian">WILLIAN VALERIO</string>

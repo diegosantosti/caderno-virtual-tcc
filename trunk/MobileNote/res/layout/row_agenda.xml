@@ -8,82 +8,35 @@
         android:id="@+id/titAgenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prova Leget"
         style="@style/text_titulo_agenda"/>
     
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-
-    
-    <ImageView 
-        android:src="@drawable/ic_calendario"
-        android:id="@+id/icData"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
     <TextView 
-        android:id="@+id/horaAgenda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/text_agenda"
-        android:text="10/08/2014"/>
-        
-    </LinearLayout>
-    
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    
-        <ImageView 
-        android:src="@drawable/ic_relogio"
-        android:id="@+id/icHora"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
-        <TextView 
         android:id="@+id/dataAgenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
         style="@style/text_agenda"
-        android:text="21:00"/>
-    
-    
-        
-    </LinearLayout>
-    
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    
-        <ImageView 
-        android:src="@drawable/ic_tag"
-        android:id="@+id/icMateria"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+      	android:drawableLeft="@drawable/ic_calendario"/>
+
+	<TextView 
+		 android:id="@+id/horaAgenda"
+		 android:drawableLeft="@drawable/ic_relogio"
+		 android:layout_width="match_parent"
+		 android:layout_height="wrap_content"
+		 style="@style/text_agenda"/>
     
     <TextView 
         android:id="@+id/materiaAgenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/text_agenda"
-        android:text="LEGET"/>
+        android:drawableLeft="@drawable/ic_tag"
+        style="@style/text_agenda"/>
     
-    </LinearLayout>
-    
-    
-    
-    
-    
-    
-    
+    <CheckBox
+        android:id="@+id/checkLembrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:clickable="false"
+        android:text="@string/lembrar" />
 
 </LinearLayout>

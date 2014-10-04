@@ -7,59 +7,75 @@ public class Agenda {
 	private String 	descricao;
 	private String 	dataAgenda;
 	private String	horaAgenda;
+	private boolean lembrar; //Wesley, variavel para despertar ou nao --Willian
 	private int 	idMateria;
-	
-	
+	private int 	idCaderno; //Wesley, ser‡ que precisa? -- Willian
+
 	public Agenda(){
 		
 	}
 	
-	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia){
+	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, boolean lembrar, int caderno){
 		
 		setDescricao(strDesc);
 		setDataAgenda(dtAgenda);
 		setHoraAgenda(hrAgenda);
 		setIdMateria(materia);
+		setLembrar(lembrar);
+		setIdCaderno(caderno);
 
 	}
 	
-	// metodos get
-	public String getDescricao(){
-		return this.descricao;
-	}
 	
-	public String getHoraAgenda(){
-		return this.horaAgenda;
-	}
 	
-	public String getDataAgenda(){
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDataAgenda() {
 		return dataAgenda;
 	}
-	
-	
-	public int getIdMateria(){
+
+	public void setDataAgenda(String dataAgenda) {
+		this.dataAgenda = dataAgenda;
+	}
+
+	public String getHoraAgenda() {
+		return horaAgenda;
+	}
+
+	public void setHoraAgenda(String horaAgenda) {
+		this.horaAgenda = horaAgenda;
+	}
+
+	public boolean getLembrar() {
+		return lembrar;
+	}
+
+	public void setLembrar(boolean lembrar) {
+		this.lembrar = lembrar;
+	}
+
+	public int getIdMateria() {
 		return idMateria;
 	}
-	
-	// metodos set
-	public void setDescricao(String strDesc){
-		descricao = strDesc;
+
+	public void setIdMateria(int idMateria) {
+		this.idMateria = idMateria;
 	}
-	
-	public void setHoraAgenda(String strHora){
-		horaAgenda = strHora;
+
+	public int getIdCaderno() {
+		return idCaderno;
 	}
-	
-	public void setDataAgenda(String strData){
-		dataAgenda = strData;
+
+	public void setIdCaderno(int idCaderno) {
+		this.idCaderno = idCaderno;
 	}
-	
-	public void setIdMateria(int materia){
-		idMateria = materia;
-	}
-	
-	
-	
+
 	// metodo para trazer todas as tarefas cadastradas
 	public ArrayList  selectAgenda(){
 		ArrayList agenda = new ArrayList();

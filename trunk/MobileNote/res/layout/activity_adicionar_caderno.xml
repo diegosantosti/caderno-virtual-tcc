@@ -17,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_nome_caderno_hint"
+        android:inputType="textCapCharacters"
+        android:imeOptions="actionDone"
         android:layout_margin="@dimen/margin_components_popoup"
         style="@style/edit_text_pop_up"/>
     <TextView 
