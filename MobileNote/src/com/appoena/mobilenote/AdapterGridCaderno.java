@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class AdapterGridCaderno extends BaseAdapter{
 	
@@ -67,7 +68,8 @@ public class AdapterGridCaderno extends BaseAdapter{
 		btnCaderno.setClickable(false);
 		btnCaderno.setFocusable(false);
 		btnCaderno.setBackgroundResource(R.drawable.button_caderno_grid);
-		btnCaderno.setBackgroundColor(Color.parseColor(color[c.getColor()]));
+		LinearLayout ln = (LinearLayout) convertView.findViewById(R.id.linearBtnGrid);
+		ln.setBackgroundColor(Color.parseColor(color[c.getColor()]));
 		return convertView;
 	}
 

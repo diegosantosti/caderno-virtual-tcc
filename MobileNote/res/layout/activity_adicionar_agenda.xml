@@ -61,8 +61,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_components_popoup"
         android:prompt="@string/prompt_sel_materia"/>
-    
-        
-    
 
 </LinearLayout>

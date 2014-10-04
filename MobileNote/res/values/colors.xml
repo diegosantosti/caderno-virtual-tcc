@@ -4,7 +4,7 @@
     <color name="bg_popup">#EEEEEE</color>
     <color name="bg_sobre">#13688F</color>
     <color name="bg_button_main">#00698C</color>
-    <color name="bg_button_main_pressed">#70FFFFFF</color>
+    <color name="bg_button_main_pressed">#70000000</color>
     <color name="text_titulo_main">#00698C</color>
     <color name="bg_edit_main">#AAAAAA</color>
     <color name="borda_edit_main">#888888</color>
