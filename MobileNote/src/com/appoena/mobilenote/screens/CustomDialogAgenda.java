@@ -37,6 +37,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		checkLembrar = (CheckBox) view.findViewById(R.id.checkLembrar);
 		edtDescricao = (EditText) view.findViewById(R.id.edtDescLembrete);
 		setDataHora();
+		onClickDatahora();
 		try {
 			popularAgenda();
 		} catch (Exception e) {
@@ -62,6 +63,26 @@ public class CustomDialogAgenda extends CustomDialog{
 			}
 		});
 		return myDialog;
+	}
+
+
+	/**
+	 * Seta o onclick do txtData e txtHora
+	 */
+	private void onClickDatahora() {
+		txtData.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showDatePicker();
+			}
+		});
+		txtHora.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showTimePicker();
+			}
+		});
+		
 	}
 
 
@@ -99,36 +120,33 @@ public class CustomDialogAgenda extends CustomDialog{
 	}
 
 	/**
-	 * Metodo que seta a data e a hora e o onClick dos txtData
+	 * Sseta a data e a hora nos txtData
 	 * e txt Hora
 	 */
 	public void setDataHora(){
-
 		final Calendar c = Calendar.getInstance();
+		setData(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH)+1,c.get(Calendar.YEAR));
+		setHora(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
+	}
+
+	private void setData(int dia, int mes, int ano) {
 		txtData.setText(new StringBuilder()
-		.append(c.get(Calendar.DAY_OF_MONTH))
+		.append(dia)
 		.append("/")
-		.append(c.get(Calendar.MONTH)+1)
+		.append(mes)
 		.append("/")
-		.append(c.get(Calendar.YEAR)));
-
+		.append(ano));	
+	}
+	
+	public void setHora(int hora, int minuto){
+		String aux="";
+		//se o minuto for menor que 10, coloca um zero a esquerda do valor
+		if(minuto<10) aux = "0";
 		txtHora.setText(new StringBuilder()
-		.append(c.get(Calendar.HOUR_OF_DAY))
+		.append(hora)
 		.append(":")
-		.append(c.get(Calendar.MINUTE)));
-
-		txtData.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showDatePicker();
-			}
-		});
-		txtHora.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showTimePicker();
-			}
-		});
+		.append(aux)
+		.append(minuto));
 	}
 
 	/**
@@ -154,12 +172,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
-			txtData.setText(new StringBuilder()
-			.append(dayOfMonth)
-			.append("/")
-			.append(monthOfYear+1)
-			.append("/")
-			.append(year));
+			setData(dayOfMonth, monthOfYear, year);
 		}
 	};
 
@@ -185,10 +198,7 @@ public class CustomDialogAgenda extends CustomDialog{
 
 		@Override
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			txtHora.setText(new StringBuilder()
-			.append(hourOfDay)
-			.append(":")
-			.append(minute));
+			setHora(hourOfDay, minute);
 
 		}	
 	};
