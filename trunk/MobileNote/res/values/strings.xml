@@ -57,12 +57,17 @@
     
     <!-- Mensagens e avisos -->
     <string name="informe_nome_caderno">Informe o nome do caderno.</string>
+    <string name="informe_descricao_agenda">Informe a descrição do lembrete.</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>
     <string name="COR_CADERNO">COR_CADERNO</string>
-    <string name="INDEX_CADERNO">INDEX_CADERNO</string>
+    <string name="INDEX">INDEX</string>
     <string name="EDICAO">EDICAO</string>
     <string name="VIEW">VIEW</string>
+    <string name="DESC_AGENDA">DESC_AGENDA</string>
+    <string name="DATA_AGENDA">DATA_AGENDA</string>
+    <string name="HORA_AGENDA">HORA_AGENDA</string>
+    <string name="LEMBRAR">LEMBRAR</string>
     
 </resources>

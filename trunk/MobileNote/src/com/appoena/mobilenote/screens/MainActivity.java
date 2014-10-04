@@ -27,8 +27,6 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private ArrayList<Caderno> arrayCaderno;
 	private AdapterGridCaderno adapter;
 	private Bundle params;
-	//private Caderno c;
-	//private int INDEX_CADERNO = -1;
 
 
 	@Override
@@ -42,12 +40,6 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		clickAgenda();
 		
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
-		/*
-		adapter.addItem(new Caderno("USJT",0));
-		adapter.addItem(new Caderno("FISK",1));
-		adapter.addItem(new Caderno("ULM",2));
-		adapter.addItem(new Caderno("ABCD",3));*/
-		adapter.notifyDataSetChanged();
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(adapter);
 		onClickItemGrid();
@@ -150,7 +142,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
             setBundle();
             params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
             params.putInt(getResources().getString(R.string.COR_CADERNO), c.getColor());
-            params.putInt(getResources().getString(R.string.INDEX_CADERNO), info.position);
+            params.putInt(getResources().getString(R.string.INDEX), info.position);
             showDialog(params);
             
 			break;
@@ -175,7 +167,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
                 adapter.addItem(c);
                 c.incluirCaderno(this,cor,caderno);
         }else{
-                int position = params.getInt(getResources().getString(R.string.INDEX_CADERNO));
+                int position = params.getInt(getResources().getString(R.string.INDEX));
                 Caderno cAntes = adapter.getItem(position);
                 String nomeAntigo = cAntes.getNome();
                 adapter.setItemAtPosition(c, position);

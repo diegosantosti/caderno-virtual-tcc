@@ -43,7 +43,10 @@ public class CustomDialogCaderno extends CustomDialog{
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
 						if(devolverCaderno())myDialog.dismiss();
-						else				 Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
+						else{
+							Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
+							edtCaderno.requestFocus();
+						}
 					}
 				});
 				
