@@ -39,6 +39,13 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		clickAbout();
 		clickAgenda();
 		
+		//MODIFICAÇÃO DIEGO
+		//APENAS PARA TESTE DO EDITOR DO CONTEÚDO
+		//INÍCIO
+		clickEditorConteudo();
+		
+		//TÉRMINO
+		
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(adapter);
@@ -101,6 +108,23 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		});
 
 	}
+	
+	/*
+	 * Método responsável pelo clique no Editor Conteudo
+	 */
+	private void clickEditorConteudo() {
+		Button btnAbout = (Button) findViewById(R.id.btn_settings);
+		btnAbout.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent it = new Intent(MainActivity.this, ActivityEditorConteudo.class);
+				startActivity(it);
+			}
+		});
+		
+	}
+	
 	
 	/*
 	 * MŽtodo respons‡vel pelo clique no item do gridView
