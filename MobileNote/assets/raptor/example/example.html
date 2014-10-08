@@ -1,41 +1,63 @@
 <!doctype html>
 <html>
 <head>
-    <title>Raptor Editor Example</title>
+    <meta name="viewport" content="width=device-width">
+	<title>Raptor Editor Example</title>
     <link type="text/css" rel="stylesheet" href="example.css" />
     <link type="text/css" rel="stylesheet" href="../raptor-front-end.css" />
+    <link rel="stylesheet" href="css/exampletest.css" media="(max-width: 320px)">
+	<link rel="stylesheet" href="css/exampletest.css" media="(max-width: 939px)">
 
-            <link type="text/css" rel="stylesheet" href="libraries/theme.css" />
-    <script type="text/javascript" src="libraries/jquery.js"></script>
-    <script type="text/javascript" src="libraries/jquery-ui.js"></script>
-    <script type="text/javascript" src="../raptor.js"></script>
+	<script type="text/javascript" src="../raptor.js"></script>
     <script type="text/javascript">
-        jQuery(function($) {
+        jQuery(function($) {        
             $('.editable').raptor({
                 "plugins": {
                     "dock": {
-                        "docked": true
+                        "docked": false
                     },
-                    "classMenu": {
-                        "classes": {
-                            "Blue background": "cms-blue-bg",
-                            "Round corners": "cms-round-corners",
-                            "Indent and center": "cms-indent-center"
-                        }
-                    },
-                    "snippetMenu": {
-                        "snippets": {
-                            "Grey Box": "<div class=\"grey-box\"><h1>Grey Box<\/h1><ul><li>This is a list<\/li><\/ul><\/div>"
-                        }
-                    }
+                    alignJustify: false,
+                    languageMenu: false,
+                    tagMenu: false,
+					snippetMenu: false,
+					statistics: false,
+					dockToScreen: false,
+					dockToElement: false,
+					guides: false,
+					viewSource: false,
+					linkRemove: false,
+					textSuper: false,
+					textSub: false,
+					textBlockQuote: false,
+					clearFormatting: false,
+					hrCreate: false,
+					embed: false,
+					alignLeft: false,
+					alignCenter: false,
+					alignRight: false,
+					floatLeft: false,
+					floatNone: false,
+					floatRight: false,
+					cleanBlock: false,
+					specialCharacters: false,
+					listOrdered: false,
+					textStrike: false,
+					tableCreate: false,
+					tableInsertRow: false,
+					tableDeleteRow: false,
+					tableInsertColumn: false,
+					tableDeleteColumn: false,
+					logo: false,
                 }
             });
         });
     </script>
+    
+    
 </head>
 <body>
     <header>
-        <h1>Raptor Editor - Basic Example</h1>
+        <h1>Mobile Note - Teste</h1>
     </header>
     <div style="clear: both"></div>
     <div class="editable" data-id="body-1">
