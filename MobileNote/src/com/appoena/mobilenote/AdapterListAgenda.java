@@ -59,10 +59,19 @@ public class AdapterListAgenda extends BaseAdapter {
 		
 		convertView = inflater.inflate(R.layout.row_agenda, null);
 		Agenda a = getItem(position);	
+		boolean lembrar;
 		((TextView) convertView.findViewById(R.id.titAgenda)).setText(a.getDescricao());
 		((TextView) convertView.findViewById(R.id.horaAgenda)).setText(a.getDataAgenda());
 		((TextView) convertView.findViewById(R.id.dataAgenda)).setText(a.getHoraAgenda());
-		((CheckBox) convertView.findViewById(R.id.checkLembrar)).setChecked(a.getLembrar());
+		
+		
+		//if para converter o campo lembrar 1 = lemrar 0 = não lembrar
+		if(a.getLembrar() == 1)
+			lembrar = true;
+		else
+			lembrar = false;
+			
+		((CheckBox) convertView.findViewById(R.id.checkLembrar)).setChecked(lembrar);
 		
 		return convertView;
 	}

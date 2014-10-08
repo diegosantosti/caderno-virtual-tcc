@@ -1,5 +1,6 @@
 package com.appoena.mobilenote.screens;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.AlertDialog;
@@ -9,10 +10,12 @@ import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import com.appoena.mobilenote.CustomDialog;
 import com.appoena.mobilenote.DatePickerFragment;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.TimePickerFragment;
+import com.appoena.mobilenote.modelo.Caderno;
 
 public class CustomDialogAgenda extends CustomDialog{
 
@@ -28,6 +32,8 @@ public class CustomDialogAgenda extends CustomDialog{
 	private TextView txtHora;
 	private EditText edtDescricao;
 	private CheckBox checkLembrar;
+	private Spinner  spCaderno;
+	private Spinner  spMateria;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,6 +42,12 @@ public class CustomDialogAgenda extends CustomDialog{
 		txtHora = (TextView) view.findViewById(R.id.txtHora);
 		checkLembrar = (CheckBox) view.findViewById(R.id.checkLembrar);
 		edtDescricao = (EditText) view.findViewById(R.id.edtDescLembrete);
+		// Preenchendo o Spinner Caderno
+		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
+		Caderno c = new Caderno();
+		ArrayList<String> listCaderno = c.nomesCadernos((getActivity()));
+		ArrayAdapter<String> adpCaderno = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listCaderno);
+		spCaderno.setAdapter(adpCaderno);
 		setDataHora();
 		onClickDatahora();
 		try {

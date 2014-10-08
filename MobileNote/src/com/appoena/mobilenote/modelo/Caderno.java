@@ -54,14 +54,14 @@ public class Caderno {
 	}	
 
 	// alterar caderno
-	public void alterarCaderno(Context ctx,String nome,int cor,String nomeAntigo){
+	public void alterarCaderno(Context ctx,String nome,int cor,long id){
 		DAOCaderno dc = new DAOCaderno(ctx);
-		dc.alterarCaderno(nome, cor,nomeAntigo);
+		dc.alterarCaderno(nome, cor,id);
 	}
 	// deletar caderno
-	public void deletarCaderno(Context ctx, String nome){
+	public void deletarCaderno(Context ctx, long id){
 		DAOCaderno dc = new DAOCaderno(ctx);
-		dc.deletarCaderno(nome);
+		dc.deletarCaderno(id);
 
 	}
 	// lista de caderno
@@ -69,6 +69,14 @@ public class Caderno {
 		ArrayList<Caderno> list = new ArrayList<Caderno>();
 		DAOCaderno dc = new DAOCaderno(ctx);
 		list = dc.consultarCadernos();
+		return list;
+	}
+	
+	// metodo para trazer os nomes do caderno para a combo da Agenda
+	public ArrayList<String> nomesCadernos(Context ctx){
+		ArrayList<String> list =  new ArrayList<String>();
+		DAOCaderno dc = new DAOCaderno(ctx);
+		list = dc.consultarNomes();
 		return list;
 	}
 
