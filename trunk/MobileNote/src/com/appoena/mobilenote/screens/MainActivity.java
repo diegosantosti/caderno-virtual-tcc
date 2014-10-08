@@ -21,7 +21,7 @@ import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.R;
 
 public class MainActivity extends Activity implements CustomDialogListener{
-	
+
 
 	private GridView gridView;
 	private ArrayList<Caderno> arrayCaderno;
@@ -38,31 +38,31 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
-		
+
 		//MODIFICAÇÃO DIEGO
 		//APENAS PARA TESTE DO EDITOR DO CONTEÚDO
 		//INÍCIO
 		clickEditorConteudo();
-		
+
 		//TÉRMINO
-		
+
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(adapter);
 		onClickItemGrid();
 		registerForContextMenu(gridView);
 		setBundle();
-		
-		
+
+
 	}
-	
+
 	/*
 	 * MŽtodo respons‡vel pela a�‹o no bot‹o "Adicionar caderno"
 	 */
 	private void clickAddCaderno() {
 		Button btnAddCaderno = (Button) findViewById(R.id.btn_add_caderno);
 		btnAddCaderno.setOnClickListener( new View.OnClickListener() {
-			
+
 
 			@Override
 			public void onClick(View v) {
@@ -72,8 +72,8 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			}
 		});
 	}
-	
-	
+
+
 
 	/*
 	 * MŽtodo respons‡vel pela a�‹o no bot‹o "Sobre"
@@ -81,55 +81,55 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private void clickAbout() {
 		Button btnAbout = (Button) findViewById(R.id.btn_about);
 		btnAbout.setOnClickListener( new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(MainActivity.this, ActivitySobre.class);
 				startActivity(it);
 			}
 		});
-		
+
 	}
-	
+
 	/*
 	 * MŽtodo respons‡vel pela a�‹o no bot‹o "Agenda"
 	 */
 	private void clickAgenda() {
-		
+
 		Button btnAgenda = (Button) findViewById(R.id.btn_calendar);
 		btnAgenda.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				
+
 				Intent it = new Intent(MainActivity.this, ActivityAgenda.class);
 				startActivity(it);
 			}
 		});
 
 	}
-	
+
 	/*
 	 * Método responsável pelo clique no Editor Conteudo
 	 */
 	private void clickEditorConteudo() {
 		Button btnAbout = (Button) findViewById(R.id.btn_settings);
 		btnAbout.setOnClickListener( new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(MainActivity.this, ActivityEditorConteudo.class);
 				startActivity(it);
 			}
 		});
-		
+
 	}
-	
-	
+
+
 	/*
 	 * MŽtodo respons‡vel pelo clique no item do gridView
 	 */
-	
+
 	private void onClickItemGrid() {
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener(){
 
@@ -138,76 +138,77 @@ public class MainActivity extends Activity implements CustomDialogListener{
 				Intent it = new Intent(MainActivity.this, ActivityMateria.class);
 				startActivity(it);				
 			}
-			
+
 		});
 
 	}
-	
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		getMenuInflater().inflate(R.menu.actions, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
-	
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			Caderno ca = adapter.getItem(info.position);
-			ca.deletarCaderno(this, ca.getNome());
+			ca.deletarCaderno(this, ca.getId());
 			adapter.removeItemAtPosition(info.position);
 			adapter.notifyDataSetChanged();
 			break;
 
 		case R.id.menu_edit:
-            Caderno c = adapter.getItem(info.position);
-            setBundle();
-            params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
-            params.putInt(getResources().getString(R.string.COR_CADERNO), c.getColor());
-            params.putInt(getResources().getString(R.string.INDEX), info.position);
-            showDialog(params);
-            
+			Caderno c = adapter.getItem(info.position);
+			setBundle();
+			params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
+			params.putInt(getResources().getString(R.string.COR_CADERNO), c.getColor());
+			params.putInt(getResources().getString(R.string.INDEX), info.position);
+			showDialog(params);
+
 			break;
 		}
 
 		return super.onContextItemSelected(item);
 	}
-	
+
 	private void showDialog(Bundle params){
 		CustomDialogCaderno customDialog = CustomDialogCaderno.newInstance();
 		customDialog.setArguments(params);
 		customDialog.show(getFragmentManager(), null);
 	}
-
 	@Override
+
 	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
-		String caderno = params.getString(getResources().getString(R.string.NOME_CADERNO));
-        int cor = params.getInt(getResources().getString(R.string.COR_CADERNO));
-        Caderno c = new Caderno(caderno, cor);
-        
-        if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
-                adapter.addItem(c);
-                c.incluirCaderno(this,cor,caderno);
-        }else{
-                int position = params.getInt(getResources().getString(R.string.INDEX));
-                Caderno cAntes = adapter.getItem(position);
-                String nomeAntigo = cAntes.getNome();
-                adapter.setItemAtPosition(c, position);
-                c.alterarCaderno(this, caderno, cor, nomeAntigo);
-        }
-        
-        adapter.notifyDataSetChanged();
+		String caderno 	= params.getString(getResources().getString(R.string.NOME_CADERNO));
+		int cor 		= params.getInt(getResources().getString(R.string.COR_CADERNO));
+		Caderno c = new Caderno(caderno, cor);
 		
+		// inserir caderno
+		if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
+			adapter.addItem(c);
+			c.incluirCaderno(this,cor,caderno);
+		}else{
+			int position = params.getInt(getResources().getString(R.string.INDEX));
+			Caderno cAntes = adapter.getItem(position);
+			long id = cAntes.getId();
+			adapter.setItemAtPosition(c, position);
+			c.alterarCaderno(this, caderno, cor, id); // alterar caderno
+		}
+
+		adapter.notifyDataSetChanged();
+
 	}
 
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	private void setBundle() {
 		params = new Bundle();
 		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_caderno);

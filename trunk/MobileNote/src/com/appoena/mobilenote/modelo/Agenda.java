@@ -2,20 +2,25 @@ package com.appoena.mobilenote.modelo;
 
 import java.util.ArrayList;
 
+import com.appoena.mobilenote.dao.DAOAgenda;
+
+import android.content.Context;
+
 public class Agenda {
 	
 	private String 	descricao;
 	private String 	dataAgenda;
 	private String	horaAgenda;
-	private boolean lembrar; //Wesley, variavel para despertar ou nao --Willian
-	private int 	idMateria;
-	private int 	idCaderno; //Wesley, ser‡ que precisa? -- Willian
+	private int 	lembrar; //Wesley, variavel para despertar ou nao --Willian
+	private int 	id_materia;
+	private int 	id_caderno; //Wesley, ser‡ que precisa? -- Willian
+	private long 	id_agenda;
 
 	public Agenda(){
 		
 	}
 	
-	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, boolean lembrar, int caderno){
+	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, int lembrar, int caderno){
 		
 		setDescricao(strDesc);
 		setDataAgenda(dtAgenda);
@@ -25,7 +30,6 @@ public class Agenda {
 		setIdCaderno(caderno);
 
 	}
-	
 	
 	
 	public String getDescricao() {
@@ -52,33 +56,63 @@ public class Agenda {
 		this.horaAgenda = horaAgenda;
 	}
 
-	public boolean getLembrar() {
+	public int getLembrar() {
 		return lembrar;
 	}
 
-	public void setLembrar(boolean lembrar) {
+	public void setLembrar(int lembrar) {
 		this.lembrar = lembrar;
 	}
 
 	public int getIdMateria() {
-		return idMateria;
+		return id_materia;
 	}
 
 	public void setIdMateria(int idMateria) {
-		this.idMateria = idMateria;
+		this.id_materia = idMateria;
 	}
 
 	public int getIdCaderno() {
-		return idCaderno;
+		return id_caderno;
 	}
 
 	public void setIdCaderno(int idCaderno) {
-		this.idCaderno = idCaderno;
+		this.id_caderno = idCaderno;
+	}
+	
+	public long getIdAgenda() {
+		return id_agenda;
 	}
 
-	// metodo para trazer todas as tarefas cadastradas
-	public ArrayList  selectAgenda(){
-		ArrayList agenda = new ArrayList();
-		return agenda;
+	public void setIdAgenda(long idAgenda) {
+		this.id_agenda = idAgenda;
 	}
+	
+	// metodo para incluir tarefas
+	public void inserirTarefas(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int idCaderno){
+		DAOAgenda dg = new DAOAgenda(ctx);
+		dg.inserirAgenda(descricao, hora, data, idMateria, lembrar, idCaderno);
+	}
+	
+	// metodo para alterar tarefa
+	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int idCaderno, long idAgenda){
+		DAOAgenda dg = new DAOAgenda(ctx);
+		dg.alterarAgenda(descricao, hora, data, idMateria, lembrar, idCaderno, idAgenda);
+	}
+	
+	// metodo para deletar tarefa
+	public void deletarTarefa(Context ctx, long idAgenda){
+		DAOAgenda dg = new DAOAgenda(ctx);
+		dg.deletarAgenda(idAgenda);
+		
+	}
+	// metodo para trazer todas as tarefas cadastradas
+	public ArrayList<Agenda>  consultarAgenda(Context ctx){
+		ArrayList<Agenda> list = new ArrayList<Agenda>();
+		DAOAgenda da = new DAOAgenda(ctx);
+		list = da.consultarAgendas();
+		return list;
+	}
+
+
 }

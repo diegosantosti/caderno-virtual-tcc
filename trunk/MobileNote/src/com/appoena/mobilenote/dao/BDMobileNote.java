@@ -20,12 +20,13 @@ public class BDMobileNote extends SQLiteOpenHelper {
 		// criando base de dados tabela caderno
 		bd.execSQL(	"create table caderno(" +
 					"_id_caderno integer primary key autoincrement, " +
-					"nome text not null," +
-					"cor_da_capa int not null);");
+					"nome text unique on CONFLICT REPLACE," +
+					"cor_da_capa integer not null" +
+					");");
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(1,'USJT',1);");
 
 		// tabela matéria
-		/*bd.execSQL(	"create table materia(" +
+		/*bd.execSQL("create table materia(" +
 					"_id_materia integer primary key autoincrement," +
 					"id_caderno integer foreign key, " +
 					"nome_materia text unique key, " +
@@ -33,14 +34,17 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"dia_semana text, " +
 					"horario text, " +
 					"email_professor text," +
-					"sala text);");
+					"sala text);");*/
 		// tabela agenda
 		bd.execSQL(	"create table agenda(" +
-					"_id_agenda integer primary key autoincrement" +
-					"id_materia integer foreign key" +
-					"descricao text not null" +
+					"_id_agenda integer primary key autoincrement," +
+					"id_caderno integer," +
+					"id_materia integer ," +
+					"descricao text not null," +
 					"hora text not null," +
-					"data text not null);");*/
+					"data text not null," +
+					"lembrar integer not null);");
+		bd.execSQL("insert into agenda(_id_agenda,descricao,id_materia,id_caderno,hora,data,lembrar) values (1,'Teste',null,null,'19:00','14/12/2014',1);");
 	}
 	
 	@Override

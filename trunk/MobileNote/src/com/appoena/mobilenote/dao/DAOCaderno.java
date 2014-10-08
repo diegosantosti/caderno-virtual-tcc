@@ -20,25 +20,29 @@ public class DAOCaderno {
 	}
 	// inserir dados na tabela caderno
 	public void inserirCaderno(String nome, int cor){
-		ContentValues valores =  new ContentValues();
+		
+		
+		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(null,'"+nome+"',"+cor+");");
+
+		/*ContentValues valores =  new ContentValues();
 		valores.put("nome", nome);
 		valores.put("cor_da_capa",cor);
 
-		bd.insert("caderno", null, valores);
+		bd.insert("caderno", null, valores);*/
 
 	}
 
 	// alterar caderno
-	public void alterarCaderno(String nome, int cor, String nomeAntigo){
+	public void alterarCaderno(String nome, int cor, long id){
 		ContentValues valores =  new ContentValues();
 		valores.put("nome", nome);
 		valores.put("cor_da_capa", cor);
-		bd.update("caderno", valores, "nome = '"+nomeAntigo+"'", null);
+		bd.update("caderno", valores, "_id_caderno = '"+id+"'", null);
 	}
 
 	// deletar caderno
-	public void deletarCaderno(String nome){
-		bd.delete("caderno","nome = '"+nome+"'", null);
+	public void deletarCaderno(long id){
+		bd.delete("caderno","_id_caderno = '"+id+"'", null);
 	}
 
 	// consultar caderno
@@ -57,6 +61,26 @@ public class DAOCaderno {
 				c.setNome(cursor.getString(1));
 				c.setColor(cursor.getInt(2));
 				list.add(c);
+			}while(cursor.moveToNext());
+				
+				
+		}
+		
+		return (list);
+	}
+	public ArrayList<String> consultarNomes() {
+		// TODO Auto-generated method stub
+		ArrayList<String> list = new ArrayList<String>();
+		String[] colunas = {"nome"};
+		
+		Cursor cursor = bd.query("caderno", colunas, null, null, null, null, "nome");
+		list.add("");
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			
+			do{
+				String nome = cursor.getString(0);
+				list.add(nome);
 			}while(cursor.moveToNext());
 				
 				
