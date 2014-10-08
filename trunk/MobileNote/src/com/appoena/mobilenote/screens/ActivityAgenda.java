@@ -19,6 +19,7 @@ import com.appoena.mobilenote.AdapterListAgenda;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Agenda;
+import com.appoena.mobilenote.modelo.Caderno;
 
 public class ActivityAgenda extends Activity implements CustomDialogListener{
 
@@ -97,8 +98,12 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			adapterAgenda.addItem(a);
 			a.inserirTarefas(this, desc, data, hora, lembrar,0, caderno);
 		}else{
-			int position = params.getInt(getResources().getString(R.string.INDEX));
+			
+			int position	= params.getInt(getResources().getString(R.string.INDEX));
+			Agenda aAntes = adapterAgenda.getItem(position);
+			long id = aAntes.getIdAgenda();
 			adapterAgenda.setItemAtPosition(a, position);
+			a.alterarTarefa(this, desc, data, hora, lembrar, 0, caderno, id);
 		}
 		adapterAgenda.notifyDataSetChanged();
 		
@@ -134,6 +139,8 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
+			Agenda ag = adapterAgenda.getItem(info.position);
+			ag.deletarTarefa(this, ag.getIdAgenda());
 			adapterAgenda.removeItemAtPosition(info.position);
 			adapterAgenda.notifyDataSetChanged();
 			break;

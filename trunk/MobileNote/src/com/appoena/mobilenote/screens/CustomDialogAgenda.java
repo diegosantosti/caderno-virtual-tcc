@@ -42,6 +42,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		txtHora = (TextView) view.findViewById(R.id.txtHora);
 		checkLembrar = (CheckBox) view.findViewById(R.id.checkLembrar);
 		edtDescricao = (EditText) view.findViewById(R.id.edtDescLembrete);
+		
 		// Preenchendo o Spinner Caderno
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
 		Caderno c = new Caderno();
@@ -54,8 +55,8 @@ public class CustomDialogAgenda extends CustomDialog{
 			popularAgenda();
 		} catch (Exception e) {
 
-		}
-		
+	}
+
 		myDialog.setOnShowListener(new DialogInterface.OnShowListener() {	
 			@Override
 			public void onShow(DialogInterface dialog) {
@@ -94,7 +95,7 @@ public class CustomDialogAgenda extends CustomDialog{
 				showTimePicker();
 			}
 		});
-		
+
 	}
 
 
@@ -128,7 +129,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		}else{
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -149,7 +150,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		.append("/")
 		.append(ano));	
 	}
-	
+
 	public void setHora(int hora, int minuto){
 		String aux="";
 		//se o minuto for menor que 10, coloca um zero a esquerda do valor

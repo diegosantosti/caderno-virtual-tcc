@@ -65,7 +65,7 @@ public class AdapterListAgenda extends BaseAdapter {
 		((TextView) convertView.findViewById(R.id.dataAgenda)).setText(a.getHoraAgenda());
 		
 		
-		//if para converter o campo lembrar 1 = lemrar 0 = não lembrar
+		//if para converter o campo lembrar =  1,  não lembrar = 0
 		if(a.getLembrar() == 1)
 			lembrar = true;
 		else
