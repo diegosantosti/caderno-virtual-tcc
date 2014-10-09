@@ -185,7 +185,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
-			setData(dayOfMonth, monthOfYear, year);
+			setData(dayOfMonth, monthOfYear+1, year);
 		}
 	};
 
