@@ -43,8 +43,9 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"descricao text not null," +
 					"hora text not null," +
 					"data text not null," +
-					"lembrar integer not null);");
-		bd.execSQL("insert into agenda(_id_agenda,descricao,id_materia,id_caderno,hora,data,lembrar) values (1,'Teste',null,null,'19:00','14/12/2014',1);");
+					"lembrar integer not null,"+
+					"id_evento integer not null);");
+		//bd.execSQL("insert into agenda(_id_agenda,descricao,id_materia,id_caderno,hora,data,lembrar) values (1,'Teste',null,null,'19:00','14/12/2014',1);");
 	}
 	
 	@Override
