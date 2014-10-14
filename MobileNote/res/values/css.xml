@@ -66,13 +66,13 @@
     
     <style name="text_agenda">
        	<item name="android:textColor">@color/fonte_list_agenda</item>
-       	<item name="android:textSize">14sp</item>
+       	<item name="android:textSize">12sp</item>
     </style>
     
     <style name="text_titulo_agenda">
        	<item name="android:textColor">@color/fonte_list_agenda</item>
        	<item name="android:textStyle">bold</item>
-       	<item name="android:textSize">18sp</item>
+       	<item name="android:textSize">16sp</item>
     </style>
     
     <style name="text_dataHora" parent="@android:style/Widget.Holo.Light.Spinner">
