@@ -8,18 +8,23 @@
 	<TextView 
         android:id="@+id/titAgenda"
         android:layout_width="match_parent"
+        android:layout_marginBottom="4dp"
         android:layout_height="wrap_content"
         style="@style/text_titulo_agenda"/>
     
     <TextView
         android:id="@+id/dataAgenda"
         style="@style/text_agenda"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_data" />
 
 	<TextView
 	    android:id="@+id/horaAgenda"
+	    android:layout_marginLeft="6dp"
+	    android:layout_marginBottom="2dp"
 	    style="@style/text_agenda"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
@@ -33,6 +38,7 @@
 	    <TextView 
 	        android:id="@+id/materiaAgenda"
 	        android:layout_width="wrap_content"
+	        android:layout_marginLeft="6dp"
 	        android:layout_height="wrap_content"
 	        android:drawableLeft="@drawable/ic_tag"
 	        style="@style/text_agenda"/>
@@ -45,7 +51,7 @@
 	        android:checked="false"
 	        android:clickable="false"
 	        android:focusable="false"
-	        android:layout_gravity="right"
+	        android:layout_gravity="left"
 	        android:text="@string/lembrar" />
 	    
 	    
