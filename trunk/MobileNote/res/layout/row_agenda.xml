@@ -11,34 +11,46 @@
         android:layout_height="wrap_content"
         style="@style/text_titulo_agenda"/>
     
-    <TextView 
+    <TextView
         android:id="@+id/dataAgenda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         style="@style/text_agenda"
-      	android:drawableLeft="@drawable/ic_calendario"/>
-
-	<TextView 
-		 android:id="@+id/horaAgenda"
-		 android:drawableLeft="@drawable/ic_relogio"
-		 android:layout_width="match_parent"
-		 android:layout_height="wrap_content"
-		 style="@style/text_agenda"/>
-    
-    <TextView 
-        android:id="@+id/materiaAgenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_tag"
-        style="@style/text_agenda"/>
+        android:drawableLeft="@drawable/ic_data" />
+
+	<TextView
+	    android:id="@+id/horaAgenda"
+	    style="@style/text_agenda"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@drawable/ic_hora" />
+	
+	<!-- <LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"> -->
+	    
+	    <TextView 
+	        android:id="@+id/materiaAgenda"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:drawableLeft="@drawable/ic_tag"
+	        style="@style/text_agenda"/>
     
-    <CheckBox
-        android:id="@+id/checkLembrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="false"
-        android:text="@string/lembrar" />
+	    <CheckBox
+	        android:id="@+id/checkLembrar"
+	        style="@style/text_agenda"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:checked="false"
+	        android:clickable="false"
+	        android:focusable="false"
+	        android:layout_gravity="right"
+	        android:text="@string/lembrar" />
+	    
+	    
+	<!-- </LinearLayout> -->
+    
+    
 
 </LinearLayout>
