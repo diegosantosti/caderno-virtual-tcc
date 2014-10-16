@@ -58,14 +58,7 @@
 	        android:layout_margin="@dimen/margin_components_popoup_materia"
 	        style="@style/edit_text_pop_up"
 	        android:hint="@string/hint_email_professor"/>
-	    
-	    <EditText 
-	        android:id="@+id/edtSala"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_margin="@dimen/margin_components_popoup_materia"
-	        style="@style/edit_text_pop_up"
-	        android:hint="@string/hint_sala"/>
+
 	    
 	    <TextView
 	        android:layout_width="match_parent"
