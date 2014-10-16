@@ -79,16 +79,18 @@ public final class R {
         public static final int ic_action_add=0x7f02000b;
         public static final int ic_action_pesquisar=0x7f02000c;
         public static final int ic_calendario=0x7f02000d;
-        public static final int ic_launcher=0x7f02000e;
-        public static final int ic_relogio=0x7f02000f;
-        public static final int ic_tag=0x7f020010;
-        public static final int logo_sobre=0x7f020011;
-        public static final int main_content=0x7f020012;
-        public static final int splash_background=0x7f020013;
-        public static final int splash_content=0x7f020014;
+        public static final int ic_data=0x7f02000e;
+        public static final int ic_hora=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int ic_relogio=0x7f020011;
+        public static final int ic_tag=0x7f020012;
+        public static final int logo_sobre=0x7f020013;
+        public static final int main_content=0x7f020014;
+        public static final int splash_background=0x7f020015;
+        public static final int splash_content=0x7f020016;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0023;
+        public static final int action_settings=0x7f0a0027;
         public static final int actionbar_cancel=0x7f0a0016;
         public static final int actionbar_done=0x7f0a0018;
         public static final int btnCaderno=0x7f0a001b;
@@ -101,24 +103,28 @@ public final class R {
         public static final int checkLembrar=0x7f0a0004;
         public static final int confirmar=0x7f0a0019;
         public static final int dataAgenda=0x7f0a001e;
+        public static final int diaMateria=0x7f0a0022;
         public static final int editText1=0x7f0a0015;
         public static final int edtDescLembrete=0x7f0a0001;
         public static final int edtEmailProfessor=0x7f0a000c;
         public static final int edtNomeCaderno=0x7f0a0007;
         public static final int edtNomeMateria=0x7f0a0009;
         public static final int edtNomeProfessor=0x7f0a000b;
-        public static final int edtSala=0x7f0a000d;
+        public static final int emailMateria=0x7f0a0024;
         public static final int gridView1=0x7f0a0014;
         public static final int horaAgenda=0x7f0a001f;
         public static final int linearBtnGrid=0x7f0a001a;
         public static final int linearLayout1=0x7f0a000f;
-        public static final int listAgenda=0x7f0a000e;
+        public static final int listAgenda=0x7f0a000d;
         public static final int materiaAgenda=0x7f0a0020;
-        public static final int menu_add_agenda=0x7f0a0024;
-        public static final int menu_del=0x7f0a0022;
-        public static final int menu_edit=0x7f0a0021;
-        public static final int menu_pesq_agenda=0x7f0a0025;
-        public static final int menu_sort_agenda=0x7f0a0026;
+        public static final int menu_add_agenda=0x7f0a0028;
+        public static final int menu_add_materia=0x7f0a002b;
+        public static final int menu_del=0x7f0a0026;
+        public static final int menu_edit=0x7f0a0025;
+        public static final int menu_pesq_agenda=0x7f0a0029;
+        public static final int menu_sort_agenda=0x7f0a002a;
+        public static final int nomeMateria=0x7f0a0021;
+        public static final int profMateria=0x7f0a0023;
         public static final int spinnerCaderno=0x7f0a0005;
         public static final int spinnerDiaSemana=0x7f0a000a;
         public static final int spinnerMateria=0x7f0a0006;
@@ -127,26 +133,30 @@ public final class R {
         public static final int txtData=0x7f0a0002;
         public static final int txtHora=0x7f0a0003;
         public static final int txtNovoLembrete=0x7f0a0000;
+        public static final int webView1=0x7f0a000e;
     }
     public static final class layout {
         public static final int activity_adicionar_agenda=0x7f030000;
         public static final int activity_adicionar_caderno=0x7f030001;
         public static final int activity_adicionar_materia=0x7f030002;
         public static final int activity_agenda=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_materias=0x7f030005;
-        public static final int activity_sobre=0x7f030006;
-        public static final int activity_splash=0x7f030007;
-        public static final int include_cancel_button=0x7f030008;
-        public static final int include_done_button=0x7f030009;
-        public static final int item_caderno=0x7f03000a;
-        public static final int item_color=0x7f03000b;
-        public static final int row_agenda=0x7f03000c;
+        public static final int activity_editor=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_materias=0x7f030006;
+        public static final int activity_sobre=0x7f030007;
+        public static final int activity_splash=0x7f030008;
+        public static final int include_cancel_button=0x7f030009;
+        public static final int include_done_button=0x7f03000a;
+        public static final int item_caderno=0x7f03000b;
+        public static final int item_color=0x7f03000c;
+        public static final int row_agenda=0x7f03000d;
+        public static final int row_materia=0x7f03000e;
     }
     public static final class menu {
         public static final int actions=0x7f090000;
         public static final int main=0x7f090001;
         public static final int menu_agenda=0x7f090002;
+        public static final int menu_materia=0x7f090003;
     }
     public static final class string {
         public static final int COR_CADERNO=0x7f080028;
@@ -172,6 +182,7 @@ public final class R {
         public static final int diego=0x7f080020;
         public static final int edit=0x7f08000d;
         public static final int edit_nome_caderno_hint=0x7f080006;
+        public static final int editor=0x7f080030;
         public static final int henrique=0x7f08001e;
         public static final int hint_email_professor=0x7f080013;
         public static final int hint_nome_materia=0x7f080010;
