@@ -143,19 +143,24 @@ public class CustomDialogAgenda extends CustomDialog{
 	}
 
 	private void setData(int dia, int mes, int ano) {
-		txtData.setText(new StringBuilder()
-		.append(dia)
-		.append("/")
-		.append(mes)
-		.append("/")
-		.append(ano));	
+		StringBuilder data = new StringBuilder();
+		if(dia<10)data.append("0"); //adiciona um 0 caso dia menor que 10
+		data.append(dia);
+		data.append("/");
+		if(mes<10)data.append("0"); //adiciona um 0 caso mes menor que 10
+		data.append(mes);
+		data.append("/");
+		data.append(ano);
+		txtData.setText(data);
 	}
 
 	public void setHora(int hora, int minuto){
-		String aux="";
+		String aux="", auxHora = "";
 		//se o minuto for menor que 10, coloca um zero a esquerda do valor
 		if(minuto<10) aux = "0";
+		if(hora<10) auxHora = "0";
 		txtHora.setText(new StringBuilder()
+		.append(auxHora)
 		.append(hora)
 		.append(":")
 		.append(aux)
