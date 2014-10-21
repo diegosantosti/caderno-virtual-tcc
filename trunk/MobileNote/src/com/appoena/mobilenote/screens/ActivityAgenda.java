@@ -9,10 +9,8 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Reminders;
 import android.view.ContextMenu;
@@ -23,13 +21,11 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterListAgenda;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Agenda;
-import com.appoena.mobilenote.modelo.Caderno;
 
 public class ActivityAgenda extends Activity implements CustomDialogListener{
 
@@ -42,7 +38,6 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agenda);
 		ActionBar actionBar = getActionBar();
@@ -50,15 +45,8 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		setBundle();
 		Agenda a = new Agenda();
-
-		//--teste willian
 		arrayAgendas = a.consultarAgenda(this);
 		adapterAgenda = new AdapterListAgenda(this, arrayAgendas);
-		/*adapterAgenda.addItem(new Agenda("Prova 1", "14/09/2014", "19:00", 0, false, 0));
-		adapterAgenda.addItem(new Agenda("Prova 2", "15/09/2014", "19:00", 0, true, 0));
-		adapterAgenda.addItem(new Agenda("Prova 3", "16/09/2014", "19:00", 0, false, 0));
-		adapterAgenda.addItem(new Agenda("Prova 4", "17/09/2014", "19:00", 0, true, 0));*/
-		//-- fim teste
 		listView = (ListView) findViewById(R.id.listAgenda);
 		listView.setAdapter(adapterAgenda);
 		registerForContextMenu(listView);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lnListMateria"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -7,29 +8,20 @@
     <TextView 
         android:id="@+id/nomeMateria"
         android:layout_width="wrap_content"
-        android:text="PESQOP"
         android:layout_height="wrap_content"/>
     
     <TextView 
         android:id="@+id/diaMateria"
         android:layout_width="wrap_content"
-        android:text="Sexta-feira"
         android:layout_height="wrap_content"/>
   
-        
-        <TextView 
-	        android:id="@+id/profMateria"
-	        android:layout_width="wrap_content"
-
-	        android:text="Tony"
-	        android:layout_height="wrap_content"/>
-        
-        <TextView 
-	        android:id="@+id/emailMateria"
-	        android:text="tony@gmail.com"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
-    
-    
-
+	<TextView 
+	    android:id="@+id/profMateria"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+       
+	<TextView 
+		android:id="@+id/emailMateria"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
 </LinearLayout>

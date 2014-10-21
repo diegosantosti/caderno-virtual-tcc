@@ -62,23 +62,12 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="70dp"
+        android:paddingBottom="10dp"
         android:layout_below="@+id/linearLayout1"
         android:numColumns="2"
         android:verticalSpacing="15dp"
         android:horizontalSpacing="15dp">
     </GridView>
-
-    <EditText
-        android:id="@+id/editText1"
-        style="@style/edit_pesquisa"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_above="@+id/gridView1"
-        android:layout_margin="@dimen/margin_edit_pesq"
-        android:hint="@string/text_pesq_hint"
-        android:inputType="text" />
 
     
 
