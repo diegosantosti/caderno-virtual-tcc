@@ -15,12 +15,13 @@ public class Agenda {
 	private int 	id_materia;
 	private int 	id_caderno; //Wesley, ser‡ que precisa? -- Willian
 	private long 	id_agenda;
+	private long 	id_evento;
 
 	public Agenda(){
 		
 	}
 	
-	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, int lembrar, int caderno){
+	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, int lembrar, int caderno,long id_evento){
 		
 		setDescricao(strDesc);
 		setDataAgenda(dtAgenda);
@@ -28,6 +29,7 @@ public class Agenda {
 		setIdMateria(materia);
 		setLembrar(lembrar);
 		setIdCaderno(caderno);
+		setIdEvento(id_evento);
 
 	}
 	
@@ -88,6 +90,13 @@ public class Agenda {
 		this.id_agenda = idAgenda;
 	}
 	
+	public long getIdEvento(){
+		return this.id_evento;
+	}
+	
+	public void setIdEvento(long id){
+		this.id_evento = id;
+	}
 	// metodo para incluir tarefas
 	public void inserirTarefas(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int id_caderno, long id_evento){
 		DAOAgenda dg = new DAOAgenda(ctx);

@@ -44,7 +44,8 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"hora text not null," +
 					"data text not null," +
 					"lembrar integer not null,"+
-					"id_evento integer not null);");
+					"id_evento integer not null," +
+					"FOREIGN KEY(id_caderno) REFERENCES caderno(_id_caderno));");
 		//bd.execSQL("insert into agenda(_id_agenda,descricao,id_materia,id_caderno,hora,data,lembrar) values (1,'Teste',null,null,'19:00','14/12/2014',1);");
 	}
 	
@@ -55,6 +56,7 @@ public class BDMobileNote extends SQLiteOpenHelper {
 		bd.execSQL("drop table agenda;");
 		bd.execSQL("drop table materia;");
 		onCreate(bd);
+
 		
 	}
 

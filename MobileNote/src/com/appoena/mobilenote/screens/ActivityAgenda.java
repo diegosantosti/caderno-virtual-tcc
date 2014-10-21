@@ -8,6 +8,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,23 +86,55 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		String data 	= params.getString(getResources().getString(R.string.DATA_AGENDA));
 		String hora 	= params.getString(getResources().getString(R.string.HORA_AGENDA));
 		int    caderno	= params.getInt(getResources().getString(R.id.spinnerCaderno));
-		/*int	   dia		= Integer.parseInt( params.getString(getResources().getString(R.string.DATA_AGENDA)).substring(0, 2));
-		int    mes		= Integer.parseInt( params.getString(getResources().getString(R.string.DATA_AGENDA)).substring(3, 5)) - 1;
-		int    ano		= Integer.parseInt( params.getString(getResources().getString(R.string.DATA_AGENDA)).substring(6, 10));*/
-
-
-
 		if(params.getBoolean(getResources().getString(R.string.LEMBRAR)))
 			lembrar = 1;
 		else
 			lembrar = 0;
+		int dia = Integer.parseInt(data.substring(0,2));
+		int mes = Integer.parseInt(data.substring(3,5))-1;
+		int ano = Integer.parseInt(data.substring(6,10));
+		int h   = Integer.parseInt(hora.substring(0,2));
+		int min = Integer.parseInt(hora.substring(3,5));
+		long idEvento;
 
-		Agenda a = new Agenda(desc, data, hora, caderno, lembrar, 0);
+		//colocando as datas 
+		Calendar beginTime = Calendar.getInstance();
+		beginTime.set(ano, mes,dia,h,min);
+		Calendar endTime = Calendar.getInstance();
+		endTime.set(ano, mes,dia,h,min);
+		endTime.add(GregorianCalendar.HOUR, 1);
+
+		// inserindo calendário
+		ContentResolver cr = getContentResolver();
+		ContentValues valores =  new ContentValues();
+		valores.put(Events.DTSTART, beginTime.getTimeInMillis());
+		valores.put(Events.DTEND, endTime.getTimeInMillis());
+		valores.put(Events.TITLE, desc);
+		valores.put(Events.DESCRIPTION, desc);
+		valores.put(Events.CALENDAR_ID, 3);
+		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
+
+		Uri uri = cr.insert(Events.CONTENT_URI, valores);
+		idEvento =  Long.parseLong(uri.getLastPathSegment());
+
+		// adicionando lembretes
+		if(lembrar == 1){
+			ContentResolver crL = getContentResolver();
+			ContentValues valoresL =  new ContentValues();
+			valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
+			valoresL.put(Reminders.EVENT_ID, idEvento);
+			valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+
+			uri = crL.insert(Reminders.CONTENT_URI, valoresL);
+		}
+
+
+		Agenda a = new Agenda(desc, data, hora, caderno, lembrar, 0,idEvento);
 		// inserindo Agenda
 		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){	
 			// inserindo no Grid
 			adapterAgenda.addItem(a);
-			incluirTarefa(desc,data,hora,caderno,lembrar,0);
+			a.inserirTarefas(this,desc,data,hora,caderno,lembrar,0,idEvento);
 
 		}else{
 
@@ -146,9 +179,18 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			Agenda ag = adapterAgenda.getItem(info.position);
-			ag.deletarTarefa(this, ag.getIdAgenda());
+			long idEvento = ag.getIdEvento();
+			ag.deletarTarefa(this, ag.getIdAgenda()); //deletando do BD
 			adapterAgenda.removeItemAtPosition(info.position);
 			adapterAgenda.notifyDataSetChanged();
+
+
+			// deletando do calendário android
+			ContentResolver cr = getContentResolver();
+			Uri deleteUri = null;
+			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + idEvento, null);
+			deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, idEvento);
+			cr.delete(deleteUri, null, null);
 			break;
 
 		case R.id.menu_edit:
@@ -164,55 +206,5 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		}
 		return super.onContextItemSelected(item);
 	}
-
-	// metodo para inserir agenda, faz tratamento das datas
-	public void incluirTarefa(String desc,String data, String hora, int caderno, int lembrar,int materia){
-		// Inserindo no Calendario do Android
-		Agenda a = new Agenda();
-		int dia = Integer.parseInt(data.substring(0,2));
-		int mes = Integer.parseInt(data.substring(3,5))-1;
-		int ano = Integer.parseInt(data.substring(6,10));
-		int h   = Integer.parseInt(hora.substring(0,2));
-		int min = Integer.parseInt(hora.substring(3,5));
-		long idEvento;
-		
-		//colocando as datas 
-		Calendar beginTime = Calendar.getInstance();
-		beginTime.set(ano, mes,dia,h,min);
-		Calendar endTime = Calendar.getInstance();
-		endTime.set(ano, mes,dia,h,min);
-		endTime.add(GregorianCalendar.HOUR, 1);
-		
-		// inserindo calendário
-		ContentResolver cr = getContentResolver();
-		ContentValues valores =  new ContentValues();
-		valores.put(Events.DTSTART, beginTime.getTimeInMillis());
-		valores.put(Events.DTEND, endTime.getTimeInMillis());
-		valores.put(Events.TITLE, desc);
-		valores.put(Events.DESCRIPTION, desc);
-		valores.put(Events.CALENDAR_ID, 3);
-		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
-		
-		Uri uri = cr.insert(Events.CONTENT_URI, valores);
-		idEvento =  Long.parseLong(uri.getLastPathSegment());
-		
-		// adicionando lembretes
-		if(lembrar == 1){
-			ContentResolver crL = getContentResolver();
-			ContentValues valoresL =  new ContentValues();
-			valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
-			valoresL.put(Reminders.EVENT_ID, idEvento);
-			valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
-			
-			uri = crL.insert(Reminders.CONTENT_URI, valoresL);
-		}
-			
-
-		// inserindo no banco
-		a.inserirTarefas(this, desc, data, hora, lembrar,0, caderno,idEvento);
-
-	}
-
-
 
 }

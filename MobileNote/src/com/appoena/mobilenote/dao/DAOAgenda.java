@@ -55,7 +55,7 @@ public class DAOAgenda {
 	// consultar caderno
 	public ArrayList<Agenda> consultarAgendas(){
 		ArrayList<Agenda> list = new ArrayList<Agenda>();
-		String[] colunas = {"_id_agenda","descricao","data", "hora","lembrar","id_caderno","id_materia"};
+		String[] colunas = {"_id_agenda","descricao","data", "hora","lembrar","id_caderno","id_materia", "id_evento"};
 
 		Cursor cursor = bd.query("agenda", colunas, null, null, null, null, "data");
 
@@ -71,6 +71,8 @@ public class DAOAgenda {
 				a.setLembrar(cursor.getInt(4));
 				a.setIdCaderno(cursor.getInt(5));
 				a.setIdMateria(cursor.getInt(6));
+				a.setIdEvento(cursor.getLong(7));
+				
 				list.add(a);
 			}while(cursor.moveToNext());
 
@@ -79,6 +81,12 @@ public class DAOAgenda {
 
 		return (list);
 	}
-
-
+	// retorna o ultimo número do id
+	public long getMaxIdAgenda(){
+		String[] colunas = {"_id_agenda"};
+		long id;
+		Cursor cursor = bd.query("agenda", colunas,"id_agenda in( select max(_id_agenda) from agenda)" , null, null, null, "data");
+		id = cursor.getLong(0);
+		return id;
+	}
 }
