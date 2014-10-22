@@ -31,6 +31,7 @@ public class Agenda {
 		setIdCaderno(caderno);
 		setIdEvento(id_evento);
 
+
 	}
 	
 	
@@ -104,9 +105,9 @@ public class Agenda {
 	}
 	
 	// metodo para alterar tarefa
-	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int idCaderno, long idAgenda){
+	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int idCaderno,long id_evento, long idAgenda){
 		DAOAgenda dg = new DAOAgenda(ctx);
-		dg.alterarAgenda(descricao, hora, data, idMateria, lembrar, idCaderno, idAgenda);
+		dg.alterarAgenda(descricao, hora, data, idMateria, lembrar, idCaderno, id_evento,idAgenda);
 	}
 	
 	// metodo para deletar tarefa
@@ -122,6 +123,7 @@ public class Agenda {
 		list = da.consultarAgendas();
 		return list;
 	}
+
 
 
 }

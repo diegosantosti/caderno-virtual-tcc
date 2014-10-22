@@ -19,7 +19,7 @@ public class BDMobileNote extends SQLiteOpenHelper {
 		// TODO Auto-generated method sbdb
 		// criando base de dados tabela caderno
 		bd.execSQL(	"create table caderno(" +
-					"_id_caderno integer primary key autoincrement, " +
+					"_id_caderno integer primary key, " +
 					"nome text unique on CONFLICT REPLACE," +
 					"cor_da_capa integer not null" +
 					");");

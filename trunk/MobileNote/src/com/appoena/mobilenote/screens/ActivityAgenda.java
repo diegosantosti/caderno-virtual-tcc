@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Reminders;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -95,7 +96,6 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		int ano = Integer.parseInt(data.substring(6,10));
 		int h   = Integer.parseInt(hora.substring(0,2));
 		int min = Integer.parseInt(hora.substring(3,5));
-		long idEvento;
 
 		//colocando as datas 
 		Calendar beginTime = Calendar.getInstance();
@@ -114,35 +114,71 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		valores.put(Events.CALENDAR_ID, 3);
 		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
 
-		Uri uri = cr.insert(Events.CONTENT_URI, valores);
-		idEvento =  Long.parseLong(uri.getLastPathSegment());
 
 		// adicionando lembretes
-		if(lembrar == 1){
-			ContentResolver crL = getContentResolver();
-			ContentValues valoresL =  new ContentValues();
-			valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
-			valoresL.put(Reminders.EVENT_ID, idEvento);
-			valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 
-			uri = crL.insert(Reminders.CONTENT_URI, valoresL);
-		}
-
-
-		Agenda a = new Agenda(desc, data, hora, caderno, lembrar, 0,idEvento);
 		// inserindo Agenda
 		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){	
 			// inserindo no Grid
-			adapterAgenda.addItem(a);
-			a.inserirTarefas(this,desc,data,hora,caderno,lembrar,0,idEvento);
+			Agenda a = new Agenda();
+			
+			// inserindo no calendario android
+			Uri uri = cr.insert(Events.CONTENT_URI, valores);
+			long id_evento =  Long.parseLong(uri.getLastPathSegment());// pegando o id do evento android
+			
+			if(lembrar == 1){
+				
+				ContentResolver crL = getContentResolver();
+				ContentValues valoresL =  new ContentValues();
+				valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
+				valoresL.put(Reminders.EVENT_ID, id_evento);
+				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+				uri = crL.insert(Reminders.CONTENT_URI, valoresL);
+			}
+			a.inserirTarefas(this, desc, data, hora, lembrar, 0, caderno,id_evento);
+			arrayAgendas = a.consultarAgenda(this);
+			adapterAgenda = new AdapterListAgenda(this, arrayAgendas);
+			listView = (ListView) findViewById(R.id.listAgenda);
+			listView.setAdapter(adapterAgenda);
+			registerForContextMenu(listView);
+
 
 		}else{
-
+			
 			int position	= params.getInt(getResources().getString(R.string.INDEX));
 			Agenda aAntes = adapterAgenda.getItem(position);
-			long id = aAntes.getIdAgenda();
-			adapterAgenda.setItemAtPosition(a, position);
-			a.alterarTarefa(this, desc, data, hora, lembrar, 0, caderno, id);
+			int lembrarAntes = aAntes.getLembrar();
+			long id_agenda = aAntes.getIdAgenda();
+			long id_evento = aAntes.getIdEvento();
+			Agenda a = new Agenda(desc, data, hora, caderno, lembrar, 0,id_evento);
+
+			Uri updateUri = ContentUris.withAppendedId(Events.CONTENT_URI, id_evento);
+			cr.update( updateUri, valores, null, null);
+			id_evento =  Long.parseLong(updateUri .getLastPathSegment());
+
+
+			// alterando Lembretes lembretes
+			if(lembrar == 1 || lembrarAntes == 0){
+				
+				ContentResolver crL = getContentResolver();
+				ContentValues valoresL =  new ContentValues();
+				valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
+				valoresL.put(Reminders.EVENT_ID, id_evento);
+				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
+				Uri uri = crL.insert(Reminders.CONTENT_URI, valoresL);
+
+			}
+			else if(lembrarAntes == 1 || lembrar == 0)
+			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
+			// alterando no BD
+			a.alterarTarefa(this, desc, data, hora, lembrar, 0, caderno,id_evento, id_agenda);
+			arrayAgendas = a.consultarAgenda(this);
+			adapterAgenda = new AdapterListAgenda(this, arrayAgendas);
+			listView = (ListView) findViewById(R.id.listAgenda);
+			listView.setAdapter(adapterAgenda);
+			registerForContextMenu(listView);
+			
 		}
 		adapterAgenda.notifyDataSetChanged();
 

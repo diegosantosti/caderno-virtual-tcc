@@ -189,8 +189,14 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		
 		// inserir caderno
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
-			adapter.addItem(c);
 			c.incluirCaderno(this,cor,caderno);
+			arrayCaderno = c.listaCadernos(this);
+			adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
+			gridView= (GridView) findViewById(R.id.gridView1);
+			gridView.setAdapter(adapter);
+			onClickItemGrid();
+			registerForContextMenu(gridView);
+			setBundle();
 		}else{
 			int position = params.getInt(getResources().getString(R.string.INDEX));
 			Caderno cAntes = adapter.getItem(position);
