@@ -113,6 +113,7 @@ public class CustomDialogAgenda extends CustomDialog{
 			txtData.setText(params.getString(getResources().getString(R.string.DATA_AGENDA)));
 			txtHora.setText(params.getString(getResources().getString(R.string.HORA_AGENDA)));
 			checkLembrar.setChecked(params.getBoolean(getResources().getString(R.string.LEMBRAR)));
+			
 		}
 
 	}

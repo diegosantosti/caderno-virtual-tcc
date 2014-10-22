@@ -35,7 +35,7 @@ public class DAOAgenda {
 	}
 	
 	// alterar Agenda
-	public void alterarAgenda(String descricao, String hora, String data, int materia, int lembrar,int caderno, long id){
+	public void alterarAgenda(String descricao, String hora, String data, int materia, int lembrar,int caderno,long id_evento, long id){
 		ContentValues valores =  new ContentValues();
 		valores.put("descricao", descricao);
 		valores.put("id_materia",materia);
@@ -43,6 +43,7 @@ public class DAOAgenda {
 		valores.put("data", data);
 		valores.put("id_caderno", caderno);
 		valores.put("lembrar", lembrar);
+		valores.put("id_evento", id_evento);
 		
 		bd.update("agenda", valores, "_id_agenda = '"+id+"'", null);
 	}
@@ -81,12 +82,6 @@ public class DAOAgenda {
 
 		return (list);
 	}
-	// retorna o ultimo número do id
-	public long getMaxIdAgenda(){
-		String[] colunas = {"_id_agenda"};
-		long id;
-		Cursor cursor = bd.query("agenda", colunas,"id_agenda in( select max(_id_agenda) from agenda)" , null, null, null, "data");
-		id = cursor.getLong(0);
-		return id;
-	}
+
+
 }
