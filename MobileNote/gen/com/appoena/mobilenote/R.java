@@ -161,15 +161,20 @@ public final class R {
     }
     public static final class string {
         public static final int COR_CADERNO=0x7f080028;
+        public static final int COR_MATERIA=0x7f080035;
         public static final int DATA_AGENDA=0x7f08002d;
         public static final int DESC_AGENDA=0x7f08002c;
+        public static final int DIA_SEMANA=0x7f080032;
         public static final int EDICAO=0x7f08002a;
+        public static final int EMAIL_PROFESSOR=0x7f080034;
         public static final int HORA_AGENDA=0x7f08002e;
         public static final int INDEX=0x7f080029;
         public static final int LEMBRAR=0x7f08002f;
         /**  Chaves e parametros 
          */
         public static final int NOME_CADERNO=0x7f080027;
+        public static final int NOME_MATERIA=0x7f080031;
+        public static final int NOME_PROFESSOR=0x7f080033;
         public static final int VIEW=0x7f08002b;
         public static final int action_settings=0x7f080003;
         public static final int add=0x7f08000a;

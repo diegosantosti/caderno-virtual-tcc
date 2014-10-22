@@ -70,5 +70,11 @@
     <string name="HORA_AGENDA">HORA_AGENDA</string>
     <string name="LEMBRAR">LEMBRAR</string>
     <string name="editor">EDITOR</string>
+    <string name="NOME_MATERIA">NOME_MATERIA</string>
+    <string name="DIA_SEMANA">DIA_SEMANA</string>
+    <string name="NOME_PROFESSOR">NOME_PROFESSOR</string>
+    <string name="EMAIL_PROFESSOR">EMAIL_PROFESSOR</string>
+    <string name="COR_MATERIA">COR_MATERIA</string>
+    
     
 </resources>
