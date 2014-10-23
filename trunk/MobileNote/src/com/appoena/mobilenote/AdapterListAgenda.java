@@ -53,6 +53,10 @@ public class AdapterListAgenda extends BaseAdapter {
 	public void setItemAtPosition(Agenda a, int position){
 		agendas.set(position, a);
 	}
+	
+	public void setAgenda(ArrayList<Agenda> agendas){
+		this.agendas = agendas;
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

@@ -33,7 +33,7 @@ public class CustomDialogAgenda extends CustomDialog{
 	private EditText edtDescricao;
 	private CheckBox checkLembrar;
 	private Spinner  spCaderno;
-	private Spinner  spMateria;
+	//private Spinner  spMateria;
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {

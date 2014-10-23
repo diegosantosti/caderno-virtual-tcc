@@ -137,10 +137,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			}
 			a.inserirTarefas(this, desc, data, hora, lembrar, 0, caderno,id_evento);
 			arrayAgendas = a.consultarAgenda(this);
-			adapterAgenda = new AdapterListAgenda(this, arrayAgendas);
-			listView = (ListView) findViewById(R.id.listAgenda);
-			listView.setAdapter(adapterAgenda);
-			registerForContextMenu(listView);
+			adapterAgenda.setAgenda(arrayAgendas);
 
 
 		}else{
@@ -174,11 +171,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			// alterando no BD
 			a.alterarTarefa(this, desc, data, hora, lembrar, 0, caderno,id_evento, id_agenda);
 			arrayAgendas = a.consultarAgenda(this);
-			adapterAgenda = new AdapterListAgenda(this, arrayAgendas);
-			listView = (ListView) findViewById(R.id.listAgenda);
-			listView.setAdapter(adapterAgenda);
-			registerForContextMenu(listView);
-			
+			adapterAgenda.setAgenda(arrayAgendas);	
 		}
 		adapterAgenda.notifyDataSetChanged();
 
