@@ -41,6 +41,22 @@ public class AdapterListMateria extends BaseAdapter{
 	public long getItemId(int position) {
 		return position;
 	}
+	
+	public void removeAtPosition(int postion) {
+		materias.remove(postion);
+	}
+	
+	public void addItem(Materia m){
+		materias.add(m);
+	}
+
+	public void setMaterias(ArrayList<Materia> materias) {
+		this.materias = materias;
+	}
+	
+	public void setItemAtPosition(int position, Materia m) {
+		materias.set(position, m);
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		//MODIFICAÇÃO DIEGO
 		//APENAS PARA TESTE DO EDITOR DO CONTEÚDO
 		//INÍCIO
-		clickEditorConteudo();
+		//clickEditorConteudo();
 
 		//TÉRMINO
 
@@ -112,18 +112,19 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	/*
 	 * Método responsável pelo clique no Editor Conteudo
 	 */
-	private void clickEditorConteudo() {
-		Button btnAbout = (Button) findViewById(R.id.btn_settings);
-		btnAbout.setOnClickListener( new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent it = new Intent(MainActivity.this, ActivityEditorConteudo.class);
-				startActivity(it);
-			}
-		});
-
-	}
+	//Migrei pra classe Activity materia - Will
+//	private void clickEditorConteudo() {
+//		Button btnAbout = (Button) findViewById(R.id.btn_settings);
+//		btnAbout.setOnClickListener( new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				Intent it = new Intent(MainActivity.this, ActivityEditorConteudo.class);
+//				startActivity(it);
+//			}
+//		});
+//
+//	}
 
 
 	/*

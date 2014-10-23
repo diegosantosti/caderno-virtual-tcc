@@ -57,6 +57,7 @@
     
     <!-- Mensagens e avisos -->
     <string name="informe_nome_caderno">Informe o nome do caderno.</string>
+    <string name="informe_nome_materia">Informe o nome da matéria.</string>
     <string name="informe_descricao_agenda">Informe a descrição do lembrete.</string>
     
     <!-- Chaves e parametros -->

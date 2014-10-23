@@ -160,22 +160,22 @@ public final class R {
         public static final int menu_materia=0x7f090003;
     }
     public static final class string {
-        public static final int COR_CADERNO=0x7f080028;
-        public static final int COR_MATERIA=0x7f080035;
-        public static final int DATA_AGENDA=0x7f08002d;
-        public static final int DESC_AGENDA=0x7f08002c;
-        public static final int DIA_SEMANA=0x7f080032;
-        public static final int EDICAO=0x7f08002a;
-        public static final int EMAIL_PROFESSOR=0x7f080034;
-        public static final int HORA_AGENDA=0x7f08002e;
-        public static final int INDEX=0x7f080029;
-        public static final int LEMBRAR=0x7f08002f;
+        public static final int COR_CADERNO=0x7f080029;
+        public static final int COR_MATERIA=0x7f080036;
+        public static final int DATA_AGENDA=0x7f08002e;
+        public static final int DESC_AGENDA=0x7f08002d;
+        public static final int DIA_SEMANA=0x7f080033;
+        public static final int EDICAO=0x7f08002b;
+        public static final int EMAIL_PROFESSOR=0x7f080035;
+        public static final int HORA_AGENDA=0x7f08002f;
+        public static final int INDEX=0x7f08002a;
+        public static final int LEMBRAR=0x7f080030;
         /**  Chaves e parametros 
          */
-        public static final int NOME_CADERNO=0x7f080027;
-        public static final int NOME_MATERIA=0x7f080031;
-        public static final int NOME_PROFESSOR=0x7f080033;
-        public static final int VIEW=0x7f08002b;
+        public static final int NOME_CADERNO=0x7f080028;
+        public static final int NOME_MATERIA=0x7f080032;
+        public static final int NOME_PROFESSOR=0x7f080034;
+        public static final int VIEW=0x7f08002c;
         public static final int action_settings=0x7f080003;
         public static final int add=0x7f08000a;
         public static final int agenda=0x7f080001;
@@ -188,17 +188,18 @@ public final class R {
         public static final int diego=0x7f080020;
         public static final int edit=0x7f08000d;
         public static final int edit_nome_caderno_hint=0x7f080006;
-        public static final int editor=0x7f080030;
+        public static final int editor=0x7f080031;
         public static final int henrique=0x7f08001e;
         public static final int hint_email_professor=0x7f080013;
         public static final int hint_nome_materia=0x7f080010;
         public static final int hint_nome_professor=0x7f080012;
         public static final int hint_sala=0x7f080014;
         public static final int hist_descricao=0x7f080016;
-        public static final int informe_descricao_agenda=0x7f080026;
+        public static final int informe_descricao_agenda=0x7f080027;
         /**  Mensagens e avisos 
          */
         public static final int informe_nome_caderno=0x7f080025;
+        public static final int informe_nome_materia=0x7f080026;
         public static final int integrantes=0x7f080024;
         public static final int lembrar=0x7f08001a;
         public static final int materia=0x7f080002;
