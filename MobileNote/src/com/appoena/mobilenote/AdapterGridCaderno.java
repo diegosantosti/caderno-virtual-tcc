@@ -2,8 +2,6 @@ package com.appoena.mobilenote;
 
 import java.util.ArrayList;
 
-import com.appoena.mobilenote.modelo.Caderno;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -12,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.appoena.mobilenote.modelo.Caderno;
 
 public class AdapterGridCaderno extends BaseAdapter{
 	
@@ -55,6 +55,11 @@ public class AdapterGridCaderno extends BaseAdapter{
 	
 	public void setItemAtPosition(Caderno c, int position){
 		cadernos.set(position, c);
+	}
+	
+
+	public void setCadernos(ArrayList<Caderno> cadernos) {
+		this.cadernos = cadernos;
 	}
 
 	@Override
