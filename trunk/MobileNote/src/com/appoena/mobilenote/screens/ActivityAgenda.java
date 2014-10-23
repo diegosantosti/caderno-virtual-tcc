@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Reminders;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -22,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.appoena.mobilenote.AdapterListAgenda;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
@@ -35,9 +33,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 	private ListView listView;
 	private AdapterListAgenda adapterAgenda;
 	private ArrayList<Agenda> arrayAgendas;
-	private Spinner spCaderno;
-	private Spinner spMateria;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
