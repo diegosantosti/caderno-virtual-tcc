@@ -26,15 +26,16 @@ public class BDMobileNote extends SQLiteOpenHelper {
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(1,'USJT',1);");
 
 		// tabela matéria
-		/*bd.execSQL("create table materia(" +
+		bd.execSQL("create table materia(" +
 					"_id_materia integer primary key autoincrement," +
-					"id_caderno integer foreign key, " +
-					"nome_materia text unique key, " +
-					"cor_da_capa text not null," +
-					"dia_semana text, " +
-					"horario text, " +
+					"id_caderno integer, " +
+					"nome text, " +
+					"cor integer not null," +
 					"email_professor text," +
-					"sala text);");*/
+					"dia_semana integer," +
+					"professor text," +
+					"FOREIGN KEY(id_caderno) REFERENCES caderno(_id_caderno));");
+		bd.execSQL("insert into materia(_id_materia, id_caderno,nome,cor,email_professor, dia_semana, professor) values (1,1,'LEGET',1,'tony@gmail.com',1,'Tony');");
 		// tabela agenda
 		bd.execSQL(	"create table agenda(" +
 					"_id_agenda integer primary key autoincrement," +

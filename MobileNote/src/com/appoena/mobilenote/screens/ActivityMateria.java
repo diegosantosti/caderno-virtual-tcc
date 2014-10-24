@@ -19,6 +19,7 @@ import android.widget.ListView;
 import com.appoena.mobilenote.AdapterListMateria;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.modelo.Materia;
 
 public class ActivityMateria extends Activity implements CustomDialogListener{
@@ -27,6 +28,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	private ListView listview;
 	private AdapterListMateria adapterMateria;
 	private ArrayList<Materia> arrayMaterias;
+	private long id_caderno;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +37,13 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		Intent it = getIntent();
+		params = it.getExtras();
+		id_caderno = params.getLong("id_caderno");
 		setBundle();
 		//teste willian
-		arrayMaterias = new ArrayList<Materia>();
-		arrayMaterias.add(new Materia("LEGET", 0, "Tony", "tony@gmail.com", 0));
-		arrayMaterias.add(new Materia("PESQOP", 1, "Mori", "mori@gmail.com", 1));
-		arrayMaterias.add(new Materia("GTECINF", 2, "Andre Luiz", "andreluiz@gmail.com", 2));
-		//fim teste
+		Materia m = new Materia();
+		arrayMaterias =  m.consultarMateria(this, id_caderno);
 		adapterMateria = new AdapterListMateria(this, arrayMaterias, getResources().getStringArray(R.array.array_colors),
 													getResources().getStringArray(R.array.array_semana));
 		listview = (ListView) findViewById(R.id.listMaterias);
@@ -97,9 +99,12 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		Materia m = adapterMateria.getItem(info.position);
+		long id_materia = m.getIdMateria();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			//Wesley, nao precisa instanciar outra materia, basta usar a m - WILL
+			//Obrigado 13
+			m.deletarTarefa(this, id_materia);
 			adapterMateria.removeAtPosition(info.position);
 			adapterMateria.notifyDataSetChanged();
 			break;
@@ -133,20 +138,37 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog, Bundle params) {
-		int cor = params.getInt(getResources().getString(R.string.COR_MATERIA));
-		int diaSemana = params.getInt(getResources().getString(R.string.DIA_SEMANA));
-		String nome = params.getString(getResources().getString(R.string.NOME_MATERIA));
-		String nomeProf = params.getString(getResources().getString(R.string.NOME_PROFESSOR));
-		String emailProf = params.getString(getResources().getString(R.string.EMAIL_PROFESSOR));
-		Materia m = new Materia(nome, diaSemana, nomeProf, emailProf, cor);
+		int cor 			= params.getInt(getResources().getString(R.string.COR_MATERIA));
+		int dia_semana 		= params.getInt(getResources().getString(R.string.DIA_SEMANA));
+		String nome 		= params.getString(getResources().getString(R.string.NOME_MATERIA));
+		String nomeProf 	= params.getString(getResources().getString(R.string.NOME_PROFESSOR));
+		String emailProf 	= params.getString(getResources().getString(R.string.EMAIL_PROFESSOR));
+  
+		Materia m = new Materia(nome, dia_semana, nomeProf, emailProf, cor, id_caderno);
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))){
+			
+			m.inserirMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno);
+			arrayMaterias =  m.consultarMateria(this, id_caderno);
+			adapterMateria = new AdapterListMateria(this, arrayMaterias, getResources().getStringArray(R.array.array_colors),
+														getResources().getStringArray(R.array.array_semana));
+			listview = (ListView) findViewById(R.id.listMaterias);
+			listview.setAdapter(adapterMateria);
+			registerForContextMenu(listview);
 			//adapterMateria.setMaterias(arrayMaterias);
 			//listview.setAdapter(adapterMateria);
-			adapterMateria.addItem(m);
-			
+
 		}else{
+			
 			int position = params.getInt(getResources().getString(R.string.INDEX));
-			adapterMateria.setItemAtPosition(position, m);
+			Materia mAntes = adapterMateria.getItem(position);
+			long id_materia = mAntes.getIdMateria();
+			m.alterarMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno, id_materia);
+			arrayMaterias =  m.consultarMateria(this, id_caderno);
+			adapterMateria = new AdapterListMateria(this, arrayMaterias, getResources().getStringArray(R.array.array_colors),
+														getResources().getStringArray(R.array.array_semana));
+			listview = (ListView) findViewById(R.id.listMaterias);
+			listview.setAdapter(adapterMateria);
+			registerForContextMenu(listview);
 		}
 		adapterMateria.notifyDataSetChanged();
 	}

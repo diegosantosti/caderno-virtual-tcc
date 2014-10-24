@@ -137,6 +137,11 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,long id) {
 				Intent it = new Intent(MainActivity.this, ActivityMateria.class);
+				Caderno c = adapter.getItem(position);
+				long id_caderno = c.getId();
+				Bundle params = new Bundle();
+				params.putLong("id_caderno",id_caderno);
+				it.putExtras(params);
 				startActivity(it);				
 			}
 
