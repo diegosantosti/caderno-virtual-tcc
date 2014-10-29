@@ -39753,7 +39753,7 @@ function tr(string, variables) {
         if (lastLocale) {
             currentLocale = lastLocale;
         }
-    } 
+    }
     if (!currentLocale) {
         currentLocale = 'en';
     }
@@ -39942,6 +39942,8 @@ function pluginPluggable(object) {
 };
 
 function pluginPrepare(pluggable, plugin, pluginOptions, pluginAttributes) {
+    // <strict/>
+
     var instance = $.extend({}, plugin);
 
     var options = $.extend({}, pluggable.options, {
@@ -40068,10 +40070,8 @@ var templateCache = {
     "special-characters.tab-button": "<button data-setKey=\"{{setKey}}\" data-charactersIndex=\"{{charactersIndex}}\" title=\"{{description}}\">{{htmlEntity}}</button>",
     "special-characters.tab-content": "<div id=\"{{baseClass}}-{{key}}\"></div>",
     "special-characters.tab-li": "<li><a href=\"#{{baseClass}}-{{key}}\">{{name}}</a></li>",
-    "statistics.dialog": "<div> <ul> <li data-name=\"characters\"></li> <li data-name=\"words\"></li> <li data-name=\"sentences\"></li> <li data-name=\"truncation\"></li> </ul> </div>",
     "table.create-menu": "<table class=\"{{baseClass}}-menu\"> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> <tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr> </table>",
     "tag-menu.item": "<li><a data-value=\"{{tag}}\">{{name}}</a></li>",
-    "unsaved-edit-warning.warning": "<div class=\"{{baseClass}} ui-corner-tl\"> <span class=\"ui-icon ui-icon-alert\"></span> <span>tr('unsavedEditWarningText')</span> </div>",
     "view-source.dialog": "<div class=\"{{baseClass}}-inner-wrapper\"> <textarea></textarea> </div>"
  };
 
@@ -40160,7 +40160,12 @@ function toolbarLayout(pluggable, uiOrder, panelElement, pluginAttributes) {
         // Loop each UI in the group
         var uiGroup = uiOrder[i];
         for (var ii = 0, ll = uiGroup.length; ii < ll; ii++) {
-            // <strict/>
+            // Check the UI has been registered
+            if (!pluggable.plugins[uiGroup[ii]]) {
+                // <strict/>
+                continue;
+            }
+
             var pluginOptions = pluggable.plugins[uiGroup[ii]];
             if (pluginOptions === false) {
                 continue;
@@ -40272,361 +40277,252 @@ function typeIsJQueryCompatible(object) {
 };
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-common/types.js
 ;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-locales/en.js
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-locales/pt.js
 /**
- * @fileOverview English strings file.
+ * @fileOverview Portuguese strings file.
  * @license http://www.raptor-editor.com/license
  *
+ * Note: this file was automatically translated and may not be 100% correct.
+ *
  * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
  */
-extendLocale('en', 'English', {
-    alignCenterTitle: 'Align text center',
-    alignJustifyTitle: 'Align text justify',
-    alignLeftTitle: 'Align text left',
-    alignRightTitle: 'Align text right',
-
-    cancelDialogCancelButton: 'Continue Editing',
-    cancelDialogContent: 'Are you sure you want to cancel editing? All changes will be lost!',
-    cancelDialogOKButton: 'Cancel Editing',
-    cancelDialogTitle: 'Cancel Editing',
-    cancelTitle: 'Cancel editing',
-
-    classMenuTitle: 'Style picker',
-    cleanBlockTitle: 'Clean block',
-    clearFormattingTitle: 'Clear formatting',
-    clickButtonToEditText: 'Editar',
-    clickButtonToEditTitle: null,
-
-    closeTitle: 'Close this toolbar',
-
-    colorMenuBasicAutomatic: 'Cor',
-    colorMenuBasicBlack: 'Preto',
-    colorMenuBasicBlue: 'Azul',
-    colorMenuBasicGreen: 'Verde',
-    colorMenuBasicGrey: 'Cinza',
-    colorMenuBasicOrange: 'Laranja',
-    colorMenuBasicPurple: 'Roxo',
-    colorMenuBasicRed: 'Vermelho',
-    colorMenuBasicTitle: 'Mude a cor do texto',
-    colorMenuBasicWhite: 'Branco',
-
-    dockToElementTitle: 'Dock/undock editor to element',
-    dockToScreenTitle: 'Dock/undock editor to screen',
-
-    embedTitle: 'Embed object',
-    embedDialogTitle: 'Embed Object',
-    embedDialogTabCode: 'Embed Code',
-    embedDialogTabCodeContent: 'Paste your embed code into the text area below:',
-    embedDialogTabPreview: 'Preview',
-    embedDialogTabPreviewContent: 'A preview of your embedded object is displayed below:',
-    embedDialogOKButton: 'Embed Object',
-    embedDialogCancelButton: 'Cancel',
-
-    errorUINoName: 'UI "{{ui}}" is invalid (must have a name property)',
-    errorUINotObject: 'UI "{{ui}}" is invalid (must be an object)',
-    errorUIOverride: 'UI "{{name}}" has already been registered, and will be overwritten',
-
-    editPageDialogTitle: 'Edit Page',
-    editPageDialogOKButton: 'Save',
-    editPageDialogCancelButton: 'Cancel',
-
-    floatLeftTitle: 'Align image to the left',
-    floatNoneTitle: 'Remove image align',
-    floatRightTitle: 'Align image to the right',
-
-    fontFamilyMenuTitle: 'Escolha a fonte',
-    fontFamilyMenuFontDefault: 'Fonte',
-    fontFamilyMenuFontArial: 'Arial',
-    fontFamilyMenuFontPalatino: 'Palatino',
-    fontFamilyMenuFontGeorgia: 'Georgia',
-    fontFamilyMenuFontTimes: 'Times New Roman',
-    fontFamilyMenuFontComicSans: 'Comic Sans',
-    fontFamilyMenuFontImpact: 'Impact',
-    fontFamilyMenuFontCourier: 'Courier New',
-
-    guidesTitle: 'Show element guides',
-
-    historyRedoTitle: 'Desfazer',
-    historyUndoTitle: 'Undo',
-
-    hrCreateTitle: 'Insert Horizontal Rule',
-
-    imageResizeDialogWidth: 'Image width',
-    imageResizeDialogHeight: 'Image height',
-    imageResizeDialogWidthPlaceHolder: 'Width',
-    imageResizeDialogHeightPlaceHolder: 'Height',
-    imageResizeDialogTitle: 'Resize Image',
-    imageResizeDialogOKButton: 'Resize',
-    imageResizeDialogCancelButton: 'Cancel',
-    imageResizeTitle: 'Resize this image',
-
-    insertFileTitle: 'Insert file',
-    insertFileDialogTitle: 'Insert file',
-    insertFileDialogOKButton: 'Insert file',
-    insertFileDialogCancelButton: 'Cancel',
-    insertFileURLLabel: 'File URL',
-    insertFileNameLabel: 'File Name',
-    insertFileURLPlaceHolder: 'File URL...',
-    insertFileNamePlaceHolder: 'File Name...',
-
-    languageMenuTitle: 'Change Language',
-
-    loremIpsumTitle: 'Insert dummy text for testing',
-
-    listOrderedTitle: 'Ordered list',
-    listUnorderedTitle: 'Tópicos',
-
-    linkCreateTitle: 'Insert Link',
-    linkRemoveTitle: 'Remove Link',
-
-    linkCreateDialogTitle: 'Insert Link',
-    linkCreateDialogOKButton: 'Insert Link',
-    linkCreateDialogCancelButton: 'Cancel',
-    linkCreateDialogMenuHeader: 'Choose a link type',
-
-    linkTypeEmailLabel: 'Email address',
-    linkTypeEmailHeader: 'Link to an email address',
-    linkTypeEmailToLabel: 'Email:',
-    linkTypeEmailToPlaceHolder: 'Enter email address',
-    linkTypeEmailSubjectLabel: 'Subject (optional):',
-    linkTypeEmailSubjectPlaceHolder: 'Enter subject',
-
-    linkTypeExternalLabel: 'Page on another website',
-    linkTypeExternalHeader: 'Link to a page on another website',
-    linkTypeExternalLocationLabel: 'Location:',
-    linkTypeExternalLocationPlaceHolder: 'Enter a URL',
-    linkTypeExternalNewWindowHeader: 'New window',
-    linkTypeExternalNewWindowLabel: 'Check this box to have the link open in a new browser window/tab.',
-    linkTypeExternalInfo:
-        '<h2>Not sure what to put in the box above?</h2>' +
-        '<ol>' +
-        '    <li>Find the page on the web you want to link to.</li>' +
-        '    <li>Copy the web address from your browser\'s address bar and paste it into the box above.</li>' +
-        '</ol>',
-
-    linkTypeDocumentLabel: 'Document or other file',
-    linkTypeDocumentHeader: 'Link to a document or other file',
-    linkTypeDocumentLocationLabel: 'Location:',
-    linkTypeDocumentLocationPlaceHolder: 'Enter a URL',
-    linkTypeDocumentNewWindowHeader: 'New window',
-    linkTypeDocumentNewWindowLabel: 'Check this box to have the file open in a new browser window/tab.',
-    linkTypeDocumentInfo:
-        '<h2>Not sure what to put in the box above?</h2>' +
-        '<ol>' +
-        '    <li>Ensure the file has been uploaded to your website.</li>' +
-        '    <li>Open the uploaded file in your browser.</li>' +
-        '    <li>Copy the file\'s URL from your browser\'s address bar and paste it into the box above.</li>' +
-        '</ol>',
-
-    linkTypeInternalLabel: 'Page on this website',
-    linkTypeInternalHeader: 'Link to a page on this website',
-    linkTypeInternalLocationLabel: '',
-    linkTypeInternalLocationPlaceHolder: 'Enter a URI',
-    linkTypeInternalNewWindowHeader: 'New window',
-    linkTypeInternalNewWindowLabel: 'Check this box to have the link open in a new browser window/tab.',
-    linkTypeInternalInfo:
-        '<h2>Not sure what to put in the box above?</h2>' +
-        '<ol>' +
-        '    <li>Find the page on this site link to.</li>' +
-        '    <li>Copy the web address from your browser\'s address bar, excluding "{{domain}}" and paste it into the box above.</li>' +
-        '</ol>',
-
-    logoTitle: 'Learn More About the Raptor WYSIWYG Editor',
-
-    navigateAway: '\nThere are unsaved changes on this page. \nIf you navigate away from this page you will lose your unsaved changes',
-
-    pasteDialogTitle: 'Paste',
-    pasteDialogOKButton: 'Insert',
-    pasteDialogCancelButton: 'Cancel',
-    pasteDialogPlain: 'Plain Text',
-    pasteDialogFormattedCleaned: 'Formatted &amp; Cleaned',
-    pasteDialogFormattedUnclean: 'Formatted Unclean',
-    pasteDialogSource: 'Source Code',
-
-    placeholderPluginDefaultContent: '<br/>',
-
-    saveTitle: 'Save content',
-    saveNotConfigured: 'Save has not been configured, or is disabled.',
-    saveJsonFail: 'Failed to save {{failed}} content block(s)',
-    saveJsonSaved: 'Successfully saved {{saved}} content block(s).',
-    saveRestFail: 'Failed to save {{failed}} content block(s).',
-    saveRestPartial: 'Saved {{saved}} out of {{failed}} content blocks.',
-    saveRestSaved: 'Successfully saved {{saved}} content block(s).',
-
-    snippetMenuTitle: 'Snippets',
-
-    specialCharactersArrows: 'Arrows',
-    specialCharactersDialogOKButton: 'OK',
-    specialCharactersDialogTitle: 'Insert Special Characters',
-    specialCharactersGreekAlphabet: 'Greek Alphabet',
-    specialCharactersHelp: 'Click a special character to add it. Click "OK" when done to close this dialog',
-    specialCharactersMathematics: 'Mathematics',
-    specialCharactersSymbols: 'Symbols',
-    specialCharactersTitle: 'Insert a special character',
-
-    statisticsButtonCharacterOverLimit: '{{charactersRemaining}} characters over limit',
-    statisticsButtonCharacterRemaining: '{{charactersRemaining}} characters remaining',
-    statisticsButtonCharacters: '{{characters}} characters',
-    statisticsDialogCharactersOverLimit: '{{characters}} characters, {{charactersRemaining}} over the recommended limit',
-    statisticsDialogCharactersRemaining: '{{characters}} characters, {{charactersRemaining}} remaining',
-    statisticsDialogNotTruncated: 'Content will not be truncated',
-    statisticsDialogOKButton: 'Ok',
-    statisticsDialogSentence: '{{sentences}} sentence',
-    statisticsDialogSentences: '{{sentences}} sentences',
-    statisticsDialogTitle: 'Content Statistics',
-    statisticsDialogTruncated: 'Content contains more than {{limit}} characters and may be truncated',
-    statisticsDialogWord: '{{words}} word',
-    statisticsDialogWords: '{{words}} words',
-    statisticsTitle: 'Click to view statistics',
-
-    imageSwapTitle: 'Swap this image',
-
-    tableCreateTitle: 'Create table',
-    tableDeleteColumnTitle: 'Delete table column',
-    tableDeleteRowTitle: 'Delete table row',
-    tableInsertColumnTitle: 'Insert table column',
-    tableInsertRowTitle: 'Insert table row',
-    tableMergeCellsTitle: 'Merge table cells',
-    tableSplitCellsTitle: 'Split table cells',
-
-    tagMenuTagH1: 'Heading&nbsp;1',
-    tagMenuTagH2: 'Heading&nbsp;2',
-    tagMenuTagH3: 'Heading&nbsp;3',
-    tagMenuTagH4: 'Heading&nbsp;4',
-    tagMenuTagNA: 'N/A',
-    tagMenuTagP: 'Paragraph',
-    tagMenuTagDiv: 'Div',
-    tagMenuTagPre: 'Pre-formatted',
-    tagMenuTagAddress: 'Address',
-    tagMenuTitle: 'Change element style',
-
-    tagTreeElementLink: 'Select {{element}} element',
-    tagTreeElementTitle: 'Click to select the contents of the "{{element}}" element',
-    tagTreeRoot: 'root',
-    tagTreeRootLink: 'Select all editable content',
-    tagTreeRootTitle: 'Click to select all editable content',
-
-    textBlockQuoteTitle: 'Block quote',
-    textBoldTitle: 'Negrito',
-    textItalicTitle: 'Italico',
-    textStrikeTitle: 'Strike through',
-    textSubTitle: 'Sub-script',
-    textSuperTitle: 'Super-script',
-    textUnderlineTitle: 'Sublinhado',
-    textSizeDecreaseTitle: 'Diminuir fonte',
-    textSizeIncreaseTitle: 'Aumentar fonte',
-
-    unsavedEditWarningText: 'There are unsaved changes on this page',
-
-    revisionsText: 'Revisions',
-    revisionsTextEmpty: 'No Revisions',
-    revisionsTitle: null,
-    revisionsCreated: 'Created',
-    revisionsApplyButtonTitle: 'Rollback',
-    revisionsApplyButtonText: 'Rollback',
-    revisionsAJAXFailed: 'Failed to retrieve revisions',
-    revisionsApplyButtonDialogCancelButton: 'Cancel',
-    revisionsApplyButtonDialogOKButton: 'Rollback',
-    revisionsApplyButtonDialogTitle: 'Rollback Confirmation',
-    revisionsApplyDialogContent: 'This will replace the current content with the selected revision.<br/>The current content will be added as a revision, and will be visible in the revisions list for this block.',
-    revisionsDialogCancelButton: 'Cancel',
-    revisionsDialogTitle: 'View content revisions',
-    revisionsButtonCurrent: 'Current',
-    revisionsButtonViewDiffText: 'Differences',
-    revisionsButtonViewDiffTitle: null,
-    revisionsDiffButtonDialogCancelButton: 'Close',
-    revisionsDiffButtonDialogTitle: 'View differences',
-    revisionsDiffButtonTitle: 'View differences',
-    revisionsDiffButtonText: 'View differences',
-    revisionsLoading: 'Loading revisions...',
-    revisionsNone: 'No revisions for this element',
-    revisionsPreviewButtonTitle: 'Preview',
-    revisionsPreviewButtonText: 'Preview',
-
-    fileManagerDialogTitle: 'File Manager',
-    fileManagerTitle: 'File Manager',
-    rfmClose: 'Close',
-    rfmContinue: 'Continue',
-    rfmDeleteTitle: 'Delete',
-    rfmDownloadTitle: 'Download',
-    rfmEditTitle: 'Edit',
-    rfmFileActions: 'Actions',
-    rfmFileModificationTime: 'Modified',
-    rfmFileName: 'Name',
-    rfmFileSize: 'Size',
-    rfmFileType: 'Type',
-    rfmFilteredTotal: 'Showing {{start}} to {{end}} of {{filteredTotal}} files',
-    rfmFirst: 'First',
-    rfmHeadingDirectories: 'Directories',
-    rfmHeadingSearch: 'Search',
-    rfmHeadingTags: 'Tags',
-    rfmHeadingUpload: 'Upload',
-    rfmInsertTitle: 'Insert',
-    rfmLast: 'Last',
-    rfmRenameTitle: 'Rename',
-    rfmSearch: 'Go',
-    rfmTagDocument: 'Document',
-    rfmTagImage: 'Image',
-    rfmTotal: ', filtered from {{total}}',
-    rfmUpload: 'Upload',
-    rfmUploadBrowse: 'Browse',
-    rfmUploadDrop: 'Drop Files Here',
-    rfmUploadFileRemove: 'Remove',
-    rfmUploadOr: 'or',
-    rfmViewTitle: 'View',
-
-    imageEditorDialogCancelButton: 'Cancel',
-    imageEditorDialogOKButton: 'Save',
-    imageEditorDialogTitle: 'Image Editor',
-    imageEditorTitle: 'Edit Image',
-    rieApply: 'Apply',
-    rieBlurTitle: 'Blur',
-    rieBrightnessTitle: 'Brightness/Contrast',
-    rieCancel: 'Cancel',
-    rieCancelTitle: 'Cancel',
-    rieColorAdjustTitle: 'Adjust Color',
-    rieCropTitle: 'Crop',
-    rieDesaturateTitle: 'Desaturate',
-    rieFlipHTitle: 'Flip Horizontally',
-    rieFlipVTitle: 'Flip Vertically',
-    rieGlowTitle: 'Glow',
-    rieHslTitle: 'Hue, Saturation, Lightness.',
-    rieInvertTitle: 'Invert',
-    riePosterizeTitle: 'Posterize',
-    rieRedoTitle: 'Redo',
-    rieRemoveNoiseTitle: 'Remove Noise',
-    rieResizeTitle: 'Resize',
-    rieRevertTitle: 'Revert',
-    rieRotateLeftTitle: 'Rotate Left',
-    rieRotateRightTitle: 'Rotate Right',
-    rieSaveTitle: 'Save',
-    rieSaveTitle: 'Save',
-    rieSepiaTitle: 'Sepia',
-    rieSharpenTitle: 'Sharpen',
-    rieSolarizeTitle: 'Solarize',
-    rieUndoTitle: 'Undo',
-    rieUploadTitle: 'Upload',
-
-    rieActionColorAdjustRed: 'Red',
-    rieActionColorAdjustGreen: 'Green',
-    rieActionColorAdjustBlue: 'Blue',
-    rieActionBrightnessBrightness: 'Brightness',
-    rieActionBrightnessContrast: 'Contrast',
-    rieActionGlowAmount: 'Glow Amount',
-    rieActionGlowRadius: 'Glow Radius',
-    rieActionHsl: 'Hue',
-    rieActionHsl: 'Saturation',
-    rieActionHsl: 'Lightness',
-    rieActionPosterize: 'Levels',
-
-    viewSourceDialogCancelButton: 'Close',
-    viewSourceDialogOKButton: 'Apply source code',
-    viewSourceDialogTitle: 'Content source code',
-    viewSourceTitle: 'View/edit source code'
-});
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-locales/en.js
+extendLocale('pt', 'Português', {
+    alignCenterTitle: "Centralizar o texto",
+    alignJustifyTitle: "Alinhar texto justificar",
+    alignLeftTitle: "Alinhar texto à esquerda",
+    alignRightTitle: "Alinhar a direita de texto",
+    cancelDialogCancelButton: "Continuar edição",
+    cancelDialogContent: "Tem certeza que deseja cancelar a edição? Todas as alterações serão perdidas!",
+    cancelDialogOKButton: "Cancelar a edição",
+    cancelDialogTitle: "Cancelar a edição",
+    cancelTitle: "Cancelar a edição",
+    classMenuTitle: "Seletor de estilo",
+    clearFormattingTitle: "Limpar formatação",
+    clickButtonToEditText: "Editar",
+    clickButtonToEditTitle: "",
+    colorMenuBasicAutomatic: "Automático",
+    colorMenuBasicBlack: "Preto",
+    colorMenuBasicBlue: "Azul",
+    colorMenuBasicGreen: "Verde",
+    colorMenuBasicGrey: "Grey",
+    colorMenuBasicOrange: "Laranja",
+    colorMenuBasicPurple: "Roxo",
+    colorMenuBasicRed: "Vermelho",
+    colorMenuBasicTitle: "Mudar a cor do texto",
+    colorMenuBasicWhite: "Branco",
+    dockToElementTitle: "Doca\/desencaixar o editor para o elemento",
+    dockToScreenTitle: "Doca\/desencaixar editor de tela",
+    embedDialogCancelButton: "Cancelar",
+    embedDialogOKButton: "Inserir objeto",
+    embedDialogTabCode: "Código embed",
+    embedDialogTabCodeContent: "Cole o código embed para a área de texto abaixo:",
+    embedDialogTabPreview: "Visualizar",
+    embedDialogTabPreviewContent: "Uma prévia do seu objeto incorporado é exibida abaixo:",
+    embedDialogTitle: "Inserir objeto",
+    embedTitle: "Inserir objeto",
+    errorUINoName: "UI \"{{ui}}\" é inválido (deve ter um propriedade de nome)",
+    errorUINotObject: "UI \"{{ui}}\" é inválido (deve ser um objeto)",
+    errorUIOverride: "UI \"{{name}}\" já foi registrado e será substituído",
+    fileManagerDialogTitle: "Gerenciador de arquivos",
+    fileManagerTitle: "Gerenciador de arquivos",
+    floatLeftTitle: "Alinhe a imagem à esquerda",
+    floatNoneTitle: "Remover imagem alinhar",
+    floatRightTitle: "Alinhe a imagem à direita",
+    fontFamilyMenuFontArial: "Arial",
+    fontFamilyMenuFontComicSans: "Quadrinhos sem",
+    fontFamilyMenuFontCourier: "Courier novo",
+    fontFamilyMenuFontDefault: "Fonte padrão",
+    fontFamilyMenuFontGeorgia: "Geórgia",
+    fontFamilyMenuFontImpact: "Impacto",
+    fontFamilyMenuFontPalatino: "Palatino",
+    fontFamilyMenuFontTimes: "Times New Roman",
+    fontFamilyMenuTitle: "Escolha a sua fonte",
+    guidesTitle: "Mostrar guias de elemento",
+    historyRedoTitle: "Refazer",
+    historyUndoTitle: "Desfazer",
+    hrCreateTitle: "Inserir regra Horizontal",
+    imageResizeButtonDialogCancelButton: "Cancelar",
+    imageResizeButtonDialogHeight: "Altura da imagem",
+    imageResizeButtonDialogHeightPlaceHolder: "Altura",
+    imageResizeButtonDialogOKButton: "Redimensionar",
+    imageResizeButtonDialogTitle: "Redimensionar imagem",
+    imageResizeButtonDialogWidth: "Largura da imagem",
+    imageResizeButtonDialogWidthPlaceHolder: "Largura",
+    imageResizeButtonText: "Redimensionar imagem",
+    insertFileDialogCancelButton: "Cancelar",
+    insertFileDialogOKButton: "Inserir arquivo",
+    insertFileNameLabel: "Nome do arquivo",
+    insertFileNamePlaceHolder: "Nome do arquivo...",
+    insertFileTitle: "Inserir arquivo",
+    insertFileURLLabel: "URL do arquivo",
+    insertFileURLPlaceHolder: "URL do arquivo...",
+    languageMenuTitle: "Alterar Idioma",
+    linkCreateDialogCancelButton: "Cancelar",
+    linkCreateDialogMenuHeader: "Escolha um tipo de link",
+    linkCreateDialogOKButton: "Inserir Link",
+    linkCreateDialogTitle: "Inserir Link",
+    linkCreateTitle: "Inserir Link",
+    linkRemoveTitle: "Remover Link",
+    linkTypeDocumentHeader: "Link para um documento ou outro arquivo.",
+    linkTypeDocumentInfo: "<h2>Não sei o que colocar na caixa acima?<\/h2><ol>    <li>Garantir que o arquivo foi carregado para o seu site.<\/li>    <li>Abra o arquivo carregado em seu navegador.<\/li>    <li>Copie a URL do arquivo da barra de endereços do seu navegador e colá-lo na caixa acima.<\/li><\/ol>",
+    linkTypeDocumentLabel: "Documento ou outro arquivo.",
+    linkTypeDocumentLocationLabel: "Localização:",
+    linkTypeDocumentLocationPlaceHolder: "Digite uma URL",
+    linkTypeDocumentNewWindowHeader: "Nova janela",
+    linkTypeDocumentNewWindowLabel: "Marque esta caixa para que o arquivo abrir em uma nova janela\/aba do navegador.",
+    linkTypeEmailHeader: "Link para um endereço de e-mail",
+    linkTypeEmailLabel: "Endereço de e-mail",
+    linkTypeEmailSubjectLabel: "Assunto (opcional):",
+    linkTypeEmailSubjectPlaceHolder: "Digite o assunto",
+    linkTypeEmailToLabel: "Email:",
+    linkTypeEmailToPlaceHolder: "Digite o endereço de e-mail",
+    linkTypeExternalHeader: "Link para uma página em outro site",
+    linkTypeExternalInfo: "<h2>Não sei o que colocar na caixa acima?<\/h2><ol>    <li>Encontre a página na web que você deseja se vincular.<\/li>    <li>Copie o endereço web da barra de endereços do seu navegador e colá-lo na caixa acima.<\/li><\/ol>",
+    linkTypeExternalLabel: "Página em outro site",
+    linkTypeExternalLocationLabel: "Localização:",
+    linkTypeExternalLocationPlaceHolder: "Digite uma URL",
+    linkTypeExternalNewWindowHeader: "Nova janela",
+    linkTypeExternalNewWindowLabel: "Marque esta caixa para ter o link abrir em uma nova janela\/aba do navegador.",
+    linkTypeInternalHeader: "Link para uma página neste Web site",
+    linkTypeInternalInfo: "<h2>Não sei o que colocar na caixa acima?<\/h2><ol>    <li>Encontre a página neste link do site para.<\/li>    <li>Copiem o endereço web barra de endereço do seu navegador, excluindo \"{{domain}}\" e colá-lo na caixa acima.<\/li><\/ol>",
+    linkTypeInternalLabel: "Página deste site",
+    linkTypeInternalLocationLabel: "",
+    linkTypeInternalLocationPlaceHolder: "Insira um URI",
+    linkTypeInternalNewWindowHeader: "Nova janela",
+    linkTypeInternalNewWindowLabel: "Marque esta caixa para ter o link abrir em uma nova janela\/aba do navegador.",
+    listOrderedTitle: "Lista ordenada",
+    listUnorderedTitle: "Lista não ordenada",
+    logoTitle: "Saiba mais sobre o Editor WYSIWYG Raptor",
+    loremIpsumTitle: "Inserir texto fictício para testes",
+    navigateAway: "\nLá são alterações não salvas nesta página. \nSe você navegar longe nesta página, você perderá as alterações não salvas",
+    pasteDialogCancelButton: "Cancelar",
+    pasteDialogFormattedCleaned: "Formatado &amp; limpo",
+    pasteDialogFormattedUnclean: "Formatado impuro",
+    pasteDialogOKButton: "Inserir",
+    pasteDialogPlain: "Texto sem formatação",
+    pasteDialogSource: "Código-fonte",
+    pasteDialogTitle: "Colar",
+    placeholderPluginDefaultContent: "",
+    revisionsAJAXFailed: "Falha ao recuperar as revisões",
+    revisionsApplyButtonDialogCancelButton: "Cancelar",
+    revisionsApplyButtonDialogOKButton: "Reversão",
+    revisionsApplyButtonDialogText: "Confirmação de reversão",
+    revisionsApplyButtonDialogTitle: "Confirmação de reversão",
+    revisionsApplyButtonText: "Reversão",
+    revisionsApplyButtonTitle: "Reversão",
+    revisionsApplyDialogContent: "Isto irá substituir o conteúdo atual com a revisão selecionada.<br>O conteúdo será adicionado como uma revisão e será visível na lista de revisões para este bloco.",
+    revisionsButtonCurrent: "Corrente",
+    revisionsButtonViewDiffText: "Diferenças",
+    revisionsButtonViewDiffTitle: "",
+    revisionsCreated: "Criado",
+    revisionsDialogCancelButton: "Cancelar",
+    revisionsDialogTitle: "Exibir conteúdas revisões",
+    revisionsDiffButtonDialogCancelButton: "Fechar",
+    revisionsDiffButtonDialogTitle: "Diferenças de opinião",
+    revisionsDiffButtonText: "Diferenças de opinião",
+    revisionsDiffButtonTitle: "Diferenças de opinião",
+    revisionsLoading: "Revisões de carregamento...",
+    revisionsNone: "Não há revisões para este elemento",
+    revisionsPreviewButtonText: "Visualizar",
+    revisionsPreviewButtonTitle: "Visualizar",
+    revisionsText: "Revisões",
+    revisionsTextEmpty: "Não há revisões",
+    revisionsTitle: "",
+    rfmClose: "Fechar",
+    rfmContinue: "Continuar",
+    rfmDelete: "Excluir",
+    rfmDownload: "Baixar",
+    rfmFileActions: "Ações",
+    rfmFileModificationTime: "Modificado",
+    rfmFileName: "Nome",
+    rfmFileSize: "Tamanho",
+    rfmFileType: "Tipo",
+    rfmFilteredTotal: "Mostrando {{start}} para {{end}} de {{filteredTotal}} arquivos",
+    rfmFirst: "Primeiro",
+    rfmHeadingDirectories: "Diretórios",
+    rfmHeadingSearch: "Pesquisa",
+    rfmHeadingTags: "Tags",
+    rfmHeadingUpload: "Fazer upload",
+    rfmInsert: "Inserir",
+    rfmLast: "Última",
+    rfmSearch: "Ir",
+    rfmTagDocument: "Documento",
+    rfmTagImage: "Imagem",
+    rfmTotal: ", filtrado de {{total}}",
+    rfmUpload: "Fazer upload",
+    rfmUploadBrowse: "Browse",
+    rfmUploadDrop: "Solte os arquivos aqui",
+    rfmUploadFileRemove: "Remover",
+    rfmUploadOr: "ou",
+    rfmView: "Vista",
+    saveJsonFail: "Falha ao salvar o bloco de conteúdo {{failed}} (s)",
+    saveJsonSaved: "Salvo com sucesso {{saved}} blocos de conteúdo.",
+    saveNotConfigured: "Salvar não foi configurado, ou está desabilitado.",
+    saveRestFail: "Falha ao salvar o bloco de conteúdo {{failed}} (s).",
+    saveRestPartial: "Salvou {{saved}} de {{failed}} blocos de conteúdo.",
+    saveRestSaved: "Salvo com sucesso {{saved}} blocos de conteúdo.",
+    saveTitle: "Salvar conteúdo",
+    snippetMenuTitle: "Trechos",
+    specialCharactersArrows: "Setas",
+    specialCharactersDialogOKButton: "Razoável",
+    specialCharactersDialogTitle: "Inserir caracteres especiais",
+    specialCharactersGreekAlphabet: "Alfabeto grego",
+    specialCharactersHelp: "Clique em um caractere especial para adicioná-lo. Clique em \"OK\" quando pronto para fechar esta caixa de diálogo",
+    specialCharactersMathematics: "Matemática",
+    specialCharactersSymbols: "Símbolos",
+    specialCharactersTitle: "Inserir um caractere especial",
+    statisticsButtonCharacterOverLimit: "{{charactersRemaining}} caracteres sobre limite",
+    statisticsButtonCharacterRemaining: "{{charactersRemaining}} caracteres restantes",
+    statisticsButtonCharacters: "{{characters}} caracteres",
+    statisticsDialogCharactersOverLimit: "caracteres {{characters}}, {{charactersRemaining}} acima do limite recomendado",
+    statisticsDialogCharactersRemaining: "caracteres {{characters}}, {{charactersRemaining}} restantes",
+    statisticsDialogNotTruncated: "Conteúdo não será truncado",
+    statisticsDialogOKButton: "Razoável",
+    statisticsDialogSentence: "frase de {{sentences}}",
+    statisticsDialogSentences: "frases de {{sentences}}",
+    statisticsDialogTitle: "Estatísticas de conteúdo",
+    statisticsDialogTruncated: "Conteúdo contém mais de {{limit}} caracteres e pode ser truncado",
+    statisticsDialogWord: "palavra de {{words}}",
+    statisticsDialogWords: "palavras de {{words}}",
+    statisticsTitle: "Clique para ver as estatísticas",
+    tableCreateTitle: "Criar tabela",
+    tableDeleteColumnTitle: "Excluir a coluna da tabela",
+    tableDeleteRowTitle: "Excluir linhas da tabela",
+    tableInsertColumnTitle: "Inserir coluna da tabela",
+    tableInsertRowTitle: "Inserir uma linha de tabela",
+    tableMergeCellsTitle: "Mesclar células de tabela",
+    tableSplitCellsTitle: "Dividir células de tabela",
+    tagMenuTagAddress: "Endereço",
+    tagMenuTagDiv: "Div",
+    tagMenuTagH1: "Rubrica 1",
+    tagMenuTagH2: "Rubrica 2",
+    tagMenuTagH3: "Rubrica 3",
+    tagMenuTagH4: "Rubrica 4",
+    tagMenuTagNA: "N\/A",
+    tagMenuTagP: "N.",
+    tagMenuTagPre: "Pré-formatado",
+    tagMenuTitle: "Mudar o estilo do elemento",
+    tagTreeElementLink: "Selecione {{element}} elemento",
+    tagTreeElementTitle: "Clique para selecionar o conteúdo do elemento \"{{element}}\"",
+    tagTreeRoot: "raiz",
+    tagTreeRootLink: "Selecione todo o conteúdo editável",
+    tagTreeRootTitle: "Clique para selecionar todo o conteúdo editável",
+    textBlockQuoteTitle: "Citação de bloco",
+    textBoldTitle: "Bold (realce)",
+    textItalicTitle: "Itálico",
+    textSizeDecreaseTitle: "Diminuir tamanho do texto",
+    textSizeIncreaseTitle: "Aumentar o tamanho do texto",
+    textStrikeTitle: "Tachar",
+    textSubTitle: "Script de sub",
+    textSuperTitle: "Super script",
+    textUnderlineTitle: "Sublinhado",
+    unsavedEditWarningText: "Lá são alterações não salvas nesta página",
+    viewSourceDialogCancelButton: "Fechar",
+    viewSourceDialogOKButton: "Aplicar o código-fonte",
+    viewSourceDialogTitle: "Código de fonte de conteúdo",
+    viewSourceTitle: "Exibir\/editar código-fonte"
+});;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-locales/pt.js
 ;
 // File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/tools/action.js
 /**
@@ -43909,7 +43805,7 @@ var RaptorWidget = {
 
         // Bind default events
         for (var name in this.options.bind) {
-            this.bind(stringFromCamelCase(name), this.options.bind[name]);
+            this.bind(name, this.options.bind[name]);
         }
 
         // Undo stack, redo pointer
@@ -44822,10 +44718,12 @@ var RaptorWidget = {
         // <strict/>
         var names = name.split(/,\s*/);
         for (var i = 0, l = names.length; i < l; i++) {
-            if (!this.events[names[i]]) {
-                this.events[names[i]] = [];
+        	name = names[i].toLowerCase().replace(/[^a-z]/, '');
+            // <debug/>
+            if (!this.events[name]) {
+                this.events[name] = [];
             }
-            this.events[names[i]].push({
+            this.events[name].push({
                 context: context,
                 callback: callback
             });
@@ -44838,6 +44736,8 @@ var RaptorWidget = {
      * @param {Object} [context]
      */
     unbind: function(name, callback, context) {
+    	name = name.toLowerCase().replace(/[^a-z]/, '');
+        // <debug/>
         for (var i = 0, l = this.events[name].length; i < l; i++) {
             if (this.events[name][i] &&
                 this.events[name][i].callback === callback &&
@@ -44853,6 +44753,7 @@ var RaptorWidget = {
      * @param {boolean} [sub]
      */
     fire: function(name, args) {
+    	name = name.toLowerCase().replace(/[^a-z]/, '');
         var result = [];
 
         // <debug/>
@@ -46308,6 +46209,781 @@ SelectMenu.prototype.getMenu = function() {
 };
 ;
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/components/ui/select-menu.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/expose.js
+// <expose>
+if (typeof Raptor.Button === 'undefined' && typeof Button !== 'undefined') Raptor.Button = Button;
+if (typeof Raptor.CSSClassApplierButton === 'undefined' && typeof CSSClassApplierButton !== 'undefined') Raptor.CSSClassApplierButton = CSSClassApplierButton;
+if (typeof Raptor.DialogButton === 'undefined' && typeof DialogButton !== 'undefined') Raptor.DialogButton = DialogButton;
+if (typeof Raptor.DialogToggleButton === 'undefined' && typeof DialogToggleButton !== 'undefined') Raptor.DialogToggleButton = DialogToggleButton;
+if (typeof Raptor.ElementHoverPanelLayout === 'undefined' && typeof ElementHoverPanelLayout !== 'undefined') Raptor.ElementHoverPanelLayout = ElementHoverPanelLayout;
+if (typeof Raptor.FilteredPreviewButton === 'undefined' && typeof FilteredPreviewButton !== 'undefined') Raptor.FilteredPreviewButton = FilteredPreviewButton;
+if (typeof Raptor.HoverPanelLayout === 'undefined' && typeof HoverPanelLayout !== 'undefined') Raptor.HoverPanelLayout = HoverPanelLayout;
+if (typeof Raptor.Menu === 'undefined' && typeof Menu !== 'undefined') Raptor.Menu = Menu;
+if (typeof Raptor.MenuButton === 'undefined' && typeof MenuButton !== 'undefined') Raptor.MenuButton = MenuButton;
+if (typeof Raptor.Plugin === 'undefined' && typeof Plugin !== 'undefined') Raptor.Plugin = Plugin;
+if (typeof Raptor.PreviewButton === 'undefined' && typeof PreviewButton !== 'undefined') Raptor.PreviewButton = PreviewButton;
+if (typeof Raptor.PreviewToggleButton === 'undefined' && typeof PreviewToggleButton !== 'undefined') Raptor.PreviewToggleButton = PreviewToggleButton;
+if (typeof Raptor.RaptorLayout === 'undefined' && typeof RaptorLayout !== 'undefined') Raptor.RaptorLayout = RaptorLayout;
+if (typeof Raptor.RaptorPlugin === 'undefined' && typeof RaptorPlugin !== 'undefined') Raptor.RaptorPlugin = RaptorPlugin;
+if (typeof Raptor.SelectMenu === 'undefined' && typeof SelectMenu !== 'undefined') Raptor.SelectMenu = SelectMenu;
+if (typeof Raptor.ToggleButton === 'undefined' && typeof ToggleButton !== 'undefined') Raptor.ToggleButton = ToggleButton;
+if (typeof Raptor.ToolbarLayout === 'undefined' && typeof ToolbarLayout !== 'undefined') Raptor.ToolbarLayout = ToolbarLayout;
+if (typeof Raptor.UiGroup === 'undefined' && typeof UiGroup !== 'undefined') Raptor.UiGroup = UiGroup;
+if (typeof Raptor.aButton === 'undefined' && typeof aButton !== 'undefined') Raptor.aButton = aButton;
+if (typeof Raptor.aButtonActive === 'undefined' && typeof aButtonActive !== 'undefined') Raptor.aButtonActive = aButtonActive;
+if (typeof Raptor.aButtonDisable === 'undefined' && typeof aButtonDisable !== 'undefined') Raptor.aButtonDisable = aButtonDisable;
+if (typeof Raptor.aButtonEnable === 'undefined' && typeof aButtonEnable !== 'undefined') Raptor.aButtonEnable = aButtonEnable;
+if (typeof Raptor.aButtonInactive === 'undefined' && typeof aButtonInactive !== 'undefined') Raptor.aButtonInactive = aButtonInactive;
+if (typeof Raptor.aButtonIsEnabled === 'undefined' && typeof aButtonIsEnabled !== 'undefined') Raptor.aButtonIsEnabled = aButtonIsEnabled;
+if (typeof Raptor.aButtonSetIcon === 'undefined' && typeof aButtonSetIcon !== 'undefined') Raptor.aButtonSetIcon = aButtonSetIcon;
+if (typeof Raptor.aButtonSetLabel === 'undefined' && typeof aButtonSetLabel !== 'undefined') Raptor.aButtonSetLabel = aButtonSetLabel;
+if (typeof Raptor.aDialog === 'undefined' && typeof aDialog !== 'undefined') Raptor.aDialog = aDialog;
+if (typeof Raptor.aDialogClose === 'undefined' && typeof aDialogClose !== 'undefined') Raptor.aDialogClose = aDialogClose;
+if (typeof Raptor.aDialogOpen === 'undefined' && typeof aDialogOpen !== 'undefined') Raptor.aDialogOpen = aDialogOpen;
+if (typeof Raptor.aDialogRemove === 'undefined' && typeof aDialogRemove !== 'undefined') Raptor.aDialogRemove = aDialogRemove;
+if (typeof Raptor.aMenu === 'undefined' && typeof aMenu !== 'undefined') Raptor.aMenu = aMenu;
+if (typeof Raptor.aNotify === 'undefined' && typeof aNotify !== 'undefined') Raptor.aNotify = aNotify;
+if (typeof Raptor.aTabs === 'undefined' && typeof aTabs !== 'undefined') Raptor.aTabs = aTabs;
+if (typeof Raptor.abortLoop === 'undefined' && typeof abortLoop !== 'undefined') Raptor.abortLoop = abortLoop;
+if (typeof Raptor.actionApply === 'undefined' && typeof actionApply !== 'undefined') Raptor.actionApply = actionApply;
+if (typeof Raptor.actionPreview === 'undefined' && typeof actionPreview !== 'undefined') Raptor.actionPreview = actionPreview;
+if (typeof Raptor.actionPreviewRestore === 'undefined' && typeof actionPreviewRestore !== 'undefined') Raptor.actionPreviewRestore = actionPreviewRestore;
+if (typeof Raptor.actionRedo === 'undefined' && typeof actionRedo !== 'undefined') Raptor.actionRedo = actionRedo;
+if (typeof Raptor.actionUndo === 'undefined' && typeof actionUndo !== 'undefined') Raptor.actionUndo = actionUndo;
+if (typeof Raptor.clean === 'undefined' && typeof clean !== 'undefined') Raptor.clean = clean;
+if (typeof Raptor.cleanEmptyAttributes === 'undefined' && typeof cleanEmptyAttributes !== 'undefined') Raptor.cleanEmptyAttributes = cleanEmptyAttributes;
+if (typeof Raptor.cleanEmptyElements === 'undefined' && typeof cleanEmptyElements !== 'undefined') Raptor.cleanEmptyElements = cleanEmptyElements;
+if (typeof Raptor.cleanRemoveAttributes === 'undefined' && typeof cleanRemoveAttributes !== 'undefined') Raptor.cleanRemoveAttributes = cleanRemoveAttributes;
+if (typeof Raptor.cleanRemoveComments === 'undefined' && typeof cleanRemoveComments !== 'undefined') Raptor.cleanRemoveComments = cleanRemoveComments;
+if (typeof Raptor.cleanRemoveElements === 'undefined' && typeof cleanRemoveElements !== 'undefined') Raptor.cleanRemoveElements = cleanRemoveElements;
+if (typeof Raptor.cleanReplaceElements === 'undefined' && typeof cleanReplaceElements !== 'undefined') Raptor.cleanReplaceElements = cleanReplaceElements;
+if (typeof Raptor.cleanUnnestElement === 'undefined' && typeof cleanUnnestElement !== 'undefined') Raptor.cleanUnnestElement = cleanUnnestElement;
+if (typeof Raptor.cleanUnwrapElements === 'undefined' && typeof cleanUnwrapElements !== 'undefined') Raptor.cleanUnwrapElements = cleanUnwrapElements;
+if (typeof Raptor.cleanWrapTextNodes === 'undefined' && typeof cleanWrapTextNodes !== 'undefined') Raptor.cleanWrapTextNodes = cleanWrapTextNodes;
+if (typeof Raptor.debug === 'undefined' && typeof debug !== 'undefined') Raptor.debug = debug;
+if (typeof Raptor.dockToElement === 'undefined' && typeof dockToElement !== 'undefined') Raptor.dockToElement = dockToElement;
+if (typeof Raptor.dockToScreen === 'undefined' && typeof dockToScreen !== 'undefined') Raptor.dockToScreen = dockToScreen;
+if (typeof Raptor.elementBringToTop === 'undefined' && typeof elementBringToTop !== 'undefined') Raptor.elementBringToTop = elementBringToTop;
+if (typeof Raptor.elementChangeTag === 'undefined' && typeof elementChangeTag !== 'undefined') Raptor.elementChangeTag = elementChangeTag;
+if (typeof Raptor.elementClosestBlock === 'undefined' && typeof elementClosestBlock !== 'undefined') Raptor.elementClosestBlock = elementClosestBlock;
+if (typeof Raptor.elementContainsBlockElement === 'undefined' && typeof elementContainsBlockElement !== 'undefined') Raptor.elementContainsBlockElement = elementContainsBlockElement;
+if (typeof Raptor.elementDefaultDisplay === 'undefined' && typeof elementDefaultDisplay !== 'undefined') Raptor.elementDefaultDisplay = elementDefaultDisplay;
+if (typeof Raptor.elementDetachedManip === 'undefined' && typeof elementDetachedManip !== 'undefined') Raptor.elementDetachedManip = elementDetachedManip;
+if (typeof Raptor.elementFirstInvalidElementOfValidParent === 'undefined' && typeof elementFirstInvalidElementOfValidParent !== 'undefined') Raptor.elementFirstInvalidElementOfValidParent = elementFirstInvalidElementOfValidParent;
+if (typeof Raptor.elementGetAttributes === 'undefined' && typeof elementGetAttributes !== 'undefined') Raptor.elementGetAttributes = elementGetAttributes;
+if (typeof Raptor.elementGetStyles === 'undefined' && typeof elementGetStyles !== 'undefined') Raptor.elementGetStyles = elementGetStyles;
+if (typeof Raptor.elementIsBlock === 'undefined' && typeof elementIsBlock !== 'undefined') Raptor.elementIsBlock = elementIsBlock;
+if (typeof Raptor.elementIsEmpty === 'undefined' && typeof elementIsEmpty !== 'undefined') Raptor.elementIsEmpty = elementIsEmpty;
+if (typeof Raptor.elementIsValid === 'undefined' && typeof elementIsValid !== 'undefined') Raptor.elementIsValid = elementIsValid;
+if (typeof Raptor.elementOuterHtml === 'undefined' && typeof elementOuterHtml !== 'undefined') Raptor.elementOuterHtml = elementOuterHtml;
+if (typeof Raptor.elementOuterText === 'undefined' && typeof elementOuterText !== 'undefined') Raptor.elementOuterText = elementOuterText;
+if (typeof Raptor.elementPositionOver === 'undefined' && typeof elementPositionOver !== 'undefined') Raptor.elementPositionOver = elementPositionOver;
+if (typeof Raptor.elementPositionUnder === 'undefined' && typeof elementPositionUnder !== 'undefined') Raptor.elementPositionUnder = elementPositionUnder;
+if (typeof Raptor.elementRemoveAttributes === 'undefined' && typeof elementRemoveAttributes !== 'undefined') Raptor.elementRemoveAttributes = elementRemoveAttributes;
+if (typeof Raptor.elementSwapStyles === 'undefined' && typeof elementSwapStyles !== 'undefined') Raptor.elementSwapStyles = elementSwapStyles;
+if (typeof Raptor.elementToggleStyle === 'undefined' && typeof elementToggleStyle !== 'undefined') Raptor.elementToggleStyle = elementToggleStyle;
+if (typeof Raptor.elementUniqueId === 'undefined' && typeof elementUniqueId !== 'undefined') Raptor.elementUniqueId = elementUniqueId;
+if (typeof Raptor.elementVisibleRect === 'undefined' && typeof elementVisibleRect !== 'undefined') Raptor.elementVisibleRect = elementVisibleRect;
+if (typeof Raptor.elementWrapInner === 'undefined' && typeof elementWrapInner !== 'undefined') Raptor.elementWrapInner = elementWrapInner;
+if (typeof Raptor.eventEventable === 'undefined' && typeof eventEventable !== 'undefined') Raptor.eventEventable = eventEventable;
+if (typeof Raptor.eventMouseEnter === 'undefined' && typeof eventMouseEnter !== 'undefined') Raptor.eventMouseEnter = eventMouseEnter;
+if (typeof Raptor.eventMouseLeave === 'undefined' && typeof eventMouseLeave !== 'undefined') Raptor.eventMouseLeave = eventMouseLeave;
+if (typeof Raptor.extendLocale === 'undefined' && typeof extendLocale !== 'undefined') Raptor.extendLocale = extendLocale;
+if (typeof Raptor.formatBytes === 'undefined' && typeof formatBytes !== 'undefined') Raptor.formatBytes = formatBytes;
+if (typeof Raptor.fragmentInsertBefore === 'undefined' && typeof fragmentInsertBefore !== 'undefined') Raptor.fragmentInsertBefore = fragmentInsertBefore;
+if (typeof Raptor.fragmentToHtml === 'undefined' && typeof fragmentToHtml !== 'undefined') Raptor.fragmentToHtml = fragmentToHtml;
+if (typeof Raptor.getLocalizedString === 'undefined' && typeof getLocalizedString !== 'undefined') Raptor.getLocalizedString = getLocalizedString;
+if (typeof Raptor.handleError === 'undefined' && typeof handleError !== 'undefined') Raptor.handleError = handleError;
+if (typeof Raptor.handleInvalidArgumentError === 'undefined' && typeof handleInvalidArgumentError !== 'undefined') Raptor.handleInvalidArgumentError = handleInvalidArgumentError;
+if (typeof Raptor.info === 'undefined' && typeof info !== 'undefined') Raptor.info = info;
+if (typeof Raptor.lazyLoad === 'undefined' && typeof lazyLoad !== 'undefined') Raptor.lazyLoad = lazyLoad;
+if (typeof Raptor.listBreakAtSelection === 'undefined' && typeof listBreakAtSelection !== 'undefined') Raptor.listBreakAtSelection = listBreakAtSelection;
+if (typeof Raptor.listBreakByReplacingSelection === 'undefined' && typeof listBreakByReplacingSelection !== 'undefined') Raptor.listBreakByReplacingSelection = listBreakByReplacingSelection;
+if (typeof Raptor.listConvertItemsForList === 'undefined' && typeof listConvertItemsForList !== 'undefined') Raptor.listConvertItemsForList = listConvertItemsForList;
+if (typeof Raptor.listConvertListItem === 'undefined' && typeof listConvertListItem !== 'undefined') Raptor.listConvertListItem = listConvertListItem;
+if (typeof Raptor.listConvertListType === 'undefined' && typeof listConvertListType !== 'undefined') Raptor.listConvertListType = listConvertListType;
+if (typeof Raptor.listEnforceValidChildren === 'undefined' && typeof listEnforceValidChildren !== 'undefined') Raptor.listEnforceValidChildren = listEnforceValidChildren;
+if (typeof Raptor.listRemoveEmpty === 'undefined' && typeof listRemoveEmpty !== 'undefined') Raptor.listRemoveEmpty = listRemoveEmpty;
+if (typeof Raptor.listRemoveEmptyItems === 'undefined' && typeof listRemoveEmptyItems !== 'undefined') Raptor.listRemoveEmptyItems = listRemoveEmptyItems;
+if (typeof Raptor.listShouldConvertType === 'undefined' && typeof listShouldConvertType !== 'undefined') Raptor.listShouldConvertType = listShouldConvertType;
+if (typeof Raptor.listShouldUnwrap === 'undefined' && typeof listShouldUnwrap !== 'undefined') Raptor.listShouldUnwrap = listShouldUnwrap;
+if (typeof Raptor.listShouldWrap === 'undefined' && typeof listShouldWrap !== 'undefined') Raptor.listShouldWrap = listShouldWrap;
+if (typeof Raptor.listTidyModified === 'undefined' && typeof listTidyModified !== 'undefined') Raptor.listTidyModified = listTidyModified;
+if (typeof Raptor.listToggle === 'undefined' && typeof listToggle !== 'undefined') Raptor.listToggle = listToggle;
+if (typeof Raptor.listUnwrap === 'undefined' && typeof listUnwrap !== 'undefined') Raptor.listUnwrap = listUnwrap;
+if (typeof Raptor.listUnwrapSelectedListItems === 'undefined' && typeof listUnwrapSelectedListItems !== 'undefined') Raptor.listUnwrapSelectedListItems = listUnwrapSelectedListItems;
+if (typeof Raptor.listUnwrapSelection === 'undefined' && typeof listUnwrapSelection !== 'undefined') Raptor.listUnwrapSelection = listUnwrapSelection;
+if (typeof Raptor.listWrapSelection === 'undefined' && typeof listWrapSelection !== 'undefined') Raptor.listWrapSelection = listWrapSelection;
+if (typeof Raptor.nodeClassSwitch === 'undefined' && typeof nodeClassSwitch !== 'undefined') Raptor.nodeClassSwitch = nodeClassSwitch;
+if (typeof Raptor.nodeClosestByClassName === 'undefined' && typeof nodeClosestByClassName !== 'undefined') Raptor.nodeClosestByClassName = nodeClosestByClassName;
+if (typeof Raptor.nodeFindParent === 'undefined' && typeof nodeFindParent !== 'undefined') Raptor.nodeFindParent = nodeFindParent;
+if (typeof Raptor.nodeFindTextNodes === 'undefined' && typeof nodeFindTextNodes !== 'undefined') Raptor.nodeFindTextNodes = nodeFindTextNodes;
+if (typeof Raptor.nodeFindUnnested === 'undefined' && typeof nodeFindUnnested !== 'undefined') Raptor.nodeFindUnnested = nodeFindUnnested;
+if (typeof Raptor.nodeFreezeHeight === 'undefined' && typeof nodeFreezeHeight !== 'undefined') Raptor.nodeFreezeHeight = nodeFreezeHeight;
+if (typeof Raptor.nodeFromHtml === 'undefined' && typeof nodeFromHtml !== 'undefined') Raptor.nodeFromHtml = nodeFromHtml;
+if (typeof Raptor.nodeIsChildOf === 'undefined' && typeof nodeIsChildOf !== 'undefined') Raptor.nodeIsChildOf = nodeIsChildOf;
+if (typeof Raptor.nodeLastChild === 'undefined' && typeof nodeLastChild !== 'undefined') Raptor.nodeLastChild = nodeLastChild;
+if (typeof Raptor.nodeMatches === 'undefined' && typeof nodeMatches !== 'undefined') Raptor.nodeMatches = nodeMatches;
+if (typeof Raptor.nodeOffsetTop === 'undefined' && typeof nodeOffsetTop !== 'undefined') Raptor.nodeOffsetTop = nodeOffsetTop;
+if (typeof Raptor.nodeUnfreezeHeight === 'undefined' && typeof nodeUnfreezeHeight !== 'undefined') Raptor.nodeUnfreezeHeight = nodeUnfreezeHeight;
+if (typeof Raptor.nodeUniqueId === 'undefined' && typeof nodeUniqueId !== 'undefined') Raptor.nodeUniqueId = nodeUniqueId;
+if (typeof Raptor.persistGet === 'undefined' && typeof persistGet !== 'undefined') Raptor.persistGet = persistGet;
+if (typeof Raptor.persistSet === 'undefined' && typeof persistSet !== 'undefined') Raptor.persistSet = persistSet;
+if (typeof Raptor.pluginPluggable === 'undefined' && typeof pluginPluggable !== 'undefined') Raptor.pluginPluggable = pluginPluggable;
+if (typeof Raptor.pluginPrepare === 'undefined' && typeof pluginPrepare !== 'undefined') Raptor.pluginPrepare = pluginPrepare;
+if (typeof Raptor.rangeContainsNode === 'undefined' && typeof rangeContainsNode !== 'undefined') Raptor.rangeContainsNode = rangeContainsNode;
+if (typeof Raptor.rangeContainsNodeText === 'undefined' && typeof rangeContainsNodeText !== 'undefined') Raptor.rangeContainsNodeText = rangeContainsNodeText;
+if (typeof Raptor.rangeDeserialize === 'undefined' && typeof rangeDeserialize !== 'undefined') Raptor.rangeDeserialize = rangeDeserialize;
+if (typeof Raptor.rangeEmptyTag === 'undefined' && typeof rangeEmptyTag !== 'undefined') Raptor.rangeEmptyTag = rangeEmptyTag;
+if (typeof Raptor.rangeExpandTo === 'undefined' && typeof rangeExpandTo !== 'undefined') Raptor.rangeExpandTo = rangeExpandTo;
+if (typeof Raptor.rangeExpandToParent === 'undefined' && typeof rangeExpandToParent !== 'undefined') Raptor.rangeExpandToParent = rangeExpandToParent;
+if (typeof Raptor.rangeGet === 'undefined' && typeof rangeGet !== 'undefined') Raptor.rangeGet = rangeGet;
+if (typeof Raptor.rangeGetCommonAncestor === 'undefined' && typeof rangeGetCommonAncestor !== 'undefined') Raptor.rangeGetCommonAncestor = rangeGetCommonAncestor;
+if (typeof Raptor.rangeGetEndElement === 'undefined' && typeof rangeGetEndElement !== 'undefined') Raptor.rangeGetEndElement = rangeGetEndElement;
+if (typeof Raptor.rangeGetStartElement === 'undefined' && typeof rangeGetStartElement !== 'undefined') Raptor.rangeGetStartElement = rangeGetStartElement;
+if (typeof Raptor.rangeIsContainedBy === 'undefined' && typeof rangeIsContainedBy !== 'undefined') Raptor.rangeIsContainedBy = rangeIsContainedBy;
+if (typeof Raptor.rangeIsEmpty === 'undefined' && typeof rangeIsEmpty !== 'undefined') Raptor.rangeIsEmpty = rangeIsEmpty;
+if (typeof Raptor.rangeReplace === 'undefined' && typeof rangeReplace !== 'undefined') Raptor.rangeReplace = rangeReplace;
+if (typeof Raptor.rangeReplaceSplitInvalidTags === 'undefined' && typeof rangeReplaceSplitInvalidTags !== 'undefined') Raptor.rangeReplaceSplitInvalidTags = rangeReplaceSplitInvalidTags;
+if (typeof Raptor.rangeReplaceWithinValidTags === 'undefined' && typeof rangeReplaceWithinValidTags !== 'undefined') Raptor.rangeReplaceWithinValidTags = rangeReplaceWithinValidTags;
+if (typeof Raptor.rangeSelectElement === 'undefined' && typeof rangeSelectElement !== 'undefined') Raptor.rangeSelectElement = rangeSelectElement;
+if (typeof Raptor.rangeSelectElementContent === 'undefined' && typeof rangeSelectElementContent !== 'undefined') Raptor.rangeSelectElementContent = rangeSelectElementContent;
+if (typeof Raptor.rangeSerialize === 'undefined' && typeof rangeSerialize !== 'undefined') Raptor.rangeSerialize = rangeSerialize;
+if (typeof Raptor.rangeToHtml === 'undefined' && typeof rangeToHtml !== 'undefined') Raptor.rangeToHtml = rangeToHtml;
+if (typeof Raptor.rangeTrim === 'undefined' && typeof rangeTrim !== 'undefined') Raptor.rangeTrim = rangeTrim;
+if (typeof Raptor.registerLocale === 'undefined' && typeof registerLocale !== 'undefined') Raptor.registerLocale = registerLocale;
+if (typeof Raptor.selectionAtEndOfElement === 'undefined' && typeof selectionAtEndOfElement !== 'undefined') Raptor.selectionAtEndOfElement = selectionAtEndOfElement;
+if (typeof Raptor.selectionAtStartOfElement === 'undefined' && typeof selectionAtStartOfElement !== 'undefined') Raptor.selectionAtStartOfElement = selectionAtStartOfElement;
+if (typeof Raptor.selectionChangeTags === 'undefined' && typeof selectionChangeTags !== 'undefined') Raptor.selectionChangeTags = selectionChangeTags;
+if (typeof Raptor.selectionClearFormatting === 'undefined' && typeof selectionClearFormatting !== 'undefined') Raptor.selectionClearFormatting = selectionClearFormatting;
+if (typeof Raptor.selectionConstrain === 'undefined' && typeof selectionConstrain !== 'undefined') Raptor.selectionConstrain = selectionConstrain;
+if (typeof Raptor.selectionContains === 'undefined' && typeof selectionContains !== 'undefined') Raptor.selectionContains = selectionContains;
+if (typeof Raptor.selectionDelete === 'undefined' && typeof selectionDelete !== 'undefined') Raptor.selectionDelete = selectionDelete;
+if (typeof Raptor.selectionDestroy === 'undefined' && typeof selectionDestroy !== 'undefined') Raptor.selectionDestroy = selectionDestroy;
+if (typeof Raptor.selectionEachBlock === 'undefined' && typeof selectionEachBlock !== 'undefined') Raptor.selectionEachBlock = selectionEachBlock;
+if (typeof Raptor.selectionEachRange === 'undefined' && typeof selectionEachRange !== 'undefined') Raptor.selectionEachRange = selectionEachRange;
+if (typeof Raptor.selectionExists === 'undefined' && typeof selectionExists !== 'undefined') Raptor.selectionExists = selectionExists;
+if (typeof Raptor.selectionExpandTo === 'undefined' && typeof selectionExpandTo !== 'undefined') Raptor.selectionExpandTo = selectionExpandTo;
+if (typeof Raptor.selectionExpandToWord === 'undefined' && typeof selectionExpandToWord !== 'undefined') Raptor.selectionExpandToWord = selectionExpandToWord;
+if (typeof Raptor.selectionFindWrappingAndInnerElements === 'undefined' && typeof selectionFindWrappingAndInnerElements !== 'undefined') Raptor.selectionFindWrappingAndInnerElements = selectionFindWrappingAndInnerElements;
+if (typeof Raptor.selectionGetElement === 'undefined' && typeof selectionGetElement !== 'undefined') Raptor.selectionGetElement = selectionGetElement;
+if (typeof Raptor.selectionGetElements === 'undefined' && typeof selectionGetElements !== 'undefined') Raptor.selectionGetElements = selectionGetElements;
+if (typeof Raptor.selectionGetEndElement === 'undefined' && typeof selectionGetEndElement !== 'undefined') Raptor.selectionGetEndElement = selectionGetEndElement;
+if (typeof Raptor.selectionGetHtml === 'undefined' && typeof selectionGetHtml !== 'undefined') Raptor.selectionGetHtml = selectionGetHtml;
+if (typeof Raptor.selectionGetStartElement === 'undefined' && typeof selectionGetStartElement !== 'undefined') Raptor.selectionGetStartElement = selectionGetStartElement;
+if (typeof Raptor.selectionInverseWrapWithTagClass === 'undefined' && typeof selectionInverseWrapWithTagClass !== 'undefined') Raptor.selectionInverseWrapWithTagClass = selectionInverseWrapWithTagClass;
+if (typeof Raptor.selectionIsEmpty === 'undefined' && typeof selectionIsEmpty !== 'undefined') Raptor.selectionIsEmpty = selectionIsEmpty;
+if (typeof Raptor.selectionRange === 'undefined' && typeof selectionRange !== 'undefined') Raptor.selectionRange = selectionRange;
+if (typeof Raptor.selectionReplace === 'undefined' && typeof selectionReplace !== 'undefined') Raptor.selectionReplace = selectionReplace;
+if (typeof Raptor.selectionReplaceSplittingSelectedElement === 'undefined' && typeof selectionReplaceSplittingSelectedElement !== 'undefined') Raptor.selectionReplaceSplittingSelectedElement = selectionReplaceSplittingSelectedElement;
+if (typeof Raptor.selectionReplaceWithinValidTags === 'undefined' && typeof selectionReplaceWithinValidTags !== 'undefined') Raptor.selectionReplaceWithinValidTags = selectionReplaceWithinValidTags;
+if (typeof Raptor.selectionRestore === 'undefined' && typeof selectionRestore !== 'undefined') Raptor.selectionRestore = selectionRestore;
+if (typeof Raptor.selectionSave === 'undefined' && typeof selectionSave !== 'undefined') Raptor.selectionSave = selectionSave;
+if (typeof Raptor.selectionSaved === 'undefined' && typeof selectionSaved !== 'undefined') Raptor.selectionSaved = selectionSaved;
+if (typeof Raptor.selectionSelectEdge === 'undefined' && typeof selectionSelectEdge !== 'undefined') Raptor.selectionSelectEdge = selectionSelectEdge;
+if (typeof Raptor.selectionSelectEnd === 'undefined' && typeof selectionSelectEnd !== 'undefined') Raptor.selectionSelectEnd = selectionSelectEnd;
+if (typeof Raptor.selectionSelectInner === 'undefined' && typeof selectionSelectInner !== 'undefined') Raptor.selectionSelectInner = selectionSelectInner;
+if (typeof Raptor.selectionSelectOuter === 'undefined' && typeof selectionSelectOuter !== 'undefined') Raptor.selectionSelectOuter = selectionSelectOuter;
+if (typeof Raptor.selectionSelectStart === 'undefined' && typeof selectionSelectStart !== 'undefined') Raptor.selectionSelectStart = selectionSelectStart;
+if (typeof Raptor.selectionSelectToEndOfElement === 'undefined' && typeof selectionSelectToEndOfElement !== 'undefined') Raptor.selectionSelectToEndOfElement = selectionSelectToEndOfElement;
+if (typeof Raptor.selectionSet === 'undefined' && typeof selectionSet !== 'undefined') Raptor.selectionSet = selectionSet;
+if (typeof Raptor.selectionToggleBlockClasses === 'undefined' && typeof selectionToggleBlockClasses !== 'undefined') Raptor.selectionToggleBlockClasses = selectionToggleBlockClasses;
+if (typeof Raptor.selectionToggleBlockStyle === 'undefined' && typeof selectionToggleBlockStyle !== 'undefined') Raptor.selectionToggleBlockStyle = selectionToggleBlockStyle;
+if (typeof Raptor.selectionToggleWrapper === 'undefined' && typeof selectionToggleWrapper !== 'undefined') Raptor.selectionToggleWrapper = selectionToggleWrapper;
+if (typeof Raptor.selectionTrim === 'undefined' && typeof selectionTrim !== 'undefined') Raptor.selectionTrim = selectionTrim;
+if (typeof Raptor.selectionWrapTagWithAttribute === 'undefined' && typeof selectionWrapTagWithAttribute !== 'undefined') Raptor.selectionWrapTagWithAttribute = selectionWrapTagWithAttribute;
+if (typeof Raptor.setLocale === 'undefined' && typeof setLocale !== 'undefined') Raptor.setLocale = setLocale;
+if (typeof Raptor.stateCheckDirty === 'undefined' && typeof stateCheckDirty !== 'undefined') Raptor.stateCheckDirty = stateCheckDirty;
+if (typeof Raptor.stateRestore === 'undefined' && typeof stateRestore !== 'undefined') Raptor.stateRestore = stateRestore;
+if (typeof Raptor.stateSave === 'undefined' && typeof stateSave !== 'undefined') Raptor.stateSave = stateSave;
+if (typeof Raptor.stateSetDirty === 'undefined' && typeof stateSetDirty !== 'undefined') Raptor.stateSetDirty = stateSetDirty;
+if (typeof Raptor.stringFromCamelCase === 'undefined' && typeof stringFromCamelCase !== 'undefined') Raptor.stringFromCamelCase = stringFromCamelCase;
+if (typeof Raptor.stringHash === 'undefined' && typeof stringHash !== 'undefined') Raptor.stringHash = stringHash;
+if (typeof Raptor.stringHtmlStringIsEmpty === 'undefined' && typeof stringHtmlStringIsEmpty !== 'undefined') Raptor.stringHtmlStringIsEmpty = stringHtmlStringIsEmpty;
+if (typeof Raptor.stringStripTags === 'undefined' && typeof stringStripTags !== 'undefined') Raptor.stringStripTags = stringStripTags;
+if (typeof Raptor.stringToCamelCase === 'undefined' && typeof stringToCamelCase !== 'undefined') Raptor.stringToCamelCase = stringToCamelCase;
+if (typeof Raptor.stringUcFirst === 'undefined' && typeof stringUcFirst !== 'undefined') Raptor.stringUcFirst = stringUcFirst;
+if (typeof Raptor.styleRestoreState === 'undefined' && typeof styleRestoreState !== 'undefined') Raptor.styleRestoreState = styleRestoreState;
+if (typeof Raptor.styleSwapState === 'undefined' && typeof styleSwapState !== 'undefined') Raptor.styleSwapState = styleSwapState;
+if (typeof Raptor.styleSwapWithWrapper === 'undefined' && typeof styleSwapWithWrapper !== 'undefined') Raptor.styleSwapWithWrapper = styleSwapWithWrapper;
+if (typeof Raptor.tableCanMergeCells === 'undefined' && typeof tableCanMergeCells !== 'undefined') Raptor.tableCanMergeCells = tableCanMergeCells;
+if (typeof Raptor.tableCanSplitCells === 'undefined' && typeof tableCanSplitCells !== 'undefined') Raptor.tableCanSplitCells = tableCanSplitCells;
+if (typeof Raptor.tableCellsInRange === 'undefined' && typeof tableCellsInRange !== 'undefined') Raptor.tableCellsInRange = tableCellsInRange;
+if (typeof Raptor.tableCreate === 'undefined' && typeof tableCreate !== 'undefined') Raptor.tableCreate = tableCreate;
+if (typeof Raptor.tableDeleteColumn === 'undefined' && typeof tableDeleteColumn !== 'undefined') Raptor.tableDeleteColumn = tableDeleteColumn;
+if (typeof Raptor.tableDeleteRow === 'undefined' && typeof tableDeleteRow !== 'undefined') Raptor.tableDeleteRow = tableDeleteRow;
+if (typeof Raptor.tableGetCellByIndex === 'undefined' && typeof tableGetCellByIndex !== 'undefined') Raptor.tableGetCellByIndex = tableGetCellByIndex;
+if (typeof Raptor.tableGetCellIndex === 'undefined' && typeof tableGetCellIndex !== 'undefined') Raptor.tableGetCellIndex = tableGetCellIndex;
+if (typeof Raptor.tableInsertColumn === 'undefined' && typeof tableInsertColumn !== 'undefined') Raptor.tableInsertColumn = tableInsertColumn;
+if (typeof Raptor.tableInsertRow === 'undefined' && typeof tableInsertRow !== 'undefined') Raptor.tableInsertRow = tableInsertRow;
+if (typeof Raptor.tableIsEmpty === 'undefined' && typeof tableIsEmpty !== 'undefined') Raptor.tableIsEmpty = tableIsEmpty;
+if (typeof Raptor.tableMergeCells === 'undefined' && typeof tableMergeCells !== 'undefined') Raptor.tableMergeCells = tableMergeCells;
+if (typeof Raptor.tableSplitCells === 'undefined' && typeof tableSplitCells !== 'undefined') Raptor.tableSplitCells = tableSplitCells;
+if (typeof Raptor.templateConvertTokens === 'undefined' && typeof templateConvertTokens !== 'undefined') Raptor.templateConvertTokens = templateConvertTokens;
+if (typeof Raptor.templateGet === 'undefined' && typeof templateGet !== 'undefined') Raptor.templateGet = templateGet;
+if (typeof Raptor.templateGetVariables === 'undefined' && typeof templateGetVariables !== 'undefined') Raptor.templateGetVariables = templateGetVariables;
+if (typeof Raptor.templateRegister === 'undefined' && typeof templateRegister !== 'undefined') Raptor.templateRegister = templateRegister;
+if (typeof Raptor.toolbarLayout === 'undefined' && typeof toolbarLayout !== 'undefined') Raptor.toolbarLayout = toolbarLayout;
+if (typeof Raptor.tr === 'undefined' && typeof tr !== 'undefined') Raptor.tr = tr;
+if (typeof Raptor.typeIsArray === 'undefined' && typeof typeIsArray !== 'undefined') Raptor.typeIsArray = typeIsArray;
+if (typeof Raptor.typeIsElement === 'undefined' && typeof typeIsElement !== 'undefined') Raptor.typeIsElement = typeIsElement;
+if (typeof Raptor.typeIsJQueryCompatible === 'undefined' && typeof typeIsJQueryCompatible !== 'undefined') Raptor.typeIsJQueryCompatible = typeIsJQueryCompatible;
+if (typeof Raptor.typeIsNode === 'undefined' && typeof typeIsNode !== 'undefined') Raptor.typeIsNode = typeIsNode;
+if (typeof Raptor.typeIsNumber === 'undefined' && typeof typeIsNumber !== 'undefined') Raptor.typeIsNumber = typeIsNumber;
+if (typeof Raptor.typeIsRange === 'undefined' && typeof typeIsRange !== 'undefined') Raptor.typeIsRange = typeIsRange;
+if (typeof Raptor.typeIsSelection === 'undefined' && typeof typeIsSelection !== 'undefined') Raptor.typeIsSelection = typeIsSelection;
+if (typeof Raptor.typeIsString === 'undefined' && typeof typeIsString !== 'undefined') Raptor.typeIsString = typeIsString;
+if (typeof Raptor.typeIsTextNode === 'undefined' && typeof typeIsTextNode !== 'undefined') Raptor.typeIsTextNode = typeIsTextNode;
+if (typeof Raptor.undockFromElement === 'undefined' && typeof undockFromElement !== 'undefined') Raptor.undockFromElement = undockFromElement;
+if (typeof Raptor.undockFromScreen === 'undefined' && typeof undockFromScreen !== 'undefined') Raptor.undockFromScreen = undockFromScreen;
+window.Raptor = Raptor;
+// </expose>
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/expose.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/base.js
+/**
+ * @fileOverview Default options for Raptor.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ * @author Michael Robinson <michael@panmedia.co.nz>
+ * @author Melissa Richards <melissa@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Default options for Raptor.
+ */
+Raptor.globalDefaults = {
+    /**
+     * @type Object Default layouts to use.
+     */
+    layouts: {},
+
+    /**
+     * Plugins option overrides.
+     *
+     * @type Object
+     */
+    plugins: {},
+
+    /**
+     * UI option overrides.
+     *
+     * @type Object
+     */
+    ui: {},
+
+    /**
+     * Default events to bind.
+     *
+     * @type Object
+     */
+    bind: {},
+
+    /**
+     * Namespace used for persistence to prevent conflicting with other stored
+     * values.
+     *
+     * @type String
+     */
+    namespace: null,
+
+    /**
+     * Switch to indicated that some events should be automatically applied to
+     * all editors that are 'unified'
+     *
+     * @type boolean
+     */
+    unify: true,
+
+    /**
+     * Switch to indicate whether or not to stored persistent values, if set to
+     * false the persist function will always return null
+     *
+     * @type boolean
+     */
+    persistence: true,
+
+    /**
+     * The name to store persistent values under
+     * @type String
+     */
+    persistenceName: 'uiEditor',
+
+    /**
+     * Switch to indicate whether or not to a warning should pop up when the
+     * user navigates aways from the page and there are unsaved changes
+     *
+     * @type boolean
+     */
+    unloadWarning: true,
+
+    /**
+     * Switch to automatically enabled editing on the element
+     *
+     * @type boolean
+     */
+    autoEnable: false,
+
+    /**
+     * Only enable editing on certian parts of the element
+     *
+     * @type {jQuerySelector}
+     */
+    partialEdit: false,
+
+    /**
+     * Automatically select the editable content when editing is enabled.
+     *
+     * @type boolean
+     */
+    autoSelect: 'end',
+
+    /**
+     * Switch to specify if the editor should automatically enable all plugins,
+     * if set to false, only the plugins specified in the 'plugins' option
+     * object will be enabled
+     *
+     * @type boolean
+     */
+    enablePlugins: true,
+
+    /**
+     * An array of explicitly disabled plugins.
+     *
+     * @type String[]
+     */
+    disabledPlugins: [],
+
+    /**
+     * Switch to specify if the editor should automatically enable all UI, if
+     * set to false, only the UI specified in the {@link Raptor.defaults.ui}
+     * option object will be enabled
+     *
+     * @type boolean
+     */
+    enableUi: true,
+
+    /**
+     * An array of explicitly disabled UI elements.
+     *
+     * @type String[]
+     */
+    disabledUi: [],
+
+    /**
+     * Switch to indicate that the element the editor is being applied to should
+     * be replaced with a div (useful for textareas), the value/html of the
+     * replaced element will be automatically updated when the editor element is
+     * changed
+     *
+     * @type boolean
+     */
+    replace: false,
+
+    /**
+     * A list of styles that will be copied from the replaced element and
+     * applied to the editor replacement element
+     *
+     * @type String[]
+     */
+    replaceStyle: [
+        'display', 'position', 'float', 'width',
+        'padding-left', 'padding-right', 'padding-top', 'padding-bottom',
+        'margin-left', 'margin-right', 'margin-top', 'margin-bottom'
+    ],
+
+    /**
+     *
+     * @type String
+     */
+    baseClass: 'raptor',
+
+    /**
+     * CSS class prefix that is prepended to inserted elements classes.
+     * E.g. "cms-bold"
+     *
+     * @type String
+     */
+    cssPrefix: 'cms-',
+
+    draggable: true
+};
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/base.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/full.js
+/**
+ * @fileOverview Contains the full options preset.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ * @author Michael Robinson <michael@panmedia.co.nz>
+ * @author Melissa Richards <melissa@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Full options for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'full',
+    plugins: {
+        imageSwap: {
+            chooser: 'insertFile'
+        }
+    },
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['logo'],
+                ['save', 'cancel'],
+                ['dockToScreen', 'dockToElement', 'guides'],
+                ['viewSource'],
+                ['historyUndo', 'historyRedo'],
+                ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                ['textSuper', 'textSub'],
+                ['listUnordered', 'listOrdered'],
+                ['hrCreate', 'textBlockQuote'],
+                ['textSizeDecrease', 'textSizeIncrease', 'fontFamilyMenu'],
+                ['clearFormatting', 'cleanBlock'],
+                ['linkCreate', 'linkRemove'],
+                ['embed', 'insertFile'],
+                ['floatLeft', 'floatNone', 'floatRight'],
+                ['colorMenuBasic'],
+                ['tagMenu'],
+                ['classMenu'],
+                ['snippetMenu', 'specialCharacters'],
+                ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn'],
+                ['languageMenu'],
+                ['statistics']
+            ]
+        },
+        hoverPanel: {
+            uiOrder: [
+                ['clickButtonToEdit']
+            ]
+        },
+        elementHoverPanel: {
+            elements: 'img',
+            uiOrder: [
+                ['imageResize', 'imageSwap', 'close']
+            ]
+        }
+    }
+}, true);
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/full.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/micro.js
+/**
+ * @fileOverview Contains the micro options preset.
+ * @license http://www.raptor-editor.com/license
+ * @author David Neilsen <david@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Micro options for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'micro',
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['logo'],
+                ['save', 'cancel'],
+                ['dockToScreen', 'dockToElement'],
+                ['historyUndo', 'historyRedo'],
+                ['specialCharacters'],
+                ['languageMenu'],
+                ['statistics']
+            ]
+        },
+        hoverPanel: {
+            uiOrder: [
+                ['clickButtonToEdit', 'revisions']
+            ]
+        }
+    },
+    plugins: {
+        placeholder: false,
+        paste: {
+            panels: [
+                'plain-text'
+            ]
+        },
+        noBreak: {
+            enabled: true
+        }
+    }
+});
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/micro.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/inline.js
+/**
+ * @fileOverview Contains the inline preset.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Inline preset for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'inline',
+    classes: 'raptor-editing-inline',
+    autoEnable: true,
+    draggable: false,
+    unify: false,
+    unloadWarning: false,
+    reloadOnDisable: true,
+    plugins: {
+        unsavedEditWarning: false,
+        dock: {
+            dockToElement: true,
+            docked: true,
+            persist: false
+        }
+    },
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                ['colorMenuBasic'],
+                ['textBlockQuote'],
+                ['listOrdered', 'listUnordered'],
+                ['textSizeDecrease', 'textSizeIncrease'],
+                ['linkCreate', 'linkRemove']
+            ]
+        }
+    }
+});
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/inline.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/mammoth.js
+/**
+ * @fileOverview Contains the mammoth preset.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Mammoth preset for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'mammoth',
+    plugins: {
+        imageSwap: {
+            chooser: 'fileManager'
+        }
+    },
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['logo'],
+                ['save', 'cancel'],
+                ['dockToScreen', 'guides'],
+                ['viewSource'],
+                ['historyUndo', 'historyRedo'],
+                ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                ['textSuper', 'textSub'],
+                ['listUnordered', 'listOrdered'],
+                ['hrCreate', 'textBlockQuote'],
+                ['textSizeDecrease', 'textSizeIncrease'],
+                ['clearFormatting', 'cleanBlock'],
+                ['linkCreate', 'linkRemove'],
+                ['embed', 'fileManager'],
+                ['floatLeft', 'floatNone', 'floatRight'],
+                ['colorMenuBasic'],
+                ['tagMenu'],
+                ['classMenu'],
+                ['snippetMenu', 'specialCharacters', 'loremIpsum'],
+                ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn']
+            ]
+        },
+        hoverPanel: {
+            uiOrder: [
+                ['clickButtonToEdit', 'revisions']
+            ]
+        },
+        elementHoverPanel: {
+            elements: 'img',
+            uiOrder: [
+                ['imageResize', 'imageSwap', 'imageEditor', 'close']
+            ]
+        },
+        imageEditor: {
+            uiOrder: [
+                ['save', 'cancel'],
+                ['revert', 'upload'],
+                ['undo', 'redo'],
+                ['flipV', 'flipH', 'rotateLeft', 'rotateRight', 'resize', 'crop']
+            ]
+        },
+        fileManager: {
+            uiOrder: [
+                ['insert', 'rename', 'edit', 'delete', 'download', 'view']
+            ]
+        }
+    }
+}, true);
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/mammoth.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/mammoth-inline.js
+/**
+ * @fileOverview Contains the mammoth preset.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Mammoth preset for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'mammoth-inline',
+    classes: 'raptor-editing-inline',
+    autoEnable: true,
+    draggable: false,
+    unify: false,
+    unloadWarning: false,
+    reloadOnDisable: true,
+    plugins: {
+        unsavedEditWarning: false,
+        dock: {
+            dockToElement: true,
+            docked: true,
+            persist: false
+        }
+    },
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['viewSource', 'guides'],
+                ['historyUndo', 'historyRedo'],
+                ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                ['textSuper', 'textSub'],
+                ['listUnordered', 'listOrdered'],
+                ['hrCreate', 'textBlockQuote'],
+                ['textSizeDecrease', 'textSizeIncrease'],
+                ['clearFormatting', 'cleanBlock'],
+                ['linkCreate', 'linkRemove'],
+                ['embed', 'fileManager'],
+                ['floatLeft', 'floatNone', 'floatRight'],
+                ['colorMenuBasic'],
+                ['tagMenu'],
+                ['classMenu'],
+                ['snippetMenu', 'specialCharacters'],
+                ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn']
+            ]
+        },
+        elementHoverPanel: {
+            elements: 'img',
+            uiOrder: [
+                ['imageResize', 'imageSwap', 'imageEditor', 'close']
+            ]
+        },
+        imageEditor: {
+            uiOrder: [
+                ['save', 'cancel'],
+                ['revert', 'upload'],
+                ['undo', 'redo'],
+                ['flipV', 'flipH', 'rotateLeft', 'rotateRight', 'resize', 'crop']
+            ]
+        },
+        fileManager: {
+            uiOrder: [
+                ['insert', 'rename', 'edit', 'delete', 'download', 'view']
+            ]
+        }
+    }
+});
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/mammoth-inline.js
+;
+// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/full-premium.js
+/**
+ * @fileOverview Contains the mammoth preset.
+ * @license http://www.raptor-editor.com/license
+ *
+ * @author David Neilsen <david@panmedia.co.nz>
+ */
+
+/**
+ * @namespace Mammoth preset for Raptor.
+ */
+Raptor.registerPreset({
+    name: 'full-premium',
+    plugins: {
+        imageSwap: {
+            chooser: 'fileManager'
+        }
+    },
+    layouts: {
+        toolbar: {
+            uiOrder: [
+                ['logo'],
+                ['save', 'cancel'],
+                ['dockToScreen', 'dockToElement', 'guides'],
+                ['viewSource'],
+                ['historyUndo', 'historyRedo'],
+                ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
+                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                ['textSuper', 'textSub'],
+                ['listUnordered', 'listOrdered'],
+                ['hrCreate', 'textBlockQuote'],
+                ['textSizeDecrease', 'textSizeIncrease', 'fontFamilyMenu'],
+                ['clearFormatting', 'cleanBlock'],
+                ['linkCreate', 'linkRemove'],
+                ['embed', 'fileManager', 'imageEditor'],
+                ['floatLeft', 'floatNone', 'floatRight'],
+                ['colorMenuBasic'],
+                ['tagMenu'],
+                ['classMenu'],
+                ['snippetMenu', 'specialCharacters', 'loremIpsum'],
+                ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn'],
+                ['languageMenu'],
+                ['statistics']
+            ]
+        },
+        hoverPanel: {
+            uiOrder: [
+                ['clickButtonToEdit', 'revisions']
+            ]
+        },
+        elementHoverPanel: {
+            elements: 'img',
+            uiOrder: [
+                ['imageResize', 'imageSwap', 'imageEditor', 'close']
+            ]
+        },
+        imageEditor: {
+            uiOrder: [
+                ['save', 'cancel'],
+                ['revert', 'upload'],
+                ['undo', 'redo'],
+                ['flipV', 'flipH', 'rotateLeft', 'rotateRight', 'resize', 'crop'],
+                ['blur', 'sharpen', 'desaturate', 'invert', 'sepia', 'solarize', 'brightness', 'colorAdjust', 'glow', 'hsl', 'posterize', 'removeNoise']
+            ]
+        },
+        fileManager: {
+            uiOrder: [
+                ['insert', 'rename', 'edit', 'delete', 'download', 'view']
+            ]
+        }
+    }
+}, true);
+;
+// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-premium/src/presets/full-premium.js
 ;
 // File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/cancel/cancel.js
 /**
@@ -49149,374 +49825,6 @@ Raptor.registerPlugin(new PlaceholderPlugin());
 ;
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/placeholder/placeholder.js
 ;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save.js
-/**
- * Save UI plugin.
- *
- * Provides the save button UI that is enabled/disabled when the editable blocks is dirty/clean.
- * The UI will either call another plugin, or a callback when clicked.
- *
- * @plugin Button save
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-Raptor.registerUi(new Button({
-    name: 'save',
-    hotkey: 'ctrl+s',
-
-    options: {
-        /**
-         * Name of plugin to call when save UI is clicked. Typically `saveJson` or `saveRest`
-         * @option {string} plugin
-         */
-        plugin: null,
-
-        /**
-         * Callback to call when save UI is clicked. The callback an plugin options are mutually exclusive.
-         * @option {function} callback
-         */
-        callback: null
-    },
-
-    action: function() {
-        if (this.getCallback()) {
-            this.getCallback().call(this);
-        } else if (this.getPlugin()) {
-            this.getPlugin().save();
-        } else {
-            aNotify({
-                text: tr('saveNotConfigured'),
-                type: 'error'
-            });
-        }
-    },
-
-    init: function() {
-        var result = Button.prototype.init.apply(this, arguments);
-
-        // <strict/>
-
-        if (this.options.checkDirty !== false) {
-            this.raptor.bind('dirty', this.dirty.bind(this));
-            this.raptor.bind('cleaned', this.clean.bind(this));
-            this.clean();
-        }
-        return result;
-    },
-
-    getPlugin: function() {
-        if (!this.options.plugin) {
-            return null;
-        }
-        return this.raptor.getPlugin(this.options.plugin);
-    },
-
-    getCallback: function() {
-        return this.options.callback;
-    },
-
-    dirty: function() {
-        aButtonEnable(this.button);
-    },
-
-    clean: function() {
-        aButtonDisable(this.button);
-    }
-}));
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save-json.js
-/**
- * @fileOverview Contains the save JSON plugin code.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-/**
- * The save JSON class.
- *
- * @constructor
- * @param {String} name
- * @param {Object} overrides
- */
-function SaveJsonPlugin(name, overrides) {
-    this.options = {
-        retain: false,
-        checkDirty: true
-    };
-    RaptorPlugin.call(this, name || 'saveJson', overrides);
-    this.size = null;
-}
-
-SaveJsonPlugin.prototype = Object.create(RaptorPlugin.prototype);
-
-Raptor.registerPlugin(new SaveJsonPlugin());
-
-// <strict/>
-
-/**
- * Save Raptor content.
- */
-SaveJsonPlugin.prototype.save = function(saveSections) {
-    // Hack save sections
-    if (typeof RaptorSection !== 'undefined' && saveSections !== false) {
-        RaptorSection.save(false);
-    }
-    var data = {};
-    this.raptor.unify(function(raptor) {
-        if (this.options.checkDirty === false || raptor.isDirty()) {
-            raptor.clean();
-            var plugin = raptor.getPlugin('saveJson');
-            var id = plugin.options.id.call(plugin);
-            var html = raptor.getHtml();
-            if (plugin.options.data) {
-                // <strict/>
-                data[id] = plugin.options.data.call(this, html);
-            } else {
-                data[id] = html;
-            }
-        }
-    }.bind(this));
-    var post = {};
-    this.size = Object.keys(data).length;
-    post[this.options.postName] = JSON.stringify(data);
-    if (this.options.post) {
-        // <strict/>
-        post = this.options.post.call(this, post);
-    }
-    $.ajax({
-            type: this.options.type || 'post',
-            dataType: this.options.dataType || 'json',
-            url: this.options.url,
-            data: post
-        })
-        .done(this.done.bind(this))
-        .fail(this.fail.bind(this));
-};
-
-/**
- * Done handler.
- *
- * @param {Object} data
- * @param {Integer} status
- * @param {Object} xhr
- */
-SaveJsonPlugin.prototype.done = function(data, status, xhr) {
-    this.raptor.unify(function(raptor) {
-        if (!raptor.getPlugin('saveJson').options.checkDirty || raptor.isDirty()) {
-            raptor.saved([data, status, xhr]);
-        }
-    });
-    var message = tr('saveJsonSaved', {
-        saved: this.size
-    });
-    if (this.options.formatResponse) {
-        // <strict/>
-        message = this.options.formatResponse.call(this, data, status, xhr) || message;
-    }
-    aNotify({
-        text: message,
-        type: 'success'
-    });
-    if (!this.options.retain) {
-        this.raptor.unify(function(raptor) {
-            raptor.disableEditing();
-        });
-    }
-};
-
-/**
- * Fail handler.
- *
- * @param {Object} xhr
- */
-SaveJsonPlugin.prototype.fail = function(xhr, status, error) {
-    this.raptor.fire('save-failed', [xhr.responseJSON || xhr.responseText, status, xhr]);
-    var message = tr('saveJsonFail', {
-        failed: this.size
-    });
-    if (this.options.formatResponse) {
-        // <strict/>
-        message = this.options.formatResponse.call(this, xhr.responseJSON || xhr.responseText, status, xhr) || message;
-    }
-    aNotify({
-        text: message,
-        type: 'error'
-    });
-};
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save-json.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save-rest.js
-/**
- * @fileOverview Contains the save rest class code.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-/**
- * The save rest class.
- *
- * @constructor
- * @augments RaptorPlugin
- *
- * @param {String} name
- * @param {Object} overrides Options hash
- */
-function SaveRestPlugin(name, overrides) {
-    this.method = 'put';
-    this.options = {
-        retain: false,
-        checkDirty: true
-    };
-    RaptorPlugin.call(this, name || 'saveRest', overrides);
-}
-
-SaveRestPlugin.prototype = Object.create(RaptorPlugin.prototype);
-
-/**
- * Initializes the save rest plugin.
- *
- * @returns {Element}
- */
-// <strict/>
-
-/**
- * Saves the selection.
- */
-SaveRestPlugin.prototype.save = function() {
-    this.requests = 0;
-    this.errors = [];
-    this.messages = [];
-    this.raptor.unify(function(raptor) {
-        if (this.options.checkDirty === false || raptor.isDirty()) {
-            this.requests++;
-            var xhr = raptor.getPlugin('saveRest').sendRequest();
-            xhr.raptor = raptor;
-            xhr
-                .done(this.done.bind(this))
-                .fail(this.fail.bind(this))
-                .always(this.always.bind(this));
-        }
-    }.bind(this));
-};
-
-/**
- * @param {type} data
- * @param {type} status
- * @param {type} xhr
- */
-SaveRestPlugin.prototype.done = function(data, status, xhr) {
-    xhr.raptor.saved();
-    this.messages.push(data);
-};
-
-/**
- * @param {type} xhr
- */
-SaveRestPlugin.prototype.fail = function(xhr) {
-    this.errors.push(xhr.responseText);
-};
-
-/**
- * Action always peformed on AJAX request
- */
-SaveRestPlugin.prototype.always = function() {
-    this.requests--;
-    if (this.requests === 0) {
-        if (this.errors.length > 0 && this.messages.length === 0) {
-            aNotify({
-                text: tr('saveRestFail', {
-                    failed: this.errors.length
-                }),
-                type: 'error'
-            });
-        } else if (this.errors.length > 0) {
-            aNotify({
-                text: tr('saveRestPartial', {
-                    saved: this.messages.length,
-                    failed: this.errors.length
-                }),
-                type: 'error'
-            });
-        } else {
-            aNotify({
-                text: tr('saveRestSaved', {
-                    saved: this.messages.length
-                }),
-                type: 'success'
-            });
-            if (!this.options.retain) {
-                this.raptor.unify(function(raptor) {
-                    raptor.disableEditing();
-                });
-            }
-        }
-    }
-};
-
-/**
- * @returns {Object} AJAX promise object
- */
-SaveRestPlugin.prototype.sendRequest = function() {
-    var headers = this.raptor.getPlugin('saveRest').getHeaders(),
-        data = this.raptor.getPlugin('saveRest').getData(),
-        url = this.raptor.getPlugin('saveRest').getURL();
-    return $.ajax({
-        type: this.options.type || 'post',
-        dataType: this.options.dataType || 'json',
-        headers: headers,
-        data: data,
-        url: url
-    });
-};
-
-/**
- * @returns {SaveRestPlugin.prototype.getHeaders}
- */
-SaveRestPlugin.prototype.getHeaders = function() {
-    if (this.options.headers) {
-        return this.options.headers.call(this);
-    }
-    return {};
-};
-
-/**
- * @returns {SaveRestPlugin.prototype.getData.data}
- */
-SaveRestPlugin.prototype.getData = function() {
-    // Get the data to send to the server
-    this.raptor.clean();
-    var content = this.raptor.getHtml(),
-        data = this.options.data.call(this, content);
-    data._method = this.method;
-    return data;
-};
-
-/**
- * @returns {String} The URL to use for REST calls
- */
-SaveRestPlugin.prototype.getURL = function() {
-    if (typeof this.options.url === 'string') {
-        return this.options.url;
-    }
-    return this.options.url.call(this);
-};
-
-Raptor.registerPlugin(new SaveRestPlugin());
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/save/save-rest.js
-;
 // File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/snippet-menu/snippet-menu.js
 /**
  * @fileOverview Contains the snippet menu class code.
@@ -49903,170 +50211,6 @@ Raptor.registerUi(new DialogButton({
 }));
 ;
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/special-characters/special-characters.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/statistics/statistics.js
-/**
- * @fileOverview Contains the statistics code.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-var statisticsDialog = null;
-
-/**
- * Creates an instance of a dialog button to display the pages statistics.
- */
-Raptor.registerUi(new DialogButton({
-    name: 'statistics',
-    options: {
-        maximum: 100,
-        showCountInButton: true
-    },
-    dialogOptions: {
-        width: 350
-    },
-
-    init: function() {
-        if (this.options.showCountInButton) {
-            this.raptor.bind('change', this.updateButton.bind(this));
-        }
-        return DialogButton.prototype.init.apply(this, arguments);
-    },
-
-    applyAction: function() {
-    },
-
-    getCancelButton: function() {
-    },
-
-    getCharacterCount: function() {
-        return $('<div>').html(this.raptor.getHtml()).text().trim().length;
-    },
-
-    getContent: function() {
-        return $('<div>').html(this.raptor.getHtml()).text().trim();
-    },
-
-    updateButton: function() {
-        var charactersRemaining = null,
-            label = null,
-            characterCount = this.getCharacterCount();
-
-        // Cases where maximum has been provided
-        if (this.options.maximum) {
-            charactersRemaining = this.options.maximum - characterCount;
-            if (charactersRemaining >= 0) {
-                label = tr('statisticsButtonCharacterRemaining', {
-                    charactersRemaining: charactersRemaining
-                });
-            } else {
-                label = tr('statisticsButtonCharacterOverLimit', {
-                    charactersRemaining: charactersRemaining * -1
-                });
-            }
-        } else {
-            label = tr('statisticsButtonCharacters', {
-                characters: characterCount
-            });
-        }
-
-        aButtonSetLabel(this.button, label);
-
-        if (!this.options.maximum) {
-            return;
-        }
-
-        // Add the error state to the button's text element if appropriate
-        if (charactersRemaining < 0) {
-            this.button.addClass('ui-state-error').removeClass('ui-state-default');
-        } else{
-            // Add the highlight class if the remaining characters are in the "sweet zone"
-            if (charactersRemaining >= 0 && charactersRemaining <= 15) {
-                this.button.addClass('ui-state-highlight').removeClass('ui-state-error ui-state-default');
-            } else {
-                this.button.removeClass('ui-state-highlight ui-state-error').addClass('ui-state-default');
-            }
-        }
-    },
-
-    getButton: function() {
-        if (!this.button) {
-            Button.prototype.getButton.call(this);
-            aButton(this.button, {
-                text: true
-            });
-            if (this.options.showCountInButton) {
-                this.updateButton();
-            }
-        }
-        return this.button;
-    },
-
-    getDialogTemplate: function() {
-        return $(this.raptor.getTemplate('statistics.dialog', this.options));
-    },
-
-    /**
-     * Process and return the statistics dialog template.
-     *
-     * @return {jQuery} The processed statistics dialog template
-     */
-    openDialog: function() {
-        var dialog = this.getDialog(),
-            content = this.getContent();
-
-        // If maximum has not been set, use infinity
-        var charactersRemaining = this.options.maximum ? this.options.maximum - content.length : '&infin;';
-        if (typeIsNumber(charactersRemaining) && charactersRemaining < 0) {
-            dialog.find('[data-name=truncation]').html(tr('statisticsDialogTruncated', {
-                'limit': this.options.maximum
-            }));
-        } else {
-            dialog.find('[data-name=truncation]').html(tr('statisticsDialogNotTruncated'));
-        }
-
-        var totalWords = content.split(' ').length;
-        if (totalWords === 1) {
-            dialog.find('[data-name=words]').html(tr('statisticsDialogWord', {
-                words: totalWords
-            }));
-        } else {
-            dialog.find('[data-name=words]').html(tr('statisticsDialogWords', {
-                words: totalWords
-            }));
-        }
-
-        var totalSentences = content.split('. ').length;
-        if (totalSentences === 1) {
-            dialog.find('[data-name=sentences]').html(tr('statisticsDialogSentence', {
-                sentences: totalSentences
-            }));
-        } else {
-            dialog.find('[data-name=sentences]').html(tr('statisticsDialogSentences', {
-                sentences: totalSentences
-            }));
-        }
-
-        var characters = null;
-        if (charactersRemaining >= 0 || !typeIsNumber(charactersRemaining)) {
-            dialog.find('[data-name=characters]').html(tr('statisticsDialogCharactersRemaining', {
-                characters: content.length,
-                charactersRemaining: charactersRemaining
-            }));
-        } else {
-            dialog.find('[data-name=characters]').html(tr('statisticsDialogCharactersOverLimit', {
-                characters: content.length,
-                charactersRemaining: charactersRemaining * -1
-            }));
-        }
-        DialogButton.prototype.openDialog.call(this);
-    }
-}));
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/statistics/statistics.js
 ;
 // File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/table/table-cell-button.js
 /**
@@ -51058,94 +51202,6 @@ Raptor.registerPlugin(new ToolTipPlugin());
 ;
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/tool-tip/tool-tip.js
 ;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/unsaved-edit-warning/unsaved-edit-warning.js
-/**
- * @fileOverview Contains the unsaved edit warning plugin class code.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-var unsavedEditWarningDirty = 0,
-    unsavedEditWarningElement = null;
-
-/**
- * The unsaved edit warning plugin.
- *
- * @constructor
- * @augments RaptorPlugin
- *
- * @param {String} name
- * @param {Object} overrides Options hash.
- */
-function UnsavedEditWarningPlugin(name, overrides) {
-    RaptorPlugin.call(this, name || 'unsavedEditWarning', overrides);
-}
-
-UnsavedEditWarningPlugin.prototype = Object.create(RaptorPlugin.prototype);
-
-/**
- * Enables the unsaved edit warning plugin.
- *
- * @todo raptor details
- * @param {type} raptor
- */
-UnsavedEditWarningPlugin.prototype.enable = function(raptor) {
-    this.raptor.bind('dirty', this.show.bind(this));
-    this.raptor.bind('cleaned', this.hide.bind(this));
-};
-
-/**
- * Shows the unsaved edit warning.
- */
-UnsavedEditWarningPlugin.prototype.show = function() {
-    unsavedEditWarningDirty++;
-    elementBringToTop(this.getElement());
-    this.getElement().addClass(this.options.baseClass + '-visible');
-};
-
-/**
- * Hides the unsaved edit warning.
- *
- * @param event The mouse event that triggers the function.
- */
-UnsavedEditWarningPlugin.prototype.hide = function(event) {
-    if (--unsavedEditWarningDirty === 0) {
-        this.getElement().removeClass(this.options.baseClass + '-visible');
-    }
-};
-
-/**
- * Prepares and returns the unsaved edit warning element for use in the Raptor UI.
- *
- * @todo instance details
- * @param {type} instance
- * @returns {Element}
- */
-UnsavedEditWarningPlugin.prototype.getElement = function() {
-    if (!unsavedEditWarningElement) {
-        var dirtyClass = 'raptor-plugin-unsaved-edit-warning-dirty';
-        unsavedEditWarningElement = $(this.raptor.getTemplate('unsaved-edit-warning.warning', this.options))
-            .mouseenter(function() {
-                Raptor.eachInstance(function(raptor) {
-                    if (raptor.isDirty()) {
-                        raptor.getElement().addClass(dirtyClass);
-                    }
-                });
-            })
-            .mouseleave(function() {
-                $('.' + dirtyClass).removeClass(dirtyClass);            })
-            .appendTo('body');
-    }
-    return unsavedEditWarningElement;
-};
-
-Raptor.registerPlugin(new UnsavedEditWarningPlugin());
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/unsaved-edit-warning/unsaved-edit-warning.js
-;
 // File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/view-source/view-source.js
 /**
  * @fileOverview Contains the view source dialog code.
@@ -51201,329 +51257,6 @@ Raptor.registerUi(new DialogButton({
 }));
 ;
 // File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/plugins/view-source/view-source.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/base.js
-/**
- * @fileOverview Default options for Raptor.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-/**
- * @namespace Default options for Raptor.
- */
-Raptor.globalDefaults = {
-    /**
-     * @type Object Default layouts to use.
-     */
-    layouts: {},
-
-    /**
-     * Plugins option overrides.
-     *
-     * @type Object
-     */
-    plugins: {},
-
-    /**
-     * UI option overrides.
-     *
-     * @type Object
-     */
-    ui: {},
-
-    /**
-     * Default events to bind.
-     *
-     * @type Object
-     */
-    bind: {},
-
-    /**
-     * Namespace used for persistence to prevent conflicting with other stored
-     * values.
-     *
-     * @type String
-     */
-    namespace: null,
-
-    /**
-     * Switch to indicated that some events should be automatically applied to
-     * all editors that are 'unified'
-     *
-     * @type boolean
-     */
-    unify: true,
-
-    /**
-     * Switch to indicate whether or not to stored persistent values, if set to
-     * false the persist function will always return null
-     *
-     * @type boolean
-     */
-    persistence: true,
-
-    /**
-     * The name to store persistent values under
-     * @type String
-     */
-    persistenceName: 'uiEditor',
-
-    /**
-     * Switch to indicate whether or not to a warning should pop up when the
-     * user navigates aways from the page and there are unsaved changes
-     *
-     * @type boolean
-     */
-    unloadWarning: true,
-
-    /**
-     * Switch to automatically enabled editing on the element
-     *
-     * @type boolean
-     */
-    autoEnable: false,
-
-    /**
-     * Only enable editing on certian parts of the element
-     *
-     * @type {jQuerySelector}
-     */
-    partialEdit: false,
-
-    /**
-     * Automatically select the editable content when editing is enabled.
-     *
-     * @type boolean
-     */
-    autoSelect: 'end',
-
-    /**
-     * Switch to specify if the editor should automatically enable all plugins,
-     * if set to false, only the plugins specified in the 'plugins' option
-     * object will be enabled
-     *
-     * @type boolean
-     */
-    enablePlugins: true,
-
-    /**
-     * An array of explicitly disabled plugins.
-     *
-     * @type String[]
-     */
-    disabledPlugins: [],
-
-    /**
-     * Switch to specify if the editor should automatically enable all UI, if
-     * set to false, only the UI specified in the {@link Raptor.defaults.ui}
-     * option object will be enabled
-     *
-     * @type boolean
-     */
-    enableUi: true,
-
-    /**
-     * An array of explicitly disabled UI elements.
-     *
-     * @type String[]
-     */
-    disabledUi: [],
-
-    /**
-     * Switch to indicate that the element the editor is being applied to should
-     * be replaced with a div (useful for textareas), the value/html of the
-     * replaced element will be automatically updated when the editor element is
-     * changed
-     *
-     * @type boolean
-     */
-    replace: false,
-
-    /**
-     * A list of styles that will be copied from the replaced element and
-     * applied to the editor replacement element
-     *
-     * @type String[]
-     */
-    replaceStyle: [
-        'display', 'position', 'float', 'width',
-        'padding-left', 'padding-right', 'padding-top', 'padding-bottom',
-        'margin-left', 'margin-right', 'margin-top', 'margin-bottom'
-    ],
-
-    /**
-     *
-     * @type String
-     */
-    baseClass: 'raptor',
-
-    /**
-     * CSS class prefix that is prepended to inserted elements classes.
-     * E.g. "cms-bold"
-     *
-     * @type String
-     */
-    cssPrefix: 'cms-',
-
-    draggable: true
-};
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/base.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/full.js
-/**
- * @fileOverview Contains the full options preset.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- * @author Michael Robinson <michael@panmedia.co.nz>
- * @author Melissa Richards <melissa@panmedia.co.nz>
- */
-
-/**
- * @namespace Full options for Raptor.
- */
-Raptor.registerPreset({
-    name: 'full',
-    plugins: {
-        imageSwap: {
-            chooser: 'insertFile'
-        }
-    },
-    layouts: {
-        toolbar: {
-            uiOrder: [
-                ['logo'],
-                ['save', 'cancel'],
-                ['dockToScreen', 'dockToElement', 'guides'],
-                ['viewSource'],
-                ['historyUndo', 'historyRedo'],
-                ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
-                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
-                ['textSuper', 'textSub'],
-                ['listUnordered', 'listOrdered'],
-                ['hrCreate', 'textBlockQuote'],
-                ['textSizeDecrease', 'textSizeIncrease', 'fontFamilyMenu'],
-                ['clearFormatting', 'cleanBlock'],
-                ['linkCreate', 'linkRemove'],
-                ['embed', 'insertFile'],
-                ['floatLeft', 'floatNone', 'floatRight'],
-                ['colorMenuBasic'],
-                ['tagMenu'],
-                ['classMenu'],
-                ['snippetMenu', 'specialCharacters'],
-                ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn'],
-                ['languageMenu'],
-                ['statistics']
-            ]
-        },
-        hoverPanel: {
-            uiOrder: [
-                ['clickButtonToEdit']
-            ]
-        },
-        elementHoverPanel: {
-            elements: 'img',
-            uiOrder: [
-                ['imageResize', 'imageSwap', 'close']
-            ]
-        }
-    }
-}, true);
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/full.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/micro.js
-/**
- * @fileOverview Contains the micro options preset.
- * @license http://www.raptor-editor.com/license
- * @author David Neilsen <david@panmedia.co.nz>
- */
-
-/**
- * @namespace Micro options for Raptor.
- */
-Raptor.registerPreset({
-    name: 'micro',
-    layouts: {
-        toolbar: {
-            uiOrder: [
-                ['logo'],
-                ['save', 'cancel'],
-                ['dockToScreen', 'dockToElement'],
-                ['historyUndo', 'historyRedo'],
-                ['specialCharacters'],
-                ['languageMenu'],
-                ['statistics']
-            ]
-        },
-        hoverPanel: {
-            uiOrder: [
-                ['clickButtonToEdit', 'revisions']
-            ]
-        }
-    },
-    plugins: {
-        placeholder: false,
-        paste: {
-            panels: [
-                'plain-text'
-            ]
-        },
-        noBreak: {
-            enabled: true
-        }
-    }
-});
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/micro.js
-;
-// File start: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/inline.js
-/**
- * @fileOverview Contains the inline preset.
- * @license http://www.raptor-editor.com/license
- *
- * @author David Neilsen <david@panmedia.co.nz>
- */
-
-/**
- * @namespace Inline preset for Raptor.
- */
-Raptor.registerPreset({
-    name: 'inline',
-    classes: 'raptor-editing-inline',
-    autoEnable: true,
-    draggable: false,
-    unify: false,
-    unloadWarning: false,
-    reloadOnDisable: true,
-    plugins: {
-        unsavedEditWarning: false,
-        dock: {
-            dockToElement: true,
-            docked: true,
-            persist: false
-        }
-    },
-    layouts: {
-        toolbar: {
-            uiOrder: [
-                ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
-                ['colorMenuBasic'],
-                ['textBlockQuote'],
-                ['listOrdered', 'listUnordered'],
-                ['textSizeDecrease', 'textSizeIncrease'],
-                ['linkCreate', 'linkRemove']
-            ]
-        }
-    }
-});
-;
-// File end: /var/deployments/www.raptor-editor.com.3/raptor-gold/raptor-editor/src/presets/inline.js
 })();document.write('<style type="text/css">/*\n\
 Document   : jquery.pnotify.default.css\n\
 Created on : Nov 23, 2009, 3:14:10 PM\n\
@@ -52982,8 +52715,8 @@ Datepicker Style\n\
 /* pan/widget/datepicker-core.scss */\n\
 .ui-datepicker .ui-datepicker-prev,\n\
 .ui-datepicker .ui-datepicker-next {\n\
-  width: 14px;\n\
-  padding: 14px 0 0;\n\
+  width: 24px;\n\
+  padding: 24px 0 0;\n\
   cursor: pointer;\n\
 }\n\
 /* pan/widget/datepicker-core.scss */\n\
@@ -52996,7 +52729,7 @@ Datepicker Style\n\
 /* pan/widget/datepicker-core.scss */\n\
 .ui-datepicker table {\n\
   border-spacing: 4px;\n\
-  font-size: 18px;\n\
+  font-size: 14px;\n\
   border-collapse: separate;\n\
   margin: 0 8px 8px;\n\
 }\n\
@@ -53030,7 +52763,7 @@ Datepicker Style\n\
 .ui-datepicker .ui-datepicker-buttonpane button {\n\
   margin: 8px;\n\
   cursor: pointer;\n\
-  font-size: 18px;\n\
+  font-size: 14px;\n\
   padding: 6.4px 9.6px 6.4px 9.6px;\n\
 }\n\
 /* pan/widget/datepicker-core.scss */\n\
@@ -53044,7 +52777,7 @@ Datepicker Style\n\
 }\n\
 /* pan/widget/datepicker-core.scss */\n\
 .ui-datepicker .ui-datepicker-title select {\n\
-  font-size: 18px;\n\
+  font-size: 14px;\n\
 }\n\
 \n\
 /* pan/widget/datepicker-core.scss */\n\
@@ -53269,8 +53002,8 @@ Notification Layout\n\
 }\n\
 /* pan/widget/notification-core.scss */\n\
 .ui-notification .ui-button {\n\
-  width: 14px;\n\
-  height: 14px;\n\
+  width: 24px;\n\
+  height: 24px;\n\
   position: absolute;\n\
   right: 6px;\n\
   top: 6px;\n\
@@ -53712,7 +53445,7 @@ Tabs Style\n\
   -moz-border-radius-topleft: 0;\n\
   -webkit-border-top-left-radius: 0;\n\
   border-top-left-radius: 0;\n\
-  font-size: 18px;\n\
+  font-size: 14px;\n\
 }\n\
 /* pan/widget/tabs-core.scss */\n\
 .ui-tabs .ui-tabs-panel label, .ui-tabs .ui-tabs-panel h1, .ui-tabs .ui-tabs-panel h2, .ui-tabs .ui-tabs-panel h3, .ui-tabs .ui-tabs-panel h4, .ui-tabs .ui-tabs-panel h5, .ui-tabs .ui-tabs-panel h6, .ui-tabs .ui-tabs-panel li, .ui-tabs .ui-tabs-panel p {\n\
@@ -53800,7 +53533,7 @@ Form Style\n\
 /* form/form-core.scss */\n\
 .form-text {\n\
   margin: 0;\n\
-  font-size: 18px;\n\
+  font-size: 14px;\n\
   height: 38px;\n\
   -webkit-box-sizing: border-box;\n\
   -moz-box-sizing: border-box;\n\
@@ -54224,7 +53957,7 @@ Form Style\n\
  * @author David Neilsen <david@panmedia.co.nz>\n\
  */\n\
 /* line 9, mixins.scss */\n\
-.raptor-ui-cancel .ui-icon, .raptor-ui-class-menu .ui-icon, .raptor-ui-clean-block .ui-icon, .raptor-ui-clear-formatting .ui-icon, .raptor-ui-click-button-to-edit .ui-icon, .raptor-ui-close .ui-icon, .raptor-ui-dock-to-screen .ui-icon, .raptor-ui-dock-to-element .ui-icon, .raptor-ui-embed .ui-icon, .raptor-ui-float-left .ui-icon, .raptor-ui-float-none .ui-icon, .raptor-ui-float-right .ui-icon, .raptor-ui-guides .ui-icon, .raptor-ui-history-undo .ui-icon, .raptor-ui-history-redo .ui-icon, .raptor-ui-hr-create .ui-icon, .raptor-ui-image-resize .ui-icon, .raptor-ui-image-swap .ui-icon, .raptor-ui-insert-file .ui-icon, .raptor-ui-link-create .ui-icon, .raptor-ui-link-remove .ui-icon, .raptor-ui-list-unordered .ui-icon, .raptor-ui-list-ordered .ui-icon, .raptor-ui-save .ui-icon, .raptor-ui-snippet-menu .ui-icon, .raptor-ui-special-characters .ui-icon, .raptor-ui-statistics .ui-icon, .raptor-ui-table-create .ui-icon, .raptor-ui-table-insert-row .ui-icon, .raptor-ui-table-insert-column .ui-icon, .raptor-ui-table-delete-row .ui-icon, .raptor-ui-table-delete-column .ui-icon, .raptor-ui-table-merge-cells .ui-icon, .raptor-ui-table-split-cells .ui-icon, .raptor-ui-tag-menu .ui-icon, .raptor-ui-align-left .ui-icon, .raptor-ui-align-right .ui-icon, .raptor-ui-align-center .ui-icon, .raptor-ui-align-justify .ui-icon, .raptor-ui-text-bold .ui-icon, .raptor-ui-text-italic .ui-icon, .raptor-ui-text-strike .ui-icon, .raptor-ui-text-block-quote .ui-icon, .raptor-ui-text-size-increase .ui-icon, .raptor-ui-text-size-decrease .ui-icon, .raptor-ui-text-underline .ui-icon, .raptor-ui-text-sub .ui-icon, .raptor-ui-text-super .ui-icon, .raptor-ui-view-source .ui-icon {\n\
+.raptor-ui-cancel .ui-icon, .raptor-ui-class-menu .ui-icon, .raptor-ui-clean-block .ui-icon, .raptor-ui-clear-formatting .ui-icon, .raptor-ui-click-button-to-edit .ui-icon, .raptor-ui-close .ui-icon, .raptor-ui-dock-to-screen .ui-icon, .raptor-ui-dock-to-element .ui-icon, .raptor-ui-embed .ui-icon, .raptor-ui-float-left .ui-icon, .raptor-ui-float-none .ui-icon, .raptor-ui-float-right .ui-icon, .raptor-ui-guides .ui-icon, .raptor-ui-history-undo .ui-icon, .raptor-ui-history-redo .ui-icon, .raptor-ui-hr-create .ui-icon, .raptor-ui-image-resize .ui-icon, .raptor-ui-image-swap .ui-icon, .raptor-ui-insert-file .ui-icon, .raptor-ui-link-create .ui-icon, .raptor-ui-link-remove .ui-icon, .raptor-ui-list-unordered .ui-icon, .raptor-ui-list-ordered .ui-icon, .raptor-ui-snippet-menu .ui-icon, .raptor-ui-special-characters .ui-icon, .raptor-ui-table-create .ui-icon, .raptor-ui-table-insert-row .ui-icon, .raptor-ui-table-insert-column .ui-icon, .raptor-ui-table-delete-row .ui-icon, .raptor-ui-table-delete-column .ui-icon, .raptor-ui-table-merge-cells .ui-icon, .raptor-ui-table-split-cells .ui-icon, .raptor-ui-tag-menu .ui-icon, .raptor-ui-align-left .ui-icon, .raptor-ui-align-right .ui-icon, .raptor-ui-align-center .ui-icon, .raptor-ui-align-justify .ui-icon, .raptor-ui-text-bold .ui-icon, .raptor-ui-text-italic .ui-icon, .raptor-ui-text-strike .ui-icon, .raptor-ui-text-block-quote .ui-icon, .raptor-ui-text-size-increase .ui-icon, .raptor-ui-text-size-decrease .ui-icon, .raptor-ui-text-underline .ui-icon, .raptor-ui-text-sub .ui-icon, .raptor-ui-text-super .ui-icon, .raptor-ui-view-source .ui-icon {\n\
   width: 16px;\n\
   height: 16px;\n\
   display: block;\n\
@@ -54233,12 +53966,12 @@ Form Style\n\
 }\n\
 \n\
 /* line 16, mixins.scss */\n\
-.raptor-ui-cancel .ui-icon:before, .raptor-ui-class-menu .ui-icon:before, .raptor-ui-clean-block .ui-icon:before, .raptor-ui-clear-formatting .ui-icon:before, .raptor-ui-click-button-to-edit .ui-icon:before, .raptor-ui-close .ui-icon:before, .raptor-ui-dock-to-screen .ui-icon:before, .raptor-ui-dock-to-element .ui-icon:before, .raptor-ui-embed .ui-icon:before, .raptor-ui-float-left .ui-icon:before, .raptor-ui-float-none .ui-icon:before, .raptor-ui-float-right .ui-icon:before, .raptor-ui-guides .ui-icon:before, .raptor-ui-history-undo .ui-icon:before, .raptor-ui-history-redo .ui-icon:before, .raptor-ui-hr-create .ui-icon:before, .raptor-ui-image-resize .ui-icon:before, .raptor-ui-image-swap .ui-icon:before, .raptor-ui-insert-file .ui-icon:before, .raptor-ui-link-create .ui-icon:before, .raptor-ui-link-remove .ui-icon:before, .raptor-ui-list-unordered .ui-icon:before, .raptor-ui-list-ordered .ui-icon:before, .raptor-ui-save .ui-icon:before, .raptor-ui-snippet-menu .ui-icon:before, .raptor-ui-special-characters .ui-icon:before, .raptor-ui-statistics .ui-icon:before, .raptor-ui-table-create .ui-icon:before, .raptor-ui-table-insert-row .ui-icon:before, .raptor-ui-table-insert-column .ui-icon:before, .raptor-ui-table-delete-row .ui-icon:before, .raptor-ui-table-delete-column .ui-icon:before, .raptor-ui-table-merge-cells .ui-icon:before, .raptor-ui-table-split-cells .ui-icon:before, .raptor-ui-tag-menu .ui-icon:before, .raptor-ui-align-left .ui-icon:before, .raptor-ui-align-right .ui-icon:before, .raptor-ui-align-center .ui-icon:before, .raptor-ui-align-justify .ui-icon:before, .raptor-ui-text-bold .ui-icon:before, .raptor-ui-text-italic .ui-icon:before, .raptor-ui-text-strike .ui-icon:before, .raptor-ui-text-block-quote .ui-icon:before, .raptor-ui-text-size-increase .ui-icon:before, .raptor-ui-text-size-decrease .ui-icon:before, .raptor-ui-text-underline .ui-icon:before, .raptor-ui-text-sub .ui-icon:before, .raptor-ui-text-super .ui-icon:before, .raptor-ui-view-source .ui-icon:before {\n\
+.raptor-ui-cancel .ui-icon:before, .raptor-ui-class-menu .ui-icon:before, .raptor-ui-clean-block .ui-icon:before, .raptor-ui-clear-formatting .ui-icon:before, .raptor-ui-click-button-to-edit .ui-icon:before, .raptor-ui-close .ui-icon:before, .raptor-ui-dock-to-screen .ui-icon:before, .raptor-ui-dock-to-element .ui-icon:before, .raptor-ui-embed .ui-icon:before, .raptor-ui-float-left .ui-icon:before, .raptor-ui-float-none .ui-icon:before, .raptor-ui-float-right .ui-icon:before, .raptor-ui-guides .ui-icon:before, .raptor-ui-history-undo .ui-icon:before, .raptor-ui-history-redo .ui-icon:before, .raptor-ui-hr-create .ui-icon:before, .raptor-ui-image-resize .ui-icon:before, .raptor-ui-image-swap .ui-icon:before, .raptor-ui-insert-file .ui-icon:before, .raptor-ui-link-create .ui-icon:before, .raptor-ui-link-remove .ui-icon:before, .raptor-ui-list-unordered .ui-icon:before, .raptor-ui-list-ordered .ui-icon:before, .raptor-ui-snippet-menu .ui-icon:before, .raptor-ui-special-characters .ui-icon:before, .raptor-ui-table-create .ui-icon:before, .raptor-ui-table-insert-row .ui-icon:before, .raptor-ui-table-insert-column .ui-icon:before, .raptor-ui-table-delete-row .ui-icon:before, .raptor-ui-table-delete-column .ui-icon:before, .raptor-ui-table-merge-cells .ui-icon:before, .raptor-ui-table-split-cells .ui-icon:before, .raptor-ui-tag-menu .ui-icon:before, .raptor-ui-align-left .ui-icon:before, .raptor-ui-align-right .ui-icon:before, .raptor-ui-align-center .ui-icon:before, .raptor-ui-align-justify .ui-icon:before, .raptor-ui-text-bold .ui-icon:before, .raptor-ui-text-italic .ui-icon:before, .raptor-ui-text-strike .ui-icon:before, .raptor-ui-text-block-quote .ui-icon:before, .raptor-ui-text-size-increase .ui-icon:before, .raptor-ui-text-size-decrease .ui-icon:before, .raptor-ui-text-underline .ui-icon:before, .raptor-ui-text-sub .ui-icon:before, .raptor-ui-text-super .ui-icon:before, .raptor-ui-view-source .ui-icon:before {\n\
   display: none;\n\
 }\n\
 \n\
 /* line 20, mixins.scss */\n\
-.raptor-ui-cancel:hover .ui-icon, .raptor-ui-class-menu:hover .ui-icon, .raptor-ui-clean-block:hover .ui-icon, .raptor-ui-clear-formatting:hover .ui-icon, .raptor-ui-click-button-to-edit:hover .ui-icon, .raptor-ui-close:hover .ui-icon, .raptor-ui-dock-to-screen:hover .ui-icon, .raptor-ui-dock-to-element:hover .ui-icon, .raptor-ui-embed:hover .ui-icon, .raptor-ui-float-left:hover .ui-icon, .raptor-ui-float-none:hover .ui-icon, .raptor-ui-float-right:hover .ui-icon, .raptor-ui-guides:hover .ui-icon, .raptor-ui-history-undo:hover .ui-icon, .raptor-ui-history-redo:hover .ui-icon, .raptor-ui-hr-create:hover .ui-icon, .raptor-ui-image-resize:hover .ui-icon, .raptor-ui-image-swap:hover .ui-icon, .raptor-ui-insert-file:hover .ui-icon, .raptor-ui-link-create:hover .ui-icon, .raptor-ui-link-remove:hover .ui-icon, .raptor-ui-list-unordered:hover .ui-icon, .raptor-ui-list-ordered:hover .ui-icon, .raptor-ui-save:hover .ui-icon, .raptor-ui-snippet-menu:hover .ui-icon, .raptor-ui-special-characters:hover .ui-icon, .raptor-ui-statistics:hover .ui-icon, .raptor-ui-table-create:hover .ui-icon, .raptor-ui-table-insert-row:hover .ui-icon, .raptor-ui-table-insert-column:hover .ui-icon, .raptor-ui-table-delete-row:hover .ui-icon, .raptor-ui-table-delete-column:hover .ui-icon, .raptor-ui-table-merge-cells:hover .ui-icon, .raptor-ui-table-split-cells:hover .ui-icon, .raptor-ui-tag-menu:hover .ui-icon, .raptor-ui-align-left:hover .ui-icon, .raptor-ui-align-right:hover .ui-icon, .raptor-ui-align-center:hover .ui-icon, .raptor-ui-align-justify:hover .ui-icon, .raptor-ui-text-bold:hover .ui-icon, .raptor-ui-text-italic:hover .ui-icon, .raptor-ui-text-strike:hover .ui-icon, .raptor-ui-text-block-quote:hover .ui-icon, .raptor-ui-text-size-increase:hover .ui-icon, .raptor-ui-text-size-decrease:hover .ui-icon, .raptor-ui-text-underline:hover .ui-icon, .raptor-ui-text-sub:hover .ui-icon, .raptor-ui-text-super:hover .ui-icon, .raptor-ui-view-source:hover .ui-icon {\n\
+.raptor-ui-cancel:hover .ui-icon, .raptor-ui-class-menu:hover .ui-icon, .raptor-ui-clean-block:hover .ui-icon, .raptor-ui-clear-formatting:hover .ui-icon, .raptor-ui-click-button-to-edit:hover .ui-icon, .raptor-ui-close:hover .ui-icon, .raptor-ui-dock-to-screen:hover .ui-icon, .raptor-ui-dock-to-element:hover .ui-icon, .raptor-ui-embed:hover .ui-icon, .raptor-ui-float-left:hover .ui-icon, .raptor-ui-float-none:hover .ui-icon, .raptor-ui-float-right:hover .ui-icon, .raptor-ui-guides:hover .ui-icon, .raptor-ui-history-undo:hover .ui-icon, .raptor-ui-history-redo:hover .ui-icon, .raptor-ui-hr-create:hover .ui-icon, .raptor-ui-image-resize:hover .ui-icon, .raptor-ui-image-swap:hover .ui-icon, .raptor-ui-insert-file:hover .ui-icon, .raptor-ui-link-create:hover .ui-icon, .raptor-ui-link-remove:hover .ui-icon, .raptor-ui-list-unordered:hover .ui-icon, .raptor-ui-list-ordered:hover .ui-icon, .raptor-ui-snippet-menu:hover .ui-icon, .raptor-ui-special-characters:hover .ui-icon, .raptor-ui-table-create:hover .ui-icon, .raptor-ui-table-insert-row:hover .ui-icon, .raptor-ui-table-insert-column:hover .ui-icon, .raptor-ui-table-delete-row:hover .ui-icon, .raptor-ui-table-delete-column:hover .ui-icon, .raptor-ui-table-merge-cells:hover .ui-icon, .raptor-ui-table-split-cells:hover .ui-icon, .raptor-ui-tag-menu:hover .ui-icon, .raptor-ui-align-left:hover .ui-icon, .raptor-ui-align-right:hover .ui-icon, .raptor-ui-align-center:hover .ui-icon, .raptor-ui-align-justify:hover .ui-icon, .raptor-ui-text-bold:hover .ui-icon, .raptor-ui-text-italic:hover .ui-icon, .raptor-ui-text-strike:hover .ui-icon, .raptor-ui-text-block-quote:hover .ui-icon, .raptor-ui-text-size-increase:hover .ui-icon, .raptor-ui-text-size-decrease:hover .ui-icon, .raptor-ui-text-underline:hover .ui-icon, .raptor-ui-text-sub:hover .ui-icon, .raptor-ui-text-super:hover .ui-icon, .raptor-ui-view-source:hover .ui-icon {\n\
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);\n\
   opacity: 1;\n\
 }\n\
@@ -54330,7 +54063,7 @@ Form Style\n\
 \n\
 /* line 36, support.scss */\n\
 .raptor-unsupported-content {\n\
-  padding: 20px;\n\
+  padding: 10px;\n\
   background-color: white;\n\
   border: 1px solid #777;\n\
 }\n\
@@ -54344,7 +54077,7 @@ Form Style\n\
 .raptor-layout-toolbar-outer {\n\
   overflow: visible;\n\
   position: fixed;\n\
-  font-size: 16px;\n\
+  font-size: 12px;\n\
   z-index: 1300;\n\
   -webkit-user-select: none;\n\
   -moz-user-select: none;\n\
@@ -54392,7 +54125,7 @@ Form Style\n\
   margin-left: -1px;\n\
   margin-bottom: 5px;\n\
   margin-right: 0;\n\
-  height: 30px;\n\
+  height: 32px;\n\
   float: left;\n\
   -webkit-box-sizing: border-box;\n\
   -moz-box-sizing: border-box;\n\
@@ -54406,17 +54139,17 @@ Form Style\n\
 \n\
 /* line 56, toolbar.scss */\n\
 .raptor-layout-toolbar-group .ui-button-icon-only {\n\
-  width: 50px;\n\
+  width: 32px;\n\
 }\n\
 \n\
 /* line 60, toolbar.scss */\n\
 .raptor-layout-toolbar-group .ui-button-text-only .ui-button-text {\n\
-  padding: 5px 20px 20px 5px;\n\
+  padding: 8px 16px 10px 16px;\n\
 }\n\
 \n\
 /* line 63, toolbar.scss */\n\
 .raptor-layout-toolbar-group .ui-button-text-icon-primary .ui-button-text {\n\
-  padding: 5px 15px 15px 40px;\n\
+  padding: 8px 16px 10px 32px;\n\
 }\n\
 \n\
 /**\n\
@@ -54449,7 +54182,7 @@ Form Style\n\
 /* line 6, menu.scss */\n\
 .raptor-menu {\n\
   z-index: 1600;\n\
-  padding: 30px;\n\
+  padding: 6px;\n\
 }\n\
 \n\
 /* line 11, menu.scss */\n\
@@ -55603,16 +55336,6 @@ Form Style\n\
 }\n\
 \n\
 /**\n\
- * Save plugin.\n\
- *\n\
- * @author David Neilsen <david@panmedia.co.nz>\n\
- */\n\
-/* line 27, mixins.scss */\n\
-.raptor-ui-save .ui-icon, .raptor-ui-save.ui-state-hover .ui-icon {\n\
-  background: url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAVNJREFUeNqkU71ugzAQPowtwdAdqRLK3odg6161a+cukZonoGrElgWWDqhb16oP0AfoytStirows0QRMj/unQsohAQi5aTD5vju4/Pd2VBKwTnG6cEYe8bl6s73P09Jel8ur3H5ruv6CUiBYRgfQRAosnrCyQhLOZTLG1ImpYQSA1VVjf7dNE0gLOV0R6AXlAMSk4uiGCUQ6ITdJzDpz0SQTxAoxlqVZo+gLEuQyDxFwIQAwg4IiPV3vYbL2WyUgDBHFbxG0Um9t237sIIkSeDYYGHbur3neQMCTgqoRWEYDToh8NyLxSO4rgtpmrY14D0CUsA5h80mh/n8QQdXq7CTTN/ILMtqa9AjEDjOGrTdSnAcRwdpr1unzB5BMweiGwY8tx/H8U+WZbmUSoPJlfr3NrZLgDkXujbNXaD9DfoLAt8OFRHPfb8X+sLcW+Pc6/wnwABHMdnKf4KT4gAAAABJRU5ErkJggg==\) 0 0 !important;\n\
-}\n\
-\n\
-/**\n\
  * Snippet menu plugin.\n\
  *\n\
  * @author Melissa Richards <melissa@panmedia.co.nz>\n\
@@ -55630,17 +55353,6 @@ Form Style\n\
 /* line 27, mixins.scss */\n\
 .raptor-ui-special-characters .ui-icon, .raptor-ui-special-characters.ui-state-hover .ui-icon {\n\
   background: url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANRJREFUeNrUkz0KAjEQhZNFUAtxt9B7WC1Y2e45rDyAp1ms9yZrKXgD27VYsRELs76BF0nY+AOpHPhg5k3mEYZEd12nYiJRkRFtMPDcEs9vDGbMz+BmG8aYsAEjBWuwoIni8AHswMU7LUu0aK2FLSjBnLViXrLnzYR2kIMjaBytoZb/ssQryAJ6xt5XgwosQeFoBbWqdzqwA2EFaqeuqamPO6C4QdqCkdOSvJVe7+W6bogp2IMTmRBbSy/1bu064npiMHzzPiQe4I6Z11vQ//+ZngIMAFDvbrCjwfedAAAAAElFTkSuQmCC\) 0 0 !important;\n\
-}\n\
-\n\
-/**\n\
- * Statistics plugin\n\
- *\n\
- * @author David Neilsen <david@panmedia.co.nz>\n\
- * @author Micharl Robinson <michael@panmedia.co.nz>\n\
- */\n\
-/* line 27, mixins.scss */\n\
-.raptor-ui-statistics .ui-icon, .raptor-ui-statistics.ui-state-hover .ui-icon {\n\
-  background: url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAhFJREFUeNrEk7tv01AUxr/4kcRO7Fh1HghFgSAeYglDlIfUbGEBhaWoUxFiQWJGMDDyhzB2ZmANYmAoIvQPaIHIkVJjKyWkcdzYSR1zbhSGQhFDB47007333PN9V/cVCcMQ5wkO54wIxe+5q8Rt4gaRW+VsYo9oE1/+ZpAktjKZzL1arXatWCzmFEVhOYzH40m327U7nc7nwWDwhlLbxITN8SsDVvisXq9vtVqtuqZp2XK5HDcMg5vNZlylUon7vq+XSqXLi8WiYJqmTvWfiNkvg8e06gMqLDmOI5AIvV4P8/l8CeuzHMHn8/kcmeiWZQWk6zCD67quP280GuXNdlv4qKrwTk6WwpXoFNVqNTKdTtf6/X7C87wPzOAhrX4nCIK195KEp4aBtxyHKRm4roujozGdwQSO49LYx/7+VzIPeVEUOcsyh+wab9Ge0+SKGW3nhSzj5WiEoWlhMvHolKOIRmVIkgpZVhGPKxAEGdlsIc20zOASz/NSs9lkl4IwJuOJH+CVksDi2APPx0iYIgNlCTNYXy8hmdQkpmUGCfag2u134DgJipKGdqGAR6NjbKdVOAMbQRAiRsaCEKMaHru7XdYutRw95R+Hh0NXVTNIpXQy0KDrOVy8chOb34Z4XcjCMvZoO86p12bbBy7Tsv5dYoc4OAtFFM3BxkZ4xtzOSvvPuE98X7V//oX//ht/CjAAagzmsnB4V5cAAAAASUVORK5CYII=\) 0 0 !important;\n\
 }\n\
 \n\
 /**\n\
@@ -55882,52 +55594,6 @@ Form Style\n\
   background: -moz-linear-gradient(rgba(40, 40, 40, 0) 5px, #282828 6px, #282828), url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGAgMAAACKgJcSAAAADFBMVEUAAAAoKCgoKCgoKCj7f2xyAAAAA3RSTlMATLP00ibhAAAAJklEQVR4XgXAMRUAEBQF0GtSwK6KYrKpIIz5P4eBTcvSc808J/UBPj4IdoCAGiAAAAAASUVORK5CYII=\) no-repeat 3px 0;\n\
   background: -o-linear-gradient(rgba(40, 40, 40, 0) 5px, #282828 6px, #282828), url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGAgMAAACKgJcSAAAADFBMVEUAAAAoKCgoKCgoKCj7f2xyAAAAA3RSTlMATLP00ibhAAAAJklEQVR4XgXAMRUAEBQF0GtSwK6KYrKpIIz5P4eBTcvSc808J/UBPj4IdoCAGiAAAAAASUVORK5CYII=\) no-repeat 3px 0;\n\
   background: linear-gradient(rgba(40, 40, 40, 0) 5px, #282828 6px, #282828), url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGAgMAAACKgJcSAAAADFBMVEUAAAAoKCgoKCgoKCj7f2xyAAAAA3RSTlMATLP00ibhAAAAJklEQVR4XgXAMRUAEBQF0GtSwK6KYrKpIIz5P4eBTcvSc808J/UBPj4IdoCAGiAAAAAASUVORK5CYII=\) no-repeat 3px 0;\n\
-}\n\
-\n\
-/**\n\
- * Unsaved edit warning plugin\n\
- *\n\
- * @author Michael Robinson <michael@panmedia.co.nz>\n\
- * @author David Neilsen <david@panmedia.co.nz>\n\
- */\n\
-/* line 11, unsaved-edit-warning/unsaved-edit-warning.scss */\n\
-.raptor-plugin-unsaved-edit-warning {\n\
-  position: fixed;\n\
-  bottom: 0;\n\
-  right: 0;\n\
-  height: 30px;\n\
-  line-height: 30px;\n\
-  border: 1px solid #D4D4D4;\n\
-  padding-right: 7px;\n\
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fffff2), color-stop(100%, #edecbd));\n\
-  background: -webkit-linear-gradient(top, #fffff2, #edecbd);\n\
-  background: -moz-linear-gradient(top, #fffff2, #edecbd);\n\
-  background: -o-linear-gradient(top, #fffff2, #edecbd);\n\
-  background: linear-gradient(top, #fffff2, #edecbd);\n\
-  -webkit-transition: opacity 0.5s;\n\
-  -moz-transition: opacity 0.5s;\n\
-  -o-transition: opacity 0.5s;\n\
-  transition: opacity 0.5s;\n\
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);\n\
-  opacity: 0;\n\
-}\n\
-/* line 23, unsaved-edit-warning/unsaved-edit-warning.scss */\n\
-.raptor-plugin-unsaved-edit-warning .ui-icon {\n\
-  display: inline-block;\n\
-  float: left;\n\
-  margin: 8px 5px 0 5px;\n\
-}\n\
-\n\
-/* line 30, unsaved-edit-warning/unsaved-edit-warning.scss */\n\
-.raptor-plugin-unsaved-edit-warning-visible {\n\
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);\n\
-  opacity: 1;\n\
-}\n\
-\n\
-/* line 34, unsaved-edit-warning/unsaved-edit-warning.scss */\n\
-.raptor-plugin-unsaved-edit-warning-dirty {\n\
-  outline: 1px dotted #aaa;\n\
-  background-image: url(\data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoAQMAAAC2MCouAAAABlBMVEUAAACfn5/FQV4CAAAAAnRSTlMAG/z2BNQAAABPSURBVHhexc2xEYAgEAXRdQwILYFSKA1LsxRKIDRwOG8LMDb9++aO8tAvjps4qXMLaGNf5JglxyyEhWVBXpAfyCvyhrwjD74OySfy8dffFyMcWadc9txXAAAAAElFTkSuQmCC\) !important;\n\
 }\n\
 \n\
 /**\n\
