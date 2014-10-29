@@ -1,147 +1,67 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width">
-	<title>Raptor Editor Example</title>
+    <title>Raptor Editor Example</title>
     <link type="text/css" rel="stylesheet" href="example.css" />
     <link type="text/css" rel="stylesheet" href="../raptor-front-end.css" />
-    <link rel="stylesheet" href="css/exampletest.css" media="(max-width: 320px)">
-	<link rel="stylesheet" href="css/exampletest.css" media="(max-width: 939px)">
-
-	<script type="text/javascript" src="../raptor.js"></script>
+    <script type="text/javascript" src="../raptor.js"></script>
+	<script type="text/javascript" src="../botaoSalvar.js"></script>
     <script type="text/javascript">
-        jQuery(function($) {        
+        jQuery(function($) {
             $('.editable').raptor({
-                "plugins": {
-                    "dock": {
-                        "docked": false
+               layouts: {
+                    toolbar: {
+                        uiOrder: [
+                            ['botaoSalvar'],
+                            ['dockToElement', 'guides'],
+                            ['historyUndo', 'historyRedo'],
+                            ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
+                            ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                            ['textSuper', 'textSub'],
+                            ['listUnordered', 'listOrdered'],
+                            ['hrCreate', 'textBlockQuote'],
+                            ['textSizeDecrease', 'textSizeIncrease', 'fontFamilyMenu'],
+                            ['clearFormatting', 'cleanBlock'],
+                            ['linkCreate', 'linkRemove'],
+                            ['embed', 'fileManager', 'imageEditor'],
+                            ['floatLeft', 'floatNone', 'floatRight'],
+                            ['colorMenuBasic'],
+                            ['tagMenu'],
+                            ['classMenu'],
+                            ['snippetMenu', 'specialCharacters', 'loremIpsum'],
+                            ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn']
+                        ]
                     },
-                    alignJustify: false,
-                    languageMenu: false,
-                    tagMenu: false,
-					snippetMenu: false,
-					statistics: false,
-					dockToScreen: false,
-					dockToElement: false,
-					guides: false,
-					viewSource: false,
-					linkRemove: false,
-					textSuper: false,
-					textSub: false,
-					textBlockQuote: false,
-					clearFormatting: false,
-					hrCreate: false,
-					embed: false,
-					alignLeft: false,
-					alignCenter: false,
-					alignRight: false,
-					floatLeft: false,
-					floatNone: false,
-					floatRight: false,
-					cleanBlock: false,
-					specialCharacters: false,
-					listOrdered: false,
-					textStrike: false,
-					tableCreate: false,
-					tableInsertRow: false,
-					tableDeleteRow: false,
-					tableInsertColumn: false,
-					tableDeleteColumn: false,
-					logo: false,
-					historyRedo: false,
-					cancel: false,
-					textSizeDecrease: false,
-					textSizeIncrease: false,
-					colorMenuBasic: false
+                    hoverPanel: {
+                        uiOrder: [
+                            ['clickButtonToEdit']
+                        ]
+                    },
+                },
+				
+				//Inicialização documento conteúdo
+                bind: { 
+                    ready: function() {
+                        
+                        //var html = '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>';
+                        //this.raptor.setHtml(html);
+                        
+                        var html2 = EditorConteudoActivity.lerConteudo();
+                        this.setHtml(html2);
+                        
+                    }
                 }
+
+				
             });
         });
     </script>
-    
-    
 </head>
 <body>
-    <header>
-        <h1>Mobile Note - Teste</h1>
-    </header>
+    
     <div style="clear: both"></div>
     <div class="editable" data-id="body-1">
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-            took a galley of type and scrambled it to make a type specimen book.
-        </p>
-        <blockquote>
-            <p>
-                It has survived not only five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged.
-            </p>
-        </blockquote>
-        <p>
-            It was popularised in the 1960s with the release of Letraset sheets containing
-            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum.
-        </p>
-        <p>
-            <span class="cms-blue">This text is blue.</span>
-            <span class="cms-red">This text is red.</span>
-            <span class="cms-green">This text is green.</span>
-            <a href=".">This is an internal link.</a>
-            <a href="http://www.raptor-editor.com" target="_blank">This is an external link.</a>
-            <a href="mailto:info@raptor-editor.com?Subject=Example">This is an email link.</a>
-            <strong class="cms-bold">This text is bold.</strong>
-            <em class="cms-italic">This text is italic.</em>
-        </p>
-
-        <ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
-        </ul>
-
-        <p>
-            Text above the image.
-            <img src="raptor.png" width="100" />
-            Text below the image.
-        </p>
-        <p>
-            The image below is a link.
-            <a href="http://www.raptor-editor.com"><img src="raptor.png" width="100" /></a>
-            The image above is a link.
-        </p>
-
-        <table>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-            <tr>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-                <td>Cell</td>
-            </tr>
-        </table>
+        
     </div>
 </body>
 </html>

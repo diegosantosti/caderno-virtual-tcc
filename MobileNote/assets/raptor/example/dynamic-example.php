@@ -8,10 +8,6 @@
     <title>Raptor Editor Example</title>
     <link type="text/css" rel="stylesheet" href="example.css" />
     <link type="text/css" rel="stylesheet" href="../raptor-front-end.css" />
-
-            <link type="text/css" rel="stylesheet" href="libraries/theme.css" />
-    <script type="text/javascript" src="libraries/jquery.js"></script>
-    <script type="text/javascript" src="libraries/jquery-ui.js"></script>
     <script type="text/javascript" src="../raptor.js"></script>
     <script type="text/javascript">
         jQuery(function($) {
@@ -30,16 +26,6 @@
                     "snippetMenu": {
                         "snippets": {
                             "Grey Box": "<div class=\"grey-box\"><h1>Grey Box<\/h1><ul><li>This is a list<\/li><\/ul><\/div>"
-                        }
-                    },
-                    "save": {
-                        "plugin": "saveJson"
-                    },
-                    "saveJson": {
-                        "url": "save-json.php",
-                        "postName": "raptor-content",
-                        "id": function() {
-                            return this.raptor.getElement().data('id');
                         }
                     }
                 }
