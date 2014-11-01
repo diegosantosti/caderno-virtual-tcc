@@ -16,6 +16,7 @@ public class Materia {
 	private int cor;
 	private long id_materia;
 	private long id_caderno;
+	
 
 
 	public Materia(String nome, int diaSemana, String professor,String emailProfessor, int cor,long id_caderno) {

@@ -111,10 +111,10 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
 
 
-		// adicionando lembretes
-
 		// inserindo Agenda
-		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){	
+		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){
+			
+
 			// inserindo no Grid
 			Agenda a = new Agenda();
 			

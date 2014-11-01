@@ -1,10 +1,14 @@
 package com.appoena.mobilenote.screens;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -12,12 +16,14 @@ import android.widget.Toast;
 
 import com.appoena.mobilenote.CustomDialog;
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.modelo.Caderno;
 
 public class CustomDialogCaderno extends CustomDialog{
 	
 	private EditText 	edtCaderno;
 	private Spinner		spnColor;
-	
+
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
@@ -25,6 +31,9 @@ public class CustomDialogCaderno extends CustomDialog{
 		edtCaderno 	= (EditText) view.findViewById(R.id.edtNomeCaderno);
 		spnColor	= (Spinner) view.findViewById(R.id.spinner_color);
 		spnColor 	= setColorSpinner(spnColor);
+	
+		
+		
 		try {
 			popularCaderno();
 		} catch (Exception e) {
@@ -42,12 +51,20 @@ public class CustomDialogCaderno extends CustomDialog{
 					@Override
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
-						if(devolverCaderno())myDialog.dismiss();
-						else{
-							Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
-							edtCaderno.requestFocus();
+						if (!devolverCaderno()){
+							
+							if(edtCaderno.getText().toString().isEmpty()){
+								Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
+								edtCaderno.requestFocus();
+							}
+							else{
+								Toast.makeText(getActivity(), R.string.caderno_duplicado, Toast.LENGTH_SHORT).show();
+								edtCaderno.requestFocus();
+							}
 						}
+						else myDialog.dismiss();
 					}
+				
 				});
 				
 			}
@@ -65,12 +82,14 @@ public class CustomDialogCaderno extends CustomDialog{
 	private boolean devolverCaderno(){
 
 		int i = spnColor.getSelectedItemPosition();
+		if(getCadernoDuplicado(edtCaderno.getText().toString()))
+			return false;
 		if(!edtCaderno.getText().toString().isEmpty()){
-			params.putString(getResources().getString(R.string.NOME_CADERNO), edtCaderno.getText().toString());
-			params.putInt(getResources().getString(R.string.COR_CADERNO), i);
-			params.putBoolean(getResources().getString(R.string.EDICAO), edicao);
-			mListener.onDialogPositiveClick(CustomDialogCaderno.this, params);
-			return true;			
+				params.putString(getResources().getString(R.string.NOME_CADERNO), edtCaderno.getText().toString());
+				params.putInt(getResources().getString(R.string.COR_CADERNO), i);
+				params.putBoolean(getResources().getString(R.string.EDICAO), edicao);
+				mListener.onDialogPositiveClick(CustomDialogCaderno.this, params);
+				return true;			
 		}else{
 			return false;
 		}
@@ -83,6 +102,21 @@ public class CustomDialogCaderno extends CustomDialog{
 			edtCaderno.setText(nome);
 			spnColor.setSelection(params.getInt(getResources().getString(R.string.COR_CADERNO)));
 		}
+	}
+	
+public boolean getCadernoDuplicado(String nome){
+		
+		boolean d = false;
+		Caderno c = new Caderno();
+		ArrayList<String> list = c.nomesCadernos(getActivity());
+		for(int i = 0; i < list.size(); i++){
+			
+			if(list.get(i) == nome){
+				d = true;
+				return d;
+			}	
+		}
+		return d;
 	}
 	
 

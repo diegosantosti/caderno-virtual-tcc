@@ -1,12 +1,17 @@
 package com.appoena.mobilenote.screens;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -29,6 +34,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	private AdapterListMateria adapterMateria;
 	private ArrayList<Materia> arrayMaterias;
 	private long id_caderno;
+	private String nome_caderno;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		Intent it = getIntent();
 		params = it.getExtras();
 		id_caderno = params.getLong("id_caderno");
+		nome_caderno = params.getString("nome_caderno");
 		setBundle();
 		//teste willian
 		Materia m = new Materia();
@@ -154,8 +161,14 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			listview = (ListView) findViewById(R.id.listMaterias);
 			listview.setAdapter(adapterMateria);
 			registerForContextMenu(listview);
-			//adapterMateria.setMaterias(arrayMaterias);
-			//listview.setAdapter(adapterMateria);
+			
+			// metodo para criar o diretório do arquivo Raptor
+			File dir = new File("/Android/"+nome_caderno);
+			boolean b = dir.mkdir();
+			if(!b)
+				Log.i("ERRO", "pasta Não criada");
+
+			
 
 		}else{
 			
@@ -169,6 +182,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			listview = (ListView) findViewById(R.id.listMaterias);
 			listview.setAdapter(adapterMateria);
 			registerForContextMenu(listview);
+			
 		}
 		adapterMateria.notifyDataSetChanged();
 	}

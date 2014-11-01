@@ -41,7 +41,7 @@ public class DAOMateria {
 		valores.put("cor", cor);
 		valores.put("dia_semana", dia_semana);
 
-		bd.update("materia", valores, "materia = '"+id_materia+"'", null);
+		bd.update("materia", valores, "_id_materia = '"+id_materia+"'", null);
 	}
 
 	// deletar caderno

@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
@@ -141,6 +142,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 				long id_caderno = c.getId();
 				Bundle params = new Bundle();
 				params.putLong("id_caderno",id_caderno);
+				params.putString("nome_caderno", c.getNome());
 				it.putExtras(params);
 				startActivity(it);				
 			}
@@ -195,9 +197,11 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		
 		// inserir caderno
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
+				
 			c.incluirCaderno(this,cor,caderno);
 			arrayCaderno = c.listaCadernos(this);			
 			adapter.setCadernos(arrayCaderno);
+			
 		}else{
 			int position = params.getInt(getResources().getString(R.string.INDEX));
 			Caderno cAntes = adapter.getItem(position);
@@ -221,6 +225,8 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_caderno);
 
 	}
+	
+	
 
 
 }
