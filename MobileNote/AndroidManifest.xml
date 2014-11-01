@@ -58,6 +58,12 @@
             android:theme="@style/ThemeNoActionBar">
         </activity>
         
+        <activity 
+            android:name="com.appoena.mobilenote.screens.ActivityConfig"
+            android:label="@string/config"
+            android:theme="@style/ThemeMobileNote">
+        </activity>
+        
     </application>
 
 </manifest>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropbox"
+        android:id="@+id/btn_login"
+        android:gravity="bottom"
+        android:padding="3dp"
+        android:text="@string/button_login_drop"/>
+    <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_logout"
+        android:text="@string/button_logout_drop"
+        android:gravity="bottom"
+        android:padding="3dp"
+        android:background="@drawable/dropbox"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_config"/>
+    
+    <RadioGroup 
+        android:id="@+id/radio_sinc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    
+	<RadioButton 
+			android:id="@+id/radio_sinc_wifi"	       
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/radio_wifi"/>
+	    
+	    <RadioButton 
+			android:id="@+id/radio_sinc_3g"	       
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/radio_3g_wifi"/>
+	    
+	    <RadioButton 
+	        android:id="@+id/radio_naosinc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/radio_naosinc"/>
+
+    
+	</RadioGroup>
+
+</LinearLayout>
