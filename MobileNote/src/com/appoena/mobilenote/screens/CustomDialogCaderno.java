@@ -22,6 +22,7 @@ public class CustomDialogCaderno extends CustomDialog{
 	
 	private EditText 	edtCaderno;
 	private Spinner		spnColor;
+	private String mensagem;
 
 
 	@Override
@@ -51,20 +52,13 @@ public class CustomDialogCaderno extends CustomDialog{
 					@Override
 					public void onClick(View v) {
 						// Dispara o evento onDialogPositiveClick para a activity que estiver escutando
-						if (!devolverCaderno()){
-							
-							if(edtCaderno.getText().toString().isEmpty()){
-								Toast.makeText(getActivity(), R.string.informe_nome_caderno, Toast.LENGTH_SHORT).show();
-								edtCaderno.requestFocus();
+						
+							if(devolverCaderno()){
+								myDialog.dismiss();
+							}else{
+								Toast.makeText(getActivity(), mensagem, Toast.LENGTH_SHORT).show();
 							}
-							else{
-								Toast.makeText(getActivity(), R.string.caderno_duplicado, Toast.LENGTH_SHORT).show();
-								edtCaderno.requestFocus();
-							}
-						}
-						else myDialog.dismiss();
 					}
-				
 				});
 				
 			}
@@ -80,17 +74,20 @@ public class CustomDialogCaderno extends CustomDialog{
 	}
 	
 	private boolean devolverCaderno(){
-
+		String nome = edtCaderno.getText().toString();
 		int i = spnColor.getSelectedItemPosition();
-		if(getCadernoDuplicado(edtCaderno.getText().toString()))
+		if(getCadernoDuplicado(nome)){
+			mensagem = getResources().getString(R.string.caderno_duplicado);
 			return false;
+		}	
 		if(!edtCaderno.getText().toString().isEmpty()){
-				params.putString(getResources().getString(R.string.NOME_CADERNO), edtCaderno.getText().toString());
+				params.putString(getResources().getString(R.string.NOME_CADERNO), nome);
 				params.putInt(getResources().getString(R.string.COR_CADERNO), i);
 				params.putBoolean(getResources().getString(R.string.EDICAO), edicao);
 				mListener.onDialogPositiveClick(CustomDialogCaderno.this, params);
 				return true;			
 		}else{
+			mensagem = getResources().getString(R.string.informe_nome_caderno);
 			return false;
 		}
 	}
@@ -104,14 +101,13 @@ public class CustomDialogCaderno extends CustomDialog{
 		}
 	}
 	
-public boolean getCadernoDuplicado(String nome){
+	public boolean getCadernoDuplicado(String nome){
 		
 		boolean d = false;
 		Caderno c = new Caderno();
 		ArrayList<String> list = c.nomesCadernos(getActivity());
 		for(int i = 0; i < list.size(); i++){
-			
-			if(list.get(i) == nome){
+			if(list.get(i).equals(nome)){
 				d = true;
 				return d;
 			}	
