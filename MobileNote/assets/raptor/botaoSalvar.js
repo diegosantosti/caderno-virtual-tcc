@@ -1,5 +1,6 @@
 Raptor.registerUi(new Raptor.Button({
     name: 'botaoSalvar',
+    title: 'Salvar',
      
     action: function() {
         
