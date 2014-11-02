@@ -2,29 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
     
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/dropbox"
+        android:background="@drawable/button_drop"
         android:id="@+id/btn_login"
-        android:gravity="bottom"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom|center_horizontal"
         android:padding="3dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/font_btn_drop_vinc"
+        android:textStyle="bold"
         android:text="@string/button_login_drop"/>
     <Button 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_logout"
+        android:layout_gravity="center_horizontal"
         android:text="@string/button_logout_drop"
-        android:gravity="bottom"
+        android:gravity="bottom|center_horizontal"
         android:padding="3dp"
-        android:background="@drawable/dropbox"/>
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/font_btn_drop_excluir"
+        android:background="@drawable/button_drop"/>
     
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/radio_config"/>
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:text="@string/radio_config"
+        android:textColor="@color/font_text_pop_up"
+        android:textSize="22sp"/>
     
     <RadioGroup 
         android:id="@+id/radio_sinc"
@@ -35,19 +49,25 @@
 			android:id="@+id/radio_sinc_wifi"	       
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/radio_wifi"/>
+	        android:text="@string/radio_wifi"
+	        android:textColor="@color/font_edit"
+	        android:textSize="18sp"/>
 	    
 	    <RadioButton 
 			android:id="@+id/radio_sinc_3g"	       
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/radio_3g_wifi"/>
+	        android:text="@string/radio_3g_wifi"
+	        android:textColor="@color/font_edit"
+	        android:textSize="15sp"/>
 	    
 	    <RadioButton 
 	        android:id="@+id/radio_naosinc"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/radio_naosinc"/>
+	        android:text="@string/radio_naosinc"
+	        android:textColor="@color/font_edit"
+	        android:textSize="15sp"/>
 
     
 	</RadioGroup>

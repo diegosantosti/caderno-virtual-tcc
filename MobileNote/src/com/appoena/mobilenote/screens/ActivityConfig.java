@@ -7,8 +7,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class ActivityConfig extends Activity{
+	
+	Button btnDropLogout;
+	Button btnDropLogin;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,14 @@ public class ActivityConfig extends Activity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.save);
+		
+		btnDropLogin = (Button)findViewById(R.id.btn_login);
+		btnDropLogout = (Button)findViewById(R.id.btn_logout);
+		
+		//Nao mostra botao logout, criar metodo paara automatizar
+		btnDropLogout.setVisibility(View.GONE);
+		
+		
 		
 	}
 	
@@ -40,5 +53,7 @@ public class ActivityConfig extends Activity{
 		getMenuInflater().inflate(R.menu.config, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
+	
+
 
 }

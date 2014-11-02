@@ -46,8 +46,8 @@
     <string name="lembrar">Lembrar-me</string>
     
     <!-- Tela Config -->
-    <string name="button_login_drop">Vincular Dropbox</string>
-    <string name="button_logout_drop">Excluir Dropbox</string>
+    <string name="button_login_drop">VINCULAR CONTA</string>
+    <string name="button_logout_drop">EXCLUIR CONTA</string>
     <string name="radio_config">Configurar Sincronização</string>
     <string name="radio_wifi">Sincronizar apenas no Wi-fi</string>
     <string name="radio_3g_wifi">Sincronizar no Wi-fi e no Plano de Dados</string>

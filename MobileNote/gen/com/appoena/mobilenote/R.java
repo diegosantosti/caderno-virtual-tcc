@@ -19,10 +19,10 @@ public final class R {
     public static final class color {
         /**  Cores do tema 
          */
-        public static final int bg_actionBar=0x7f04000f;
+        public static final int bg_actionBar=0x7f040011;
         /**  Cores agenda 
          */
-        public static final int bg_agenda=0x7f04000d;
+        public static final int bg_agenda=0x7f04000f;
         public static final int bg_button_main=0x7f040003;
         public static final int bg_button_main_pressed=0x7f040004;
         public static final int bg_edit_main=0x7f040006;
@@ -31,11 +31,13 @@ public final class R {
         public static final int bg_sobre=0x7f040002;
         public static final int borda_edit=0x7f04000a;
         public static final int borda_edit_main=0x7f040007;
+        public static final int font_btn_drop_excluir=0x7f04000e;
+        public static final int font_btn_drop_vinc=0x7f04000d;
         public static final int font_edit=0x7f04000b;
         public static final int font_edit_main=0x7f040008;
         public static final int font_text_about=0x7f04000c;
         public static final int font_text_pop_up=0x7f040009;
-        public static final int fonte_list_agenda=0x7f04000e;
+        public static final int fonte_list_agenda=0x7f040010;
         public static final int text_titulo_main=0x7f040005;
     }
     public static final class dimen {
@@ -124,11 +126,10 @@ public final class R {
         public static final int lnListMateria=0x7f0a0027;
         public static final int materiaAgenda=0x7f0a0026;
         public static final int menu_add_agenda=0x7f0a0030;
-        public static final int menu_add_materia=0x7f0a0033;
+        public static final int menu_add_materia=0x7f0a0032;
         public static final int menu_del=0x7f0a002d;
         public static final int menu_edit=0x7f0a002c;
         public static final int menu_pesq_agenda=0x7f0a0031;
-        public static final int menu_sort_agenda=0x7f0a0032;
         public static final int nomeMateria=0x7f0a0028;
         public static final int profMateria=0x7f0a002a;
         public static final int radio_naosinc=0x7f0a0013;
@@ -270,7 +271,7 @@ public final class R {
          */
         public static final int AppTheme=0x7f06000d;
         public static final int MobileNote_ActionBar_Solid=0x7f060010;
-        public static final int MobileNote_ActionBarTextStyle=0x7f060011;
+        public static final int MobileNote_ActionBarTextStyle=0x7f060012;
         /**  Tema personalizado 
          */
         public static final int ThemeMobileNote=0x7f06000f;
@@ -284,7 +285,7 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int ThemeNoActionBar=0x7f060012;
+        public static final int ThemeNoActionBar=0x7f060013;
         public static final int button_circle_main=0x7f060000;
         /**   <item name="android:focusable">false</item>
          */
@@ -292,6 +293,7 @@ public final class R {
         /**   <item name="android:focusable">false</item>
          */
         public static final int edit_text_pop_up=0x7f060003;
+        public static final int teste=0x7f060011;
         public static final int text_agenda=0x7f060009;
         public static final int text_app_name_about=0x7f060008;
         public static final int text_dataHora=0x7f06000b;

@@ -13,6 +13,8 @@
     <color name="borda_edit">#919191</color>
     <color name="font_edit">#666666</color>
     <color name="font_text_about">#EDEDED</color>
+    <color name="font_btn_drop_vinc">#698c00</color>
+    <color name="font_btn_drop_excluir">#B20000</color>
     
     <!-- Cores agenda -->
     

@@ -12,12 +12,5 @@
         android:title="@string/pesquisar"
         android:icon="@drawable/ic_action_pesquisar"
         android:showAsAction="always"/>
-    
-    <item 
-        android:id="@+id/menu_sort_agenda"
-        android:title="@string/ordenar"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:showAsAction="always"/>
-    
 
 </menu>
