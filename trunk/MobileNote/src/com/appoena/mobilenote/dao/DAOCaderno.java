@@ -74,7 +74,7 @@ public class DAOCaderno {
 		String[] colunas = {"nome"};
 		
 		Cursor cursor = bd.query("caderno", colunas, null, null, null, null, "nome");
-		list.add("");
+		//list.add("");
 		if(cursor.getCount() > 0){
 			cursor.moveToFirst();
 			
