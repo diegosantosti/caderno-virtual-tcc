@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -30,12 +31,14 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private Bundle params;
 
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Caderno c = new Caderno();
 		arrayCaderno = c.listaCadernos(this);
+
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
@@ -63,7 +66,10 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			@Override
 			public void onClick(View v) {
 				setBundle();
+				Caderno c = new Caderno();
+				params.putStringArrayList("arrayNome",c.nomesCadernos(getApplication()));
 				showDialog(params);
+
 
 			}
 		});

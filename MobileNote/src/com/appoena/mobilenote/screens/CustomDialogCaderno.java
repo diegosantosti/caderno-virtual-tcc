@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,9 @@ public class CustomDialogCaderno extends CustomDialog{
 	
 	private EditText 	edtCaderno;
 	private Spinner		spnColor;
-	private String mensagem;
+	private String 		mensagem;
+	private Bundle 		params;
+	private ArrayList<String> list;
 
 
 	@Override
@@ -32,6 +35,8 @@ public class CustomDialogCaderno extends CustomDialog{
 		edtCaderno 	= (EditText) view.findViewById(R.id.edtNomeCaderno);
 		spnColor	= (Spinner) view.findViewById(R.id.spinner_color);
 		spnColor 	= setColorSpinner(spnColor);
+		
+
 	
 		
 		
@@ -93,6 +98,10 @@ public class CustomDialogCaderno extends CustomDialog{
 	}
 	
 	private void popularCaderno() {
+		/* Will, essa é a linha q está dando erro
+		list = params.getStringArrayList("arrayNome");
+		Log.i("Nome", list.get(0));*/
+
 		String nome = params.getString(getResources().getString(R.string.NOME_CADERNO));
 		if(nome!=null){
 			edicao = true;
@@ -103,9 +112,8 @@ public class CustomDialogCaderno extends CustomDialog{
 	
 	public boolean getCadernoDuplicado(String nome){
 		
+	
 		boolean d = false;
-		Caderno c = new Caderno();
-		ArrayList<String> list = c.nomesCadernos(getActivity());
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).equals(nome)){
 				d = true;

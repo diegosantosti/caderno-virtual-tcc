@@ -24,6 +24,7 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"cor_da_capa integer not null" +
 					");");
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(1,'USJT',1);");
+		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(2,'TESTE',1);");
 
 		// tabela matéria
 		bd.execSQL("create table materia(" +
