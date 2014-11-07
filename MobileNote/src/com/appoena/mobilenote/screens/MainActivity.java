@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -15,12 +14,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
-import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.modelo.Caderno;
 
 public class MainActivity extends Activity implements CustomDialogListener{
 
@@ -30,21 +28,16 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private AdapterGridCaderno adapter;
 	private Bundle params;
 
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Caderno c = new Caderno();
 		arrayCaderno = c.listaCadernos(this);
-
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
 		clickConfig();
-
-
 		adapter = new AdapterGridCaderno(this, arrayCaderno , getResources().getStringArray(R.array.array_colors));
 		gridView= (GridView) findViewById(R.id.gridView1);
 		gridView.setAdapter(adapter);
@@ -66,8 +59,6 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			@Override
 			public void onClick(View v) {
 				setBundle();
-				Caderno c = new Caderno();
-				params.putStringArrayList("arrayNome",c.nomesCadernos(getApplication()));
 				showDialog(params);
 
 
@@ -223,10 +214,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 	private void setBundle() {
 		params = new Bundle();
 		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_caderno);
+		Caderno c = new Caderno();
+		params.putStringArrayList("arrayNome",c.nomesCadernos(MainActivity.this));
 
 	}
-	
-	
-
 
 }
