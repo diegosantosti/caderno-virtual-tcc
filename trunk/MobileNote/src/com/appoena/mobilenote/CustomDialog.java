@@ -1,6 +1,6 @@
 /**
  * @author willianvalerio
- * Classe responsável por inflar o xml da activity, exibir a janela de diálogo e devolver o resultado para classe anterior.
+ * Classe respons‚Ä°vel por inflar o xml da activity, exibir a janela de di‚Ä°logo e devolver o resultado para classe anterior.
  */
 
 
@@ -12,22 +12,19 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.appoena.mobilenote.R;
-
 public class CustomDialog extends DialogFragment{
 	
-	protected View view; //responsável por inflar o xml.
-	protected Bundle params; // reponsável por enviar os parâmetros para a classe que chamou.	
-	protected CustomDialogListener mListener; // Usa essa instância da interface para entregar eventos de ação
+	protected View view; //respons‚Ä°vel por inflar o xml.
+	protected Bundle params; // repons‚Ä°vel por enviar os par‚Ä∞metros para a classe que chamou.	
+	protected CustomDialogListener mListener; // Usa essa inst‚Ä∞ncia da interface para entregar eventos de aÔøΩ‚Äπo
     protected Boolean edicao=false;
     protected AlertDialog myDialog;
 		
 	/*
-	 * A activity que criar uma instância desse dialog fragment deve implementar
+	 * A activity que criar uma inst‚Ä∞ncia desse dialog fragment deve implementar
 	 * essa interface para receber os retornos da chamada do evento.
 	 */
 	public interface CustomDialogListener{
@@ -78,7 +75,7 @@ public class CustomDialog extends DialogFragment{
 	}
 
 	/*
-	 * Sobrescreve o método onAttach para instanciar o CustomDialog 
+	 * Sobrescreve o m≈Ωtodo onAttach para instanciar o CustomDialog 
 	 */
 	@Override
 	public void onAttach(Activity activity) {
@@ -88,7 +85,7 @@ public class CustomDialog extends DialogFragment{
 			// Instancia o CustomDialog para que possamos enviar eventos para o host
 			mListener = (CustomDialogListener) activity;
 		} catch (Exception e) {
-			// Essa activity não implementa a interface, levanta exceção
+			// Essa activity n‚Äπo implementa a interface, levanta exceÔøΩ‚Äπo
 			throw new ClassCastException(activity.toString()+"deve implementar CustomDialogListener");
 
 		}
