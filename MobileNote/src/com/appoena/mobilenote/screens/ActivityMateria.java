@@ -165,13 +165,14 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			registerForContextMenu(listview);
 			
 			// metodo para criar o diretório do arquivo Raptor
-			File dir = new File("/Android/"+nome_caderno);
-			boolean b = dir.mkdir();
-			if(!b)
-				Log.i("ERRO", "pasta Não criada");
-
+			File dir = new File(Environment.getExternalStorageDirectory() + "/"+ nome_caderno +"/"+nome);
+			if(!dir.exists()){
+				boolean b = dir.mkdir();
+				if(!b){
+				Log.i("ERRO", "pasta Não criada");}
+				
+			}
 			
-
 		}else{
 			
 			int position = params.getInt(getResources().getString(R.string.INDEX));

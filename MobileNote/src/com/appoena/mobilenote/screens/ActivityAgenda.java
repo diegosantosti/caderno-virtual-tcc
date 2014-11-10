@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Reminders;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -84,6 +85,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		String hora 	= params.getString(getResources().getString(R.string.HORA_AGENDA));
 		long caderno	= params.getLong("id_caderno");
 		long materia	= params.getLong("id_materia");
+		Log.i("ID", "Caderno = "+caderno+"\nMateria = "+materia);
 		if(params.getBoolean(getResources().getString(R.string.LEMBRAR)))
 			lembrar = 1;
 		else
