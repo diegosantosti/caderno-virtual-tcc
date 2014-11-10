@@ -79,4 +79,25 @@ public class DAOMateria {
 		return (list);
 
 	}
+	
+	public ArrayList<String> consultarNomes(long id_caderno) {
+		// TODO Auto-generated method stub
+		ArrayList<String> list = new ArrayList<String>();
+		String[] colunas = {"nome"};
+		
+		Cursor cursor = bd.query("materia", colunas, "id_caderno = "+id_caderno, null, null, null, "nome");
+		//list.add("");
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			
+			do{
+				String nome = cursor.getString(0);
+				list.add(nome);
+			}while(cursor.moveToNext());
+				
+				
+		}
+		
+		return (list);
+	}
 }

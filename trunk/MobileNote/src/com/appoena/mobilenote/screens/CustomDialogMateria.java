@@ -1,5 +1,7 @@
 package com.appoena.mobilenote.screens;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -21,15 +23,20 @@ public class CustomDialogMateria extends CustomDialog{
 	private EditText edtNome;
 	private EditText edtNomeProf;
 	private EditText edtEmailProf;
+	private ArrayList<String> list;
+	private String mensagem;
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
+		list = new ArrayList<String>();
+		list = params.getStringArrayList("arrayMateria");
 		edtNome = (EditText)view.findViewById(R.id.edtNomeMateria);
 		edtNomeProf = (EditText) view.findViewById(R.id.edtNomeProfessor);
 		edtEmailProf = (EditText) view.findViewById(R.id.edtEmailProfessor);
 		spnColor = (Spinner) view.findViewById(R.id.spinner_color);
 		spnColor = setColorSpinner(spnColor);
+		mensagem = null;
 		setSpinnerSemana();
 		try {
 			popularMateria();
@@ -47,7 +54,7 @@ public class CustomDialogMateria extends CustomDialog{
 					public void onClick(View v) {
 						if(devolverMateria())myDialog.dismiss();
 						else{
-							Toast.makeText(getActivity(), R.string.informe_nome_materia, Toast.LENGTH_SHORT).show();
+							Toast.makeText(getActivity(), mensagem, Toast.LENGTH_SHORT).show();
 							edtNome.requestFocus();
 						}
 						
@@ -94,7 +101,12 @@ public class CustomDialogMateria extends CustomDialog{
 		int diaSemana = spnSemana.getSelectedItemPosition();
 		String nome = edtNome.getText().toString();
 		String nomeProf = edtNomeProf.getText().toString();
-		String emailProf = edtNomeProf.getText().toString();		
+		String emailProf = edtNomeProf.getText().toString();
+		
+		if(getMateriaDuplicada(nome)){
+			mensagem = getResources().getString(R.string.materia_duplicada);
+			return false;
+		}
 		if (!nome.isEmpty()) {
 			params.putString(getResources().getString(R.string.NOME_MATERIA), nome);
 			params.putString(getResources().getString(R.string.NOME_PROFESSOR), nomeProf);
@@ -106,8 +118,23 @@ public class CustomDialogMateria extends CustomDialog{
 			return true;	
 		}
 		else{
+			mensagem = getResources().getString(R.string.informe_nome_materia);
 			return false;
+			
 		}
+	}
+public boolean getMateriaDuplicada(String nome){
+		
+		
+		boolean d = false;
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).equals(nome)){
+				d = true;
+				return d;
+			}	
+		}
+		return d;
+
 	}
 
 }

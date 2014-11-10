@@ -140,6 +140,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	private void setBundle() {
 		params = new Bundle();
 		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_materia);
+		Materia m = new Materia();
+		params.putStringArrayList("arrayMateria", m.nomeMaterias(this, id_caderno));
 
 	}
 

@@ -12,8 +12,8 @@ public class Agenda {
 	private String 	dataAgenda;
 	private String	horaAgenda;
 	private int 	lembrar; //Wesley, variavel para despertar ou nao --Willian
-	private int 	id_materia;
-	private int 	id_caderno; //Wesley, ser‡ que precisa? -- Willian
+	private long	id_materia;
+	private long 	id_caderno; //Wesley, ser‡ que precisa? -- Willian
 	private long 	id_agenda;
 	private long 	id_evento;
 
@@ -21,7 +21,7 @@ public class Agenda {
 		
 	}
 	
-	public Agenda(String strDesc, String dtAgenda, String hrAgenda,int materia, int lembrar, int caderno,long id_evento){
+	public Agenda(String strDesc, String dtAgenda, String hrAgenda,long materia, int lembrar, long caderno,long id_evento){
 		
 		setDescricao(strDesc);
 		setDataAgenda(dtAgenda);
@@ -67,19 +67,19 @@ public class Agenda {
 		this.lembrar = lembrar;
 	}
 
-	public int getIdMateria() {
+	public long getIdMateria() {
 		return id_materia;
 	}
 
-	public void setIdMateria(int idMateria) {
+	public void setIdMateria(long idMateria) {
 		this.id_materia = idMateria;
 	}
 
-	public int getIdCaderno() {
+	public long getIdCaderno() {
 		return id_caderno;
 	}
 
-	public void setIdCaderno(int idCaderno) {
+	public void setIdCaderno(long idCaderno) {
 		this.id_caderno = idCaderno;
 	}
 	
@@ -99,13 +99,13 @@ public class Agenda {
 		this.id_evento = id;
 	}
 	// metodo para incluir tarefas
-	public void inserirTarefas(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int id_caderno, long id_evento){
+	public void inserirTarefas(Context ctx, String descricao, String data, String hora, int lembrar, long idMateria, long id_caderno, long id_evento){
 		DAOAgenda dg = new DAOAgenda(ctx);
 		dg.inserirAgenda(descricao, hora, data, idMateria, lembrar, id_caderno,id_evento);
 	}
 	
 	// metodo para alterar tarefa
-	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, int idMateria, int idCaderno,long id_evento, long idAgenda){
+	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, long idMateria, long idCaderno,long id_evento, long idAgenda){
 		DAOAgenda dg = new DAOAgenda(ctx);
 		dg.alterarAgenda(descricao, hora, data, idMateria, lembrar, idCaderno, id_evento,idAgenda);
 	}
