@@ -54,7 +54,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		m 				= new Materia();
 		listCaderno		= c.listaCadernos(getActivity());
 		spMateria 		= (Spinner)view.findViewById(R.id.spinnerMateria);
-		
+
 		// Preenchendo o Spinner Caderno
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
 		ArrayList<String> listSpCaderno = new ArrayList<String>();
@@ -129,16 +129,17 @@ public class CustomDialogAgenda extends CustomDialog{
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 				// instancia caderno a partir da posição
 				if(posicao != 0){
-					c = listCaderno.get(posicao);
+					c = listCaderno.get(posicao - 1);
 					listMateria = m.consultarMateria(getActivity(), c.getId());
 					ArrayList<String> listSpMateria = m.nomeMaterias(getActivity(), c.getId());
 					ArrayAdapter<String> adpMateria = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpMateria);
 					spMateria.setAdapter(adpMateria);
+
 				}
 
 			}
-			
-			
+
+
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				// TODO Auto-generated method stub
@@ -154,16 +155,15 @@ public class CustomDialogAgenda extends CustomDialog{
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 				// instancia caderno a partir da posição
-	
-					m = listMateria.get(posicao);
-					params.putLong("id_materia", m.getIdMateria());
-					params.putLong("id_caderno", m.getIdCaderno());
-					Log.i("Parametros", "ID_Caderno"+m.getIdCaderno()+"\nid_Materia = "+ m.getIdMateria());
-					
+
+				m = listMateria.get(posicao);
+				params.putLong("id_materia", m.getIdMateria());
+				params.putLong("id_caderno", m.getIdCaderno());
+				Log.i("Parametros", "ID_Caderno"+m.getIdCaderno()+"\nid_Materia = "+ m.getIdMateria());
 
 			}
-			
-			
+
+
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				// TODO Auto-generated method stub
