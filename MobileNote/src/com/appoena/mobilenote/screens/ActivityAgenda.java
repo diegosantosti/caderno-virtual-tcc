@@ -82,7 +82,8 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		String desc 	= params.getString(getResources().getString(R.string.DESC_AGENDA));
 		String data 	= params.getString(getResources().getString(R.string.DATA_AGENDA));
 		String hora 	= params.getString(getResources().getString(R.string.HORA_AGENDA));
-		int    caderno	= params.getInt(getResources().getString(R.id.spinnerCaderno));
+		long caderno	= params.getLong("id_caderno");
+		long materia	= params.getLong("id_materia");
 		if(params.getBoolean(getResources().getString(R.string.LEMBRAR)))
 			lembrar = 1;
 		else
@@ -131,7 +132,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 				uri = crL.insert(Reminders.CONTENT_URI, valoresL);
 			}
-			a.inserirTarefas(this, desc, data, hora, lembrar, 0, caderno,id_evento);
+			a.inserirTarefas(this, desc, data, hora, lembrar, materia, caderno,id_evento);
 			arrayAgendas = a.consultarAgenda(this);
 			adapterAgenda.setAgenda(arrayAgendas);
 
@@ -165,7 +166,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			else if(lembrarAntes == 1 || lembrar == 0)
 			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 			// alterando no BD
-			a.alterarTarefa(this, desc, data, hora, lembrar, 0, caderno,id_evento, id_agenda);
+			a.alterarTarefa(this, desc, data, hora, lembrar, materia, caderno,id_evento, id_agenda);
 			arrayAgendas = a.consultarAgenda(this);
 			adapterAgenda.setAgenda(arrayAgendas);	
 		}
@@ -220,11 +221,14 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 
 		case R.id.menu_edit:
 			Agenda a = adapterAgenda.getItem(info.position);
+			boolean lembrar = false;
 			setBundle();
 			params.putString(getResources().getString(R.string.DESC_AGENDA), a.getDescricao());
 			params.putString(getResources().getString(R.string.HORA_AGENDA), a.getHoraAgenda());
 			params.putString(getResources().getString(R.string.DATA_AGENDA), a.getDataAgenda());
-			params.putInt(getResources().getString(R.string.LEMBRAR), a.getLembrar());
+			if(a.getLembrar() == 1)
+				lembrar = true;
+			params.putBoolean(getResources().getString(R.string.LEMBRAR),lembrar);
 			params.putInt(getResources().getString(R.string.INDEX), info.position);
 			showDialog(params);
 			break;

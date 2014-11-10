@@ -97,10 +97,17 @@ public class Materia {
 	}
 	// metodo para trazer todas as tarefas cadastradas
 	public ArrayList<Materia>  consultarMateria(Context ctx, long id_caderno){
-		ArrayList<Materia> list = new ArrayList<Materia>();
 		DAOMateria dm = new DAOMateria(ctx);
-		list = dm.consultarMateria(id_caderno);
+		ArrayList<Materia> list = dm.consultarMateria(id_caderno);
 		return list;
+	}
+	
+	// metodo que retorna os nomes das materias de acordo com o caderno
+	public ArrayList<String> nomeMaterias(Context ctx, long id_caderno){
+		DAOMateria dm = new DAOMateria(ctx);
+		ArrayList<String> list = dm.consultarNomes(id_caderno);
+		return list;
+		
 	}
 
 }

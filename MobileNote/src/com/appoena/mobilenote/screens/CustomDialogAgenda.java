@@ -9,7 +9,9 @@ import android.app.Dialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +27,7 @@ import com.appoena.mobilenote.DatePickerFragment;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.TimePickerFragment;
 import com.appoena.mobilenote.modelo.Caderno;
+import com.appoena.mobilenote.modelo.Materia;
 
 public class CustomDialogAgenda extends CustomDialog{
 
@@ -33,29 +36,48 @@ public class CustomDialogAgenda extends CustomDialog{
 	private EditText edtDescricao;
 	private CheckBox checkLembrar;
 	private Spinner  spCaderno;
-	//private Spinner  spMateria;
+	private Spinner  spMateria;
+	private Caderno  c;
+	private Materia  m;
+	private ArrayList<Caderno> listCaderno;
+	private ArrayList<Materia> listMateria;
+
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
-		txtData = (TextView) view.findViewById(R.id.txtData);
-		txtHora = (TextView) view.findViewById(R.id.txtHora);
-		checkLembrar = (CheckBox) view.findViewById(R.id.checkLembrar);
-		edtDescricao = (EditText) view.findViewById(R.id.edtDescLembrete);
+		txtData 		= (TextView) view.findViewById(R.id.txtData);
+		txtHora			= (TextView) view.findViewById(R.id.txtHora);
+		checkLembrar 	= (CheckBox) view.findViewById(R.id.checkLembrar);
+		edtDescricao 	= (EditText) view.findViewById(R.id.edtDescLembrete);
+		c 				= new Caderno();
+		m 				= new Materia();
+		listCaderno		= c.listaCadernos(getActivity());
+		spMateria 		= (Spinner)view.findViewById(R.id.spinnerMateria);
 		
 		// Preenchendo o Spinner Caderno
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
-		Caderno c = new Caderno();
-		ArrayList<String> listCaderno = c.nomesCadernos((getActivity()));
-		ArrayAdapter<String> adpCaderno = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listCaderno);
+		ArrayList<String> listSpCaderno = new ArrayList<String>();
+		listSpCaderno.add(" ");
+		for(int i = 0; i < listCaderno.size();i++){
+			c = listCaderno.get(i);
+			listSpCaderno.add(c.getNome());
+
+		}
+		ArrayAdapter<String> adpCaderno = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpCaderno);
 		spCaderno.setAdapter(adpCaderno);
+
+
 		setDataHora();
 		onClickDatahora();
+		onClickSpinnerCaderno();
+		onClickSpinnerMateria();
+
 		try {
 			popularAgenda();
 		} catch (Exception e) {
 
-	}
+		}
 
 		myDialog.setOnShowListener(new DialogInterface.OnShowListener() {	
 			@Override
@@ -82,6 +104,7 @@ public class CustomDialogAgenda extends CustomDialog{
 	/**
 	 * Seta o onclick do txtData e txtHora
 	 */
+
 	private void onClickDatahora() {
 		txtData.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -98,6 +121,56 @@ public class CustomDialogAgenda extends CustomDialog{
 
 	}
 
+	public void onClickSpinnerCaderno(){
+		spCaderno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+				// instancia caderno a partir da posição
+				if(posicao != 0){
+					c = listCaderno.get(posicao);
+					listMateria = m.consultarMateria(getActivity(), c.getId());
+					ArrayList<String> listSpMateria = m.nomeMaterias(getActivity(), c.getId());
+					ArrayAdapter<String> adpMateria = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpMateria);
+					spMateria.setAdapter(adpMateria);
+				}
+
+			}
+			
+			
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
+	// metodo spinner materia
+	public void onClickSpinnerMateria(){
+		spMateria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
+				// instancia caderno a partir da posição
+	
+					m = listMateria.get(posicao);
+					params.putLong("id_materia", m.getIdMateria());
+					params.putLong("id_caderno", m.getIdCaderno());
+					Log.i("Parametros", "ID_Caderno"+m.getIdCaderno()+"\nid_Materia = "+ m.getIdMateria());
+					
+
+			}
+			
+			
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
 
 
 	static CustomDialogAgenda newInstance(){
@@ -113,7 +186,7 @@ public class CustomDialogAgenda extends CustomDialog{
 			txtData.setText(params.getString(getResources().getString(R.string.DATA_AGENDA)));
 			txtHora.setText(params.getString(getResources().getString(R.string.HORA_AGENDA)));
 			checkLembrar.setChecked(params.getBoolean(getResources().getString(R.string.LEMBRAR)));
-			
+
 		}
 
 	}
@@ -221,6 +294,7 @@ public class CustomDialogAgenda extends CustomDialog{
 
 		}	
 	};
+
 
 
 }
