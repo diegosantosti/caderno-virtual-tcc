@@ -63,6 +63,13 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				
+				//TESTE CRIAR DIRETÓRIO
+				//EXECUTA O MÉTODO PARA CRIAR O DIRETÓRIO
+				Materia materia = new Materia();
+				materia.criaDiretorio("/TesteMatDir");
+				
 				Intent it = new Intent(ActivityMateria.this, ActivityEditorConteudo.class);
 				startActivity(it);
 				
