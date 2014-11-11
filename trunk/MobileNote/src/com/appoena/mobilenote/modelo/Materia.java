@@ -1,8 +1,10 @@
 package com.appoena.mobilenote.modelo;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.os.Environment;
 
 import com.appoena.mobilenote.dao.DAOAgenda;
 import com.appoena.mobilenote.dao.DAOMateria;
@@ -108,6 +110,14 @@ public class Materia {
 		ArrayList<String> list = dm.consultarNomes(id_caderno);
 		return list;
 		
+	}
+	
+	//Método para criar um diretório
+	public void criaDiretorio(String novoDiretorio){  
+		File folder = new File(Environment.getExternalStorageDirectory() + novoDiretorio);
+		if (!folder.exists()) {
+		    folder.mkdir();
+		}
 	}
 
 }
