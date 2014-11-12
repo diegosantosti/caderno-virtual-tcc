@@ -11,9 +11,9 @@ public class Agenda {
 	private String 	descricao;
 	private String 	dataAgenda;
 	private String	horaAgenda;
-	private int 	lembrar; //Wesley, variavel para despertar ou nao --Willian
+	private int 	lembrar; 
 	private long	id_materia;
-	private long 	id_caderno; //Wesley, ser‡ que precisa? -- Willian
+	private long 	id_caderno;
 	private long 	id_agenda;
 	private long 	id_evento;
 
