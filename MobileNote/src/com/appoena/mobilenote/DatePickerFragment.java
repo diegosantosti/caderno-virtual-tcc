@@ -9,6 +9,7 @@ import android.os.Bundle;
 public class DatePickerFragment extends DialogFragment {
 	
 	OnDateSetListener ondateSet;
+	private int year, month, day;
 	
 	public DatePickerFragment() {
 	
@@ -17,8 +18,6 @@ public class DatePickerFragment extends DialogFragment {
 	public void setCallBack(OnDateSetListener ondate) {
 		ondateSet = ondate;
 	}
-
-	private int year, month, day;
 
 	@Override
 	public void setArguments(Bundle args) {

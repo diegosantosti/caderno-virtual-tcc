@@ -43,6 +43,7 @@ public class CustomDialogAgenda extends CustomDialog{
 	private ArrayList<Materia> listMateria;
 
 
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
@@ -210,7 +211,7 @@ public class CustomDialogAgenda extends CustomDialog{
 	 * Sseta a data e a hora nos txtData
 	 * e txt Hora
 	 */
-	public void setDataHora(){
+	private void setDataHora(){
 		final Calendar c = Calendar.getInstance();
 		setData(c.get(Calendar.DAY_OF_MONTH),c.get(Calendar.MONTH)+1,c.get(Calendar.YEAR));
 		setHora(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));

@@ -44,6 +44,10 @@
     <string name="prompt_sel_materia">Selecione a Matéria</string>
     <string name="vincular_materia">Vincular Matéria</string>
     <string name="lembrar">Lembrar-me</string>
+    <string name="pesq_data">Pesquisar por Data</string>
+    <string name="pesq_materia">Pesquisar por Materia</string>
+    <string name="pesq_caderno">Pesquisar por Caderno</string>
+    
     
     <!-- Tela Config -->
     <string name="button_login_drop">VINCULAR CONTA</string>
