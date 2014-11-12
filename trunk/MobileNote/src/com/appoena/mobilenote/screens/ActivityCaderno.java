@@ -21,7 +21,7 @@ import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.util.Diretorio;
 
-public class MainActivity extends Activity implements CustomDialogListener{
+public class ActivityCaderno extends Activity implements CustomDialogListener{
 
 
 	private GridView gridView;
@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onClick(View v) {
-				Intent it = new Intent(MainActivity.this, ActivitySobre.class);
+				Intent it = new Intent(ActivityCaderno.this, ActivitySobre.class);
 				startActivity(it);
 			}
 		});
@@ -96,7 +96,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			@Override
 			public void onClick(View v) {
 
-				Intent it = new Intent(MainActivity.this, ActivityAgenda.class);
+				Intent it = new Intent(ActivityCaderno.this, ActivityAgenda.class);
 				startActivity(it);
 			}
 		});
@@ -112,7 +112,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onClick(View v) {
-				Intent it = new Intent(MainActivity.this, ActivityConfig.class);
+				Intent it = new Intent(ActivityCaderno.this, ActivityConfig.class);
 				startActivity(it);
 			}
 		});
@@ -129,7 +129,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,long id) {
-				Intent it = new Intent(MainActivity.this, ActivityMateria.class);
+				Intent it = new Intent(ActivityCaderno.this, ActivityMateria.class);
 				Caderno c = adapter.getItem(position);
 				long id_caderno = c.getId();
 				Bundle params = new Bundle();
@@ -219,7 +219,7 @@ public class MainActivity extends Activity implements CustomDialogListener{
 		params = new Bundle();
 		params.putInt(getResources().getString(R.string.VIEW), R.layout.activity_adicionar_caderno);
 		Caderno c = new Caderno();
-		params.putStringArrayList("arrayNome",c.nomesCadernos(MainActivity.this));
+		params.putStringArrayList("arrayNome",c.nomesCadernos(ActivityCaderno.this));
 
 	}
 

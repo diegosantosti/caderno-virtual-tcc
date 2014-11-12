@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.appoena.mobilenote.screens.MainActivity"
+            android:name="com.appoena.mobilenote.screens.ActivityCaderno"
             android:theme="@style/ThemeMobileNote.NoActionBar"
             android:label="@string/app_name" >
             <intent-filter>

@@ -20,7 +20,7 @@ public class SplashActivity extends Activity implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		startActivity(new Intent(this, MainActivity.class));
+		startActivity(new Intent(this, ActivityCaderno.class));
 		finish();
 	}
 
