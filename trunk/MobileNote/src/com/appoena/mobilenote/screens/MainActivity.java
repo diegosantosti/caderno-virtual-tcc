@@ -19,6 +19,7 @@ import com.appoena.mobilenote.AdapterGridCaderno;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Caderno;
+import com.appoena.mobilenote.util.Diretorio;
 
 public class MainActivity extends Activity implements CustomDialogListener{
 
@@ -192,6 +193,9 @@ public class MainActivity extends Activity implements CustomDialogListener{
 			c.incluirCaderno(this,cor,caderno);
 			arrayCaderno = c.listaCadernos(this);			
 			adapter.setCadernos(arrayCaderno);
+			
+			//Chama função para criar diretório do caderno
+			Diretorio.criaDiretorio("/"+c.getNome());
 			
 		}else{
 			int position = params.getInt(getResources().getString(R.string.INDEX));
