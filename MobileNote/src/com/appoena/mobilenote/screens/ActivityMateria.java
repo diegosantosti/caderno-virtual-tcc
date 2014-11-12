@@ -1,17 +1,12 @@
 package com.appoena.mobilenote.screens;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -26,6 +21,7 @@ import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.modelo.Materia;
+import com.appoena.mobilenote.util.Diretorio;
 
 public class ActivityMateria extends Activity implements CustomDialogListener{
 	
@@ -67,10 +63,19 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 				
 				//TESTE CRIAR DIRETÓRIO
 				//EXECUTA O MÉTODO PARA CRIAR O DIRETÓRIO
-				Materia materia = new Materia();
-				materia.criaDiretorio("/TesteMatDir");
+//				Materia materia = new Materia();
+//				materia.criaDiretorio("/TesteMatDir");
 				
 				Intent it = new Intent(ActivityMateria.this, ActivityEditorConteudo.class);
+				
+				//Recupera a matéria selecionada e recupera o nome do caminho do conteúdo no formato
+				// /Caderno/Materia
+				Materia m = adapterMateria.getItem(position);
+				String nomeMateria = m.getNome();
+				Bundle paramsMateria = new Bundle();
+				
+				paramsMateria.putString("caminhoCadernoMateria", "/"+nome_caderno+"/"+nomeMateria);
+				it.putExtras(paramsMateria);				
 				startActivity(it);
 				
 			}
@@ -172,13 +177,16 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			registerForContextMenu(listview);
 			
 			// metodo para criar o diretório do arquivo Raptor
-			File dir = new File(Environment.getExternalStorageDirectory() + "/"+ nome_caderno +"/"+nome);
-			if(!dir.exists()){
-				boolean b = dir.mkdir();
-				if(!b){
-				Log.i("ERRO", "pasta Não criada");}
-				
-			}
+//			File dir = new File(Environment.getExternalStorageDirectory() + "/"+ nome_caderno +"/"+nome);
+//			if(!dir.exists()){
+//				boolean b = dir.mkdir();
+//				if(!b){
+//				Log.i("ERRO", "pasta Não criada");}
+//				
+//			}
+			
+			//Chama função para criar diretório
+			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome);
 			
 		}else{
 			

@@ -112,12 +112,4 @@ public class Materia {
 		
 	}
 	
-	//Método para criar um diretório
-	public void criaDiretorio(String novoDiretorio){  
-		File folder = new File(Environment.getExternalStorageDirectory() + novoDiretorio);
-		if (!folder.exists()) {
-		    folder.mkdir();
-		}
-	}
-
 }

@@ -11,7 +11,7 @@ import android.util.Log;
 public class Conteudo {
 	
 	
-	public void salvarConteudo(String conteudo){
+	public void salvarConteudo(String caminho , String conteudo){
 		//escrever o conteúdo num arquivo txt
 		
 	     File arq;
@@ -19,7 +19,7 @@ public class Conteudo {
 	      try
 	      {
 	          	             
-	    	  arq = new File(Environment.getExternalStorageDirectory(),"conteudo.txt");
+	    	  arq = new File(Environment.getExternalStorageDirectory()+caminho,"conteudo.txt");
 	          FileOutputStream fos;
 	             
 	          dados = conteudo.getBytes();
@@ -39,7 +39,7 @@ public class Conteudo {
 	
 //	Método responsável por ler um conteúdo, se não for possível encontrar, retorna um conteúdo padrão
 	
-	public String lerConteudo(){
+	public String lerConteudo(String caminho){
 		String lstrNomeArq;
 	     File arq; 
 	     String lstrlinha;
@@ -48,7 +48,7 @@ public class Conteudo {
 	     {
 	    	 lstrNomeArq = "conteudo.txt";
 	 	             
-			arq = new File(Environment.getExternalStorageDirectory(), lstrNomeArq);
+			arq = new File(Environment.getExternalStorageDirectory()+caminho, lstrNomeArq);
 			BufferedReader br = new BufferedReader(new FileReader(arq));
 	         
 						
