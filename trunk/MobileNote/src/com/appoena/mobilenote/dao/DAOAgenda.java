@@ -2,13 +2,12 @@ package com.appoena.mobilenote.dao;
 
 import java.util.ArrayList;
 
-import com.appoena.mobilenote.modelo.Agenda;
-import com.appoena.mobilenote.modelo.Caderno;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.appoena.mobilenote.modelo.Agenda;
 
 public class DAOAgenda {
 
