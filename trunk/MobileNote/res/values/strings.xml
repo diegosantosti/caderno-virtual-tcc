@@ -75,6 +75,7 @@
     <string name="informe_descricao_agenda">Informe a descrição do lembrete.</string>
     <string name="caderno_duplicado">Esse caderno já existe.</string>
     <string name="materia_duplicada">Essa matéria já existe.</string>
+    <string name="email_invalido"> e-mail inválido</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>

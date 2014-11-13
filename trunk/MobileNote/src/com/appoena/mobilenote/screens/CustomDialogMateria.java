@@ -1,6 +1,8 @@
 package com.appoena.mobilenote.screens;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,7 +19,7 @@ import com.appoena.mobilenote.CustomDialog;
 import com.appoena.mobilenote.R;
 
 public class CustomDialogMateria extends CustomDialog{
-	
+
 	private Spinner spnColor;
 	private Spinner spnSemana;
 	private EditText edtNome;
@@ -25,7 +27,7 @@ public class CustomDialogMateria extends CustomDialog{
 	private EditText edtEmailProf;
 	private ArrayList<String> list;
 	private String mensagem;
-	
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
@@ -44,12 +46,12 @@ public class CustomDialogMateria extends CustomDialog{
 			// nao faz nada
 		}
 		myDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-			
+
 			@Override
 			public void onShow(DialogInterface dialog) {
 				Button b = myDialog.getButton(AlertDialog.BUTTON_POSITIVE);
 				b.setOnClickListener(new View.OnClickListener() {
-					
+
 					@Override
 					public void onClick(View v) {
 						if(devolverMateria())myDialog.dismiss();
@@ -57,30 +59,30 @@ public class CustomDialogMateria extends CustomDialog{
 							Toast.makeText(getActivity(), mensagem, Toast.LENGTH_SHORT).show();
 							edtNome.requestFocus();
 						}
-						
+
 					}
 				});
-				
+
 			}
 		});
-		
+
 		return myDialog;
 	}
-	
+
 	static CustomDialogMateria newInstance(){
 		CustomDialogMateria dialog= new CustomDialogMateria();
 		return dialog;
 	}
-	
+
 	private void setSpinnerSemana() {
 		spnSemana = (Spinner) view.findViewById(R.id.spinnerDiaSemana);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, 
-																	getResources().getStringArray(R.array.array_semana));
+				getResources().getStringArray(R.array.array_semana));
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		spnSemana.setAdapter(adapter);
 
 	}
-	
+
 	private void popularMateria() {
 		String nome = params.getString(getResources().getString(R.string.NOME_MATERIA));
 		if(nome!=null){
@@ -90,21 +92,25 @@ public class CustomDialogMateria extends CustomDialog{
 			edtEmailProf.setText(params.getString(getResources().getString(R.string.EMAIL_PROFESSOR)));
 			spnColor.setSelection(params.getInt(getResources().getString(R.string.COR_MATERIA)));
 			spnSemana.setSelection(params.getInt(getResources().getString(R.string.DIA_SEMANA)));
-			
+
 		}
 
 	}
-	
+
 	private boolean devolverMateria() {
-		
+
 		int cor = spnColor.getSelectedItemPosition();
 		int diaSemana = spnSemana.getSelectedItemPosition();
 		String nome = edtNome.getText().toString();
 		String nomeProf = edtNomeProf.getText().toString();
-		String emailProf = edtNomeProf.getText().toString();
-		
+		String emailProf = edtEmailProf.getText().toString();
+
 		if(getMateriaDuplicada(nome)){
 			mensagem = getResources().getString(R.string.materia_duplicada);
+			return false;
+		}
+		if(!validaEmail(emailProf)){
+			mensagem = getResources().getString(R.string.email_invalido);
 			return false;
 		}
 		if (!nome.isEmpty()) {
@@ -120,12 +126,12 @@ public class CustomDialogMateria extends CustomDialog{
 		else{
 			mensagem = getResources().getString(R.string.informe_nome_materia);
 			return false;
-			
+
 		}
 	}
-public boolean getMateriaDuplicada(String nome){
-		
-		
+	public boolean getMateriaDuplicada(String nome){
+
+
 		boolean d = false;
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).equals(nome)){
@@ -136,5 +142,19 @@ public boolean getMateriaDuplicada(String nome){
 		return d;
 
 	}
+	public static boolean validaEmail(String email)  
+    {  
+        boolean isEmailIdValid = false;  
+        if (email != null && email.length() > 0) {  
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";  
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);  
+            Matcher matcher = pattern.matcher(email);  
+            if (matcher.matches()) {  
+                isEmailIdValid = true;  
+            }  
+        }  
+        return isEmailIdValid;  
+    } 
+
 
 }
