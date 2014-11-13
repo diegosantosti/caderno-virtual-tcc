@@ -19,8 +19,8 @@ public class BDMobileNote extends SQLiteOpenHelper {
 		// TODO Auto-generated method sbdb
 		// criando base de dados tabela caderno
 		bd.execSQL(	"create table caderno(" +
-					"_id_caderno integer primary key, " +
-					"nome text unique on CONFLICT REPLACE," +
+					"_id_caderno integer primary key autoincrement, " +
+					"nome text," +
 					"cor_da_capa integer not null" +
 					");");
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(1,'USJT',1);");
@@ -48,7 +48,12 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"lembrar integer not null,"+
 					"id_evento integer not null" +
 					");");
-		//bd.execSQL("insert into agenda(_id_agenda,descricao,id_materia,id_caderno,hora,data,lembrar) values (1,'Teste',null,null,'19:00','14/12/2014',1);");
+		// tabela configuracao
+		bd.execSQL(	"create table configuracao(" +
+					"_id_config integer primary key autoincrement, " +
+					"token text," +
+					"sync integer not null" +
+					");");
 	}
 	
 	@Override

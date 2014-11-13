@@ -295,7 +295,6 @@ public class CustomDialogAgenda extends CustomDialog{
 
 		}	
 	};
-
-
-
+	
+	
 }
