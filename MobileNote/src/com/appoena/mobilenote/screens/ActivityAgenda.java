@@ -27,6 +27,7 @@ import com.appoena.mobilenote.AdapterListAgenda;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Agenda;
+import com.appoena.mobilenote.modelo.Materia;
 
 public class ActivityAgenda extends Activity implements CustomDialogListener{
 
@@ -85,6 +86,8 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		String hora 	= params.getString(getResources().getString(R.string.HORA_AGENDA));
 		long caderno	= params.getLong("id_caderno");
 		long materia	= params.getLong("id_materia");
+		Materia m		= new Materia();
+		String nomeMateria		= m.nomeMateria(this,materia);
 		Log.i("ID", "Caderno = "+caderno+"\nMateria = "+materia);
 		if(params.getBoolean(getResources().getString(R.string.LEMBRAR)))
 			lembrar = 1;
@@ -108,7 +111,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		ContentValues valores =  new ContentValues();
 		valores.put(Events.DTSTART, beginTime.getTimeInMillis());
 		valores.put(Events.DTEND, endTime.getTimeInMillis());
-		valores.put(Events.TITLE, desc);
+		valores.put(Events.TITLE, "Mobile Note - " +nomeMateria + " - " + desc);
 		valores.put(Events.DESCRIPTION, desc);
 		valores.put(Events.CALENDAR_ID, 3);
 		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
@@ -231,7 +234,10 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			if(a.getLembrar() == 1)
 				lembrar = true;
 			params.putBoolean(getResources().getString(R.string.LEMBRAR),lembrar);
-			params.putInt(getResources().getString(R.string.INDEX), info.position);
+			params.putLong("id_caderno_ed", a.getIdCaderno());
+			params.putLong("id_materia_ed", a.getIdMateria());
+			Log.i("Qual id Materia",""+a.getIdMateria());
+			params.putBoolean("edicao", true);
 			showDialog(params);
 			break;
 		}

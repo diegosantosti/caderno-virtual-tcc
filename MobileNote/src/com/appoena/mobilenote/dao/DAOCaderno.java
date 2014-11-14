@@ -21,14 +21,7 @@ public class DAOCaderno {
 	// inserir dados na tabela caderno
 	public void inserirCaderno(String nome, int cor){
 		
-		
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(null,'"+nome+"',"+cor+");");
-
-		/*ContentValues valores =  new ContentValues();
-		valores.put("nome", nome);
-		valores.put("cor_da_capa",cor);
-
-		bd.insert("caderno", null, valores);*/
 
 	}
 
@@ -87,6 +80,26 @@ public class DAOCaderno {
 		}
 		
 		return (list);
+	}
+	// Retorna o nome a partir do caderno
+	public String nomeCaderno(long id){
+		
+		String[] colunas = {"nome"};
+		String nome = "";
+		Cursor cursor = bd.query("caderno", colunas, "_id_caderno = "+id, null, null, null, null);
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			
+			do{
+				nome = cursor.getString(0);
+				
+			}while(cursor.moveToNext());
+				
+				
+		}
+		
+		return nome;
+		
 	}
 	
 }

@@ -68,7 +68,7 @@ public class DAOMateria {
 				m.setCor(cursor.getInt(4));
 				m.setDiaSemana(cursor.getInt(5));
 				m.setIdCaderno(cursor.getLong(6));
-				
+
 
 				list.add(m);
 			}while(cursor.moveToNext());
@@ -79,25 +79,45 @@ public class DAOMateria {
 		return (list);
 
 	}
-	
+
 	public ArrayList<String> consultarNomes(long id_caderno) {
 		// TODO Auto-generated method stub
 		ArrayList<String> list = new ArrayList<String>();
 		String[] colunas = {"nome"};
-		
+
 		Cursor cursor = bd.query("materia", colunas, "id_caderno = "+id_caderno, null, null, null, "nome");
-		//list.add("");
+		//list.add("----Matéria----");
 		if(cursor.getCount() > 0){
 			cursor.moveToFirst();
-			
+
 			do{
 				String nome = cursor.getString(0);
 				list.add(nome);
 			}while(cursor.moveToNext());
-				
-				
-		}
-		
+
+
+		}	
+
 		return (list);
+	}
+
+	public String nomeMateria(long id){
+
+		String[] colunas = {"nome"};
+		String nome = "";
+		Cursor cursor = bd.query("materia", colunas, "_id_materia= "+id, null, null, null, null);
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+
+			do{
+				nome = cursor.getString(0);
+
+			}while(cursor.moveToNext());
+
+
+		}
+
+		return nome;
+
 	}
 }

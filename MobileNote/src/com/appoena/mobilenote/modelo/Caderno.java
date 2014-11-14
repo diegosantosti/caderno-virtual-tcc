@@ -79,5 +79,13 @@ public class Caderno {
 		list = dc.consultarNomes();
 		return list;
 	}
+	
+	// retorna nome do caderno
+	public String nomeCaderno(Context ctx, long id){
+		String nome;
+		DAOCaderno dc = new DAOCaderno(ctx);
+		nome = dc.nomeCaderno(id);
+		return nome;
+	}
 
 }

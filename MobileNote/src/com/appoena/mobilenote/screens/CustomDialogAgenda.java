@@ -41,6 +41,8 @@ public class CustomDialogAgenda extends CustomDialog{
 	private Materia  m;
 	private ArrayList<Caderno> listCaderno;
 	private ArrayList<Materia> listMateria;
+	private ArrayList<String> listSpCaderno;
+	private ArrayList<String> listSpMateria;
 
 
 
@@ -58,8 +60,8 @@ public class CustomDialogAgenda extends CustomDialog{
 
 		// Preenchendo o Spinner Caderno
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
-		ArrayList<String> listSpCaderno = new ArrayList<String>();
-		listSpCaderno.add(" ");
+		listSpCaderno = new ArrayList<String>();
+		listSpCaderno.add("Escolha o Caderno");
 		for(int i = 0; i < listCaderno.size();i++){
 			c = listCaderno.get(i);
 			listSpCaderno.add(c.getNome());
@@ -130,13 +132,31 @@ public class CustomDialogAgenda extends CustomDialog{
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
 				// instancia caderno a partir da posição
 				if(posicao != 0){
+					spMateria.setEnabled(true);
 					c = listCaderno.get(posicao - 1);
 					listMateria = m.consultarMateria(getActivity(), c.getId());
-					ArrayList<String> listSpMateria = m.nomeMaterias(getActivity(), c.getId());
+					listSpMateria = m.nomeMaterias(getActivity(), c.getId());
 					ArrayAdapter<String> adpMateria = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpMateria);
 					spMateria.setAdapter(adpMateria);
+					if(params.getBoolean("edicao")){
+						String nomeMateria = m.nomeMateria(getActivity(), params.getLong("id_materia_ed"));
+						Log.i("Nome da Materia", nomeMateria);
+						for (int i = 0; i < listSpMateria.size(); i++) {
+							if (listSpMateria.get(i).toString().equals(nomeMateria)) {
+								spMateria.setSelection(i);
+								spMateria.setTag(nomeMateria);
+							}
+
+						}
+						
+					}
+					
 
 				}
+				else
+					spMateria.setEnabled(false);
+					params.putLong("id_caderno",0);
+					
 
 			}
 
@@ -150,17 +170,15 @@ public class CustomDialogAgenda extends CustomDialog{
 	}
 	// metodo spinner materia
 	public void onClickSpinnerMateria(){
+		
 		spMateria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-				// instancia caderno a partir da posição
-
+				// instancia materia a partir da posição
 				m = listMateria.get(posicao);
-				params.putLong("id_materia", m.getIdMateria());
 				params.putLong("id_caderno", m.getIdCaderno());
-				Log.i("Parametros", "ID_Caderno"+m.getIdCaderno()+"\nid_Materia = "+ m.getIdMateria());
+				params.putLong("id_materia", m.getIdMateria());
 
 			}
 
@@ -188,6 +206,18 @@ public class CustomDialogAgenda extends CustomDialog{
 			txtHora.setText(params.getString(getResources().getString(R.string.HORA_AGENDA)));
 			checkLembrar.setChecked(params.getBoolean(getResources().getString(R.string.LEMBRAR)));
 
+			//alterando a posição do spinner caderno
+			String nomeCaderno = c.nomeCaderno(getActivity(), params.getLong("id_caderno_ed"));
+			for (int i = 0; i < listSpCaderno.size(); i++) {
+				if (listSpCaderno.get(i).toString().equals(nomeCaderno)) {
+					spCaderno.setSelection(i);
+					spCaderno.setTag(nomeCaderno);
+				}
+
+			}
+			
+			
+			
 		}
 
 	}
@@ -295,6 +325,6 @@ public class CustomDialogAgenda extends CustomDialog{
 
 		}	
 	};
-	
-	
+
+
 }
