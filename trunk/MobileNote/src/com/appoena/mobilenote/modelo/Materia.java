@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Environment;
 
 import com.appoena.mobilenote.dao.DAOAgenda;
+import com.appoena.mobilenote.dao.DAOCaderno;
 import com.appoena.mobilenote.dao.DAOMateria;
 
 public class Materia {
@@ -111,5 +112,13 @@ public class Materia {
 		return list;
 		
 	}
+	
+	// retorna nome do materia
+		public String nomeMateria(Context ctx, long id){
+			String nome;
+			DAOMateria dm = new DAOMateria(ctx);
+			nome = dm.nomeMateria(id);
+			return nome;
+		}
 	
 }

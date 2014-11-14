@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.appoena.mobilenote.modelo.Agenda;
+import com.appoena.mobilenote.modelo.Materia;
 
 public class AdapterListAgenda extends BaseAdapter {
 	
@@ -62,11 +63,13 @@ public class AdapterListAgenda extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		convertView = inflater.inflate(R.layout.row_agenda, null);
-		Agenda a = getItem(position);	
+		Agenda a = getItem(position);
+		Materia m = new Materia();
 		boolean lembrar;
 		((TextView) convertView.findViewById(R.id.titAgenda)).setText(a.getDescricao());
 		((TextView) convertView.findViewById(R.id.horaAgenda)).setText(a.getHoraAgenda());
 		((TextView) convertView.findViewById(R.id.dataAgenda)).setText(a.getDataAgenda());
+		//((TextView) convertView.findViewById(R.id.materiaAgenda)).setText(""+ m.nomeMateria(ActivityAgenda(), a.getIdMateria()));
 		
 		//if para converter o campo lembrar =  1,  não lembrar = 0
 		if(a.getLembrar() == 1){
