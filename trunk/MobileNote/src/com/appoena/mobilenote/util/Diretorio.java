@@ -25,9 +25,10 @@ public abstract class Diretorio {
 			diretorioAntigo = substituirEspacosBrancosUnderline(diretorioAntigo);
 			diretorioNovo = substituirEspacosBrancosUnderline(diretorioNovo);
 			File folderAntigo = new File(Environment.getExternalStorageDirectory() + ROOT + "/" +  diretorioAntigo);
-			File folderNovo = new File(Environment.getExternalStorageDirectory() + ROOT + "/" +  diretorioNovo);
+			File folderNovo = 	new File(Environment.getExternalStorageDirectory() + ROOT + "/" +  diretorioNovo);
+
 			if (folderAntigo.exists()) {
-			    folderAntigo.renameTo(folderNovo);
+				folderAntigo.renameTo(folderNovo);
 			}
 		}
 		

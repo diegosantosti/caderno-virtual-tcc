@@ -182,7 +182,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			m.alterarMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno, id_materia);
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
 			adapterMateria.setMaterias(arrayMaterias);
-			Diretorio.renomearDiretorio(m.getNome(), mAntes.getNome());
+			Diretorio.renomearDiretorio("/"+nome_caderno+"/"+m.getNome(),"/"+nome_caderno+"/"+mAntes.getNome());
 				
 		}
 		adapterMateria.notifyDataSetChanged();
