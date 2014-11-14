@@ -18,6 +18,22 @@ public abstract class Diretorio {
 			    folder.mkdir();
 			}
 		}
+
+		
+		public static void renomearDiretorio(String diretorio){  
+			File folder = new File(Environment.getExternalStorageDirectory() + diretorio);
+			if (folder.exists()) {
+			    folder.renameTo(folder);
+			}
+		}
+		
+		public static void excluirDiretorio(String diretorio){  
+			File folder = new File(Environment.getExternalStorageDirectory() + diretorio);
+			if (folder.exists()) {
+			    folder.delete();
+			}
+		}
+		
 		
 		//método responsável por substitui espaçoes em brancos por underline 
 		//atuazliar
@@ -28,5 +44,6 @@ public abstract class Diretorio {
 		    String res = matcher.replaceAll("_");
 			return res;
 		}
+
 
 }
