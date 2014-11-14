@@ -54,8 +54,8 @@
         
         <activity 
             android:name="com.appoena.mobilenote.screens.ActivityEditorConteudo"
-            android:label="@string/editor"
-            android:theme="@style/ThemeNoActionBar">
+            android:label="@string/conteudo"
+            android:theme="@style/ThemeMobileNote">
         </activity>
         
         <activity 
