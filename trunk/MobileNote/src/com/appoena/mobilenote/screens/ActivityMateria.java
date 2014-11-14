@@ -19,7 +19,6 @@ import android.widget.ListView;
 import com.appoena.mobilenote.AdapterListMateria;
 import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
-import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.modelo.Materia;
 import com.appoena.mobilenote.util.Diretorio;
 
@@ -124,9 +123,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		long id_materia = m.getIdMateria();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			//Wesley, nao precisa instanciar outra materia, basta usar a m - WILL
-			//Obrigado 13
-			m.deletarTarefa(this, id_materia);
+			Diretorio.excluirDiretorio(m.getNome()); //excluir diretorio
+			m.deletarMateria(this, id_materia); 
 			adapterMateria.removeAtPosition(info.position);
 			adapterMateria.notifyDataSetChanged();
 			break;
@@ -173,23 +171,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			
 			m.inserirMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno);
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
-			adapterMateria = new AdapterListMateria(this, arrayMaterias, getResources().getStringArray(R.array.array_colors),
-														getResources().getStringArray(R.array.array_semana));
-			listview = (ListView) findViewById(R.id.listMaterias);
-			listview.setAdapter(adapterMateria);
-			registerForContextMenu(listview);
-			
-			// metodo para criar o diretório do arquivo Raptor
-//			File dir = new File(Environment.getExternalStorageDirectory() + "/"+ nome_caderno +"/"+nome);
-//			if(!dir.exists()){
-//				boolean b = dir.mkdir();
-//				if(!b){
-//				Log.i("ERRO", "pasta Não criada");}
-//				
-//			}
-			
-			//Chama função para criar diretório
-			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome);
+			adapterMateria.setMaterias(arrayMaterias);
+			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome); //cria o diretorio
 			
 		}else{
 			
@@ -198,12 +181,9 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			long id_materia = mAntes.getIdMateria();
 			m.alterarMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno, id_materia);
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
-			adapterMateria = new AdapterListMateria(this, arrayMaterias, getResources().getStringArray(R.array.array_colors),
-														getResources().getStringArray(R.array.array_semana));
-			listview = (ListView) findViewById(R.id.listMaterias);
-			listview.setAdapter(adapterMateria);
-			registerForContextMenu(listview);
-			
+			adapterMateria.setMaterias(arrayMaterias);
+			Diretorio.renomearDiretorio(m.getNome(), mAntes.getNome());
+				
 		}
 		adapterMateria.notifyDataSetChanged();
 	}

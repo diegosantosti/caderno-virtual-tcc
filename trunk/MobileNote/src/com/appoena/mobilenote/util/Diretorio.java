@@ -8,27 +8,32 @@ import android.os.Environment;
 
 public abstract class Diretorio {
 	
+	private static String ROOT = "/com.appoena.mobilenote";
+	
 	//Método para criar um diretório
 		public static void criaDiretorio(String novoDiretorio){  
-			//Substitui espaços em brancos por underline
-			novoDiretorio = Diretorio.substituirEspacosBrancosUnderline(novoDiretorio);
 			
-			File folder = new File(Environment.getExternalStorageDirectory() +"/com.appoena.mobilenote" + novoDiretorio);
+			novoDiretorio = substituirEspacosBrancosUnderline(novoDiretorio);//Substitui espaços em brancos por underline
+			
+			File folder = new File(Environment.getExternalStorageDirectory() + ROOT + novoDiretorio);
 			if (!folder.exists()) {
 			    folder.mkdir();
 			}
 		}
-
 		
-		public static void renomearDiretorio(String diretorio){  
-			File folder = new File(Environment.getExternalStorageDirectory() + diretorio);
-			if (folder.exists()) {
-			    folder.renameTo(folder);
+		public static void renomearDiretorio(String diretorioNovo, String diretorioAntigo){ 
+			diretorioAntigo = substituirEspacosBrancosUnderline(diretorioAntigo);
+			diretorioNovo = substituirEspacosBrancosUnderline(diretorioNovo);
+			File folderAntigo = new File(Environment.getExternalStorageDirectory() + ROOT + "/" +  diretorioAntigo);
+			File folderNovo = new File(Environment.getExternalStorageDirectory() + ROOT + "/" +  diretorioNovo);
+			if (folderAntigo.exists()) {
+			    folderAntigo.renameTo(folderNovo);
 			}
 		}
 		
-		public static void excluirDiretorio(String diretorio){  
-			File folder = new File(Environment.getExternalStorageDirectory() + diretorio);
+		public static void excluirDiretorio(String diretorio){
+			diretorio = substituirEspacosBrancosUnderline(diretorio);
+			File folder = new File(Environment.getExternalStorageDirectory() + ROOT + "/" + diretorio);
 			if (folder.exists()) {
 			    folder.delete();
 			}

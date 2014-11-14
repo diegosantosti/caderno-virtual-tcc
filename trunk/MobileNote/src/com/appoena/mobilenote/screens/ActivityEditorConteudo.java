@@ -63,32 +63,7 @@ public class ActivityEditorConteudo extends Activity{
 		String conteudo = cont.lerConteudo(caminho);
 		return conteudo;
 	}
-	
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.menu_conteudo, menu);
-//		if(edicao){
-//			menu.findItem(R.id.menu_salvar).setVisible(true);
-//			menu.findItem(R.id.menu_inserir_desenho).setVisible(true);
-//			menu.findItem(R.id.menu_inserir_imagem).setVisible(true);
-//			menu.findItem(R.id.menu_inserir_voz).setVisible(true);
-//			menu.findItem(R.id.menu_edit).setVisible(false);
-//			menu.findItem(R.id.menu_sincronizar).setVisible(false);
-//			menu.findItem(R.id.menu_compartilhar).setVisible(false);
-//			menu.findItem(R.id.menu_pesquisar).setVisible(false);
-//			
-//		}else{
-//			menu.findItem(R.id.menu_salvar).setVisible(false);
-//			menu.findItem(R.id.menu_inserir_desenho).setVisible(false);
-//			menu.findItem(R.id.menu_inserir_imagem).setVisible(false);
-//			menu.findItem(R.id.menu_inserir_voz).setVisible(false);
-//			menu.findItem(R.id.menu_edit).setVisible(true);
-//			menu.findItem(R.id.menu_sincronizar).setVisible(true);
-//			menu.findItem(R.id.menu_compartilhar).setVisible(true);
-//			menu.findItem(R.id.menu_pesquisar).setVisible(true);
-//		}
-//		return super.onCreateOptionsMenu(menu);
-//	}
+
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
