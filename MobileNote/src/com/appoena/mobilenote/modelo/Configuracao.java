@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import android.content.Context;
 
 import com.appoena.mobilenote.dao.DAOConfiguracao;
+import com.dropbox.sync.android.DbxAccountManager;
 
 public class Configuracao {
 	
 	private int sync;
 	private String token;
 	private long id;
+	
 	
 	public Configuracao(int sync, String token,long id){
 		
