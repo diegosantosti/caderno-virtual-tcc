@@ -13,18 +13,13 @@
     <script type="text/javascript">
         jQuery(function($) {
             $('.editable').raptor({
-               "plugins": {
-                    "dock": {
-                        docked: true
-						
-                    },
-			   },
-               
+                              
                layouts: {
                     toolbar: {
                         uiOrder: [
                             ['botaoSalvar'],
-                            ['textBold', 'textItalic', 'textUnderline', 'textStrike'],                            
+                            ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
+                            
                         ]
                     },
                     hoverPanel: {
@@ -47,6 +42,18 @@
 				
             });
         });
+        
+        $('#raptor-docked-element').raptor({
+		    autoEnable: true,            // Enable the editor automaticly
+		    plugins: {                   // Plugin options
+		        dock: {                  // Dock specific plugin options
+		            docked: true,        // Start the editor already docked
+		            dockToElement: false, // Dock the editor inplace of the page
+		            persist: false       // Do not save the docked state
+		        }
+		    }
+		});
+        
     </script>
 </head>
 <body>
