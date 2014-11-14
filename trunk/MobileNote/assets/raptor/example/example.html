@@ -1,35 +1,30 @@
 <!doctype html>
 <html>
 <head>
-    <title>Raptor Editor Example</title>
+	<meta name="viewport" content="width=device-width">
+    <title>Mobile Note</title>
     <link type="text/css" rel="stylesheet" href="example.css" />
     <link type="text/css" rel="stylesheet" href="../raptor-front-end.css" />
+    <link rel="stylesheet" href="css/example.css" media="(max-width: 320px)">
+	<link rel="stylesheet" href="css/example.css" media="(max-width: 939px)">
+    
     <script type="text/javascript" src="../raptor.js"></script>
 	<script type="text/javascript" src="../botaoSalvar.js"></script>
     <script type="text/javascript">
         jQuery(function($) {
             $('.editable').raptor({
+               "plugins": {
+                    "dock": {
+                        docked: true
+						
+                    },
+			   },
+               
                layouts: {
                     toolbar: {
                         uiOrder: [
                             ['botaoSalvar'],
-                            ['dockToElement', 'guides'],
-                            ['historyUndo', 'historyRedo'],
-                            ['alignLeft', 'alignCenter', 'alignJustify', 'alignRight'],
-                            ['textBold', 'textItalic', 'textUnderline', 'textStrike'],
-                            ['textSuper', 'textSub'],
-                            ['listUnordered', 'listOrdered'],
-                            ['hrCreate', 'textBlockQuote'],
-                            ['textSizeDecrease', 'textSizeIncrease', 'fontFamilyMenu'],
-                            ['clearFormatting', 'cleanBlock'],
-                            ['linkCreate', 'linkRemove'],
-                            ['embed', 'fileManager', 'imageEditor'],
-                            ['floatLeft', 'floatNone', 'floatRight'],
-                            ['colorMenuBasic'],
-                            ['tagMenu'],
-                            ['classMenu'],
-                            ['snippetMenu', 'specialCharacters', 'loremIpsum'],
-                            ['tableCreate', 'tableInsertRow', 'tableDeleteRow', 'tableInsertColumn', 'tableDeleteColumn']
+                            ['textBold', 'textItalic', 'textUnderline', 'textStrike'],                            
                         ]
                     },
                     hoverPanel: {
@@ -38,14 +33,11 @@
                         ]
                     },
                 },
-				
+                
 				//Inicialização documento conteúdo
                 bind: { 
                     ready: function() {
-                        
-                        //var html = '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>';
-                        //this.raptor.setHtml(html);
-                        
+                                               
                         var html2 = EditorConteudoActivity.lerConteudo();
                         this.setHtml(html2);
                         
