@@ -19,7 +19,8 @@ public abstract class Diretorio {
 			}
 		}
 		
-		//método responsável por substitui espaçoes em brancos por underline
+		//método responsável por substitui espaçoes em brancos por underline 
+		//atuazliar
 		public static String substituirEspacosBrancosUnderline(String caminho){
 			String padrao = "\\s";
 		    Pattern regPat = Pattern.compile(padrao); 
