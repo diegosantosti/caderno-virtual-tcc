@@ -1,13 +1,9 @@
 package com.appoena.mobilenote.modelo;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.os.Environment;
 
-import com.appoena.mobilenote.dao.DAOAgenda;
-import com.appoena.mobilenote.dao.DAOCaderno;
 import com.appoena.mobilenote.dao.DAOMateria;
 
 public class Materia {
@@ -85,20 +81,20 @@ public class Materia {
 		
 	}
 
-	// metodo para alterar tarefa
+	// metodo para alterar materia
 	public void alterarMateria(Context ctx,String nome, String professor, String email, int cor, int dia_semana,long id_caderno, long id_materia){
 		DAOMateria dm = new DAOMateria(ctx);
 		dm.alterarMateria(nome, professor, email, cor, dia_semana, id_caderno, id_materia);
 	
 	}
 
-	// metodo para deletar tarefa
-	public void deletarTarefa(Context ctx, long id_materia){
+	// metodo para deletar materia
+	public void deletarMateria(Context ctx, long id_materia){
 		DAOMateria dm = new DAOMateria(ctx);
 		dm.deletarMateria(id_materia);
 
 	}
-	// metodo para trazer todas as tarefas cadastradas
+	// metodo para trazer todas as materias cadastradas
 	public ArrayList<Materia>  consultarMateria(Context ctx, long id_caderno){
 		DAOMateria dm = new DAOMateria(ctx);
 		ArrayList<Materia> list = dm.consultarMateria(id_caderno);
@@ -112,6 +108,8 @@ public class Materia {
 		return list;
 		
 	}
+	
+	
 	
 	// retorna nome do materia
 		public String nomeMateria(Context ctx, long id){
