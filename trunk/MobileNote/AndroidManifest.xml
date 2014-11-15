@@ -9,10 +9,11 @@
         android:targetSdkVersion="21" />
     <uses-permission  android:name="android.permission.READ_CALENDAR"/>
     <uses-permission  android:name="android.permission.WRITE_CALENDAR"/>
-
     <uses-permission  android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
 
     <application
@@ -54,6 +55,7 @@
         
         <activity 
             android:name="com.appoena.mobilenote.screens.ActivityEditorConteudo"
+            android:configChanges="orientation"
             android:label="@string/conteudo"
             android:theme="@style/ThemeMobileNote">
         </activity>
@@ -63,6 +65,26 @@
             android:label="@string/config"
             android:theme="@style/ThemeMobileNote">
         </activity>
+        <!-- Activity obrigatoria para funcionamento do dropbox -->
+        <activity android:name="com.dropbox.sync.android.DbxAuthActivity" />
+		<activity
+		  android:name="com.dropbox.client2.android.AuthActivity"
+		  android:launchMode="singleTask" >
+		  <intent-filter>
+            <data android:scheme="db-tgqewuej4tssn7n" />
+		
+		    <action android:name="android.intent.action.VIEW" />
+		
+		    <category android:name="android.intent.category.BROWSABLE" />
+		    <category android:name="android.intent.category.DEFAULT" />
+		  </intent-filter>
+		</activity>
+		
+		<service
+      		android:name="com.dropbox.sync.android.DbxSyncService"
+      		android:enabled="true"
+      		android:exported="false"
+      		android:label="Dropbox Sync" />
         
     </application>
 

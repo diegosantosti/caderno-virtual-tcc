@@ -87,6 +87,8 @@
     <string name="caderno_duplicado">Esse caderno já existe.</string>
     <string name="materia_duplicada">Essa matéria já existe.</string>
     <string name="email_invalido"> e-mail inválido</string>
+    <string name="dropbox_vinculado">A conta da dropbox foi vinculada.</string>
+    <string name="dropbox_excluido">A conta do dropbox foi excluida.</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>

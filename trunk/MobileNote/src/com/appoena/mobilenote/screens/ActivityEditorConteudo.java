@@ -1,25 +1,25 @@
 package com.appoena.mobilenote.screens;
 
-import com.appoena.mobilenote.R;
-import com.appoena.mobilenote.modelo.Conteudo;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.modelo.Conteudo;
 
 //Classe respons·vel por criar o editor de conte˙do do caderno
 public class ActivityEditorConteudo extends Activity{
 	
 	private Bundle params;
 	private String caminho;
-	private boolean edicao = false;
+	private boolean editMode = false;
 	
 	public ActivityEditorConteudo(){
 		
@@ -28,8 +28,11 @@ public class ActivityEditorConteudo extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//recupera estado caso tenha mudado orientação de tela.
+		if(savedInstanceState!=null){
+			editMode = savedInstanceState.getBoolean("edicao");
+		}
 		setContentView(R.layout.activity_editor);
-		
 		//Recupera o caminho do conte˙do
 		Intent it = getIntent();
 		params = it.getExtras();
@@ -47,6 +50,7 @@ public class ActivityEditorConteudo extends Activity{
 		wv.addJavascriptInterface(this, "EditorConteudoActivity");
 		
 		wv.loadUrl("file:///android_asset/raptor/example/example.html");
+		
 	}
 	
 	@JavascriptInterface
@@ -67,8 +71,9 @@ public class ActivityEditorConteudo extends Activity{
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
+		menu.clear();
 		getMenuInflater().inflate(R.menu.menu_conteudo, menu);
-		if(edicao){
+		if(editMode){
 			menu.findItem(R.id.menu_salvar).setVisible(true);
 			menu.findItem(R.id.menu_inserir_desenho).setVisible(true);
 			menu.findItem(R.id.menu_inserir_imagem).setVisible(true);
@@ -99,7 +104,7 @@ public class ActivityEditorConteudo extends Activity{
 		switch (item.getItemId()) {
 		case R.id.menu_editar:
 			//codigo para editar
-			edicao = true;
+			editMode = true;
 			invalidateOptionsMenu(); //recarrega os menus
 			break;
 		
@@ -117,7 +122,7 @@ public class ActivityEditorConteudo extends Activity{
 
 		case R.id.menu_salvar:
 			//codigo para salvar
-			edicao = false;
+			editMode = false;
 			invalidateOptionsMenu(); //recarrega os menus
 			break;
 		
@@ -139,5 +144,12 @@ public class ActivityEditorConteudo extends Activity{
 		return super.onOptionsItemSelected(item);
 	}
 	
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean("edicao", editMode);
+		//inserir aqui metodo para salvar quando mudar orientação da tela.
+		super.onSaveInstanceState(outState);
+	}
 	
 }

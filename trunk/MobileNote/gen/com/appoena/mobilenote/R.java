@@ -192,22 +192,22 @@ public final class R {
         public static final int menu_materia=0x7f090005;
     }
     public static final class string {
-        public static final int COR_CADERNO=0x7f08003e;
-        public static final int COR_MATERIA=0x7f08004a;
-        public static final int DATA_AGENDA=0x7f080043;
-        public static final int DESC_AGENDA=0x7f080042;
-        public static final int DIA_SEMANA=0x7f080047;
-        public static final int EDICAO=0x7f080040;
-        public static final int EMAIL_PROFESSOR=0x7f080049;
-        public static final int HORA_AGENDA=0x7f080044;
-        public static final int INDEX=0x7f08003f;
-        public static final int LEMBRAR=0x7f080045;
+        public static final int COR_CADERNO=0x7f080040;
+        public static final int COR_MATERIA=0x7f08004c;
+        public static final int DATA_AGENDA=0x7f080045;
+        public static final int DESC_AGENDA=0x7f080044;
+        public static final int DIA_SEMANA=0x7f080049;
+        public static final int EDICAO=0x7f080042;
+        public static final int EMAIL_PROFESSOR=0x7f08004b;
+        public static final int HORA_AGENDA=0x7f080046;
+        public static final int INDEX=0x7f080041;
+        public static final int LEMBRAR=0x7f080047;
         /**  Chaves e parametros 
          */
-        public static final int NOME_CADERNO=0x7f08003d;
-        public static final int NOME_MATERIA=0x7f080046;
-        public static final int NOME_PROFESSOR=0x7f080048;
-        public static final int VIEW=0x7f080041;
+        public static final int NOME_CADERNO=0x7f08003f;
+        public static final int NOME_MATERIA=0x7f080048;
+        public static final int NOME_PROFESSOR=0x7f08004a;
+        public static final int VIEW=0x7f080043;
         public static final int action_settings=0x7f080005;
         public static final int add=0x7f08000c;
         public static final int agenda=0x7f080001;
@@ -225,6 +225,8 @@ public final class R {
         public static final int del=0x7f080010;
         public static final int dia_semana=0x7f080013;
         public static final int diego=0x7f080032;
+        public static final int dropbox_excluido=0x7f08003e;
+        public static final int dropbox_vinculado=0x7f08003d;
         public static final int edit=0x7f08000e;
         public static final int edit_nome_caderno_hint=0x7f080008;
         public static final int email_invalido=0x7f08003c;
