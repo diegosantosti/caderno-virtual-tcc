@@ -3,7 +3,6 @@ package com.appoena.mobilenote.screens;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,9 @@ public class ActivityEditorConteudo extends Activity{
 	
 	private Bundle params;
 	private String caminho;
+	private String conteudoTemp;
 	private boolean editMode = false;
+	WebView wv;
 	
 	public ActivityEditorConteudo(){
 		
@@ -28,7 +29,7 @@ public class ActivityEditorConteudo extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//recupera estado caso tenha mudado orientação de tela.
+		//recupera estado caso tenha mudado orientaÁ„o de tela.
 		if(savedInstanceState!=null){
 			editMode = savedInstanceState.getBoolean("edicao");
 		}
@@ -38,36 +39,33 @@ public class ActivityEditorConteudo extends Activity{
 		params = it.getExtras();
 		caminho = params.getString("caminhoCadernoMateria");
 		
+		//Recupera o conte˙do do arquivo e armazena na vari·vel
+		setConteudoTemp(lerConteudoEditorTxt());
+		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		WebView wv = (WebView) findViewById(R.id.webView1);
+		wv = (WebView) findViewById(R.id.webView1);
+		executarEditorRaptor();		
+		
+	}
+	
+	//MÈtodo para executar o Editor Raptor no modo de visualizaÁ„o
+	public void executarEditorRaptor(){
+		
+		//Limpa o estado anterior da WebView para ser chamada novamente
+		wv.loadUrl("about:blank");
 		
 		WebSettings settings = wv.getSettings();
 		settings.setJavaScriptEnabled(true);
-		settings.setSupportZoom(false);
-						
+		settings.setSupportZoom(false);						
 		wv.addJavascriptInterface(this, "EditorConteudoActivity");
-		
-		wv.loadUrl("file:///android_asset/raptor/example/example.html");
-		
+		if(editMode){
+			wv.loadUrl("file:///android_asset/raptor/example/exampleEdicao.html");
+		}else{
+			wv.loadUrl("file:///android_asset/raptor/example/example.html");
+		}
 	}
-	
-	@JavascriptInterface
-	public void salvarConteudo(String conteudo){
-		
-		Conteudo cont = new Conteudo();
-		cont.salvarConteudo(caminho , conteudo);
-	}
-	
-	@JavascriptInterface
-	public String lerConteudo(){
-		
-		Conteudo cont = new Conteudo();
-		String conteudo = cont.lerConteudo(caminho);
-		return conteudo;
-	}
-
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -106,6 +104,8 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para editar
 			editMode = true;
 			invalidateOptionsMenu(); //recarrega os menus
+			//Recarrega o editor em modo de ediÁ„o
+			executarEditorRaptor();
 			break;
 		
 		case R.id.menu_compartilhar:
@@ -124,6 +124,9 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para salvar
 			editMode = false;
 			invalidateOptionsMenu(); //recarrega os menus
+			salvarConteudoTxt(getConteudoTemp());
+			//Recarrega o editor em modo de visualizaÁ„o
+			executarEditorRaptor();
 			break;
 		
 		case R.id.menu_inserir_desenho:
@@ -137,6 +140,7 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 		case android.R.id.home:
 			//chamar o metodo para salvar conteudo ao sair
+			salvarConteudoTxt(getConteudoTemp());
 			finish();
 		default:
 			break;
@@ -148,8 +152,54 @@ public class ActivityEditorConteudo extends Activity{
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putBoolean("edicao", editMode);
-		//inserir aqui metodo para salvar quando mudar orientação da tela.
+		//inserir aqui metodo para salvar quando mudar orientacao da tela.
+		
+		//Diego - AnotaÁ„o
+		//Salvar conte˙do na vari·vel para o arquivo txt
+		salvarConteudoTxt(getConteudoTemp());
+		
 		super.onSaveInstanceState(outState);
+	}
+	
+	
+	//MÈtodos para gravar o conte˙do tempor·rio do Editor raptor para uma vari·vel
+	private void setConteudoTemp(String conteudoTemp){
+		this.conteudoTemp = conteudoTemp;
+	}
+	
+	private String getConteudoTemp(){
+		return this.conteudoTemp;
+	}
+	
+	@JavascriptInterface
+	public void salvarConteudoEditor(String conteudo){
+		
+		setConteudoTemp(conteudo);
+		
+		//Conteudo cont = new Conteudo();
+		//cont.salvarConteudo(caminho , conteudo);
+	}
+	
+	@JavascriptInterface
+	public String lerConteudoEditor(){
+		
+		return getConteudoTemp();
+		
+		//Conteudo cont = new Conteudo();
+		//String conteudo = cont.lerConteudo(caminho);
+		//return conteudo;
+	}
+	
+	//MÈtodos para recuperar o conte˙do do arquivo txt
+	public void salvarConteudoTxt(String conteudo){
+		Conteudo cont = new Conteudo();
+		cont.salvarConteudo(caminho , conteudo);
+	}
+	
+	public String lerConteudoEditorTxt(){
+		Conteudo cont = new Conteudo();
+		String conteudo = cont.lerConteudo(caminho);
+		return conteudo;
 	}
 	
 }

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width">
     <title>Mobile Note</title>
     <link type="text/css" rel="stylesheet" href="example.css" />
     <link type="text/css" rel="stylesheet" href="../raptor-front-end.css" />
@@ -11,7 +11,7 @@
     <script type="text/javascript">
         jQuery(function($) {
             $('.editable').raptor({
-               //autoEnable: false,               
+               autoEnable: true,               
                "plugins": {
                     "dock": {
                         dockToScreen: true,
@@ -56,14 +56,7 @@
 					listUnordered: false,
 					linkCreate: false,
                 },
-                layouts: {
-                   hoverPanel: {
-                        uiOrder: [
-                            ['']
-                        ]
-                    },
-                },//fim layouts
-                
+
                 //Opção do Raptor que 'vincula' os métodos do raptor, onde pode incluir lógica nos eventos acontecidos durante a execução do programa
                 bind: { 
                 
@@ -85,7 +78,7 @@
 				        EditorConteudoActivity.salvarConteudoEditor(conteudo);                       
                     }//fim change
                     
-                }//fim bind                                
+                }//fim bind     
             });
         });
     </script>
@@ -93,7 +86,7 @@
 <body>
     
     <div style="clear: both"></div>
-    <div class="editable" data-id="body-1" contenteditable="false">
+    <div class="editable" data-id="body-1">
         
     </div>
 </body>
