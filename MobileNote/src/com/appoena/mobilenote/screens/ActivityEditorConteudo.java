@@ -163,7 +163,7 @@ public class ActivityEditorConteudo extends Activity{
 	
 	@Override
 	protected void onDestroy() {
-		//Salvar o conteúdo quando a activity for finalizada
+		//Salvar o conteúdo quando a activity for finalizadaas
 		salvarConteudoTxt(getConteudoTemp());
 		super.onDestroy();
 	}	
