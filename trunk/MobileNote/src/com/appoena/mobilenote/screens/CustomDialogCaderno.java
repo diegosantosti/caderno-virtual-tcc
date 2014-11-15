@@ -77,7 +77,8 @@ public class CustomDialogCaderno extends CustomDialog{
 	private boolean devolverCaderno(){
 		String nome = edtCaderno.getText().toString();
 		int i = spnColor.getSelectedItemPosition();
-		if(getCadernoDuplicado(nome)){
+		String nomeAntigo = params.getString("nome_antigo");
+		if(getCadernoDuplicado(nome) && !nome.equals(nomeAntigo)){
 			mensagem = getResources().getString(R.string.caderno_duplicado);
 			return false;
 		}	

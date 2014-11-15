@@ -123,7 +123,4 @@ public class Agenda {
 		list = da.consultarAgendas();
 		return list;
 	}
-
-
-
-}
+	}

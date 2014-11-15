@@ -18,6 +18,7 @@
     <string name="edit">Editar</string>
     <string name="save">Salvar</string>
     <string name="del">Excluir</string>
+    <string name="editar">Editar</string>
     
     <!-- Tela matéria -->
     <string name="nova_materia">Nova Matéria</string>

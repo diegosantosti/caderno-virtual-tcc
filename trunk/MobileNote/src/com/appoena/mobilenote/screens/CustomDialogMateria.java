@@ -104,12 +104,12 @@ public class CustomDialogMateria extends CustomDialog{
 		String nome = edtNome.getText().toString();
 		String nomeProf = edtNomeProf.getText().toString();
 		String emailProf = edtEmailProf.getText().toString();
-
-		if(getMateriaDuplicada(nome)){
+		String nomeAntigo = params.getString("nome_antigo");
+		if(getMateriaDuplicada(nome)&& !nome.equals(nomeAntigo)){
 			mensagem = getResources().getString(R.string.materia_duplicada);
 			return false;
 		}
-		if(!validaEmail(emailProf)){
+		if(!validaEmail(emailProf) && !emailProf.isEmpty()){
 			mensagem = getResources().getString(R.string.email_invalido);
 			return false;
 		}

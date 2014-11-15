@@ -138,6 +138,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			params.putInt(getResources().getString(R.string.COR_MATERIA), m.getCor());
 			params.putInt(getResources().getString(R.string.DIA_SEMANA), m.getDiaSemana());
 			params.putInt(getResources().getString(R.string.INDEX), info.position);
+			params.putString("nome_antigo", m.getNome());
 			showDialog(params);
 			break;
 		}
