@@ -11,13 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class ActivityConfig extends Activity{
 	
 	private Button btnDropLogout;
 	private Button btnDropLogin;
-	private final String APP_KEY="tgqewuej4tssn7n";
-	private final String APP_SECRET="vci78s22idpmzbq";
+	private static final String APP_KEY="tgqewuej4tssn7n";
+	private static final String APP_SECRET="vci78s22idpmzbq";
 	private DbxAccountManager mAccountManager;
 	
 	
@@ -29,12 +30,13 @@ public class ActivityConfig extends Activity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.save);
-		
+		mAccountManager = DbxAccountManager.getInstance(getApplication(), APP_KEY, APP_SECRET);
 		btnDropLogin = (Button)findViewById(R.id.btn_login);
 		btnDropLogout = (Button)findViewById(R.id.btn_logout);
+		clickOnLoginDrop();
+		clickOnLogoutDrop();
+		enableView(mAccountManager.hasLinkedAccount());
 		
-		//Nao mostra botao logout, criar metodo paara automatizar
-		btnDropLogout.setVisibility(View.GONE);
 		
 		
 		
@@ -76,7 +78,7 @@ public class ActivityConfig extends Activity{
 		
 	}
 	
-	public void loginDrop(View view){
+	public void clickOnLoginDrop(){
 		btnDropLogin.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -88,13 +90,14 @@ public class ActivityConfig extends Activity{
 		
 	}
 	
-	public void logoutDrop(View view){
+	public void clickOnLogoutDrop(){
 		btnDropLogout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				mAccountManager.unlink();
 				enableView(mAccountManager.hasLinkedAccount());
+				if(!mAccountManager.hasLinkedAccount()) Toast.makeText(getApplicationContext(), R.string.dropbox_excluido, Toast.LENGTH_SHORT).show();
 				
 				
 			}
@@ -106,6 +109,7 @@ public class ActivityConfig extends Activity{
 		if(requestCode==0){
 			if(resultCode==RESULT_OK){
 				enableView(mAccountManager.hasLinkedAccount());
+				if(mAccountManager.hasLinkedAccount()) Toast.makeText(getApplicationContext(), R.string.dropbox_vinculado, Toast.LENGTH_SHORT).show();
 			}
 			
 		}else{
