@@ -161,6 +161,12 @@ public class ActivityEditorConteudo extends Activity{
 		super.onSaveInstanceState(outState);
 	}
 	
+	@Override
+	protected void onDestroy() {
+		//Salvar o conteúdo quando a activity for finalizada
+		salvarConteudoTxt(getConteudoTemp());
+		super.onDestroy();
+	}	
 	
 	//Métodos para gravar o conteúdo temporário do Editor raptor para uma variável
 	private void setConteudoTemp(String conteudoTemp){
