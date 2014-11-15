@@ -8,6 +8,14 @@
         android:title="@string/menu_editar"/>
     
     <item 
+        android:id="@+id/menu_pesquisar"
+        android:icon="@drawable/ic_search_white_48dp"
+        android:showAsAction="always"
+        android:title="@string/menu_pesquisar"
+        android:queryHint="Pesquisar conteúdo"
+        android:actionViewClass="android.widget.SearchView"/>
+    
+    <item 
         android:id="@+id/menu_compartilhar"
         android:icon="@drawable/ic_share_white_48dp"
         android:showAsAction="always"
@@ -18,13 +26,7 @@
         android:icon="@drawable/ic_cloud_upload_white_48dp"
         android:showAsAction="always"
         android:title="@string/menu_sincronizar"/>
-    
-    <item 
-        android:id="@+id/menu_pesquisar"
-        android:icon="@drawable/ic_search_white_48dp"
-        android:showAsAction="always"
-        android:title="@string/menu_pesquisar"/>
-    
+        
     <item 
         android:id="@+id/menu_inserir_imagem"
         android:icon="@drawable/ic_camera_alt_white_48dp"
@@ -48,6 +50,8 @@
         android:icon="@drawable/ic_save_white_48dp"
         android:showAsAction="always"
         android:title="@string/save"/>
+    
+    
     
 
 </menu>
