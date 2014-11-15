@@ -170,6 +170,8 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 			params.putString(getResources().getString(R.string.NOME_CADERNO), c.getNome());
 			params.putInt(getResources().getString(R.string.COR_CADERNO), c.getColor());
 			params.putInt(getResources().getString(R.string.INDEX), info.position);
+			params.putString("nome_antigo", c.getNome());
+			
 			showDialog(params);
 
 			break;
