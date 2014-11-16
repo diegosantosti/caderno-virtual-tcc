@@ -11,6 +11,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.appoena.mobilenote.R;
@@ -100,7 +101,10 @@ public class ActivityEditorConteudo extends Activity{
 			menu.findItem(R.id.menu_sincronizar).setVisible(true);
 			menu.findItem(R.id.menu_compartilhar).setVisible(true);
 			menu.findItem(R.id.menu_pesquisar).setVisible(true);
-			SearchView search = (SearchView) menu.findItem(R.id.menu_pesquisar).getActionView();	        
+			SearchView search = (SearchView) menu.findItem(R.id.menu_pesquisar).getActionView();
+			int searchImg = getResources().getIdentifier("android:id/search_button", null, null);
+			ImageView img = (ImageView)search.findViewById(searchImg);
+			img.setImageResource(R.drawable.ic_action_pesquisar);
 	        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 				
 	        	@SuppressLint("NewApi")
