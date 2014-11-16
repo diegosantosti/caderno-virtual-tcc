@@ -65,6 +65,7 @@
                     ready: function() {
                         var html = EditorConteudoActivity.lerConteudoEditor();
                         this.setHtml(html);
+                        EditorConteudoActivity.goLastPage();
                     },//fim ready
                     
                     //Função que determina que o conteúdo do raptor foi alterado/modificado.
@@ -76,7 +77,13 @@
 
 				        //Gravar o conteúdo numa string e passar para o programa java gravar localmente.
 				        EditorConteudoActivity.salvarConteudoEditor(conteudo);                       
-                    }//fim change
+                    },//fim change
+                    
+                    //Função para encaminhar o conteúdo para o final da página.
+                    enabled: function() {
+                        //Recupera o conteúdo do html e passa para o código java
+				        EditorConteudoActivity.goLastPage();
+                    }//fim enabled
                     
                 }//fim bind     
             });

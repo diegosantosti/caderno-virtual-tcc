@@ -3,23 +3,15 @@ package com.appoena.mobilenote.screens;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.View.OnKeyListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.SearchView;
-import android.widget.Toast;
-import android.widget.SearchView.OnQueryTextListener;
 
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
@@ -76,6 +68,13 @@ public class ActivityEditorConteudo extends Activity{
 		}else{
 			wv.loadUrl("file:///android_asset/raptor/example/example.html");
 		}
+		wv.setWebViewClient(new WebViewClient() {
+		    @Override  
+		    public void onPageFinished(WebView view, String url) {
+		        super.onPageFinished(view, url);
+		        wv.pageDown(true);
+		    }  
+		});
 	}
 		
 	@Override
@@ -121,6 +120,16 @@ public class ActivityEditorConteudo extends Activity{
 	        		// DO NOTHING
 	        		return false;
 	        	}
+			});
+	        
+	        search.setOnCloseListener(new SearchView.OnCloseListener() {
+				
+				@Override
+				public boolean onClose() {
+					// TODO Auto-generated method stub
+					wv.clearMatches();
+					return false;
+				}
 			});
 		}
 		
@@ -201,7 +210,7 @@ public class ActivityEditorConteudo extends Activity{
 		//Salvar o conteúdo quando a activity for finalizadaas
 		salvarConteudoTxt(getConteudoTemp());
 		super.onDestroy();
-	}	
+	}
 	
 	//Métodos para gravar o conteúdo temporário do Editor raptor para uma variável
 	private void setConteudoTemp(String conteudoTemp){
@@ -214,21 +223,21 @@ public class ActivityEditorConteudo extends Activity{
 	
 	@JavascriptInterface
 	public void salvarConteudoEditor(String conteudo){
-		
 		setConteudoTemp(conteudo);
-		
-		//Conteudo cont = new Conteudo();
-		//cont.salvarConteudo(caminho , conteudo);
 	}
 	
 	@JavascriptInterface
 	public String lerConteudoEditor(){
-		
 		return getConteudoTemp();
-		
-		//Conteudo cont = new Conteudo();
-		//String conteudo = cont.lerConteudo(caminho);
-		//return conteudo;
+	}
+	
+	@JavascriptInterface
+	public void goLastPage(){
+		boolean pageDown = true;
+		while(pageDown == true){
+			pageDown = wv.pageDown(true);
+		}
+		wv.requestFocus();
 	}
 	
 	//Métodos para recuperar o conteúdo do arquivo txt
