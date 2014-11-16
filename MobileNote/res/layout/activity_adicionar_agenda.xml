@@ -66,12 +66,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_components_popoup"
+        android:spinnerMode="dropdown"
         android:prompt="@string/prompt_sel_caderno"/>
     
     <Spinner
         android:id="@+id/spinnerMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
         android:layout_marginBottom="@dimen/margin_components_popoup"
         android:prompt="@string/prompt_sel_materia"/>
 

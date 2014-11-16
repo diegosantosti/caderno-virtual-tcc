@@ -61,7 +61,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		// Preenchendo o Spinner Caderno
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
 		listSpCaderno = new ArrayList<String>();
-		listSpCaderno.add("Escolha o Caderno");
+		listSpCaderno.add(getResources().getString(R.string.prompt_sel_caderno));
 		for(int i = 0; i < listCaderno.size();i++){
 			c = listCaderno.get(i);
 			listSpCaderno.add(c.getNome());
@@ -69,6 +69,7 @@ public class CustomDialogAgenda extends CustomDialog{
 		}
 		ArrayAdapter<String> adpCaderno = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpCaderno);
 		spCaderno.setAdapter(adpCaderno);
+		adpCaderno.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
 		setDataHora();
@@ -137,6 +138,7 @@ public class CustomDialogAgenda extends CustomDialog{
 					listMateria = m.consultarMateria(getActivity(), c.getId());
 					listSpMateria = m.nomeMaterias(getActivity(), c.getId());
 					ArrayAdapter<String> adpMateria = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,listSpMateria);
+					adpMateria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 					spMateria.setAdapter(adpMateria);
 					if(params.getBoolean("edicao")){
 						String nomeMateria = m.nomeMateria(getActivity(), params.getLong("id_materia_ed"));
