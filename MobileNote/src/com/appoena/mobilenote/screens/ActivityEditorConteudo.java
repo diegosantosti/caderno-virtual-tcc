@@ -1,5 +1,6 @@
 package com.appoena.mobilenote.screens;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -18,6 +19,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.SearchView.OnQueryTextListener;
 
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
@@ -27,7 +29,6 @@ public class ActivityEditorConteudo extends Activity{
 	
 	private Bundle params;
 	private String caminho;
-	private String pesquisarConteudo;
 	private String conteudoTemp;
 	private boolean editMode = false;
 	WebView wv;
@@ -76,42 +77,7 @@ public class ActivityEditorConteudo extends Activity{
 			wv.loadUrl("file:///android_asset/raptor/example/example.html");
 		}
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-				
-		getMenuInflater().inflate(R.menu.menu_conteudo, menu);
-		SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView search = (SearchView) menu.findItem(R.id.menu_pesquisar).getActionView();
-        search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
-        
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-			
-			@Override
-			public boolean onQueryTextSubmit(String query) {
-				// TODO Auto-generated method stub
-				setPesquisarConteudo(query);
-				query = query + "chamou metodo onQueryTextSubmit";
-				Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
-				return true;
-			}
-			
-			@Override
-			public boolean onQueryTextChange(String newText) {
-				// TODO Auto-generated method stub
-				setPesquisarConteudo(newText);
-				newText = newText + "chamou metodo onQueryTextChange";
-				Toast.makeText(getApplicationContext(), newText, Toast.LENGTH_LONG).show();
-				return true;
-			}
-		});
-        
-        
-        return true;
-	    
-	}
-	
-	
+		
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.clear();
@@ -135,6 +101,27 @@ public class ActivityEditorConteudo extends Activity{
 			menu.findItem(R.id.menu_sincronizar).setVisible(true);
 			menu.findItem(R.id.menu_compartilhar).setVisible(true);
 			menu.findItem(R.id.menu_pesquisar).setVisible(true);
+			SearchView search = (SearchView) menu.findItem(R.id.menu_pesquisar).getActionView();	        
+	        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+				
+	        	@SuppressLint("NewApi")
+				@Override
+	        	public boolean onQueryTextSubmit(String query) {
+	        		// TODO Auto-generated method stub
+	        		
+	        		//Método responsável por pesquisar palavras dentro do conteúdo
+	        		
+	        		wv.findAllAsync(query);
+	        		return false;
+	        	}
+
+	        	@Override
+	        	public boolean onQueryTextChange(String newText) {
+	        		// TODO Auto-generated method stub
+	        		// DO NOTHING
+	        		return false;
+	        	}
+			});
 		}
 		
 		return true;
@@ -162,7 +149,10 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 			
 		case R.id.menu_pesquisar:
-			//codigo para pesquisar
+			//	---------------------
+			// 	DO NOTHING
+			// 	CÓDIGO DO PESQUISAR SERÁ REALIZADO NO MÉTODO onQueryTextSubmit DA CLASSE SEARCH TYPE
+			//	---------------------
 			break;
 
 		case R.id.menu_salvar:
@@ -251,14 +241,6 @@ public class ActivityEditorConteudo extends Activity{
 		Conteudo cont = new Conteudo();
 		String conteudo = cont.lerConteudo(caminho);
 		return conteudo;
-	}
-
-	public String getPesquisarConteudo() {
-		return pesquisarConteudo;
-	}
-
-	public void setPesquisarConteudo(String pesquisarConteudo) {
-		this.pesquisarConteudo = pesquisarConteudo;
 	}
 	
 }

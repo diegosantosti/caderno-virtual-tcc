@@ -12,7 +12,6 @@
         android:icon="@drawable/ic_search_white_48dp"
         android:showAsAction="always"
         android:title="@string/menu_pesquisar"
-        android:queryHint="Pesquisar conteúdo"
         android:actionViewClass="android.widget.SearchView"/>
     
     <item 
