@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.SearchView;
-
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
 
@@ -25,6 +25,9 @@ public class ActivityEditorConteudo extends Activity{
 	private String conteudoTemp;
 	private boolean editMode = false;
 	WebView wv;
+	private Bundle paramsEscolherImagem;
+	
+	private static final int SELECIONAR_IMAGEM 	= 1; 
 	
 	public ActivityEditorConteudo(){
 		
@@ -74,7 +77,16 @@ public class ActivityEditorConteudo extends Activity{
 		    public void onPageFinished(WebView view, String url) {
 		        super.onPageFinished(view, url);
 		        wv.pageDown(true);
-		    }  
+		    }
+		    
+
+		    @Override
+		    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+		    	// TODO Auto-generated method stub
+		    	super.onPageStarted(view, url, favicon);
+		    	wv.pageDown(true);
+		    }
+		    	    
 		});
 	}
 		
@@ -139,7 +151,6 @@ public class ActivityEditorConteudo extends Activity{
 		
 		return true;
 	}
-		
 	
 	//acoes dos menus da ActionBar
 	@Override
@@ -182,6 +193,9 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 		case R.id.menu_inserir_imagem:
 			//codigo para inserir imagem
+			Intent it = new Intent(ActivityEditorConteudo.this, ActivityEscolherImagem.class);
+			startActivityForResult(it, SELECIONAR_IMAGEM);
+						
 			break;
 		case R.id.menu_inserir_voz:
 			//codigo para inderir voz
@@ -196,7 +210,7 @@ public class ActivityEditorConteudo extends Activity{
 		return super.onOptionsItemSelected(item);
 	}
 	
-
+		
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putBoolean("edicao", editMode);
@@ -237,10 +251,7 @@ public class ActivityEditorConteudo extends Activity{
 	
 	@JavascriptInterface
 	public void goLastPage(){
-		boolean pageDown = true;
-		while(pageDown == true){
-			pageDown = wv.pageDown(true);
-		}
+		wv.pageDown(true);
 		wv.requestFocus();
 	}
 	
@@ -255,5 +266,44 @@ public class ActivityEditorConteudo extends Activity{
 		String conteudo = cont.lerConteudo(caminho);
 		return conteudo;
 	}
+	
+	
+	//recupera as informações de outras activities
+	/**
+     * Receive the result from the startActivity
+     */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	   	
+    	if (resultCode == Activity.RESULT_OK) {
+    		
+	    	switch (requestCode) {
+			case SELECIONAR_IMAGEM:	
+				Bundle params = data.getExtras();
+				String caminhoImagem;
+				caminhoImagem = params.getString("filePathImage");	
+				
+				//Verifica se o caminho está preenchido, se sim então insere a imagem no editor
+				if(!caminhoImagem.isEmpty()){
+					inserirImagemEditor(caminhoImagem);
+				}
+				
+				break;
+			
+			default:
+				break;
+			}
+    	}
+    }
+
+	private void inserirImagemEditor(String caminhoImagem) {
+		
+		String tagHtml = "<img src='" + caminhoImagem + "'/>";
+		String novoConteudo = getConteudoTemp() + tagHtml;
+		setConteudoTemp(novoConteudo);
+		
+		wv.reload();
+		
+	}
+	
 	
 }
