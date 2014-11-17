@@ -7,14 +7,14 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
-    <uses-permission  android:name="android.permission.READ_CALENDAR"/>
-    <uses-permission  android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission  android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
 
     <application
         android:allowBackup="true"
@@ -23,77 +23,84 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.appoena.mobilenote.screens.ActivityCaderno"
-            android:theme="@style/ThemeMobileNote.NoActionBar"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/ThemeMobileNote.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.CustomDialog"
-            android:theme="@style/ThemeMobileNote.NoActionBar">
-            
+            android:theme="@style/ThemeMobileNote.NoActionBar" >
         </activity>
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivityAgenda"
             android:label="@string/agenda"
-            android:theme="@style/ThemeMobileNote">
+            android:theme="@style/ThemeMobileNote" >
         </activity>
-        
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivityMateria"
             android:label="@string/materia"
-            android:theme="@style/ThemeMobileNote">
+            android:theme="@style/ThemeMobileNote" >
         </activity>
-        
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivitySobre"
-            android:theme="@style/ThemeNoActionBar">
+            android:theme="@style/ThemeNoActionBar" >
         </activity>
-        
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivityEditorConteudo"
             android:configChanges="orientation"
             android:label="@string/conteudo"
-            android:theme="@style/ThemeMobileNote">
+            android:theme="@style/ThemeMobileNote" >
         </activity>
-        
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivityEscolherImagem"
             android:configChanges="orientation"
             android:label="@string/escolher_imagem"
-            android:theme="@style/ThemeMobileNote">
+            android:theme="@style/ThemeMobileNote" >
         </activity>
+
         
-        
-        <activity 
+        <activity
             android:name="com.appoena.mobilenote.screens.ActivityConfig"
             android:label="@string/config"
-            android:theme="@style/ThemeMobileNote">
+            android:theme="@style/ThemeMobileNote" >
         </activity>
         <!-- Activity obrigatoria para funcionamento do dropbox -->
         <activity android:name="com.dropbox.sync.android.DbxAuthActivity" />
-		<activity
-		  android:name="com.dropbox.client2.android.AuthActivity"
-		  android:launchMode="singleTask" >
-		  <intent-filter>
-            <data android:scheme="db-tgqewuej4tssn7n" />
-		
-		    <action android:name="android.intent.action.VIEW" />
-		
-		    <category android:name="android.intent.category.BROWSABLE" />
-		    <category android:name="android.intent.category.DEFAULT" />
-		  </intent-filter>
-		</activity>
-		
-		<service
-      		android:name="com.dropbox.sync.android.DbxSyncService"
-      		android:enabled="true"
-      		android:exported="false"
-      		android:label="Dropbox Sync" />
-        
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <data android:scheme="db-tgqewuej4tssn7n" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.dropbox.sync.android.DbxSyncService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Dropbox Sync" />
+
+    </application>
+    
+    <application>
+        ...
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.mydomain.fileprovider"
+            android:exported="true"
+            android:grantUriPermissions="true">
+            ...
+        </provider>
+        ...
     </application>
 
 </manifest>
