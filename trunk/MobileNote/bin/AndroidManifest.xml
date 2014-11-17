@@ -61,6 +61,14 @@
         </activity>
         
         <activity 
+            android:name="com.appoena.mobilenote.screens.ActivityEscolherImagem"
+            android:configChanges="orientation"
+            android:label="@string/escolher_imagem"
+            android:theme="@style/ThemeMobileNote">
+        </activity>
+        
+        
+        <activity 
             android:name="com.appoena.mobilenote.screens.ActivityConfig"
             android:label="@string/config"
             android:theme="@style/ThemeMobileNote">

@@ -106,6 +106,8 @@
     <string name="NOME_PROFESSOR">NOME_PROFESSOR</string>
     <string name="EMAIL_PROFESSOR">EMAIL_PROFESSOR</string>
     <string name="COR_MATERIA">COR_MATERIA</string>
+    <string name="titulo_escolher_imagem">Inserir imagem a partir </string>
+    <string name="escolher_imagem">Selecionar Imagem</string>
     
     
 </resources>
