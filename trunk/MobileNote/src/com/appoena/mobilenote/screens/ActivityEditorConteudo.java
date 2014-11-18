@@ -1,7 +1,5 @@
 package com.appoena.mobilenote.screens;
 
-import java.io.File;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
+import com.appoena.mobilenote.util.Diretorio;
 
 import java.io.ByteArrayInputStream;  
 import java.io.FileOutputStream;
@@ -30,12 +28,13 @@ import java.io.OutputStream;
 
 import org.w3c.dom.Document;  
 import org.w3c.tidy.Tidy;  
-import org.xhtmlrenderer.pdf.ITextRenderer;  
+//import org.xhtmlrenderer.pdf.ITextRenderer;  
 
 import com.lowagie.text.DocumentException;  
 
 
 //Classe responsável por criar o editor de conteúdo do caderno
+
 public class ActivityEditorConteudo extends Activity{
 
 	private Bundle params;
@@ -58,43 +57,57 @@ public class ActivityEditorConteudo extends Activity{
 		if(savedInstanceState!=null){
 			editMode = savedInstanceState.getBoolean("edicao");
 		}
+		 		
 		setContentView(R.layout.activity_editor);
 		//Recupera o caminho do conteúdo
 		Intent it = getIntent();
 		params = it.getExtras();
 		caminho = params.getString("caminhoCadernoMateria");
-
-		//Recupera o conteúdo do arquivo e armazena na variável
-		setConteudoTemp(lerConteudoEditorTxt());
+		
+		//LÓGICA PARA RECUPERAR O ESTADO DO CONTEÚDO QUANDO FOR ATUALIZADO NA PRÓPRIA TELA.
+					
+		String conteudoTemp = params.getString("conteudoTemp");
+		try{
+			if(!conteudoTemp.isEmpty()){
+				editMode = params.getBoolean("edicao");
+				setConteudoTemp(params.getString("conteudoTemp"));
+			}else{
+				//Recupera o conteúdo do arquivo e armazena na variável
+				setConteudoTemp(lerConteudoEditorTxt());
+			}
+		}catch(Exception e){
+				//Variável está nula, recupera o conteudo do editor
+				//Recupera o conteúdo do arquivo e armazena na variável
+				setConteudoTemp(lerConteudoEditorTxt());
+		}
+		
 
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		wv = (WebView) findViewById(R.id.webView1);
-		executarEditorRaptor();		
-
+		executarEditorRaptor(); // CHAMA MÉTODO PARA EXECUTAR O EDITOR DO RAPTOR
 	}
 
 	//Método para executar o Editor Raptor no modo de visualização
+	
 	public void executarEditorRaptor(){
 
-		//Limpa o estado anterior da WebView para ser chamada novamente
-		wv.loadUrl("about:blank");
-
+		wv = new WebView(getApplicationContext());		
+		wv = (WebView) findViewById(R.id.webView1);
+		
 		WebSettings settings = wv.getSettings();
 		settings.setJavaScriptEnabled(true);
 		settings.setSupportZoom(false);						
 		wv.addJavascriptInterface(this, "EditorConteudoActivity");
-		if(editMode){
-			wv.loadUrl("file:///android_asset/raptor/example/exampleEdicao.html");
-		}else{
-			wv.loadUrl("file:///android_asset/raptor/example/example.html");
-		}
+		
+		wv.loadUrl("file:///android_asset/raptor/example/example.html");
+		
 		wv.setWebViewClient(new WebViewClient() {
 			@Override  
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				wv.pageDown(true);
+				wv.requestFocus();
 			}
 
 
@@ -103,10 +116,12 @@ public class ActivityEditorConteudo extends Activity{
 				// TODO Auto-generated method stub
 				super.onPageStarted(view, url, favicon);
 				wv.pageDown(true);
-			}
-
-		});
+				wv.requestFocus();
+			}			
+		});	
 	}
+	
+	
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -178,10 +193,8 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para editar
 			editMode = true;
 			invalidateOptionsMenu(); //recarrega os menus
-			//Recarrega o editor em modo de edição
-			executarEditorRaptor();
+			refreshEditor();//Recarrega o editor em modo de edição
 			break;
-
 		case R.id.menu_compartilhar:
 			//codigo para compartilhar
 			compartilhar();
@@ -204,7 +217,7 @@ public class ActivityEditorConteudo extends Activity{
 			invalidateOptionsMenu(); //recarrega os menus
 			salvarConteudoTxt(getConteudoTemp());
 			//Recarrega o editor em modo de visualização
-			executarEditorRaptor();
+			refreshEditor(); //Recarrega o editor em modo de visualização
 			break;
 
 		case R.id.menu_inserir_desenho:
@@ -214,7 +227,6 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para inserir imagem
 			Intent it = new Intent(ActivityEditorConteudo.this, ActivityEscolherImagem.class);
 			startActivityForResult(it, SELECIONAR_IMAGEM);
-
 			break;
 		case R.id.menu_inserir_voz:
 			//codigo para inderir voz
@@ -238,13 +250,12 @@ public class ActivityEditorConteudo extends Activity{
 		//Diego - Anotação
 		//Salvar conteúdo na variável para o arquivo txt
 		salvarConteudoTxt(getConteudoTemp());
-
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	protected void onDestroy() {
-		//Salvar o conteúdo quando a activity for finalizadaas
+		//Salvar o conteúdo quando a activity for finalizada
 		salvarConteudoTxt(getConteudoTemp());
 		super.onDestroy();
 	}
@@ -266,6 +277,11 @@ public class ActivityEditorConteudo extends Activity{
 	@JavascriptInterface
 	public String lerConteudoEditor(){
 		return getConteudoTemp();
+	}
+	
+	@JavascriptInterface
+	public boolean isEditar(){
+		return editMode;
 	}
 
 	@JavascriptInterface
@@ -299,7 +315,7 @@ public class ActivityEditorConteudo extends Activity{
 			case SELECIONAR_IMAGEM:	
 				Bundle params = data.getExtras();
 				String caminhoImagem;
-				caminhoImagem = params.getString("filePathImage");	
+				caminhoImagem = params.getString("filePathImage");
 
 				//Verifica se o caminho está preenchido, se sim então insere a imagem no editor
 				if(!caminhoImagem.isEmpty()){
@@ -316,11 +332,11 @@ public class ActivityEditorConteudo extends Activity{
 
 	private void inserirImagemEditor(String caminhoImagem) {
 
-		String tagHtml = "<img src='" + caminhoImagem + "'/>";
+		String tagHtml = "<img src=\"" + caminhoImagem + "\" />";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);
-
-		wv.reload();
+		
+		refreshEditor();
 
 	}
 
@@ -341,6 +357,20 @@ public class ActivityEditorConteudo extends Activity{
 		emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard"+caminho+"/conteudo.txt"));  
 		emailIntent.setType("text/plain");  
 		this.startActivity( Intent.createChooser(emailIntent,res.getString(R.string.menu_compartilhar)));   
+	}
+	
+	public void refreshEditor(){
+				
+		Intent it = new Intent(ActivityEditorConteudo.this, ActivityEditorConteudo.class);
+		
+		Bundle paramsReload = new Bundle();
+		paramsReload.putBoolean("edicao", editMode);
+		paramsReload.putString("conteudoTemp", getConteudoTemp());
+		paramsReload.putString("caminhoCadernoMateria",caminho);
+		it.putExtras(paramsReload);
+		finish();
+		startActivity(it);
+		
 	}
 
 	/*public static void convert(String input, OutputStream out) throws DocumentException{  
