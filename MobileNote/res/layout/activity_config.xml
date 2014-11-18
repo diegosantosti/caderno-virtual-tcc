@@ -41,13 +41,14 @@
         android:textSize="22sp"/>
     
     <RadioGroup 
-        android:id="@+id/radio_sinc"
+        android:id="@+id/group_sinc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     
 	<RadioButton 
 			android:id="@+id/radio_sinc_wifi"	       
 	        android:layout_width="wrap_content"
+	        android:paddingBottom="5dp"
 	        android:layout_height="wrap_content"
 	        android:text="@string/radio_wifi"
 	        android:textColor="@color/font_edit"
@@ -57,17 +58,19 @@
 			android:id="@+id/radio_sinc_3g"	       
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:paddingBottom="5dp"
 	        android:text="@string/radio_3g_wifi"
 	        android:textColor="@color/font_edit"
-	        android:textSize="15sp"/>
+	        android:textSize="18sp"/>
 	    
 	    <RadioButton 
 	        android:id="@+id/radio_naosinc"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/radio_naosinc"
+	        android:paddingBottom="5dp"
 	        android:textColor="@color/font_edit"
-	        android:textSize="15sp"/>
+	        android:textSize="18sp"/>
 
     
 	</RadioGroup>
