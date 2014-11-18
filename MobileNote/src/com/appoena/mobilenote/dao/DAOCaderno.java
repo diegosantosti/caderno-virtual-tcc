@@ -36,6 +36,8 @@ public class DAOCaderno {
 	// deletar caderno
 	public void deletarCaderno(long id){
 		bd.delete("caderno","_id_caderno = '"+id+"'", null);
+		bd.delete("materia","id_caderno = '"+id+"'", null);
+		bd.delete("agenda","id_caderno = '"+id+"'", null);
 	}
 
 	// consultar caderno
