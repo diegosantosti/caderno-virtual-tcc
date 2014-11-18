@@ -159,6 +159,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			Caderno ca = adapter.getItem(info.position);
+			Diretorio.excluirDiretorio(ca.getNome());
 			ca.deletarCaderno(this, ca.getId());
 			adapter.removeItemAtPosition(info.position);
 			adapter.notifyDataSetChanged();
@@ -208,6 +209,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 			long id = cAntes.getId();
 			adapter.setItemAtPosition(c, position);
 			c.alterarCaderno(this, caderno, cor, id); // alterar caderno
+			Diretorio.renomearDiretorio(c.getNome(), cAntes.getNome()); //renomeia diretorio
 		}
 
 		adapter.notifyDataSetChanged();
