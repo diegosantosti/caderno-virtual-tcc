@@ -30,18 +30,28 @@
 	    android:layout_height="wrap_content"
 	    android:drawableLeft="@drawable/ic_hora" />
 	
-	<!-- <LinearLayout 
+	 <LinearLayout 
 	    android:orientation="horizontal"
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"> -->
+	    android:layout_height="wrap_content"> 
 	    
-	    <TextView 
-	        android:id="@+id/materiaAgenda"
-	        android:layout_width="wrap_content"
-	        android:layout_marginLeft="6dp"
-	        android:layout_height="wrap_content"
-	        android:drawableLeft="@drawable/ic_tag"
-	        style="@style/text_agenda"/>
+		    <TextView 
+		        android:id="@+id/cadernoAgenda"
+		        android:layout_width="wrap_content"
+		        android:layout_marginLeft="6dp"
+		        android:drawablePadding="5dp"
+		        android:layout_height="wrap_content"
+		        android:drawableLeft="@drawable/ic_tag"
+		        style="@style/text_agenda"/>
+		    
+		    <TextView 
+		        android:id="@+id/materiaAgenda"
+		        android:layout_width="wrap_content"
+		        android:layout_marginLeft="6dp"
+		        android:layout_height="wrap_content"
+		        style="@style/text_agenda"/>
+		    
+	    </LinearLayout>
     
 	    <CheckBox
 	        android:id="@+id/checkLembrar"
