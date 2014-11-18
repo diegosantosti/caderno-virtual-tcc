@@ -7,7 +7,7 @@ import com.appoena.mobilenote.dao.DAOAgenda;
 import android.content.Context;
 
 public class Agenda {
-	
+
 	private String 	descricao;
 	private String 	dataAgenda;
 	private String	horaAgenda;
@@ -18,11 +18,11 @@ public class Agenda {
 	private long 	id_evento;
 
 	public Agenda(){
-		
+
 	}
-	
+
 	public Agenda(String strDesc, String dtAgenda, String hrAgenda,long materia, int lembrar, long caderno,long id_evento){
-		
+
 		setDescricao(strDesc);
 		setDataAgenda(dtAgenda);
 		setHoraAgenda(hrAgenda);
@@ -33,8 +33,8 @@ public class Agenda {
 
 
 	}
-	
-	
+
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -82,7 +82,7 @@ public class Agenda {
 	public void setIdCaderno(long idCaderno) {
 		this.id_caderno = idCaderno;
 	}
-	
+
 	public long getIdAgenda() {
 		return id_agenda;
 	}
@@ -90,11 +90,11 @@ public class Agenda {
 	public void setIdAgenda(long idAgenda) {
 		this.id_agenda = idAgenda;
 	}
-	
+
 	public long getIdEvento(){
 		return this.id_evento;
 	}
-	
+
 	public void setIdEvento(long id){
 		this.id_evento = id;
 	}
@@ -103,24 +103,36 @@ public class Agenda {
 		DAOAgenda dg = new DAOAgenda(ctx);
 		dg.inserirAgenda(descricao, hora, data, idMateria, lembrar, id_caderno,id_evento);
 	}
-	
+
 	// metodo para alterar tarefa
 	public void alterarTarefa(Context ctx, String descricao, String data, String hora, int lembrar, long idMateria, long idCaderno,long id_evento, long idAgenda){
 		DAOAgenda dg = new DAOAgenda(ctx);
 		dg.alterarAgenda(descricao, hora, data, idMateria, lembrar, idCaderno, id_evento,idAgenda);
 	}
-	
+
 	// metodo para deletar tarefa
-	public void deletarTarefa(Context ctx, long idAgenda){
+	public void deletarAgenda(Context ctx, long idAgenda){
 		DAOAgenda dg = new DAOAgenda(ctx);
 		dg.deletarAgenda(idAgenda);
-		
+
 	}
 	// metodo para trazer todas as tarefas cadastradas
 	public ArrayList<Agenda>  consultarAgenda(Context ctx){
 		ArrayList<Agenda> list = new ArrayList<Agenda>();
 		DAOAgenda da = new DAOAgenda(ctx);
-		list = da.consultarAgendas();
+		list = da.consultarAgenda();
 		return list;
 	}
+	
+	//metodo para trazer o nome do caderno
+	public String nomeCaderno(Context ctx,long id){
+		DAOAgenda da = new DAOAgenda(ctx);
+		return da.nomeCaderno(id);
 	}
+	
+	//metodo para trazer o nome do materia
+		public String nomeMateria(Context ctx,long id){
+			DAOAgenda da = new DAOAgenda(ctx);
+			return da.nomeMateria(id);
+		}
+}

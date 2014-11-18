@@ -170,7 +170,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		Materia m = new Materia(nome, dia_semana, nomeProf, emailProf, cor, id_caderno);
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))){
 			
-			m.inserirMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno);
+			m.incluirMateria(this, nome, nomeProf, emailProf, cor, dia_semana, id_caderno);
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
 			adapterMateria.setMaterias(arrayMaterias);
 			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome); //cria o diretorio

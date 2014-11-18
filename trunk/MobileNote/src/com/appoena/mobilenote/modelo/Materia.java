@@ -74,7 +74,7 @@ public class Materia {
 	}
 
 
-	public void inserirMateria(Context ctx, String nome, String professor, String email, int cor, int dia_semana,long id_caderno){
+	public void incluirMateria(Context ctx, String nome, String professor, String email, int cor, int dia_semana,long id_caderno){
 		DAOMateria dm = new DAOMateria(ctx);
 		dm.incluirMateria(nome, professor, email, cor, dia_semana, id_caderno);
 		

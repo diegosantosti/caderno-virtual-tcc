@@ -19,7 +19,7 @@ public class DAOCaderno {
 		bd = aux.getWritableDatabase();
 	}
 	// inserir dados na tabela caderno
-	public void inserirCaderno(String nome, int cor){
+	public void incluirCaderno(String nome, int cor){
 		
 		bd.execSQL("insert into caderno(_id_caderno,nome,cor_da_capa) values(null,'"+nome+"',"+cor+");");
 
@@ -41,7 +41,7 @@ public class DAOCaderno {
 	}
 
 	// consultar caderno
-	public ArrayList<Caderno> consultarCadernos(){
+	public ArrayList<Caderno> consultarCaderno(){
 		ArrayList<Caderno> list = new ArrayList<Caderno>();
 		String[] colunas = {"_id_caderno","nome","cor_da_capa"};
 		
