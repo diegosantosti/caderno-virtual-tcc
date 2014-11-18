@@ -90,6 +90,7 @@
     <string name="email_invalido"> e-mail inválido</string>
     <string name="dropbox_vinculado">A conta da dropbox foi vinculada.</string>
     <string name="dropbox_excluido">A conta do dropbox foi excluida.</string>
+    <string name="configs_save">As configurações foram salvas.</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>
@@ -108,6 +109,10 @@
     <string name="COR_MATERIA">COR_MATERIA</string>
     <string name="titulo_escolher_imagem">Inserir imagem a partir </string>
     <string name="escolher_imagem">Selecionar Imagem</string>
+    <string name="PREFS_NAME">preferences</string>
+    <string name="SYNC">sync</string>
+    <string name="APP_KEY">tgqewuej4tssn7n</string>
+    <string name="APP_SECRET">vci78s22idpmzbq</string>
     
     
 </resources>

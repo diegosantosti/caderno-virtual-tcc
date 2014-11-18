@@ -6,20 +6,24 @@ import com.dropbox.sync.android.DbxAccountManager;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class ActivityConfig extends Activity{
 	
 	private Button btnDropLogout;
 	private Button btnDropLogin;
+	private RadioGroup groupSync;
 	private static final String APP_KEY="tgqewuej4tssn7n";
 	private static final String APP_SECRET="vci78s22idpmzbq";
 	private DbxAccountManager mAccountManager;
+	private SharedPreferences sharedPreferences;
 	
 	
 	@Override
@@ -33,9 +37,13 @@ public class ActivityConfig extends Activity{
 		mAccountManager = DbxAccountManager.getInstance(getApplication(), APP_KEY, APP_SECRET);
 		btnDropLogin = (Button)findViewById(R.id.btn_login);
 		btnDropLogout = (Button)findViewById(R.id.btn_logout);
+		groupSync = (RadioGroup)findViewById(R.id.group_sinc);
 		clickOnLoginDrop();
 		clickOnLogoutDrop();
 		enableView(mAccountManager.hasLinkedAccount());
+		sharedPreferences = getSharedPreferences(getResources().getString(R.string.PREFS_NAME),0);
+		int sync = sharedPreferences.getInt(getResources().getString(R.string.SYNC), R.id.radio_sinc_wifi);
+		groupSync.check(sync);
 		
 		
 		
@@ -46,7 +54,9 @@ public class ActivityConfig extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			
+			salvarConfig();
+			Toast.makeText(this, getString(R.string.configs_save), Toast.LENGTH_SHORT).show();
+			finish();
 			break;
 
 		default:
@@ -60,6 +70,14 @@ public class ActivityConfig extends Activity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.config, menu);
 		return super.onCreateOptionsMenu(menu);
+	}
+	
+	
+	public void salvarConfig(){
+		SharedPreferences.Editor edit = sharedPreferences.edit();
+		edit.putInt(getString(R.string.SYNC), groupSync.getCheckedRadioButtonId());
+		edit.commit();
+		
 	}
 	
 	/**
