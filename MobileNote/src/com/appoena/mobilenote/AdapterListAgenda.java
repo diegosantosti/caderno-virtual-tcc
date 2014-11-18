@@ -16,11 +16,13 @@ public class AdapterListAgenda extends BaseAdapter {
 	
 	private ArrayList<Agenda> agendas;
 	private LayoutInflater inflater;
+	private Context ctx;
 	
 	public AdapterListAgenda(Context context, ArrayList<Agenda> agendas) {
 		
 		this.agendas = agendas;
 		inflater = LayoutInflater.from(context);
+		this.ctx = context;
 	}
 	
 
@@ -67,7 +69,9 @@ public class AdapterListAgenda extends BaseAdapter {
 		((TextView) convertView.findViewById(R.id.titAgenda)).setText(a.getDescricao());
 		((TextView) convertView.findViewById(R.id.horaAgenda)).setText(a.getHoraAgenda());
 		((TextView) convertView.findViewById(R.id.dataAgenda)).setText(a.getDataAgenda());
-		//((TextView) convertView.findViewById(R.id.materiaAgenda)).setText(a.nomeMateria(getActivity(), a.getIdAgenda()));
+		((TextView)convertView.findViewById(R.id.cadernoAgenda)).setText("Caderno:" + a.nomeCaderno(ctx, a.getIdCaderno()));
+		((TextView) convertView.findViewById(R.id.materiaAgenda)).setText("Materia:" +a.nomeMateria(ctx, a.getIdMateria()));
+	
 		
 		//if para converter o campo lembrar =  1,  não lembrar = 0
 		if(a.getLembrar() == 1){

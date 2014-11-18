@@ -53,7 +53,7 @@ public class DAOAgenda {
 	}
 
 	// consultar caderno
-	public ArrayList<Agenda> consultarAgendas(){
+	public ArrayList<Agenda> consultarAgenda(){
 		ArrayList<Agenda> list = new ArrayList<Agenda>();
 		String[] colunas = {"_id_agenda","descricao","data", "hora","lembrar","id_caderno","id_materia", "id_evento"};
 
@@ -80,6 +80,42 @@ public class DAOAgenda {
 		}
 
 		return (list);
+	}
+	
+	public String nomeCaderno(long id){
+
+		String[] colunas = {"nome"};
+		String nome ="";
+		Cursor cursor = bd.query("caderno", colunas, "_id_caderno = "+id, null, null, null, null);
+
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			do{
+				nome = cursor.getString(0);
+
+			}while(cursor.moveToNext());
+
+
+		}
+		return nome;
+	}
+	
+	public String nomeMateria(long id){
+
+		String[] colunas = {"nome"};
+		String nome ="";
+		Cursor cursor = bd.query("materia", colunas, "_id_materia = "+id, null, null, null, null);
+
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			do{
+				nome = cursor.getString(0);
+
+			}while(cursor.moveToNext());
+
+
+		}
+		return nome;
 	}
 
 }

@@ -50,7 +50,7 @@ public class Caderno {
 	// inserir caderno
 	public void incluirCaderno(Context ctx, int cor, String nome){
 		DAOCaderno dc = new DAOCaderno(ctx);
-		dc.inserirCaderno(nome, cor);
+		dc.incluirCaderno(nome, cor);
 	}	
 
 	// alterar caderno
@@ -68,7 +68,7 @@ public class Caderno {
 	public ArrayList<Caderno> listaCadernos(Context ctx){
 		ArrayList<Caderno> list = new ArrayList<Caderno>();
 		DAOCaderno dc = new DAOCaderno(ctx);
-		list = dc.consultarCadernos();
+		list = dc.consultarCaderno();
 		return list;
 	}
 	

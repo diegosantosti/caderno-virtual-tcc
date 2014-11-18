@@ -169,7 +169,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 
 			}
 			else if(lembrarAntes == 1 || lembrar == 0)
-			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
+				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 			// alterando no BD
 			a.alterarTarefa(this, desc, data, hora, lembrar, materia, caderno,id_evento, id_agenda);
 			arrayAgendas = a.consultarAgenda(this);
@@ -211,7 +211,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		case R.id.menu_del:
 			Agenda ag = adapterAgenda.getItem(info.position);
 			long idEvento = ag.getIdEvento();
-			ag.deletarTarefa(this, ag.getIdAgenda()); //deletando do BD
+			ag.deletarAgenda(this, ag.getIdAgenda()); //deletando do BD
 			adapterAgenda.removeItemAtPosition(info.position);
 			adapterAgenda.notifyDataSetChanged();
 
