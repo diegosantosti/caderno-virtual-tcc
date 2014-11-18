@@ -47,6 +47,7 @@ public class DAOMateria {
 	// deletar caderno
 	public void deletarMateria(long id){
 		bd.delete("materia","_id_materia = '"+id+"'", null);
+		bd.delete("agenda","id_materia = '"+id+"'", null);
 	}
 
 	// consultar materia

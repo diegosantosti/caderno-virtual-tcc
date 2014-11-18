@@ -11,8 +11,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.appoena.mobilenote.modelo.Agenda;
-import com.appoena.mobilenote.modelo.Materia;
-import com.appoena.mobilenote.screens.ActivityAgenda;
 
 public class AdapterListAgenda extends BaseAdapter {
 	
