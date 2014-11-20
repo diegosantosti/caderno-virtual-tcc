@@ -1,6 +1,7 @@
 package com.appoena.mobilenote.screens;
 
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.util.OperacoesDrop;
 import com.dropbox.sync.android.DbxAccountManager;
 
 import android.app.ActionBar;
@@ -42,11 +43,8 @@ public class ActivityConfig extends Activity{
 		sharedPreferences = getSharedPreferences(getResources().getString(R.string.PREFS_NAME),0);
 		int sync = sharedPreferences.getInt(getResources().getString(R.string.SYNC), R.id.radio_sinc_wifi);
 		groupSync.check(sync);
-		
-		
-		
-		
 	}
+	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -74,7 +72,9 @@ public class ActivityConfig extends Activity{
 		return super.onCreateOptionsMenu(menu);
 	}
 	
-	
+	/**
+	 * Salva as configuracoes
+	 */
 	public void salvarConfig(){
 		SharedPreferences.Editor edit = sharedPreferences.edit();
 		edit.putInt(getString(R.string.SYNC), groupSync.getCheckedRadioButtonId());
@@ -129,7 +129,8 @@ public class ActivityConfig extends Activity{
 		if(requestCode==0){
 			if(resultCode==RESULT_OK){
 				enableView(mAccountManager.hasLinkedAccount());
-				if(mAccountManager.hasLinkedAccount()) Toast.makeText(getApplicationContext(), R.string.dropbox_vinculado, Toast.LENGTH_SHORT).show();
+				if(mAccountManager.hasLinkedAccount()) 
+					Toast.makeText(getApplicationContext(), R.string.dropbox_vinculado, Toast.LENGTH_SHORT).show();
 			}
 			
 		}else{
