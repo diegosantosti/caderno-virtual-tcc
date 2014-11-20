@@ -20,8 +20,6 @@ public class ActivityConfig extends Activity{
 	private Button btnDropLogout;
 	private Button btnDropLogin;
 	private RadioGroup groupSync;
-	private static final String APP_KEY="tgqewuej4tssn7n";
-	private static final String APP_SECRET="vci78s22idpmzbq";
 	private DbxAccountManager mAccountManager;
 	private SharedPreferences sharedPreferences;
 	
@@ -34,7 +32,7 @@ public class ActivityConfig extends Activity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.save);
-		mAccountManager = DbxAccountManager.getInstance(getApplication(), APP_KEY, APP_SECRET);
+		mAccountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
 		btnDropLogin = (Button)findViewById(R.id.btn_login);
 		btnDropLogout = (Button)findViewById(R.id.btn_logout);
 		groupSync = (RadioGroup)findViewById(R.id.group_sinc);
@@ -56,10 +54,14 @@ public class ActivityConfig extends Activity{
 		case android.R.id.home:
 			salvarConfig();
 			Toast.makeText(this, getString(R.string.configs_save), Toast.LENGTH_SHORT).show();
+			if(mAccountManager.hasLinkedAccount())setResult(RESULT_OK);
+			else setResult(RESULT_CANCELED);
 			finish();
 			break;
 
 		default:
+			if(mAccountManager.hasLinkedAccount())setResult(RESULT_OK);
+			else setResult(RESULT_CANCELED);
 			finish();
 			break;
 		}
