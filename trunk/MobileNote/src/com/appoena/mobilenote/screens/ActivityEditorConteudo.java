@@ -17,9 +17,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
+
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.util.Diretorio;
+import com.dropbox.sync.android.DbxAccountManager;
 
 import java.io.ByteArrayInputStream;  
 import java.io.FileOutputStream;
@@ -43,8 +46,9 @@ public class ActivityEditorConteudo extends Activity{
 	private boolean editMode = false;
 	WebView wv;
 	private Bundle paramsEscolherImagem;
-
-	private static final int SELECIONAR_IMAGEM 	= 1; 
+	private static final int SELECIONAR_IMAGEM 	= 1;
+	private static final int CONFIG_DROPBOX = 278; //codigo para retorno da activity config
+	private DbxAccountManager accountManager;
 
 	public ActivityEditorConteudo(){
 
@@ -63,7 +67,6 @@ public class ActivityEditorConteudo extends Activity{
 		Intent it = getIntent();
 		params = it.getExtras();
 		caminho = params.getString("caminhoCadernoMateria");
-		
 		//LÓGICA PARA RECUPERAR O ESTADO DO CONTEÚDO QUANDO FOR ATUALIZADO NA PRÓPRIA TELA.
 					
 		String conteudoTemp = params.getString("conteudoTemp");
@@ -202,6 +205,7 @@ public class ActivityEditorConteudo extends Activity{
 
 		case R.id.menu_sincronizar:
 			//codigo para sincronizar
+			sincronizar();
 			break;
 
 		case R.id.menu_pesquisar:
@@ -308,7 +312,7 @@ public class ActivityEditorConteudo extends Activity{
 	 * Receive the result from the startActivity
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+		
 		if (resultCode == Activity.RESULT_OK) {
 
 			switch (requestCode) {
@@ -323,7 +327,9 @@ public class ActivityEditorConteudo extends Activity{
 				}
 
 				break;
-
+				
+			case CONFIG_DROPBOX:
+				sincronizar();
 			default:
 				break;
 			}
@@ -387,4 +393,16 @@ public class ActivityEditorConteudo extends Activity{
         renderer.createPDF(out);          
     }        */  
 
+	public void sincronizar(){
+		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
+		if(accountManager.hasLinkedAccount()){
+			//sincronizar
+			Toast.makeText(this, "Implementar sincronizacao", Toast.LENGTH_SHORT).show();
+		}
+		else{
+			Intent  it = new Intent(ActivityEditorConteudo.this, ActivityConfig.class);
+			startActivityForResult(it, CONFIG_DROPBOX);
+			
+		}
+	}
 }
