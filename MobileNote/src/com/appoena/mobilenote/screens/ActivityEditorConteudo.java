@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.util.Diretorio;
+import com.appoena.mobilenote.util.OperacoesDrop;
 import com.dropbox.sync.android.DbxAccountManager;
 
 import java.io.ByteArrayInputStream;  
@@ -446,7 +447,8 @@ public class ActivityEditorConteudo extends Activity{
 		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
 		if(accountManager.hasLinkedAccount()){
 			//sincronizar
-			Toast.makeText(this, "Implementar sincronizacao", Toast.LENGTH_SHORT).show();
+			OperacoesDrop.efetuarOperacao(getApplication(), 1, caminho + "/conteudo.txt", null);
+			//Toast.makeText(this, "Implementar sincronizacao", Toast.LENGTH_SHORT).show();
 		}
 		else{
 			Intent  it = new Intent(ActivityEditorConteudo.this, ActivityConfig.class);
