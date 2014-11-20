@@ -28,6 +28,9 @@ import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;  
 import java.io.OutputStream;  
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import org.w3c.dom.Document;  
 import org.w3c.tidy.Tidy;  
@@ -46,8 +49,10 @@ public class ActivityEditorConteudo extends Activity{
 	private boolean editMode = false;
 	WebView wv;
 	private Bundle paramsEscolherImagem;
-	private static final int SELECIONAR_IMAGEM 	= 1;
+	private static final int SELECIONAR_IMAGEM 	= 1; //codigo para retorno da activity do inserir imagem
 	private static final int CONFIG_DROPBOX = 278; //codigo para retorno da activity config
+	private static final int GRAVAR_AUDIO = 2; //codigo para retorno da activity do gravar Audio
+	
 	private DbxAccountManager accountManager;
 
 	public ActivityEditorConteudo(){
@@ -88,12 +93,12 @@ public class ActivityEditorConteudo extends Activity{
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		executarEditorRaptor(); // CHAMA MÉTODO PARA EXECUTAR O EDITOR DO RAPTOR
+		setupEditorRaptor(); // CHAMA MÉTODO PARA EXECUTAR O EDITOR DO RAPTOR
 	}
 
-	//Método para executar o Editor Raptor no modo de visualização
+	//Método para executar e efetuar o setup do Editor Raptor no modo de visualização
 	
-	public void executarEditorRaptor(){
+	public void setupEditorRaptor(){
 
 		wv = new WebView(getApplicationContext());		
 		wv = (WebView) findViewById(R.id.webView1);
@@ -234,6 +239,14 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 		case R.id.menu_inserir_voz:
 			//codigo para inderir voz
+			
+			Intent itAudio = new Intent(ActivityEditorConteudo.this, ActivityGravarAudio.class);
+			Bundle paramsAudio = new Bundle();
+			paramsAudio.putString("caminhoCadernoMateria", caminho);
+			itAudio.putExtras(paramsAudio);			
+			startActivity(itAudio);
+			startActivityForResult(itAudio, GRAVAR_AUDIO);
+						
 			break;
 		case android.R.id.home:
 			//chamar o metodo para salvar conteudo ao sair
@@ -327,9 +340,22 @@ public class ActivityEditorConteudo extends Activity{
 				}
 
 				break;
+			
+			case GRAVAR_AUDIO:	
+				Bundle paramsAudio = data.getExtras();
+				String caminhoAudio;
+				caminhoAudio = paramsAudio.getString("caminhoAudio");
+				
+				//Verifica se o caminho está preenchido, se sim então insere a imagem no editor
+				if(!caminhoAudio.isEmpty()){
+					inserirAudioEditor(caminhoAudio);
+				}
+
+				break;
 				
 			case CONFIG_DROPBOX:
 				sincronizar();
+				break;
 			default:
 				break;
 			}
@@ -338,13 +364,36 @@ public class ActivityEditorConteudo extends Activity{
 
 	private void inserirImagemEditor(String caminhoImagem) {
 
-		String tagHtml = "<img src=\"" + caminhoImagem + "\" />";
+		String tagHtml = "<p><img src=\"" + caminhoImagem + "\" width='400' /></p>";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);
 		
 		refreshEditor();
 
 	}
+	
+	private void inserirAudioEditor(String caminhoAudio) {
+		
+		//Recupera a data/hora atual do sistema
+		Locale locale = new Locale("pt","BR"); 
+		GregorianCalendar calendar = new GregorianCalendar(); 
+		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMM' de 'yyyy' - 'HH':'mm'h'",locale); 
+		String dataHoraAtual = formatador.format(calendar.getTime());
+		
+		String tagHtml = 
+			"<p><audio controls>" +
+				"<source src=\"" + caminhoAudio + "\" type=\"audio/wav\">" +
+				"Your browser does not support the audio element."+
+			"</audio></p><p>"+dataHoraAtual+"</p>";
+		
+//		String tagHtml = "<p><img src=\"" + caminhoAudio + "\" width='500' /></p>";
+		String novoConteudo = getConteudoTemp() + tagHtml;
+		setConteudoTemp(novoConteudo);
+		
+		refreshEditor();
+
+	}
+	
 
 	// compartilhar
 	public void compartilhar(){

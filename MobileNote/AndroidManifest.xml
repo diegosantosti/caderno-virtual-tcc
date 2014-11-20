@@ -15,7 +15,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -59,6 +63,13 @@
             android:name="com.appoena.mobilenote.screens.ActivityEscolherImagem"
             android:configChanges="orientation"
             android:label="@string/escolher_imagem"
+            android:theme="@style/ThemeMobileNote" >
+        </activity>
+        
+        <activity
+            android:name="com.appoena.mobilenote.screens.ActivityGravarAudio"
+            android:configChanges="orientation"
+            android:label="@string/audio_record"
             android:theme="@style/ThemeMobileNote" >
         </activity>
 

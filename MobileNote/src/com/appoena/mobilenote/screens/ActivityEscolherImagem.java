@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -123,6 +124,9 @@ public class ActivityEscolherImagem extends Activity{
     private String getFilePath(Intent data){
     	Uri selectedImage = data.getData();
     	String [] filePathColumn = {MediaStore.Images.Media.DATA};
+    	
+    	Log.i("WebView" , "ESCOLHER IMAGEM ---> " + filePathColumn.length);
+    	Log.i("WebView" , "ESCOLHER IMAGEM ---> " + filePathColumn.toString());
     	
     	Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
     	cursor.moveToFirst();
