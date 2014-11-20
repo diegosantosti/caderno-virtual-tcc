@@ -74,7 +74,7 @@
             android:name="com.dropbox.client2.android.AuthActivity"
             android:launchMode="singleTask" >
             <intent-filter>
-                <data android:scheme="db-tgqewuej4tssn7n" />
+                <data android:scheme="db-lngtpdadq6katby" />
 
                 <action android:name="android.intent.action.VIEW" />
 
@@ -90,17 +90,13 @@
             android:label="Dropbox Sync" />
 
     </application>
-    
+	
     <application>
-        ...
-        <provider
+         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.mydomain.fileprovider"
             android:exported="true"
             android:grantUriPermissions="true">
-            ...
         </provider>
-        ...
     </application>
-
 </manifest>
