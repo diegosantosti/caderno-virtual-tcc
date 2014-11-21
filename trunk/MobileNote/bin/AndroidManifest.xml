@@ -72,6 +72,13 @@
             android:label="@string/audio_record"
             android:theme="@style/ThemeMobileNote" >
         </activity>
+        
+        <activity
+            android:name="com.appoena.mobilenote.util.drawning.ActivityInserirDesenho"
+            android:configChanges="orientation"
+            android:label="@string/titulo_desenho"
+            android:theme="@style/ThemeMobileNote" >
+        </activity>
 
         
         <activity

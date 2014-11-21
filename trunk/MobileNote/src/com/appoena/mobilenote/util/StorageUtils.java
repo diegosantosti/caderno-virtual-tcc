@@ -31,7 +31,7 @@ public class StorageUtils {
 	}
 	
 	//Método para recuperar o nome do próximo audio
-	private static String getNomeAudio(String caminho){
+	public static String getNomeAudio(String caminho){
 		File file=new File(Environment.getExternalStorageDirectory()+caminho);
         File[] list = file.listFiles();
         int count = 0;
@@ -45,4 +45,18 @@ public class StorageUtils {
 		return "mnaudio" + count + ".wav";
 	}
 	
+	//Método para recuperar o nome do próximo audio
+	public static String getNomeImagem(String caminho){
+		File file=new File(Environment.getExternalStorageDirectory()+caminho);
+        File[] list = file.listFiles();
+        int count = 0;
+        for (File f: list){
+            String name = f.getName();
+            if (name.endsWith(".jpg") || name.endsWith(".png"))
+               count++;
+        }
+        count++;
+        
+		return "mnimagem" + count + ".jpg";
+	}
 }
