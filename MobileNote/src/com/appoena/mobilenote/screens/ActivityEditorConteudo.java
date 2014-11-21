@@ -3,7 +3,6 @@ package com.appoena.mobilenote.screens;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.ClipData.Item;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,28 +17,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.Toast;
-
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
-import com.appoena.mobilenote.util.Diretorio;
 import com.appoena.mobilenote.util.OperacoesDrop;
+import com.appoena.mobilenote.util.drawning.ActivityInserirDesenho;
 import com.dropbox.sync.android.DbxAccountManager;
 import com.dropbox.sync.android.DbxException.Unauthorized;
 import com.dropbox.sync.android.DbxFileSystem;
-
-import java.io.ByteArrayInputStream;  
-import java.io.FileOutputStream;
-import java.io.InputStream;  
-import java.io.OutputStream;  
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-
 import org.w3c.dom.Document;  
 import org.w3c.tidy.Tidy;  
 //import org.xhtmlrenderer.pdf.ITextRenderer;  
-
 import com.lowagie.text.DocumentException;  
 
 
@@ -56,6 +46,7 @@ public class ActivityEditorConteudo extends Activity{
 	private static final int SELECIONAR_IMAGEM 	= 1; //codigo para retorno da activity do inserir imagem
 	private static final int CONFIG_DROPBOX = 278; //codigo para retorno da activity config
 	private static final int GRAVAR_AUDIO = 2; //codigo para retorno da activity do gravar Audio
+	private static final int INSERIR_DESENHO = 3; //codigo para retorno da activity do Inserir desenho
 	
 	private DbxAccountManager accountManager;
 
@@ -121,7 +112,6 @@ public class ActivityEditorConteudo extends Activity{
 				wv.pageDown(true);
 				wv.requestFocus();
 			}
-
 
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -235,6 +225,11 @@ public class ActivityEditorConteudo extends Activity{
 
 		case R.id.menu_inserir_desenho:
 			//codigo para desenhar
+			Intent itInserirDesenho = new Intent(ActivityEditorConteudo.this, ActivityInserirDesenho.class);
+			Bundle paramsDesenho = new Bundle();
+			paramsDesenho.putString("caminhoCadernoMateria", caminho);
+			itInserirDesenho.putExtras(paramsDesenho);
+			startActivityForResult(itInserirDesenho, INSERIR_DESENHO);			
 			break;
 		case R.id.menu_inserir_imagem:
 			//codigo para inserir imagem
@@ -247,8 +242,7 @@ public class ActivityEditorConteudo extends Activity{
 			Intent itAudio = new Intent(ActivityEditorConteudo.this, ActivityGravarAudio.class);
 			Bundle paramsAudio = new Bundle();
 			paramsAudio.putString("caminhoCadernoMateria", caminho);
-			itAudio.putExtras(paramsAudio);			
-			startActivity(itAudio);
+			itAudio.putExtras(paramsAudio);
 			startActivityForResult(itAudio, GRAVAR_AUDIO);
 						
 			break;
@@ -355,6 +349,17 @@ public class ActivityEditorConteudo extends Activity{
 					inserirAudioEditor(caminhoAudio);
 				}
 
+				break;
+				
+			case INSERIR_DESENHO:	
+				Bundle paramsDesenho = data.getExtras();
+				String caminhoDesenho;
+				caminhoDesenho = paramsDesenho.getString("caminhoDesenho");
+				
+				//Verifica se o caminho está preenchido, se sim então insere a imagem no editor
+				if(!caminhoDesenho.isEmpty()){
+					inserirImagemEditor(caminhoDesenho);
+				}
 				break;
 				
 			case CONFIG_DROPBOX:

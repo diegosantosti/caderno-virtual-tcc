@@ -125,12 +125,6 @@ public class ActivityGravarAudio extends Activity{
 
 			@Override
 			public void onRecordSuccess() {
-//				Bundle params = new Bundle();
-//				params.putString("caminhoAudio", fileName);
-//				
-//				getIntent().replaceExtras(params);
-//				setResult(RESULT_OK , getIntent());
-//				finish();
 			}
 
 			@Override
