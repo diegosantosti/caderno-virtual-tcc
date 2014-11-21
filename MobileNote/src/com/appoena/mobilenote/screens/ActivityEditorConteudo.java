@@ -3,6 +3,7 @@ package com.appoena.mobilenote.screens;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ClipData.Item;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -24,6 +25,8 @@ import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.util.Diretorio;
 import com.appoena.mobilenote.util.OperacoesDrop;
 import com.dropbox.sync.android.DbxAccountManager;
+import com.dropbox.sync.android.DbxException.Unauthorized;
+import com.dropbox.sync.android.DbxFileSystem;
 
 import java.io.ByteArrayInputStream;  
 import java.io.FileOutputStream;
@@ -444,10 +447,33 @@ public class ActivityEditorConteudo extends Activity{
     }        */  
 
 	public void sincronizar(){
+		//final MenuItem item = (MenuItem)findViewById(R.id.menu_sincronizar);
+		//item.setEnabled(false);
 		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
 		if(accountManager.hasLinkedAccount()){
 			//sincronizar
-			OperacoesDrop.efetuarOperacao(getApplication(), 1, caminho + "/conteudo.txt", null);
+			//Thread para rodar em background
+			new Thread(){
+				public void run(){
+					try {
+						DbxFileSystem dbxFileSystem = DbxFileSystem.forAccount(accountManager.getLinkedAccount());
+						OperacoesDrop.commitDropbox(1, caminho+"/conteudo.txt", null, dbxFileSystem);
+					} catch (Unauthorized e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					runOnUiThread(new Runnable() {
+						public void run() {
+							//item.setEnabled(true);
+						}
+					});
+				}
+				
+				
+			}.start();
+			
+			
 			//Toast.makeText(this, "Implementar sincronizacao", Toast.LENGTH_SHORT).show();
 		}
 		else{
