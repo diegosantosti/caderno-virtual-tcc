@@ -1,17 +1,21 @@
 package com.appoena.mobilenote.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.util.Log;
 
 import com.appoena.mobilenote.R;
 import com.dropbox.sync.android.DbxAccountManager;
 import com.dropbox.sync.android.DbxException;
 import com.dropbox.sync.android.DbxException.Unauthorized;
+import com.dropbox.sync.android.DbxFile;
 import com.dropbox.sync.android.DbxFileSystem;
 import com.dropbox.sync.android.DbxPath;
 
@@ -70,8 +74,11 @@ public abstract class OperacoesDrop {
 	 * 		Classe da API do Dropbox responsavel por efetuar as operacoes.
 	 */
 	public static void commitDropbox(int operacao, String newPath, String oldPath, DbxFileSystem dbxFileSystem){
+		File newFile = new File(new File(Environment.getExternalStorageDirectory(), newPath).getPath());
+		DbxFile dbxFile = null;
 		newPath = preparaCaminho(newPath);
 		Log.v("commitDropbox", newPath);
+		Log.v("commitDropbox caminho", newFile.toString());
 		DbxPath path = new DbxPath(DbxPath.ROOT, newPath);
 		switch (operacao) {
 		
@@ -86,11 +93,24 @@ public abstract class OperacoesDrop {
 			
 		case ADICIONAR_ARQUIVO:
 			try {
-				dbxFileSystem.create(path);
+				if(dbxFileSystem.exists(path)){
+					dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
+				}else{
+					dbxFile = dbxFileSystem.create(path);
+				}
+				try {
+					dbxFile.writeFromExistingFile(newFile, false);
+				}catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					dbxFile.close();
+				}
+				
 			} catch (DbxException e) {
 				// erro ao adicionar arquivo
 				e.printStackTrace();
-			}
+			} 
 			break;
 			
 		case RENOMEAR:
