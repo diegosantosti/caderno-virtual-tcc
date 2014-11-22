@@ -20,6 +20,7 @@ import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.util.Diretorio;
+import com.appoena.mobilenote.util.Dropbox;
 
 public class ActivityCaderno extends Activity implements CustomDialogListener{
 
@@ -160,6 +161,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		case R.id.menu_del:
 			Caderno ca = adapter.getItem(info.position);
 			Diretorio.excluirDiretorio(ca.getNome());
+			Dropbox.excluir(ca.getNome(), getApplicationContext());
 			ca.deletarCaderno(this, ca.getId());
 			adapter.removeItemAtPosition(info.position);
 			adapter.notifyDataSetChanged();
@@ -202,6 +204,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 			
 			//Chama função para criar diretório do caderno
 			Diretorio.criaDiretorio("/"+c.getNome());
+			Dropbox.criarPasta(c.getNome(), getApplicationContext());
 			
 		}else{
 			int position = params.getInt(getResources().getString(R.string.INDEX));
@@ -210,6 +213,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 			adapter.setItemAtPosition(c, position);
 			c.alterarCaderno(this, caderno, cor, id); // alterar caderno
 			Diretorio.renomearDiretorio(c.getNome(), cAntes.getNome()); //renomeia diretorio
+			Dropbox.renomear(c.getNome(), cAntes.getNome(), getApplicationContext());
 		}
 
 		adapter.notifyDataSetChanged();

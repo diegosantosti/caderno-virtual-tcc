@@ -17,9 +17,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
+
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
-import com.appoena.mobilenote.util.OperacoesDrop;
+import com.appoena.mobilenote.util.Dropbox;
 import com.appoena.mobilenote.util.drawning.ActivityInserirDesenho;
 import com.dropbox.sync.android.DbxAccountManager;
 import com.dropbox.sync.android.DbxException.Unauthorized;
@@ -61,7 +63,7 @@ public class ActivityEditorConteudo extends Activity{
 		if(savedInstanceState!=null){
 			editMode = savedInstanceState.getBoolean("edicao");
 		}
-		 		
+		Dropbox.execOperacoesSalva(getApplicationContext());		
 		setContentView(R.layout.activity_editor);
 		//Recupera o caminho do conte˙do
 		Intent it = getIntent();
@@ -157,17 +159,13 @@ public class ActivityEditorConteudo extends Activity{
 				@SuppressLint("NewApi")
 				@Override
 				public boolean onQueryTextSubmit(String query) {
-					// TODO Auto-generated method stub
-
 					//MÈtodo respons·vel por pesquisar palavras dentro do conte˙do
-
 					wv.findAllAsync(query);
 					return false;
 				}
 
 				@Override
 				public boolean onQueryTextChange(String newText) {
-					// TODO Auto-generated method stub
 					// DO NOTHING
 					return false;
 				}
@@ -177,7 +175,6 @@ public class ActivityEditorConteudo extends Activity{
 
 				@Override
 				public boolean onClose() {
-					// TODO Auto-generated method stub
 					wv.clearMatches();
 					return false;
 				}
@@ -204,7 +201,7 @@ public class ActivityEditorConteudo extends Activity{
 
 		case R.id.menu_sincronizar:
 			//codigo para sincronizar
-			sincronizar();
+			sincronizar(item, true);
 			break;
 
 		case R.id.menu_pesquisar:
@@ -221,6 +218,7 @@ public class ActivityEditorConteudo extends Activity{
 			salvarConteudoTxt(getConteudoTemp());
 			//Recarrega o editor em modo de visualizaÁ„o
 			refreshEditor(); //Recarrega o editor em modo de visualizaÁ„o
+			sincronizar(null, false);
 			break;
 
 		case R.id.menu_inserir_desenho:
@@ -363,7 +361,8 @@ public class ActivityEditorConteudo extends Activity{
 				break;
 				
 			case CONFIG_DROPBOX:
-				sincronizar();
+				//Menu menu = getResources().
+				sincronizar(null, true);
 				break;
 			default:
 				break;
@@ -451,40 +450,31 @@ public class ActivityEditorConteudo extends Activity{
         renderer.createPDF(out);          
     }        */  
 
-	public void sincronizar(){
-		//final MenuItem item = (MenuItem)findViewById(R.id.menu_sincronizar);
-		//item.setEnabled(false);
+	public void sincronizar(final MenuItem item, final boolean forced){
 		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
+		if(item!=null)item.setActionView(R.layout.progress_bar);
 		if(accountManager.hasLinkedAccount()){
 			//sincronizar
 			//Thread para rodar em background
 			new Thread(){
 				public void run(){
-					try {
-						DbxFileSystem dbxFileSystem = DbxFileSystem.forAccount(accountManager.getLinkedAccount());
-						OperacoesDrop.commitDropbox(1, caminho+"/conteudo.txt", null, dbxFileSystem);
-					} catch (Unauthorized e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
+					Dropbox.criarArquivo(caminho+"/conteudo.txt", forced, getApplicationContext());
+					//metodo que execuda na Thread principal para mostrar mensagem de sincronização concluida.
 					runOnUiThread(new Runnable() {
 						public void run() {
-							//item.setEnabled(true);
+							if(item!=null){
+								item.setActionView(null);
+								item.setIcon(R.drawable.ic_cloud_upload_white_48dp);
+							}
+							if(forced)Toast.makeText(getApplication(), getString(R.string.sync_ok), Toast.LENGTH_SHORT).show();
 						}
 					});
-				}
-				
-				
-			}.start();
-			
-			
-			//Toast.makeText(this, "Implementar sincronizacao", Toast.LENGTH_SHORT).show();
+				}	
+			}.start();			
 		}
 		else{
 			Intent  it = new Intent(ActivityEditorConteudo.this, ActivityConfig.class);
-			startActivityForResult(it, CONFIG_DROPBOX);
-			
+			startActivityForResult(it, CONFIG_DROPBOX);	
 		}
 	}
 }

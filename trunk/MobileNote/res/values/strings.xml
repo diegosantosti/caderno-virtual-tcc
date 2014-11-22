@@ -68,6 +68,9 @@
     <string name="menu_inserir_imagem">Inserir imagem</string>
     <string name="menu_inserir_desenho">Inserir desenho</string>
     <string name="menu_inserir_voz">Inserir nota de voz</string>
+    <string name="camera">Câmera</string>
+    <string name="galeria">Galeria</string>
+    <string name="contentImagem">Imagem da camera/galeria</string>
     
     <!-- Integrantes e coordenador -->
     <string name="willian">WILLIAN VALERIO</string>
@@ -91,6 +94,7 @@
     <string name="dropbox_vinculado">A conta da dropbox foi vinculada.</string>
     <string name="dropbox_excluido">A conta do dropbox foi excluida.</string>
     <string name="configs_save">As configurações foram salvas.</string>
+    <string name="sync_ok">A sincronização foi concluída.</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>
