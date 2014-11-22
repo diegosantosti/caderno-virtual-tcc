@@ -28,13 +28,13 @@
             android:id="@+id/btn_escolher_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Camera" />
+            android:text="@string/camera" />
 
         <Button
             android:id="@+id/btn_escolher_galeria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Galeria" />
+            android:text="@string/galeria" />
     </LinearLayout>
 
     <ImageView
@@ -44,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
         android:layout_marginTop="63dp"
-        android:layout_weight="0.95"
+        android:contentDescription="@string/contentImagem"
         android:src="@drawable/ic_launcher" />
 
     <LinearLayout
@@ -60,13 +60,13 @@
             android:id="@+id/btn_escolher_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar" />
+            android:text="@string/cancelar"/>
 
         <Button
             android:id="@+id/btn_escolher_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok" />
+            android:text="@string/ok"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,7 +1,7 @@
 package com.appoena.mobilenote.screens;
 
 import com.appoena.mobilenote.R;
-import com.appoena.mobilenote.util.OperacoesDrop;
+import com.appoena.mobilenote.util.Dropbox;
 import com.dropbox.sync.android.DbxAccountManager;
 
 import android.app.ActionBar;

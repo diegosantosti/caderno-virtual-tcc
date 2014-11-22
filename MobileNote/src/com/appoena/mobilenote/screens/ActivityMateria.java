@@ -21,6 +21,7 @@ import com.appoena.mobilenote.CustomDialog.CustomDialogListener;
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Materia;
 import com.appoena.mobilenote.util.Diretorio;
+import com.appoena.mobilenote.util.Dropbox;
 
 public class ActivityMateria extends Activity implements CustomDialogListener{
 	
@@ -123,7 +124,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		long id_materia = m.getIdMateria();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			Diretorio.excluirDiretorio(m.getNome()); //excluir diretorio
+			Dropbox.excluir("/"+nome_caderno+"/"+m.getNome(), getApplicationContext());
+			Diretorio.excluirDiretorio("/"+nome_caderno+"/"+m.getNome()); //excluir diretorio
 			m.deletarMateria(this, id_materia); 
 			adapterMateria.removeAtPosition(info.position);
 			adapterMateria.notifyDataSetChanged();
@@ -166,7 +168,6 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		String nome 		= params.getString(getResources().getString(R.string.NOME_MATERIA));
 		String nomeProf 	= params.getString(getResources().getString(R.string.NOME_PROFESSOR));
 		String emailProf 	= params.getString(getResources().getString(R.string.EMAIL_PROFESSOR));
-  
 		Materia m = new Materia(nome, dia_semana, nomeProf, emailProf, cor, id_caderno);
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))){
 			
@@ -174,6 +175,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
 			adapterMateria.setMaterias(arrayMaterias);
 			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome); //cria o diretorio
+			Dropbox.criarPasta("/"+nome_caderno+"/"+nome, getApplicationContext());
 			
 		}else{
 			
@@ -184,6 +186,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
 			adapterMateria.setMaterias(arrayMaterias);
 			Diretorio.renomearDiretorio("/"+nome_caderno+"/"+m.getNome(),"/"+nome_caderno+"/"+mAntes.getNome());
+			Dropbox.renomear("/"+nome_caderno+"/"+m.getNome(), "/"+nome_caderno+"/"+mAntes.getNome(), getApplicationContext());
 				
 		}
 		adapterMateria.notifyDataSetChanged();
