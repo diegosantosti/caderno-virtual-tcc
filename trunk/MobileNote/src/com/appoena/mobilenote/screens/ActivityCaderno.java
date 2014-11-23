@@ -46,7 +46,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		onClickItemGrid();
 		registerForContextMenu(gridView);
 		setBundle();
-		
+		Dropbox.execOperacoesSalva(getApplicationContext());
 		//tenta criar uma pasta do aplicativo
 		Diretorio.criaDiretorio("");
 
@@ -160,7 +160,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		switch (item.getItemId()) {
 		case R.id.menu_del:
 			Caderno ca = adapter.getItem(info.position);
-			Diretorio.excluirDiretorio(ca.getNome());
+			Diretorio.excluirDiretorio("/"+ca.getNome());
 			Dropbox.excluir(ca.getNome(), getApplicationContext());
 			ca.deletarCaderno(this, ca.getId());
 			adapter.removeItemAtPosition(info.position);
@@ -212,7 +212,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 			long id = cAntes.getId();
 			adapter.setItemAtPosition(c, position);
 			c.alterarCaderno(this, caderno, cor, id); // alterar caderno
-			Diretorio.renomearDiretorio(c.getNome(), cAntes.getNome()); //renomeia diretorio
+			Diretorio.renomearDiretorio("/"+c.getNome(), "/"+cAntes.getNome()); //renomeia diretorio
 			Dropbox.renomear(c.getNome(), cAntes.getNome(), getApplicationContext());
 		}
 

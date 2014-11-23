@@ -52,7 +52,7 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		listview = (ListView) findViewById(R.id.listMaterias);
 		listview.setAdapter(adapterMateria);
 		registerForContextMenu(listview);
-		
+		Dropbox.execOperacoesSalva(getApplicationContext());
 		//DIEGAO, aqui sera implementado o caderno. Tirei do botao config e coloquei aqui.
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

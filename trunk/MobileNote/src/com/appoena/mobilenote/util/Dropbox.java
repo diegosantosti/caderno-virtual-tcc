@@ -70,9 +70,9 @@ public abstract class Dropbox {
 				for (int i = 0; i<=index; i++) {
 					Log.v("excutar operacoes", "Size: "+ arrayDrop.size());
 					Log.v("excutar operacoes", "Vou editar: "+ i);
-					operacoes = arrayDrop.get(i);
+					operacoes = arrayDrop.get(0);
 					commitDropbox(operacoes.getOperacao(), operacoes.getNewPath(), operacoes.getOldPath(), dbxFileSystem);
-					arrayDrop.remove(i);
+					arrayDrop.remove(0);
 				}
 				Log.v("excutar operacoes", "Tamanho do array no fim:" +arrayDrop.size());
 				operacoes.setArrayOperacoes(arrayDrop);
