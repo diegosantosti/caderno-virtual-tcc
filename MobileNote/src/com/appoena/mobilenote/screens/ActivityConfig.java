@@ -1,9 +1,5 @@
 package com.appoena.mobilenote.screens;
 
-import com.appoena.mobilenote.R;
-import com.appoena.mobilenote.util.Dropbox;
-import com.dropbox.sync.android.DbxAccountManager;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +12,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.appoena.mobilenote.R;
+import com.dropbox.sync.android.DbxAccountManager;
 
 public class ActivityConfig extends Activity{
 	
