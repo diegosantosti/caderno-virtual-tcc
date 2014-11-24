@@ -119,19 +119,14 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		Materia m = adapterMateria.getItem(info.position);
-		long id_materia = m.getIdMateria();
+		
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			Dropbox.excluir("/"+nome_caderno+"/"+m.getNome(), getApplicationContext());
-			Diretorio.excluirDiretorio("/"+nome_caderno+"/"+m.getNome()); //excluir diretorio
-			m.deletarMateria(this, id_materia); 
-			adapterMateria.removeAtPosition(info.position);
-			adapterMateria.notifyDataSetChanged();
+			deletarMateria(info.position);
 			break;
 
 		case R.id.menu_edit:
-			m = adapterMateria.getItem(info.position);
+			Materia m = adapterMateria.getItem(info.position);
 			setBundle();
 			params.putString(getResources().getString(R.string.NOME_MATERIA), m.getNome());
 			params.putString(getResources().getString(R.string.NOME_PROFESSOR), m.getProfessor());
@@ -145,7 +140,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 		}
 		return super.onContextItemSelected(item);
 	}
-	
+
+
 	private void showDialog(Bundle params){
 		CustomDialogMateria customDialog = CustomDialogMateria.newInstance();
 		customDialog.setArguments(params);
@@ -194,6 +190,17 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		// nao faz nada
+		
+	}
+	
+	public void deletarMateria(int position) {
+		Materia m = adapterMateria.getItem(position);
+		long id_materia = m.getIdMateria();
+		Dropbox.excluir("/"+nome_caderno+"/"+m.getNome(), getApplicationContext());
+		Diretorio.excluirDiretorio("/"+nome_caderno+"/"+m.getNome()); //excluir diretorio
+		m.deletarMateria(this, id_materia); 
+		adapterMateria.removeAtPosition(position);
+		adapterMateria.notifyDataSetChanged();
 		
 	}
 	

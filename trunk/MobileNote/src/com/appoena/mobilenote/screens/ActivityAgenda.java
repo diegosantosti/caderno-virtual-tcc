@@ -115,15 +115,10 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		valores.put(Events.DESCRIPTION, desc);
 		valores.put(Events.CALENDAR_ID, 3);
 		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
-
-
+		// inserindo no Grid
+		Agenda a = new Agenda();
 		// inserindo Agenda
 		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){
-			
-
-			// inserindo no Grid
-			Agenda a = new Agenda();
-			
 			// inserindo no calendario android
 			Uri uri = cr.insert(Events.CONTENT_URI, valores);
 			long id_evento =  Long.parseLong(uri.getLastPathSegment());// pegando o id do evento android
@@ -137,28 +132,19 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 				uri = crL.insert(Reminders.CONTENT_URI, valoresL);
 			}
-			a.inserirTarefas(this, desc, data, hora, lembrar, materia, caderno,id_evento);
-			arrayAgendas = a.consultarAgenda(this);
-			adapterAgenda.setAgenda(arrayAgendas);
-
-
-		}else{
-			
+			a.incluirAgenda(this, desc, data, hora, lembrar, materia, caderno,id_evento);
+		}else{	
 			int position	= params.getInt(getResources().getString(R.string.INDEX));
 			Agenda aAntes = adapterAgenda.getItem(position);
 			int lembrarAntes = aAntes.getLembrar();
 			long id_agenda = aAntes.getIdAgenda();
 			long id_evento = aAntes.getIdEvento();
-			Agenda a = new Agenda(desc, data, hora, caderno, lembrar, 0,id_evento);
-
+			a = new Agenda(desc, data, hora, caderno, lembrar, 0,id_evento);
 			Uri updateUri = ContentUris.withAppendedId(Events.CONTENT_URI, id_evento);
 			cr.update( updateUri, valores, null, null);
 			id_evento =  Long.parseLong(updateUri .getLastPathSegment());
-
-
 			// alterando Lembretes lembretes
-			if(lembrar == 1 || lembrarAntes == 0){
-				
+			if(lembrar == 1 || lembrarAntes == 0){	
 				ContentResolver crL = getContentResolver();
 				ContentValues valoresL =  new ContentValues();
 				valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
@@ -166,15 +152,16 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 				crL.insert(Reminders.CONTENT_URI, valoresL);
-
 			}
 			else if(lembrarAntes == 1 || lembrar == 0)
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 			// alterando no BD
 			a.alterarTarefa(this, desc, data, hora, lembrar, materia, caderno,id_evento, id_agenda);
-			arrayAgendas = a.consultarAgenda(this);
-			adapterAgenda.setAgenda(arrayAgendas);	
+			
+				
 		}
+		arrayAgendas = a.consultarAgenda(this);
+		adapterAgenda.setAgenda(arrayAgendas);
 		adapterAgenda.notifyDataSetChanged();
 
 	}
@@ -209,19 +196,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			Agenda ag = adapterAgenda.getItem(info.position);
-			long idEvento = ag.getIdEvento();
-			ag.deletarAgenda(this, ag.getIdAgenda()); //deletando do BD
-			adapterAgenda.removeItemAtPosition(info.position);
-			adapterAgenda.notifyDataSetChanged();
-
-
-			// deletando do calendário android
-			ContentResolver cr = getContentResolver();
-			Uri deleteUri = null;
-			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + idEvento, null);
-			deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, idEvento);
-			cr.delete(deleteUri, null, null);
+			deletarAgenda(info.position);
 			break;
 
 		case R.id.menu_edit:
@@ -242,6 +217,21 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			break;
 		}
 		return super.onContextItemSelected(item);
+	}
+	
+	public void deletarAgenda(int position){
+		Agenda ag = adapterAgenda.getItem(position);
+		long idEvento = ag.getIdEvento();
+		// deletando do calendário android
+		ContentResolver cr = getContentResolver();
+		Uri deleteUri = null;
+		getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + idEvento, null);
+		deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, idEvento);
+		cr.delete(deleteUri, null, null);
+		
+		ag.deletarAgenda(this, ag.getIdAgenda()); //deletando do BD
+		adapterAgenda.removeItemAtPosition(position);
+		adapterAgenda.notifyDataSetChanged();
 	}
 
 }

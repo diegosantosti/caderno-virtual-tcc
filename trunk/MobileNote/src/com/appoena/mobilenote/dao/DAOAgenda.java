@@ -19,7 +19,7 @@ public class DAOAgenda {
 	}
 
 	// inserir agenda
-	public void inserirAgenda(String descricao, String hora, String data, long materia, int lembrar,long caderno, long id_evento){
+	public void incluirAgenda(String descricao, String hora, String data, long materia, int lembrar,long caderno, long id_evento){
 		ContentValues valores =  new ContentValues();
 		valores.put("descricao", descricao);
 		valores.put("id_materia",materia);
