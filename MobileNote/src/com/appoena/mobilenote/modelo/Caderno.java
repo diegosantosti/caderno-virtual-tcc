@@ -65,7 +65,7 @@ public class Caderno {
 
 	}
 	// lista de caderno
-	public ArrayList<Caderno> listaCadernos(Context ctx){
+	public ArrayList<Caderno> consultarCaderno(Context ctx){
 		ArrayList<Caderno> list = new ArrayList<Caderno>();
 		DAOCaderno dc = new DAOCaderno(ctx);
 		list = dc.consultarCaderno();
