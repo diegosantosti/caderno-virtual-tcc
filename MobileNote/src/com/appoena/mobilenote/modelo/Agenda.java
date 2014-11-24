@@ -99,9 +99,9 @@ public class Agenda {
 		this.id_evento = id;
 	}
 	// metodo para incluir tarefas
-	public void inserirTarefas(Context ctx, String descricao, String data, String hora, int lembrar, long idMateria, long id_caderno, long id_evento){
+	public void incluirAgenda(Context ctx, String descricao, String data, String hora, int lembrar, long idMateria, long id_caderno, long id_evento){
 		DAOAgenda dg = new DAOAgenda(ctx);
-		dg.inserirAgenda(descricao, hora, data, idMateria, lembrar, id_caderno,id_evento);
+		dg.incluirAgenda(descricao, hora, data, idMateria, lembrar, id_caderno,id_evento);
 	}
 
 	// metodo para alterar tarefa

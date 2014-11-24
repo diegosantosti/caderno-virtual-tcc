@@ -159,12 +159,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_del:
-			Caderno ca = adapter.getItem(info.position);
-			Diretorio.excluirDiretorio("/"+ca.getNome());
-			Dropbox.excluir(ca.getNome(), getApplicationContext());
-			ca.deletarCaderno(this, ca.getId());
-			adapter.removeItemAtPosition(info.position);
-			adapter.notifyDataSetChanged();
+			deletarCaderno(info.position);
 			break;
 
 		case R.id.menu_edit:
@@ -232,6 +227,15 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		Caderno c = new Caderno();
 		params.putStringArrayList("arrayNome",c.nomesCadernos(ActivityCaderno.this));
 
+	}
+	
+	public void deletarCaderno(int position){	
+		Caderno ca = adapter.getItem(position);
+		Diretorio.excluirDiretorio("/"+ca.getNome());
+		Dropbox.excluir(ca.getNome(), getApplicationContext());
+		ca.deletarCaderno(this, ca.getId());
+		adapter.removeItemAtPosition(position);
+		adapter.notifyDataSetChanged();
 	}
 
 }
