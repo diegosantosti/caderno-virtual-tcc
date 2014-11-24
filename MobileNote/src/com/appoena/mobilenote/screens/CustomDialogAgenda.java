@@ -55,10 +55,10 @@ public class CustomDialogAgenda extends CustomDialog{
 		edtDescricao 	= (EditText) view.findViewById(R.id.edtDescLembrete);
 		c 				= new Caderno();
 		m 				= new Materia();
-		listCaderno		= c.consultarCaderno(getActivity());
 		spMateria 		= (Spinner)view.findViewById(R.id.spinnerMateria);
 
 		// Preenchendo o Spinner Caderno
+		listCaderno		= c.consultarCaderno(getActivity());
 		spCaderno = (Spinner) view.findViewById(R.id.spinnerCaderno);
 		listSpCaderno = new ArrayList<String>();
 		listSpCaderno.add(getResources().getString(R.string.prompt_sel_caderno));
