@@ -35,7 +35,7 @@ import org.w3c.tidy.Tidy;
 import com.lowagie.text.DocumentException;  
 
 
-//Classe respons·vel por criar o editor de conte˙do do caderno
+//Classe respons√°vel por criar o editor de conte√∫do do caderno
 
 public class ActivityEditorConteudo extends Activity{
 
@@ -59,17 +59,17 @@ public class ActivityEditorConteudo extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//recupera estado caso tenha mudado orientaÁ„o de tela.
+		//recupera estado caso tenha mudado orienta√ß√£o de tela.
 		if(savedInstanceState!=null){
 			editMode = savedInstanceState.getBoolean("edicao");
 		}
 		Dropbox.execOperacoesSalva(getApplicationContext());		
 		setContentView(R.layout.activity_editor);
-		//Recupera o caminho do conte˙do
+		//Recupera o caminho do conte√∫do
 		Intent it = getIntent();
 		params = it.getExtras();
 		caminho = params.getString("caminhoCadernoMateria");
-		//L”GICA PARA RECUPERAR O ESTADO DO CONTE⁄DO QUANDO FOR ATUALIZADO NA PR”PRIA TELA.
+		//L√ìGICA PARA RECUPERAR O ESTADO DO CONTE√öDO QUANDO FOR ATUALIZADO NA PR√ìPRIA TELA.
 					
 		String conteudoTemp = params.getString("conteudoTemp");
 		try{
@@ -77,12 +77,12 @@ public class ActivityEditorConteudo extends Activity{
 				editMode = params.getBoolean("edicao");
 				setConteudoTemp(params.getString("conteudoTemp"));
 			}else{
-				//Recupera o conte˙do do arquivo e armazena na vari·vel
+				//Recupera o conte√∫do do arquivo e armazena na vari√°vel
 				setConteudoTemp(lerConteudoEditorTxt());
 			}
 		}catch(Exception e){
-				//Vari·vel est· nula, recupera o conteudo do editor
-				//Recupera o conte˙do do arquivo e armazena na vari·vel
+				//Vari√°vel est√° nula, recupera o conteudo do editor
+				//Recupera o conte√∫do do arquivo e armazena na vari√°vel
 				setConteudoTemp(lerConteudoEditorTxt());
 		}
 		
@@ -90,10 +90,10 @@ public class ActivityEditorConteudo extends Activity{
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		setupEditorRaptor(); // CHAMA M…TODO PARA EXECUTAR O EDITOR DO RAPTOR
+		setupEditorRaptor(); // CHAMA M√âTODO PARA EXECUTAR O EDITOR DO RAPTOR
 	}
 
-	//MÈtodo para executar e efetuar o setup do Editor Raptor no modo de visualizaÁ„o
+	//M√©todo para executar e efetuar o setup do Editor Raptor no modo de visualiza√ß√£o
 	
 	public void setupEditorRaptor(){
 
@@ -159,7 +159,7 @@ public class ActivityEditorConteudo extends Activity{
 				@SuppressLint("NewApi")
 				@Override
 				public boolean onQueryTextSubmit(String query) {
-					//MÈtodo respons·vel por pesquisar palavras dentro do conte˙do
+					//M√©todo respons√°vel por pesquisar palavras dentro do conte√∫do
 					wv.findAllAsync(query);
 					return false;
 				}
@@ -192,7 +192,7 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para editar
 			editMode = true;
 			invalidateOptionsMenu(); //recarrega os menus
-			refreshEditor();//Recarrega o editor em modo de ediÁ„o
+			refreshEditor();//Recarrega o editor em modo de edi√ß√£o
 			break;
 		case R.id.menu_compartilhar:
 			//codigo para compartilhar
@@ -207,7 +207,7 @@ public class ActivityEditorConteudo extends Activity{
 		case R.id.menu_pesquisar:
 			//	---------------------
 			// 	DO NOTHING
-			// 	C”DIGO DO PESQUISAR SER¡ REALIZADO NO M…TODO onQueryTextSubmit DA CLASSE SEARCH TYPE
+			// 	C√ìDIGO DO PESQUISAR SER√Å REALIZADO NO M√âTODO onQueryTextSubmit DA CLASSE SEARCH TYPE
 			//	---------------------
 			break;
 
@@ -216,8 +216,8 @@ public class ActivityEditorConteudo extends Activity{
 			editMode = false;
 			invalidateOptionsMenu(); //recarrega os menus
 			salvarConteudoTxt(getConteudoTemp());
-			//Recarrega o editor em modo de visualizaÁ„o
-			refreshEditor(); //Recarrega o editor em modo de visualizaÁ„o
+			//Recarrega o editor em modo de visualiza√ß√£o
+			refreshEditor(); //Recarrega o editor em modo de visualiza√ß√£o
 			sincronizar(null, false);
 			break;
 
@@ -260,20 +260,20 @@ public class ActivityEditorConteudo extends Activity{
 		outState.putBoolean("edicao", editMode);
 		//inserir aqui metodo para salvar quando mudar orientacao da tela.
 
-		//Diego - AnotaÁ„o
-		//Salvar conte˙do na vari·vel para o arquivo txt
+		//Diego - Anota√ß√£o
+		//Salvar conte√∫do na vari√°vel para o arquivo txt
 		salvarConteudoTxt(getConteudoTemp());
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	protected void onDestroy() {
-		//Salvar o conte˙do quando a activity for finalizada
+		//Salvar o conte√∫do quando a activity for finalizada
 		salvarConteudoTxt(getConteudoTemp());
 		super.onDestroy();
 	}
 
-	//MÈtodos para gravar o conte˙do tempor·rio do Editor raptor para uma vari·vel
+	//M√©todos para gravar o conte√∫do tempor√°rio do Editor raptor para uma vari√°vel
 	private void setConteudoTemp(String conteudoTemp){
 		this.conteudoTemp = conteudoTemp;
 	}
@@ -303,7 +303,7 @@ public class ActivityEditorConteudo extends Activity{
 		wv.requestFocus();
 	}
 
-	//MÈtodos para recuperar o conte˙do do arquivo txt
+	//M√©todos para recuperar o conte√∫do do arquivo txt
 	public void salvarConteudoTxt(String conteudo){
 		Conteudo cont = new Conteudo();
 		cont.salvarConteudo(caminho , conteudo);
@@ -316,7 +316,7 @@ public class ActivityEditorConteudo extends Activity{
 	}
 
 
-	//recupera as informaÁıes de outras activities
+	//recupera as informa√ß√µes de outras activities
 	/**
 	 * Receive the result from the startActivity
 	 */
@@ -330,7 +330,7 @@ public class ActivityEditorConteudo extends Activity{
 				String caminhoImagem;
 				caminhoImagem = params.getString("filePathImage");
 
-				//Verifica se o caminho est· preenchido, se sim ent„o insere a imagem no editor
+				//Verifica se o caminho est√° preenchido, se sim ent√£o insere a imagem no editor
 				if(!caminhoImagem.isEmpty()){
 					inserirImagemEditor(caminhoImagem);
 				}
@@ -342,7 +342,7 @@ public class ActivityEditorConteudo extends Activity{
 				String caminhoAudio;
 				caminhoAudio = paramsAudio.getString("caminhoAudio");
 				
-				//Verifica se o caminho est· preenchido, se sim ent„o insere a imagem no editor
+				//Verifica se o caminho est√° preenchido, se sim ent√£o insere a imagem no editor
 				if(!caminhoAudio.isEmpty()){
 					inserirAudioEditor(caminhoAudio);
 				}
@@ -354,7 +354,7 @@ public class ActivityEditorConteudo extends Activity{
 				String caminhoDesenho;
 				caminhoDesenho = paramsDesenho.getString("caminhoDesenho");
 				
-				//Verifica se o caminho est· preenchido, se sim ent„o insere a imagem no editor
+				//Verifica se o caminho est√° preenchido, se sim ent√£o insere a imagem no editor
 				if(!caminhoDesenho.isEmpty()){
 					inserirImagemEditor(caminhoDesenho);
 				}
@@ -453,13 +453,15 @@ public class ActivityEditorConteudo extends Activity{
 	public void sincronizar(final MenuItem item, final boolean forced){
 		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
 		if(item!=null)item.setActionView(R.layout.progress_bar);
+		//senao veio pelo salvar(forced=false) e nao tiver linkado com o drop, nao sincroniza.
+		if(!forced && !accountManager.hasLinkedAccount())return;	
 		if(accountManager.hasLinkedAccount()){
 			//sincronizar
 			//Thread para rodar em background
 			new Thread(){
 				public void run(){
 					Dropbox.criarArquivo(caminho+"/conteudo.txt", forced, getApplicationContext());
-					//metodo que execuda na Thread principal para mostrar mensagem de sincronização concluida.
+					//metodo que execuda na Thread principal para mostrar mensagem de sincronizaÔøΩ‚Äπo concluida.
 					runOnUiThread(new Runnable() {
 						public void run() {
 							if(item!=null){
