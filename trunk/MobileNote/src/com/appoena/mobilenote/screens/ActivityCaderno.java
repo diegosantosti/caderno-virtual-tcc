@@ -35,7 +35,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Caderno c = new Caderno();
-		arrayCaderno = c.listaCadernos(this);
+		arrayCaderno = c.consultarCaderno(this);
 		clickAddCaderno();
 		clickAbout();
 		clickAgenda();
@@ -199,7 +199,7 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		if (!params.getBoolean(getResources().getString(R.string.EDICAO))) {
 				
 			c.incluirCaderno(this,cor,caderno);
-			arrayCaderno = c.listaCadernos(this);			
+			arrayCaderno = c.consultarCaderno(this);			
 			adapter.setCadernos(arrayCaderno);
 			
 			//Chama função para criar diretório do caderno
