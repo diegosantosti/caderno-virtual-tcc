@@ -56,6 +56,7 @@ public class Conteudo {
 	          {
 	        	  html = html + lstrlinha;
 	          }
+	          br.close();
 	           	             
 	      } 
 	      catch (Exception e) 
