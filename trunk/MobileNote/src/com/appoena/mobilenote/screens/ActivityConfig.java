@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -21,6 +22,9 @@ public class ActivityConfig extends Activity{
 	private Button btnDropLogout;
 	private Button btnDropLogin;
 	private RadioGroup groupSync;
+	private RadioButton radioWifi;
+	private RadioButton radio3g;
+	private RadioButton radioNaoSync;
 	private DbxAccountManager mAccountManager;
 	private SharedPreferences sharedPreferences;
 	
@@ -37,12 +41,15 @@ public class ActivityConfig extends Activity{
 		btnDropLogin = (Button)findViewById(R.id.btn_login);
 		btnDropLogout = (Button)findViewById(R.id.btn_logout);
 		groupSync = (RadioGroup)findViewById(R.id.group_sinc);
+		radioWifi = (RadioButton) findViewById(R.id.radio_sinc_wifi);
+		radio3g = (RadioButton) findViewById(R.id.radio_sinc_3g);
+		radioNaoSync= (RadioButton) findViewById(R.id.radio_naosinc);
 		clickOnLoginDrop();
 		clickOnLogoutDrop();
-		enableView(mAccountManager.hasLinkedAccount());
 		sharedPreferences = getSharedPreferences(getResources().getString(R.string.PREFS_NAME),0);
 		int sync = sharedPreferences.getInt(getResources().getString(R.string.SYNC), R.id.radio_sinc_wifi);
 		groupSync.check(sync);
+		enableView(mAccountManager.hasLinkedAccount());
 	}
 	
 	
@@ -94,7 +101,9 @@ public class ActivityConfig extends Activity{
 			btnDropLogout.setVisibility(View.GONE);
 			btnDropLogin.setVisibility(View.VISIBLE);
 		}
-		
+		radio3g.setEnabled(status);
+		radioNaoSync.setEnabled(status);
+		radioWifi.setEnabled(status);
 		
 	}
 	
