@@ -165,7 +165,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				valoresL.put(Reminders.EVENT_ID, id_evento);
 				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
-				Uri uri = crL.insert(Reminders.CONTENT_URI, valoresL);
+				crL.insert(Reminders.CONTENT_URI, valoresL);
 
 			}
 			else if(lembrarAntes == 1 || lembrar == 0)
