@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -35,7 +37,7 @@ import org.w3c.tidy.Tidy;
 import com.lowagie.text.DocumentException;  
 
 
-//Classe responsável por criar o editor de conteúdo do caderno
+//Classe responsavel por criar o editor de conteudo do caderno
 
 public class ActivityEditorConteudo extends Activity{
 
@@ -79,11 +81,13 @@ public class ActivityEditorConteudo extends Activity{
 			}else{
 				//Recupera o conteúdo do arquivo e armazena na variável
 				setConteudoTemp(lerConteudoEditorTxt());
+				editMode=true;
 			}
 		}catch(Exception e){
 				//Variável está nula, recupera o conteudo do editor
 				//Recupera o conteúdo do arquivo e armazena na variável
 				setConteudoTemp(lerConteudoEditorTxt());
+				editMode=true;
 		}
 		
 
@@ -112,7 +116,9 @@ public class ActivityEditorConteudo extends Activity{
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				wv.pageDown(true);
-				wv.requestFocus();
+				//wv.requestFocus();
+				//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+				//wv.requestFocus(View.FOCUS_DOWN);
 			}
 
 			@Override
@@ -120,7 +126,9 @@ public class ActivityEditorConteudo extends Activity{
 				// TODO Auto-generated method stub
 				super.onPageStarted(view, url, favicon);
 				wv.pageDown(true);
-				wv.requestFocus();
+				//wv.requestFocus();
+				//wv.requestFocus(View.FOCUS_DOWN);
+				//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 			}			
 		});	
 	}
@@ -207,7 +215,7 @@ public class ActivityEditorConteudo extends Activity{
 		case R.id.menu_pesquisar:
 			//	---------------------
 			// 	DO NOTHING
-			// 	CÓDIGO DO PESQUISAR SERÁ REALIZADO NO MÉTODO onQueryTextSubmit DA CLASSE SEARCH TYPE
+			// 	CODIGO DO PESQUISAR SERAO REALIZADO NO METODO onQueryTextSubmit DA CLASSE SEARCH TYPE
 			//	---------------------
 			break;
 
