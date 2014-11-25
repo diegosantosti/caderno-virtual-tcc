@@ -25,6 +25,7 @@
         <item name="android:padding">@dimen/padding_edit_pesq</item>
         <item name="android:background">@drawable/edit_text</item>
         <item name="android:textColor">@color/font_edit</item>
+        <item name="android:singleLine">true</item>
         <!--  <item name="android:focusable">false</item>-->
     </style>
     
