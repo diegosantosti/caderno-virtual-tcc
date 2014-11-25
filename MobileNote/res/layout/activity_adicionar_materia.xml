@@ -26,7 +26,9 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/hint_nome_materia"
+	        android:inputType="textCapCharacters"
 	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        android:imeOptions="actionNext"
 	        style="@style/edit_text_pop_up"/>
 	
 	    <TextView
@@ -47,6 +49,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        android:imeOptions="actionNext"
 	        style="@style/edit_text_pop_up"
 	        android:hint="@string/hint_nome_professor"/>
 	    
@@ -56,6 +59,7 @@
 	        android:layout_height="wrap_content"
 	        android:inputType="textEmailAddress"
 	        android:layout_margin="@dimen/margin_components_popoup_materia"
+	        android:imeOptions="actionNone"
 	        style="@style/edit_text_pop_up"
 	        android:hint="@string/hint_email_professor"/>
 
