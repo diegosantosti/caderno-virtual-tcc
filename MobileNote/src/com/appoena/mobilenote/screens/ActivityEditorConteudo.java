@@ -3,6 +3,7 @@ package com.appoena.mobilenote.screens;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -80,14 +82,21 @@ public class ActivityEditorConteudo extends Activity{
 				setConteudoTemp(params.getString("conteudoTemp"));
 			}else{
 				//Recupera o conteúdo do arquivo e armazena na variável
-				setConteudoTemp(lerConteudoEditorTxt());
-				editMode=true;
+				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
+				if(getConteudoTemp().isEmpty()){
+//					setConteudoTemp("Conteudo");
+					editMode=true;
+				}
+				
 			}
 		}catch(Exception e){
 				//Variável está nula, recupera o conteudo do editor
 				//Recupera o conteúdo do arquivo e armazena na variável
-				setConteudoTemp(lerConteudoEditorTxt());
-				editMode=true;
+				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
+				if(getConteudoTemp().isEmpty()){
+//					setConteudoTemp("Conteudo");
+					editMode=true;
+				}
 		}
 		
 
@@ -307,8 +316,11 @@ public class ActivityEditorConteudo extends Activity{
 
 	@JavascriptInterface
 	public void goLastPage(){
-		wv.pageDown(true);
-		wv.requestFocus();
+		Log.i("WebView","CHAMOU GO LAST PAGE --->");		
+		InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		mgr.showSoftInput(wv, InputMethodManager.SHOW_IMPLICIT);
+		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(wv, 0);
+		
 	}
 
 	//Métodos para recuperar o conteúdo do arquivo txt

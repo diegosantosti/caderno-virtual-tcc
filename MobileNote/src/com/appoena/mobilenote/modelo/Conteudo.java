@@ -63,7 +63,7 @@ public class Conteudo {
 	      {
 	    	 Log.v("WebView", "NÃO LEU ARQUIVO");
 	    	 Log.v("WebView", e.getMessage());
-	    	 html = "Conteudo";
+	    	 html = "";
 	      }
 	     return html;		
 	}

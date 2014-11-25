@@ -93,6 +93,12 @@
 	                }//fim bind     
 	            });
         	});
+        	
+        	//Após o html ser executado, vai para o final da página
+	        $(window).bind("load", function() {
+	        	window.scrollTo(0,document.body.scrollHeight);
+	        	EditorConteudoActivity.goLastPage();
+	        });
         
         }else{ //modo de visualização apenas
 	        jQuery(function($) {
@@ -174,7 +180,14 @@
 	                }//fim bind                                
 	            });
 	        });
-        }
+	        
+	        //Após o html ser executado, vai para o final da página
+	        $(window).bind("load", function() {
+	        	window.scrollTo(0,document.body.scrollHeight);
+	        	//EditorConteudoActivity.goLastPage();
+	        });
+        }; 
+        
         
     </script>
 </head>
