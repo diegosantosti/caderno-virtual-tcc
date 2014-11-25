@@ -57,7 +57,6 @@ public class CustomDialogMateria extends CustomDialog{
 						if(devolverMateria())myDialog.dismiss();
 						else{
 							Toast.makeText(getActivity(), mensagem, Toast.LENGTH_SHORT).show();
-							edtNome.requestFocus();
 						}
 
 					}
@@ -107,10 +106,12 @@ public class CustomDialogMateria extends CustomDialog{
 		String nomeAntigo = params.getString("nome_antigo");
 		if(getMateriaDuplicada(nome)&& !nome.equals(nomeAntigo)){
 			mensagem = getResources().getString(R.string.materia_duplicada);
+			edtNome.requestFocus();
 			return false;
 		}
 		if(!validaEmail(emailProf) && !emailProf.isEmpty()){
 			mensagem = getResources().getString(R.string.email_invalido);
+			edtEmailProf.requestFocus();
 			return false;
 		}
 		if (!nome.isEmpty()) {
@@ -125,6 +126,7 @@ public class CustomDialogMateria extends CustomDialog{
 		}
 		else{
 			mensagem = getResources().getString(R.string.informe_nome_materia);
+			edtNome.requestFocus();
 			return false;
 
 		}
