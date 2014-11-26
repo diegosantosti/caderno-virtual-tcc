@@ -127,7 +127,6 @@ public abstract class Dropbox {
 	 */
 	private static void commitDropbox(int operacao, String newPath, String oldPath, DbxFileSystem dbxFileSystem){
 		File newFile = new File(new File(Environment.getExternalStorageDirectory(), newPath).getPath());
-		DbxFile dbxFile = null;
 		newPath = preparaCaminho(newPath);
 		Log.v("commitDropbox", "Caminho preparado: " + newPath);
 		Log.v("commitDropbox caminho bruto: ", newFile.toString());
@@ -144,50 +143,7 @@ public abstract class Dropbox {
 			break;
 			
 		case ADICIONAR_ARQUIVO:
-			try {
-				File files[] = newFile.listFiles();
-				if(files!=null){
-					Log.v("commitDropbox", "Arquivos: "+files.length);
-					for(File dirOrFile : files){
-						Log.v("commitDropbox", "toString arquivos : "+dirOrFile.toString());
-						Log.v("commitDropbox", "getName arquivos: "+dirOrFile.getName());
-						path = new DbxPath(new DbxPath("/"+preparaCaminho(dirOrFile.getParent())), dirOrFile.getName());
-						if(dirOrFile.isDirectory()){
-							//path = new DbxPath(new DbxPath(dirOrFile.getParent()), dirOrFile.getName());
-							Log.v("commitDropbox", "eh pasta");
-							if(!dbxFileSystem.exists(path)){
-								dbxFileSystem.createFolder(path);
-								Log.v("commitDropbox", "Pasta criada");
-							}
-							Log.v("commitDropbox", "Recursividade");
-							commitDropbox(ADICIONAR_ARQUIVO, dirOrFile.toString(), null, dbxFileSystem);
-						}else{
-							//path = new DbxPath(DbxPath.ROOT, preparaCaminho(dirOrFile.toString()));
-							Log.v("commitDropbox", "eh arquivo");
-							Log.v("commitDropbox", "caminho do arquivo: "+ preparaCaminho(dirOrFile.toString()));
-							if(dbxFileSystem.exists(path)){
-								dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
-							}else{
-								dbxFile = dbxFileSystem.create(path);
-							}
-							try {
-								dbxFile.writeFromExistingFile(dirOrFile, false);
-								Log.v("commitDropbox", "Arquivo upado");
-							}catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}finally{
-								dbxFile.close();
-							}
-							
-						}
-					}
-				}
-				
-			} catch (DbxException e) {
-				// erro ao adicionar arquivo
-				e.printStackTrace();
-			} 
+			sincronizarDiretorios(newPath, dbxFileSystem, newFile);
 			break;
 			
 		case RENOMEAR:
@@ -211,6 +167,54 @@ public abstract class Dropbox {
 			break;
 		}
 		
+	}
+	
+	private static void sincronizarDiretorios(String newPath,DbxFileSystem dbxFileSystem, File newFile){
+		DbxPath path = new DbxPath(DbxPath.ROOT, newPath);
+		DbxFile dbxFile = null;
+		try {
+			File files[] = newFile.listFiles();
+			if(files!=null){
+				Log.v("sincronizarPasta", "Arquivos: "+files.length);
+				for(File dirOrFile : files){
+					Log.v("sincronizarPasta", "toString arquivos : "+dirOrFile.toString());
+					Log.v("sincronizarPasta", "getName arquivos: "+dirOrFile.getName());
+					path = new DbxPath(new DbxPath("/"+preparaCaminho(dirOrFile.getParent())), dirOrFile.getName());
+					if(dirOrFile.isDirectory()){
+						//path = new DbxPath(new DbxPath(dirOrFile.getParent()), dirOrFile.getName());
+						Log.v("sincronizarPasta", "eh pasta");
+						if(!dbxFileSystem.exists(path)){
+							dbxFileSystem.createFolder(path);
+							Log.v("sincronizarPasta", "Pasta criada");
+						}
+						Log.v("sincronizarPasta", "Recursividade:" + preparaCaminho(dirOrFile.toString()));
+						sincronizarDiretorios(preparaCaminho(dirOrFile.toString()), dbxFileSystem, dirOrFile);
+					}else{
+						Log.v("sincronizarPasta", "eh arquivo");
+						Log.v("sincronizarPasta", "caminho do arquivo: "+ preparaCaminho(dirOrFile.toString()));
+						if(dbxFileSystem.exists(path)){
+							dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
+						}else{
+							dbxFile = dbxFileSystem.create(path);
+						}
+						try {
+							dbxFile.writeFromExistingFile(dirOrFile, false);
+							Log.v("sincronizarPasta", "Arquivo upado");
+						}catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}finally{
+							dbxFile.close();
+						}
+						
+					}
+				}
+			}
+			
+		} catch (DbxException e) {
+			// erro ao adicionar arquivo
+			e.printStackTrace();
+		}
 	}
 	
 	/**
