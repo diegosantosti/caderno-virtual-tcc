@@ -58,27 +58,19 @@ public abstract class Dropbox {
 		//executar em segundo plano para nao comprometer a interacao com o usuario.
 		new Thread(){
 			public void run(){
-				Log.v("excutar operacoes", "iniciou");
-				if(!isSincronizar(getConfigConexao(context), getConexaoDispositivo(context))) return;
-				Log.v("excutar operacoes", "Conexao ok");
-				accountManager = DbxAccountManager.getInstance(context, context.getString(R.string.APP_KEY), context.getString(R.string.APP_SECRET));
-				if(!accountManager.hasLinkedAccount())return; //nao esta logado, sai do metodo sem fazer nada
-				Log.v("excutar operacoes", "Logado com drop");
-				if(getDbxFileSystem(context)==null)return;
 				Operacoes operacoes = new Operacoes();
 				arrayDrop = (ArrayList<Operacoes>) operacoes.lerOperacoes(context);
-				if(arrayDrop==null)return;
-				Log.v("excutar operacoes", "Leu operacoes");
+				if(arrayDrop==null || arrayDrop.size()==0)return; //array nulo ou zero sai do metodo.		
+				if(!isSincronizar(getConfigConexao(context), getConexaoDispositivo(context))) return; //sem conexao, sai do metodo
+				accountManager = DbxAccountManager.getInstance(context, context.getString(R.string.APP_KEY), context.getString(R.string.APP_SECRET));
+				if(!accountManager.hasLinkedAccount())return; //nao esta logado, sai do metodo sem fazer nada
+				if(getDbxFileSystem(context)==null)return;
 				int index = arrayDrop.size()-1;
-				Log.v("excutar operacoes", "Drop antes do for: "+ arrayDrop.size());
 				for (int i = 0; i<=index; i++) {
 					Log.v("excutar operacoes", "Size: "+ arrayDrop.size());
 					Log.v("excutar operacoes", "Vou editar: "+ i);
-					operacoes = arrayDrop.get(0);
 					commitDropbox(operacoes.getOperacao(), operacoes.getNewPath(), operacoes.getOldPath(), dbxFileSystem);
-					arrayDrop.remove(0);
 				}
-				Log.v("excutar operacoes", "Tamanho do array no fim:" +arrayDrop.size());
 				operacoes.setArrayOperacoes(arrayDrop);
 				operacoes.gravarOperacoes(context, operacoes);
 			}
@@ -88,7 +80,7 @@ public abstract class Dropbox {
 	
 	
 	public static void criarArquivo(String newPath, boolean forced, Context context){
-		//se clicou compartilhar, da o commit direto
+		//se clicou sincronizar, da o commit direto
 		if(forced)commitDropbox(ADICIONAR_ARQUIVO, newPath, null, getDbxFileSystem(context));
 		//se clicou no salvar, vai tentar efetuar a operacao.
 		else efetuarOperacao(context, ADICIONAR_ARQUIVO, newPath, null);

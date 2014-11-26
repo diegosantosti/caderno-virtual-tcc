@@ -119,6 +119,8 @@
     <string name="SYNC">sync</string>
     <string name="APP_KEY">lngtpdadq6katby</string>
     <string name="APP_SECRET">z5lqnf70ie6gh9q</string>
+    <string name="IMAGENS">imagens</string>
+    <string name="AUDIOS">audios</string>
     <string name="noExtStorageAvailable">External storage is unavailable</string>
     <string name="recordingError">Error recording audio</string>
     <string name="saveRecordError">Error saving audio record</string>

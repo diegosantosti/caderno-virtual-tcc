@@ -61,7 +61,6 @@ public class ActivityEditorConteudo extends Activity{
 			editMode = savedInstanceState.getBoolean("edicao");
 		}		
 		setContentView(R.layout.activity_editor);
-		Dropbox.execOperacoesSalva(getApplicationContext());
 		//Recupera o caminho do conteúdo
 		Intent it = getIntent();
 		params = it.getExtras();
@@ -97,6 +96,7 @@ public class ActivityEditorConteudo extends Activity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		setupEditorRaptor(); // CHAMA MÉTODO PARA EXECUTAR O EDITOR DO RAPTOR
+		Dropbox.execOperacoesSalva(getApplicationContext());
 
 	}
 
@@ -246,8 +246,7 @@ public class ActivityEditorConteudo extends Activity{
 			startActivityForResult(it, SELECIONAR_IMAGEM);
 			break;
 		case R.id.menu_inserir_voz:
-			//codigo para inderir voz
-			
+			//codigo para inderir voz		
 			Intent itAudio = new Intent(ActivityEditorConteudo.this, ActivityGravarAudio.class);
 			Bundle paramsAudio = new Bundle();
 			paramsAudio.putString("caminhoCadernoMateria", caminho);
