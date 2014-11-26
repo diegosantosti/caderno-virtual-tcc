@@ -170,6 +170,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 			arrayMaterias =  m.consultarMateria(this, id_caderno);
 			adapterMateria.setMaterias(arrayMaterias);
 			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome); //cria o diretorio
+			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome+"/audio");
+			Diretorio.criaDiretorio("/"+nome_caderno+"/"+nome+"/imagens");
 			Dropbox.criarPasta("/"+nome_caderno+"/"+nome, getApplicationContext());
 			
 		}else{

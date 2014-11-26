@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.os.Environment;
+import android.util.Log;
 
 public abstract class Diretorio {
 	
@@ -35,12 +36,27 @@ public abstract class Diretorio {
 		public static void excluirDiretorio(String diretorio){
 			diretorio = substituirEspacosBrancosUnderline(diretorio);
 			File folder = new File(Environment.getExternalStorageDirectory() + ROOT + "/" + diretorio);
-			if (folder.exists()) {
-			    folder.delete();
+			Log.v("excluirDiretorio", folder.toString());
+			if (folder.exists()) {			
+			    deleteDir(folder);
 			}
 		}
 		
-		
+		private static void deleteDir(File file) {
+			File[] files = file.listFiles();
+	        if (files != null) {
+	            for (File dirOrFile : files) {
+	                if (dirOrFile.isDirectory()) {
+	                    Log.v("deleteDir","Removendo diretório: " + dirOrFile.toString());
+	                } else {
+	                	Log.v("deleteDir","Removendo arquivo: " + dirOrFile.toString());
+	                }
+	                deleteDir(dirOrFile);
+	            }
+	        }
+	        file.delete();		
+		}
+
 		//método responsável por substitui espaçoes em brancos por underline 
 		//atuazliar
 		public static String substituirEspacosBrancosUnderline(String caminho){

@@ -43,8 +43,8 @@ public class ActivityConfig extends Activity{
 		radioWifi = (RadioButton) findViewById(R.id.radio_sinc_wifi);
 		radio3g = (RadioButton) findViewById(R.id.radio_sinc_3g);
 		radioNaoSync= (RadioButton) findViewById(R.id.radio_naosinc);
-		clickOnLoginDrop();
-		clickOnLogoutDrop();
+		loginDropbox();
+		logoutDropbox();
 		sharedPreferences = getSharedPreferences(getResources().getString(R.string.PREFS_NAME),0);
 		int sync = sharedPreferences.getInt(getResources().getString(R.string.SYNC), R.id.radio_sinc_wifi);
 		groupSync.check(sync);
@@ -106,7 +106,7 @@ public class ActivityConfig extends Activity{
 		
 	}
 	
-	public void clickOnLoginDrop(){
+	public void loginDropbox(){
 		btnDropLogin.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -118,7 +118,7 @@ public class ActivityConfig extends Activity{
 		
 	}
 	
-	public void clickOnLogoutDrop(){
+	public void logoutDropbox(){
 		btnDropLogout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
