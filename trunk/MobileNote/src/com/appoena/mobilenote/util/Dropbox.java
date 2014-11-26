@@ -129,8 +129,8 @@ public abstract class Dropbox {
 		File newFile = new File(new File(Environment.getExternalStorageDirectory(), newPath).getPath());
 		DbxFile dbxFile = null;
 		newPath = preparaCaminho(newPath);
-		Log.v("commitDropbox", newPath);
-		Log.v("commitDropbox caminho", newFile.toString());
+		Log.v("commitDropbox", "Caminho preparado: " + newPath);
+		Log.v("commitDropbox caminho bruto: ", newFile.toString());
 		DbxPath path = new DbxPath(DbxPath.ROOT, newPath);
 		switch (operacao) {
 		
@@ -149,18 +149,22 @@ public abstract class Dropbox {
 				if(files!=null){
 					Log.v("commitDropbox", "Arquivos: "+files.length);
 					for(File dirOrFile : files){
-						Log.v("commitDropbox", "Arquivos: "+dirOrFile.toString());
-						Log.v("commitDropbox", "Arquivos: "+dirOrFile.getName());
-						path = new DbxPath(DbxPath.ROOT, dirOrFile.getName());
+						Log.v("commitDropbox", "toString arquivos : "+dirOrFile.toString());
+						Log.v("commitDropbox", "getName arquivos: "+dirOrFile.getName());
+						path = new DbxPath(new DbxPath("/"+preparaCaminho(dirOrFile.getParent())), dirOrFile.getName());
 						if(dirOrFile.isDirectory()){
-							Log.v("commitDropbox", "É pasta");
+							//path = new DbxPath(new DbxPath(dirOrFile.getParent()), dirOrFile.getName());
+							Log.v("commitDropbox", "eh pasta");
 							if(!dbxFileSystem.exists(path)){
 								dbxFileSystem.createFolder(path);
 								Log.v("commitDropbox", "Pasta criada");
 							}
 							Log.v("commitDropbox", "Recursividade");
 							commitDropbox(ADICIONAR_ARQUIVO, dirOrFile.toString(), null, dbxFileSystem);
-						}else{			
+						}else{
+							//path = new DbxPath(DbxPath.ROOT, preparaCaminho(dirOrFile.toString()));
+							Log.v("commitDropbox", "eh arquivo");
+							Log.v("commitDropbox", "caminho do arquivo: "+ preparaCaminho(dirOrFile.toString()));
 							if(dbxFileSystem.exists(path)){
 								dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
 							}else{
@@ -179,22 +183,6 @@ public abstract class Dropbox {
 						}
 					}
 				}
-				
-				
-//				if(dbxFileSystem.exists(path)){
-//					dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
-//				}else{
-//					dbxFile = dbxFileSystem.create(path);
-//				}
-//				try {
-//					dbxFile.writeFromExistingFile(newFile, false);
-//					Log.v("commitDropbox", "Upado");
-//				}catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}finally{
-//					dbxFile.close();
-//				}
 				
 			} catch (DbxException e) {
 				// erro ao adicionar arquivo
@@ -314,6 +302,9 @@ public abstract class Dropbox {
 		}
 		if(caminho.contains("com.appoena.mobilenote")){
 			caminho = caminho.replace("com.appoena.mobilenote/", "");
+		}
+		if(caminho.contains("storage/emulated/0/")){
+			caminho = caminho.replace("storage/emulated/0/", "");
 		}
 		return caminho;
 	}
