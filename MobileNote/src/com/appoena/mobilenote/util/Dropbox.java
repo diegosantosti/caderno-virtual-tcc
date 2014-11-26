@@ -34,8 +34,12 @@ public abstract class Dropbox {
 		if(getDbxFileSystem(context)==null)return; //nao autorizado
 		int conexDispositivo = getConexaoDispositivo(context); //conexao do dispositivo no momento.
 		int conexSalva = getConfigConexao(context); //opcao de sincronizacao salva pelo usuario.
-		if(isSincronizar(conexSalva, conexDispositivo))commitDropbox(operacao, newPath, oldPath, dbxFileSystem);
-		else salvarOperacao(context, operacao, newPath, oldPath);
+		if(isSincronizar(conexSalva, conexDispositivo)){
+			commitDropbox(operacao, newPath, oldPath, dbxFileSystem);
+		}
+		else{
+			salvarOperacao(context, operacao, newPath, oldPath);
+		}
 	}
 	
 
@@ -84,21 +88,24 @@ public abstract class Dropbox {
 	
 	
 	public static void criarArquivo(String newPath, boolean forced, Context context){
+		//se clicou compartilhar, da o commit direto
 		if(forced)commitDropbox(ADICIONAR_ARQUIVO, newPath, null, getDbxFileSystem(context));
+		//se clicou no salvar, vai tentar efetuar a operacao.
 		else efetuarOperacao(context, ADICIONAR_ARQUIVO, newPath, null);
+
+
 	}
 	
 	public static void excluir(String path, Context context){
-		efetuarOperacao(context, EXCLUIR, path, null);
+		salvarOperacao(context, EXCLUIR, path, null);
 	}
 	
 	public static void renomear(String newPath, String oldPath, Context context){
-		efetuarOperacao(context, RENOMEAR, newPath, oldPath);
+		salvarOperacao(context, RENOMEAR, newPath, oldPath);
 	}
 	
 	public static void criarPasta(String newPath, Context context){
-		Log.v("inlcuir pasta", "iniciei");
-		efetuarOperacao(context, ADICIONAR_PASTA, newPath, null);
+		salvarOperacao(context, ADICIONAR_PASTA, newPath, null);
 	}
 	
 	
@@ -138,19 +145,56 @@ public abstract class Dropbox {
 			
 		case ADICIONAR_ARQUIVO:
 			try {
-				if(dbxFileSystem.exists(path)){
-					dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
-				}else{
-					dbxFile = dbxFileSystem.create(path);
+				File files[] = newFile.listFiles();
+				if(files!=null){
+					Log.v("commitDropbox", "Arquivos: "+files.length);
+					for(File dirOrFile : files){
+						Log.v("commitDropbox", "Arquivos: "+dirOrFile.toString());
+						Log.v("commitDropbox", "Arquivos: "+dirOrFile.getName());
+						path = new DbxPath(DbxPath.ROOT, dirOrFile.getName());
+						if(dirOrFile.isDirectory()){
+							Log.v("commitDropbox", "É pasta");
+							if(!dbxFileSystem.exists(path)){
+								dbxFileSystem.createFolder(path);
+								Log.v("commitDropbox", "Pasta criada");
+							}
+							Log.v("commitDropbox", "Recursividade");
+							commitDropbox(ADICIONAR_ARQUIVO, dirOrFile.toString(), null, dbxFileSystem);
+						}else{			
+							if(dbxFileSystem.exists(path)){
+								dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
+							}else{
+								dbxFile = dbxFileSystem.create(path);
+							}
+							try {
+								dbxFile.writeFromExistingFile(dirOrFile, false);
+								Log.v("commitDropbox", "Arquivo upado");
+							}catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}finally{
+								dbxFile.close();
+							}
+							
+						}
+					}
 				}
-				try {
-					dbxFile.writeFromExistingFile(newFile, false);
-				}catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}finally{
-					dbxFile.close();
-				}
+				
+				
+//				if(dbxFileSystem.exists(path)){
+//					dbxFile = dbxFileSystem.open(path); //se existe, abre o arquivo para leitura
+//				}else{
+//					dbxFile = dbxFileSystem.create(path);
+//				}
+//				try {
+//					dbxFile.writeFromExistingFile(newFile, false);
+//					Log.v("commitDropbox", "Upado");
+//				}catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}finally{
+//					dbxFile.close();
+//				}
 				
 			} catch (DbxException e) {
 				// erro ao adicionar arquivo
@@ -178,6 +222,7 @@ public abstract class Dropbox {
 			}
 			break;
 		}
+		
 	}
 	
 	/**
@@ -187,7 +232,7 @@ public abstract class Dropbox {
 	 * @return
 	 * 		Retorna a conexao do usuario no momento, 0 se nao houver conexao.
 	 */	
-	private static int getConexaoDispositivo(Context context){
+	public static int getConexaoDispositivo(Context context){
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if(connectivityManager!=null){
 			NetworkInfo info = connectivityManager.getActiveNetworkInfo();
@@ -274,8 +319,8 @@ public abstract class Dropbox {
 	}
 	
 	public static DbxFileSystem getDbxFileSystem(Context context){
+		accountManager = DbxAccountManager.getInstance(context, context.getString(R.string.APP_KEY), context.getString(R.string.APP_SECRET));
 		if(dbxFileSystem==null){
-			accountManager = DbxAccountManager.getInstance(context, context.getString(R.string.APP_KEY), context.getString(R.string.APP_SECRET));
 			if(!accountManager.hasLinkedAccount()) {
 				Log.v("getDbxFileSystem", "has linkek account false");
 				return null;
@@ -288,6 +333,17 @@ public abstract class Dropbox {
 				e.printStackTrace();
 				Log.v("getDbxFileSystem", "Unauthorized");
 				return null;
+			}
+		}
+		else{
+			if(!dbxFileSystem.getAccount().isLinked()){
+				try {
+					Log.v("getDbxFileSystem", "Nao estava nulo mas nao estava linkado");
+					return dbxFileSystem = DbxFileSystem.forAccount(accountManager.getLinkedAccount());
+				} catch (Unauthorized e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		Log.v("getDbxFileSystem", "nao estava nulo");

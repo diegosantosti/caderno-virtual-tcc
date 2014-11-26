@@ -1,5 +1,9 @@
 package com.appoena.mobilenote.screens;
 
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -12,8 +16,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -28,15 +30,7 @@ import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.util.Dropbox;
 import com.appoena.mobilenote.util.drawning.ActivityInserirDesenho;
 import com.dropbox.sync.android.DbxAccountManager;
-import com.dropbox.sync.android.DbxException.Unauthorized;
-import com.dropbox.sync.android.DbxFileSystem;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import org.w3c.dom.Document;  
-import org.w3c.tidy.Tidy;  
 //import org.xhtmlrenderer.pdf.ITextRenderer;  
-import com.lowagie.text.DocumentException;  
 
 
 //Classe responsavel por criar o editor de conteudo do caderno
@@ -48,7 +42,6 @@ public class ActivityEditorConteudo extends Activity{
 	private String conteudoTemp;
 	private boolean editMode = false;
 	WebView wv;
-	private Bundle paramsEscolherImagem;
 	private static final int SELECIONAR_IMAGEM 	= 1; //codigo para retorno da activity do inserir imagem
 	private static final int CONFIG_DROPBOX = 278; //codigo para retorno da activity config
 	private static final int GRAVAR_AUDIO = 2; //codigo para retorno da activity do gravar Audio
@@ -66,9 +59,9 @@ public class ActivityEditorConteudo extends Activity{
 		//recupera estado caso tenha mudado orientação de tela.
 		if(savedInstanceState!=null){
 			editMode = savedInstanceState.getBoolean("edicao");
-		}
-		Dropbox.execOperacoesSalva(getApplicationContext());		
+		}		
 		setContentView(R.layout.activity_editor);
+		Dropbox.execOperacoesSalva(getApplicationContext());
 		//Recupera o caminho do conteúdo
 		Intent it = getIntent();
 		params = it.getExtras();
@@ -82,7 +75,7 @@ public class ActivityEditorConteudo extends Activity{
 				setConteudoTemp(params.getString("conteudoTemp"));
 			}else{
 				//Recupera o conteúdo do arquivo e armazena na variável
-				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
+				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
 				if(getConteudoTemp().isEmpty()){
 //					setConteudoTemp("Conteudo");
 					editMode=true;
@@ -92,7 +85,7 @@ public class ActivityEditorConteudo extends Activity{
 		}catch(Exception e){
 				//Variável está nula, recupera o conteudo do editor
 				//Recupera o conteúdo do arquivo e armazena na variável
-				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
+				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
 				if(getConteudoTemp().isEmpty()){
 //					setConteudoTemp("Conteudo");
 					editMode=true;
@@ -104,6 +97,7 @@ public class ActivityEditorConteudo extends Activity{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		setupEditorRaptor(); // CHAMA MÉTODO PARA EXECUTAR O EDITOR DO RAPTOR
+
 	}
 
 	//Método para executar e efetuar o setup do Editor Raptor no modo de visualização
@@ -471,32 +465,36 @@ public class ActivityEditorConteudo extends Activity{
     }        */  
 
 	public void sincronizar(final MenuItem item, final boolean forced){
+		//se clicou no botao sincronizar e esta sem acesso a internet, exibe o aviso e sai do metodo.
+		if(Dropbox.getConexaoDispositivo(getApplicationContext())==0 && forced){
+			Toast.makeText(getApplication(), getString(R.string.sem_conexao), Toast.LENGTH_SHORT).show();
+			return;
+		}
 		accountManager = DbxAccountManager.getInstance(getApplication(), getString(R.string.APP_KEY), getString(R.string.APP_SECRET));
+		//senao veio pelo sincronizar(forced=false) e nao tiver linkado com o drop, nao sincroniza.
+		if(!forced && !accountManager.hasLinkedAccount())return;
 		if(item!=null)item.setActionView(R.layout.progress_bar);
-		//senao veio pelo salvar(forced=false) e nao tiver linkado com o drop, nao sincroniza.
-		if(!forced && !accountManager.hasLinkedAccount())return;	
 		if(accountManager.hasLinkedAccount()){
 			//sincronizar
 			//Thread para rodar em background
 			new Thread(){
 				public void run(){
-					Dropbox.criarArquivo(caminho+"/conteudo.txt", forced, getApplicationContext());
+					Dropbox.criarArquivo(caminho, forced, getApplicationContext());					
 					//metodo que execuda na Thread principal para mostrar mensagem de sincroniza�‹o concluida.
 					runOnUiThread(new Runnable() {
 						public void run() {
-							if(item!=null){
-								item.setActionView(null);
-								item.setIcon(R.drawable.ic_cloud_upload_white_48dp);
-							}
 							if(forced)Toast.makeText(getApplication(), getString(R.string.sync_ok), Toast.LENGTH_SHORT).show();
+							Log.v("ActivityEditor", getString(R.string.sync_ok));
+							invalidateOptionsMenu();		
 						}
 					});
-				}	
-			}.start();			
+				}
+			}.start();
 		}
 		else{
 			Intent  it = new Intent(ActivityEditorConteudo.this, ActivityConfig.class);
-			startActivityForResult(it, CONFIG_DROPBOX);	
+			startActivityForResult(it, CONFIG_DROPBOX);
+			invalidateOptionsMenu();
 		}
 	}
 }

@@ -90,11 +90,13 @@
     <string name="informe_descricao_agenda">Informe a descrição do lembrete.</string>
     <string name="caderno_duplicado">Esse caderno já existe.</string>
     <string name="materia_duplicada">Essa matéria já existe.</string>
-    <string name="email_invalido"> e-mail inválido</string>
+    <string name="email_invalido"> E-mail inválido</string>
     <string name="dropbox_vinculado">A conta da dropbox foi vinculada.</string>
     <string name="dropbox_excluido">A conta do dropbox foi excluida.</string>
     <string name="configs_save">As configurações foram salvas.</string>
-    <string name="sync_ok">A sincronização foi concluída.</string>
+    <string name="sync_ok">Arquivos enviados para o dropbox.</string>
+    <string name="sem_conexao">Sem conexão com a internet.</string>
+    <string name="sem_conexao_later">Sem conexão com a internet, os arquivos serão enviados mais tarde</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>
