@@ -68,8 +68,12 @@ public abstract class Dropbox {
 				int index = arrayDrop.size()-1;
 				for (int i = 0; i<=index; i++) {
 					Log.v("excutar operacoes", "Size: "+ arrayDrop.size());
-					Log.v("excutar operacoes", "Vou editar: "+ i);
-					commitDropbox(operacoes.getOperacao(), operacoes.getNewPath(), operacoes.getOldPath(), dbxFileSystem);
+					operacoes = arrayDrop.get(0);
+					Log.i("excutar operacoes", "+++operacao: "+ operacoes.getOperacao());
+					Log.i("excutar operacoes", "+++newPath: "+ operacoes.getNewPath());
+					Log.i("excutar operacoes", "+++oldPath: "+ operacoes.getOldPath());
+					commitDropbox(operacoes.getOperacao(), operacoes.getNewPath(), operacoes.getOldPath(), getDbxFileSystem(context));
+					arrayDrop.remove(0);
 				}
 				operacoes.setArrayOperacoes(arrayDrop);
 				operacoes.gravarOperacoes(context, operacoes);
