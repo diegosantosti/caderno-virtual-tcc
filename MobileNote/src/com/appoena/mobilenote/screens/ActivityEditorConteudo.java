@@ -249,7 +249,7 @@ public class ActivityEditorConteudo extends Activity{
 			startActivityForResult(itInserirImagem, SELECIONAR_IMAGEM);
 			break;
 		case R.id.menu_inserir_voz:
-			//codigo para inderir voz		
+			//codigo para inserir voz		
 			Intent itAudio = new Intent(ActivityEditorConteudo.this, ActivityGravarAudio.class);
 			Bundle paramsAudio = new Bundle();
 			paramsAudio.putString("caminhoCadernoMateria", caminho);
