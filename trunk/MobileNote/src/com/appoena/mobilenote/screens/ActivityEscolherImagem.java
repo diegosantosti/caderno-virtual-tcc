@@ -1,6 +1,13 @@
 package com.appoena.mobilenote.screens;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.util.StorageUtils;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +34,9 @@ public class ActivityEscolherImagem extends Activity{
 	private String filePath;
 	private Bitmap image;
 	
+	private String caminho;
+	private Bundle params;
+	
 	private static final int IMAGE_PICK 	= 1;
 	private static final int IMAGE_CAPTURE 	= 2;
 	
@@ -34,6 +45,10 @@ public class ActivityEscolherImagem extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escolher_imagem);
+        
+        Intent it = getIntent();
+		params = it.getExtras();
+		caminho = params.getString("caminhoCadernoMateria");
         
         this.imageView 		= (ImageView) this.findViewById(R.id.imageView_escolher_galeria);
         this.buttonNewPic 	= (Button) this.findViewById(R.id.btn_escolher_camera);
@@ -60,7 +75,12 @@ public class ActivityEscolherImagem extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-						    				
+				
+				//Verifica se o caminho foi passado, se sim então salva a imagem original dentro da pasta do app.
+				if(!filePath.isEmpty()){
+					moveImageToMobileNote(filePath);
+				}
+				
 				Bundle params = new Bundle();
 				params.putString("filePathImage", filePath);
 				
@@ -68,6 +88,34 @@ public class ActivityEscolherImagem extends Activity{
 				setResult(RESULT_OK , getIntent());
 				finish();
 				
+			}
+			
+			//método responsável por copiar todas as imagens selecionadas para dentro do app
+			private void moveImageToMobileNote(String filePath) {
+				// TODO Auto-generated method stub
+				try {
+//					File file=new File(Environment.getExternalStorageDirectory()+caminho);
+				    File sd = Environment.getExternalStorageDirectory();
+				    
+				    if (sd.canWrite()) {
+				    	
+				        String sourceImagePath= filePath;
+				        String destinationImagePath= caminho+"/imagens/"+StorageUtils.getNomeImagem(caminho+"/imagens");
+				        File source= new File(sourceImagePath);
+				        File destination= new File(Environment.getExternalStorageDirectory()+destinationImagePath);				        
+				        if (source.exists()) {
+				            FileChannel src = new FileInputStream(source).getChannel();
+				            FileChannel dst = new FileOutputStream(destination).getChannel();
+				            dst.transferFrom(src, 0, src.size());
+				            src.close();
+				            dst.close();
+				            
+				            //Sobrescreve o caminho original com o caminho gerado 
+				            filePath = destinationImagePath;
+				            
+				        }
+				    }
+				} catch (Exception e) {}
 			}
 		});		
     }

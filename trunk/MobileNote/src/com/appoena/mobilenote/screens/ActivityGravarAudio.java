@@ -44,8 +44,8 @@ public class ActivityGravarAudio extends Activity{
 			return;
 		}
 //		fileName = StorageUtils.getFileName(true);
-		fileName = StorageUtils.getFileName(true,caminho);
-		
+//		fileName = StorageUtils.getFileName(true,caminho);
+		fileName = StorageUtils.getFileName(true,caminho+"/audios"); //adiciona a pasta /audios
 		recordBtn = (Button) findViewById(R.id.btnGravarAudio);
 		recordBtn.setOnClickListener(new OnClickListener() {
 			@Override
