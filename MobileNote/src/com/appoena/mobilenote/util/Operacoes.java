@@ -17,7 +17,7 @@ import android.content.Context;
 public class Operacoes implements Serializable {
 
 	
-	private static final long serialVersionUID = 20L;
+	private static final long serialVersionUID = 23L;
 	private int operacao;
 	private String newPath;
 	private String oldPath;
