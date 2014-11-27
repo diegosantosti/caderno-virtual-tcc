@@ -242,8 +242,11 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 		case R.id.menu_inserir_imagem:
 			//codigo para inserir imagem
-			Intent it = new Intent(ActivityEditorConteudo.this, ActivityEscolherImagem.class);
-			startActivityForResult(it, SELECIONAR_IMAGEM);
+			Intent itInserirImagem = new Intent(ActivityEditorConteudo.this, ActivityEscolherImagem.class);
+			Bundle paramsImagem = new Bundle();
+			paramsImagem.putString("caminhoCadernoMateria", caminho);
+			itInserirImagem.putExtras(paramsImagem);
+			startActivityForResult(itInserirImagem, SELECIONAR_IMAGEM);
 			break;
 		case R.id.menu_inserir_voz:
 			//codigo para inderir voz		
