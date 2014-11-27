@@ -5,32 +5,6 @@
         android:id="@+id/menu_add_agenda"
         android:title="@string/add"
         android:icon="@drawable/ic_action_add"
-        android:showAsAction="always"/>
-    
-    <item 
-        android:id="@+id/menu_pesq_agenda"
-        android:title="@string/pesquisar"
-        android:icon="@drawable/ic_action_pesquisar"
-        android:showAsAction="always">
-        
-        <!--Sub menu  -->
-        <menu >
-            <item 
-                android:id="@+id/pesq_data"
-                android:title="@string/pesq_data"/>
-            
-            <item 
-                android:id="@+id/pesq_caderno"
-                android:title="@string/pesq_caderno"/>
-            
-            <item 
-                android:id="@+id/pesq_materia"
-                android:title="@string/pesq_materia"/>
-            
-            
-            
-        </menu>
-        
-    </item>
+        android:showAsAction="always"/>            
 
 </menu>
