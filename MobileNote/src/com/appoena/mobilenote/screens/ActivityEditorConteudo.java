@@ -102,6 +102,7 @@ public class ActivityEditorConteudo extends Activity{
 
 	//Método para executar e efetuar o setup do Editor Raptor no modo de visualização
 	
+	@SuppressLint("SetJavaScriptEnabled") 
 	public void setupEditorRaptor(){
 
 		wv = new WebView(getApplicationContext());		
