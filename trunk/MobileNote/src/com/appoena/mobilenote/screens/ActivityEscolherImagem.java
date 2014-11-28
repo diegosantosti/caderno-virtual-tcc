@@ -32,7 +32,6 @@ public class ActivityEscolherImagem extends Activity{
 	private Button buttonOk;
 	
 	private String filePath;
-	private Bitmap image;
 	
 	private String caminho;
 	private Bundle params;
@@ -104,8 +103,10 @@ public class ActivityEscolherImagem extends Activity{
 				        File source= new File(sourceImagePath);
 				        File destination= new File(Environment.getExternalStorageDirectory()+destinationImagePath);				        
 				        if (source.exists()) {
-				            FileChannel src = new FileInputStream(source).getChannel();
-				            FileChannel dst = new FileOutputStream(destination).getChannel();
+				            @SuppressWarnings("resource")
+							FileChannel src = new FileInputStream(source).getChannel();
+				            @SuppressWarnings("resource")
+							FileChannel dst = new FileOutputStream(destination).getChannel();
 				            dst.transferFrom(src, 0, src.size());
 				            src.close();
 				            dst.close();
