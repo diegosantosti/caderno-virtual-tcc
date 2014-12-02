@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -11,6 +13,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Reminders;
@@ -99,27 +102,55 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		int h   = Integer.parseInt(hora.substring(0,2));
 		int min = Integer.parseInt(hora.substring(3,5));
 
-		//colocando as datas 
-		Calendar beginTime = Calendar.getInstance();
-		beginTime.set(ano, mes,dia,h,min);
-		Calendar endTime = Calendar.getInstance();
-		endTime.set(ano, mes,dia,h,min);
-		endTime.add(GregorianCalendar.HOUR, 1);
-
-		// inserindo calendário
-		ContentResolver cr = getContentResolver();
-		ContentValues valores =  new ContentValues();
-		valores.put(Events.DTSTART, beginTime.getTimeInMillis());
-		valores.put(Events.DTEND, endTime.getTimeInMillis());
-		valores.put(Events.TITLE, "Mobile Note - " +nomeMateria + " - " + desc);
-		valores.put(Events.DESCRIPTION, desc);
-		valores.put(Events.CALENDAR_ID, 3);
-		valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
+		
 		// inserindo no Grid
 		Agenda a = new Agenda();
 		// inserindo Agenda
 		if(!params.getBoolean(getResources().getString(R.string.EDICAO))){
 			// inserindo no calendario android
+			long id_evento = insertCalendar(ano, mes, dia, h, min, nomeMateria, desc, lembrar);
+			a.incluirAgenda(this, desc, data, hora, lembrar, materia, caderno,id_evento);
+		}else{	
+			int position	= params.getInt(getResources().getString(R.string.INDEX));
+			Agenda aAntes = adapterAgenda.getItem(position);
+			int lembrarAntes = aAntes.getLembrar();
+			long id_agenda = aAntes.getIdAgenda();
+			long id_evento = aAntes.getIdEvento();
+			a = new Agenda(desc, data, hora, caderno, lembrar, 0,id_evento);
+			id_evento = editCalendar(ano, mes, dia, h, min, nomeMateria, desc, lembrar, lembrarAntes, id_evento);
+			// alterando no BD
+			a.alterarTarefa(this, desc, data, hora, lembrar, materia, caderno,id_evento, id_agenda);
+			
+				
+		}
+		arrayAgendas = a.consultarAgenda(this);
+		adapterAgenda.setAgenda(arrayAgendas);
+		adapterAgenda.notifyDataSetChanged();
+
+	}
+	
+
+	@SuppressLint("NewApi")  
+	public long insertCalendar(int ano, int mes, int dia, int h, int min, String nomeMateria, String desc, int lembrar){
+		int version = android.os.Build.VERSION.SDK_INT;
+		if(version<14)return 0;
+		try {
+			//colocando as datas 
+			Calendar beginTime = Calendar.getInstance();
+			beginTime.set(ano, mes,dia,h,min);
+			Calendar endTime = Calendar.getInstance();
+			endTime.set(ano, mes,dia,h,min);
+			endTime.add(GregorianCalendar.HOUR, 1);
+
+			// inserindo calendário
+			ContentResolver cr = getContentResolver();
+			ContentValues valores =  new ContentValues();
+			valores.put(Events.DTSTART, beginTime.getTimeInMillis());
+			valores.put(Events.DTEND, endTime.getTimeInMillis());
+			valores.put(Events.TITLE, "Mobile Note - " +nomeMateria + " - " + desc);
+			valores.put(Events.DESCRIPTION, desc);
+			valores.put(Events.CALENDAR_ID, 3);
+			valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
 			Uri uri = cr.insert(Events.CONTENT_URI, valores);
 			long id_evento =  Long.parseLong(uri.getLastPathSegment());// pegando o id do evento android
 			
@@ -132,14 +163,39 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				valoresL.put(Reminders.METHOD, Reminders.METHOD_ALERT);
 				uri = crL.insert(Reminders.CONTENT_URI, valoresL);
 			}
-			a.incluirAgenda(this, desc, data, hora, lembrar, materia, caderno,id_evento);
-		}else{	
-			int position	= params.getInt(getResources().getString(R.string.INDEX));
-			Agenda aAntes = adapterAgenda.getItem(position);
-			int lembrarAntes = aAntes.getLembrar();
-			long id_agenda = aAntes.getIdAgenda();
-			long id_evento = aAntes.getIdEvento();
-			a = new Agenda(desc, data, hora, caderno, lembrar, 0,id_evento);
+			
+			return id_evento;
+		} catch (Exception e) {
+			// versao do android nao permite
+			return 0;
+		}
+		
+	}
+	
+
+ 
+	@SuppressLint("NewApi") 
+	public long editCalendar(int ano, int mes, int dia, int h, int min, String nomeMateria, 
+				String desc, int lembrar, int lembrarAntes, long id_evento){
+		int version = android.os.Build.VERSION.SDK_INT;
+		if(version<14)return 0;
+		try {
+			//colocando as datas 
+			Calendar beginTime = Calendar.getInstance();
+			beginTime.set(ano, mes,dia,h,min);
+			Calendar endTime = Calendar.getInstance();
+			endTime.set(ano, mes,dia,h,min);
+			endTime.add(GregorianCalendar.HOUR, 1);
+
+			// inserindo calendário
+			ContentResolver cr = getContentResolver();
+			ContentValues valores =  new ContentValues();
+			valores.put(Events.DTSTART, beginTime.getTimeInMillis());
+			valores.put(Events.DTEND, endTime.getTimeInMillis());
+			valores.put(Events.TITLE, "Mobile Note - " +nomeMateria + " - " + desc);
+			valores.put(Events.DESCRIPTION, desc);
+			valores.put(Events.CALENDAR_ID, 3);
+			valores.put(Events.EVENT_TIMEZONE, "Brasil/Brasília");
 			Uri updateUri = ContentUris.withAppendedId(Events.CONTENT_URI, id_evento);
 			cr.update( updateUri, valores, null, null);
 			id_evento =  Long.parseLong(updateUri .getLastPathSegment());
@@ -155,15 +211,29 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			}
 			else if(lembrarAntes == 1 || lembrar == 0)
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
-			// alterando no BD
-			a.alterarTarefa(this, desc, data, hora, lembrar, materia, caderno,id_evento, id_agenda);
 			
-				
+			return id_evento;
+		} catch (Exception e) {
+			// versao do android nao permite
+			return 0;
 		}
-		arrayAgendas = a.consultarAgenda(this);
-		adapterAgenda.setAgenda(arrayAgendas);
-		adapterAgenda.notifyDataSetChanged();
+	}
+	
 
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH) 
+	public void deleteCalendar(long idEvento){
+		int version = android.os.Build.VERSION.SDK_INT;
+		if(version<14)return;
+		try {
+			ContentResolver cr = getContentResolver();
+			Uri deleteUri = null;
+			getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + idEvento, null);
+			deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, idEvento);
+			cr.delete(deleteUri, null, null);
+		} catch (Exception e) {
+			// versao do android nao permite
+		}
+		
 	}
 
 	@Override
@@ -223,12 +293,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 		Agenda ag = adapterAgenda.getItem(position);
 		long idEvento = ag.getIdEvento();
 		// deletando do calendário android
-		ContentResolver cr = getContentResolver();
-		Uri deleteUri = null;
-		getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + idEvento, null);
-		deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, idEvento);
-		cr.delete(deleteUri, null, null);
-		
+		deleteCalendar(idEvento);	
 		ag.deletarAgenda(this, ag.getIdAgenda()); //deletando do BD
 		adapterAgenda.removeItemAtPosition(position);
 		adapterAgenda.notifyDataSetChanged();
