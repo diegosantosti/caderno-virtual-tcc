@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:layout_weight="0.7"
-            android:background="@android:color/holo_blue_light"
+            android:background="@color/blue_bright"
             android:text="@string/btnGravarAudio" />
 
     </LinearLayout>
