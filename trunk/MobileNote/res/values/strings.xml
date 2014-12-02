@@ -97,6 +97,8 @@
     <string name="sync_ok">Arquivos enviados para o dropbox.</string>
     <string name="sem_conexao">Sem conexão com a internet.</string>
     <string name="sem_conexao_later">Sem conexão com a internet, os arquivos serão enviados mais tarde</string>
+    <string name="carregando">Carregando conteúdo.</string>
+    <string name="aguarde">Aguarde.</string>
     
     <!-- Chaves e parametros -->
     <string name="NOME_CADERNO">NOME_CADERNO</string>
