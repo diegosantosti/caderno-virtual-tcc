@@ -201,7 +201,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			cr.update( updateUri, valores, null, null);
 			id_evento =  Long.parseLong(updateUri .getLastPathSegment());
 			// alterando Lembretes lembretes
-			if(lembrar == 1 || lembrarAntes == 0){	
+			if(lembrar == 1 && lembrarAntes == 0){	
 				ContentResolver crL = getContentResolver();
 				ContentValues valoresL =  new ContentValues();
 				valoresL.put(Reminders.MINUTES, 15);// minutos para alerta
@@ -210,7 +210,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 				crL.insert(Reminders.CONTENT_URI, valoresL);
 			}
-			else if(lembrarAntes == 1 || lembrar == 0)
+			else if(lembrarAntes == 1 && lembrar == 0)
 				getContentResolver().delete(Reminders.CONTENT_URI, Reminders.EVENT_ID +" = " + id_evento, null);
 			
 			return id_evento;
