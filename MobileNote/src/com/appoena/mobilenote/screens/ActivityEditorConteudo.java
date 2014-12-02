@@ -389,7 +389,7 @@ public class ActivityEditorConteudo extends Activity{
 
 	private void inserirImagemEditor(String caminhoImagem) {
 
-		String tagHtml = "<p><img src=\"" + caminhoImagem + "\" width='400' /></p>";
+		String tagHtml = "<img src=\"" + caminhoImagem + "\" width='400' />";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);
 		
