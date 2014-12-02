@@ -112,6 +112,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			a.incluirAgenda(this, desc, data, hora, lembrar, materia, caderno,id_evento);
 		}else{	
 			int position	= params.getInt(getResources().getString(R.string.INDEX));
+			Log.i("Posição", ""+position);
 			Agenda aAntes = adapterAgenda.getItem(position);
 			int lembrarAntes = aAntes.getLembrar();
 			long id_agenda = aAntes.getIdAgenda();
@@ -187,7 +188,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			endTime.set(ano, mes,dia,h,min);
 			endTime.add(GregorianCalendar.HOUR, 1);
 
-			// inserindo calendário
+			// alterando calendário
 			ContentResolver cr = getContentResolver();
 			ContentValues valores =  new ContentValues();
 			valores.put(Events.DTSTART, beginTime.getTimeInMillis());
@@ -282,6 +283,7 @@ public class ActivityAgenda extends Activity implements CustomDialogListener{
 			params.putLong("id_caderno_ed", a.getIdCaderno());
 			params.putLong("id_materia_ed", a.getIdMateria());
 			Log.i("Qual id Materia",""+a.getIdMateria());
+			params.putInt(getResources().getString(R.string.INDEX), info.position);
 			params.putBoolean("edicao", true);
 			showDialog(params);
 			break;
