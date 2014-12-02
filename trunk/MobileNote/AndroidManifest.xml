@@ -61,21 +61,21 @@
         </activity>
         <activity
             android:name="com.appoena.mobilenote.screens.ActivityEscolherImagem"
-            android:configChanges="orientation"
+            android:configChanges="orientation|screenSize"
             android:label="@string/escolher_imagem"
             android:theme="@style/ThemeMobileNote" >
         </activity>
         
         <activity
             android:name="com.appoena.mobilenote.screens.ActivityGravarAudio"
-            android:configChanges="orientation"
+            android:configChanges="orientation|screenSize"
             android:label="@string/audio_record"
             android:theme="@style/ThemeMobileNote" >
         </activity>
         
         <activity
             android:name="com.appoena.mobilenote.util.drawning.ActivityInserirDesenho"
-            android:configChanges="orientation"
+            android:configChanges="orientation|screenSize"
             android:label="@string/titulo_desenho"
             android:theme="@style/ThemeMobileNote" >
         </activity>
