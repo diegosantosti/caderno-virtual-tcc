@@ -34,7 +34,6 @@ public class BDMobileNote extends SQLiteOpenHelper {
 					"dia_semana integer," +
 					"professor text," +
 					"FOREIGN KEY(id_caderno) REFERENCES caderno(_id_caderno));");
-		bd.execSQL("insert into materia(_id_materia, id_caderno,nome,cor,email_professor, dia_semana, professor) values (1,1,'LEGET',1,'tony@gmail.com',1,'Tony');");
 		// tabela agenda
 		bd.execSQL(	"create table agenda(" +
 					"_id_agenda integer primary key autoincrement," +
