@@ -46,9 +46,6 @@ public class ActivityCaderno extends Activity implements CustomDialogListener{
 		onClickItemGrid();
 		registerForContextMenu(gridView);
 		setBundle();
-		//tenta criar uma pasta do aplicativo
-		Diretorio.criaDiretorio("");
-
 
 	}
 
