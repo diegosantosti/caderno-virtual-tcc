@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.appoena.mobilenote.R;
+import com.appoena.mobilenote.modelo.Agenda;
 import com.appoena.mobilenote.modelo.Caderno;
 import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.modelo.Materia;
@@ -33,8 +34,12 @@ public class SplashActivity extends Activity implements Runnable{
 			Diretorio.criaDiretorio("/"+c.getNome()+"/"+m.getNome()); //cria o diretorio
 			Diretorio.criaDiretorio("/"+c.getNome()+"/"+m.getNome()+ "/"+ getString(R.string.AUDIOS));
 			Diretorio.criaDiretorio("/"+c.getNome()+"/"+m.getNome()+"/" + getString(R.string.IMAGENS));
-			String texto="<p>Esse é um conteúdo de exemplo, com o <strong class=\"cms-bold\">Mobile Note</strong>&nbsp;é &nbsp;possível :</p><p>Criar cadernos e matérias.&nbsp;</p><p>Crias agendas e vincular com o calendário do dispositivo.&nbsp;</p><p><span class=\"cms-color cms-red\">Inserir imagens.&nbsp;</span></p><p><span class=\"cms-color cms-green\">Inserir áudio</span>.&nbsp;</p><p><span class=\"cms-color cms-purple\">Inserir desenhos a mão livre.&nbsp;</span></p><p>Vincular com o dropbox e sincronizar o conteúdo completo.&nbsp;</p>";
+			//cria uma agenda
+			Agenda a = new Agenda("Compromisso", "01/01/2017", "19:00:00", m.consultarMateria(this, c.consultarCaderno(this).get(0).getId()).get(0).getIdMateria(), 0, c.consultarCaderno(this).get(0).getId(), 0);
+			a.incluirAgenda(this, a.getDescricao(), a.getDataAgenda(), a.getHoraAgenda(), a.getLembrar(), a.getIdMateria(), a.getIdCaderno(), a.getIdEvento());
+			
 			//cria um conteudo de exemplo
+			String texto="<p>Esse é um conteúdo de exemplo, com o <strong class=\"cms-bold\">Mobile Note</strong>&nbsp;é &nbsp;possível :</p><p>Criar cadernos e matérias.&nbsp;</p><p>Crias agendas e vincular com o calendário do dispositivo.&nbsp;</p><p><span class=\"cms-color cms-red\">Inserir imagens.&nbsp;</span></p><p><span class=\"cms-color cms-green\">Inserir áudio</span>.&nbsp;</p><p><span class=\"cms-color cms-purple\">Inserir desenhos a mão livre.&nbsp;</span></p><p>Vincular com o dropbox e sincronizar o conteúdo completo.&nbsp;</p>";
 			Conteudo conteudo = new Conteudo();
 			conteudo.salvarConteudo("/com.appoena.mobilenote/"+c.getNome()+"/"+m.getNome(), texto);
 			//seta o sharedPreferences como falso para nao executar novamente
