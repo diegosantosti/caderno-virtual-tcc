@@ -19,27 +19,28 @@ public final class R {
     public static final class color {
         /**  Cores do tema 
          */
-        public static final int bg_actionBar=0x7f040012;
+        public static final int bg_actionBar=0x7f040013;
         /**  Cores agenda 
          */
-        public static final int bg_agenda=0x7f040010;
-        public static final int bg_button_main=0x7f040003;
-        public static final int bg_button_main_pressed=0x7f040004;
-        public static final int bg_edit_main=0x7f040006;
+        public static final int bg_agenda=0x7f040011;
+        public static final int bg_button_main=0x7f040004;
+        public static final int bg_button_main_pressed=0x7f040005;
+        public static final int bg_edit_main=0x7f040007;
         public static final int bg_main=0x7f040000;
-        public static final int bg_popup=0x7f040001;
-        public static final int bg_sobre=0x7f040002;
-        public static final int blue_bright=0x7f04000f;
-        public static final int borda_edit=0x7f04000a;
-        public static final int borda_edit_main=0x7f040007;
-        public static final int font_btn_drop_excluir=0x7f04000e;
-        public static final int font_btn_drop_vinc=0x7f04000d;
-        public static final int font_edit=0x7f04000b;
-        public static final int font_edit_main=0x7f040008;
-        public static final int font_text_about=0x7f04000c;
-        public static final int font_text_pop_up=0x7f040009;
-        public static final int fonte_list_agenda=0x7f040011;
-        public static final int text_titulo_main=0x7f040005;
+        public static final int bg_popup=0x7f040002;
+        public static final int bg_sobre=0x7f040003;
+        public static final int bg_splash=0x7f040001;
+        public static final int blue_bright=0x7f040010;
+        public static final int borda_edit=0x7f04000b;
+        public static final int borda_edit_main=0x7f040008;
+        public static final int font_btn_drop_excluir=0x7f04000f;
+        public static final int font_btn_drop_vinc=0x7f04000e;
+        public static final int font_edit=0x7f04000c;
+        public static final int font_edit_main=0x7f040009;
+        public static final int font_text_about=0x7f04000d;
+        public static final int font_text_pop_up=0x7f04000a;
+        public static final int fonte_list_agenda=0x7f040012;
+        public static final int text_titulo_main=0x7f040006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -99,8 +100,7 @@ public final class R {
         public static final int ic_tag=0x7f02001c;
         public static final int logo_sobre=0x7f02001d;
         public static final int main_content=0x7f02001e;
-        public static final int splash_background=0x7f02001f;
-        public static final int splash_content=0x7f020020;
+        public static final int splash_content=0x7f02001f;
     }
     public static final class id {
         public static final int action_settings=0x7f0a003c;
