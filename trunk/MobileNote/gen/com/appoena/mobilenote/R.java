@@ -19,16 +19,17 @@ public final class R {
     public static final class color {
         /**  Cores do tema 
          */
-        public static final int bg_actionBar=0x7f040011;
+        public static final int bg_actionBar=0x7f040012;
         /**  Cores agenda 
          */
-        public static final int bg_agenda=0x7f04000f;
+        public static final int bg_agenda=0x7f040010;
         public static final int bg_button_main=0x7f040003;
         public static final int bg_button_main_pressed=0x7f040004;
         public static final int bg_edit_main=0x7f040006;
         public static final int bg_main=0x7f040000;
         public static final int bg_popup=0x7f040001;
         public static final int bg_sobre=0x7f040002;
+        public static final int blue_bright=0x7f04000f;
         public static final int borda_edit=0x7f04000a;
         public static final int borda_edit_main=0x7f040007;
         public static final int font_btn_drop_excluir=0x7f04000e;
@@ -37,7 +38,7 @@ public final class R {
         public static final int font_edit_main=0x7f040008;
         public static final int font_text_about=0x7f04000c;
         public static final int font_text_pop_up=0x7f040009;
-        public static final int fonte_list_agenda=0x7f040010;
+        public static final int fonte_list_agenda=0x7f040011;
         public static final int text_titulo_main=0x7f040005;
     }
     public static final class dimen {
@@ -144,23 +145,20 @@ public final class R {
         public static final int lnListMateria=0x7f0a0034;
         public static final int materiaAgenda=0x7f0a0033;
         public static final int menu_add_agenda=0x7f0a003d;
-        public static final int menu_add_materia=0x7f0a004a;
-        public static final int menu_compartilhar=0x7f0a0044;
+        public static final int menu_add_materia=0x7f0a0047;
+        public static final int menu_compartilhar=0x7f0a0040;
         public static final int menu_del=0x7f0a003a;
         public static final int menu_edit=0x7f0a0039;
-        public static final int menu_editar=0x7f0a0042;
-        public static final int menu_inserir_desenho=0x7f0a0047;
-        public static final int menu_inserir_imagem=0x7f0a0046;
-        public static final int menu_inserir_voz=0x7f0a0048;
-        public static final int menu_pesq_agenda=0x7f0a003e;
-        public static final int menu_pesquisar=0x7f0a0043;
-        public static final int menu_salvar=0x7f0a0049;
-        public static final int menu_sincronizar=0x7f0a0045;
+        public static final int menu_editar=0x7f0a003e;
+        public static final int menu_inserir_desenho=0x7f0a0043;
+        public static final int menu_inserir_imagem=0x7f0a0042;
+        public static final int menu_inserir_voz=0x7f0a0044;
+        public static final int menu_pesquisar=0x7f0a003f;
+        public static final int menu_salvar=0x7f0a0045;
+        public static final int menu_salvar_desenho=0x7f0a0046;
+        public static final int menu_sincronizar=0x7f0a0041;
         public static final int myDrawing=0x7f0a0020;
         public static final int nomeMateria=0x7f0a0035;
-        public static final int pesq_caderno=0x7f0a0040;
-        public static final int pesq_data=0x7f0a003f;
-        public static final int pesq_materia=0x7f0a0041;
         public static final int profMateria=0x7f0a0037;
         public static final int progressBar1=0x7f0a002e;
         public static final int radio_naosinc=0x7f0a0016;
@@ -206,38 +204,55 @@ public final class R {
         public static final int main=0x7f090002;
         public static final int menu_agenda=0x7f090003;
         public static final int menu_conteudo=0x7f090004;
-        public static final int menu_materia=0x7f090005;
+        public static final int menu_inserir_desenho=0x7f090005;
+        public static final int menu_materia=0x7f090006;
     }
     public static final class string {
-        public static final int APP_KEY=0x7f080059;
-        public static final int APP_SECRET=0x7f08005a;
-        public static final int AUDIOS=0x7f08005c;
-        public static final int COR_CADERNO=0x7f080048;
-        public static final int COR_MATERIA=0x7f080054;
-        public static final int DATA_AGENDA=0x7f08004d;
-        public static final int DESC_AGENDA=0x7f08004c;
-        public static final int DIA_SEMANA=0x7f080051;
-        public static final int EDICAO=0x7f08004a;
-        public static final int EMAIL_PROFESSOR=0x7f080053;
-        public static final int HORA_AGENDA=0x7f08004e;
-        public static final int IMAGENS=0x7f08005b;
-        public static final int INDEX=0x7f080049;
-        public static final int LEMBRAR=0x7f08004f;
+        public static final int APP_KEY=0x7f08005b;
+        public static final int APP_SECRET=0x7f08005c;
+        public static final int AUDIOS=0x7f08005e;
+        public static final int COR_CADERNO=0x7f08004a;
+        public static final int COR_MATERIA=0x7f080056;
+        public static final int DATA_AGENDA=0x7f08004f;
+        public static final int DESC_AGENDA=0x7f08004e;
+        public static final int DESENHO_BG_COLOR=0x7f08006a;
+        public static final int DESENHO_BLUR=0x7f08006d;
+        public static final int DESENHO_BORDER=0x7f080070;
+        public static final int DESENHO_CLEAR=0x7f080075;
+        public static final int DESENHO_COLOR=0x7f08006b;
+        public static final int DESENHO_CURVE=0x7f080072;
+        public static final int DESENHO_EMBOSS=0x7f08006c;
+        public static final int DESENHO_ERASE=0x7f08006e;
+        public static final int DESENHO_IMAGE_SAVED=0x7f080068;
+        public static final int DESENHO_NO_BORDER=0x7f080074;
+        public static final int DESENHO_RECTANGLE=0x7f080073;
+        public static final int DESENHO_SAVE=0x7f080071;
+        public static final int DESENHO_SAVED_ERROR=0x7f080069;
+        public static final int DESENHO_SRCATOP=0x7f08006f;
+        public static final int DESENHO_WALLPAPER_SETEDUP=0x7f080067;
+        public static final int DIA_SEMANA=0x7f080053;
+        public static final int EDICAO=0x7f08004c;
+        public static final int EMAIL_PROFESSOR=0x7f080055;
+        public static final int HORA_AGENDA=0x7f080050;
+        public static final int IMAGENS=0x7f08005d;
+        public static final int INDEX=0x7f08004b;
+        public static final int LEMBRAR=0x7f080051;
         /**  Chaves e parametros 
          */
-        public static final int NOME_CADERNO=0x7f080047;
-        public static final int NOME_MATERIA=0x7f080050;
-        public static final int NOME_PROFESSOR=0x7f080052;
-        public static final int PREFS_NAME=0x7f080057;
-        public static final int SYNC=0x7f080058;
-        public static final int VIEW=0x7f08004b;
+        public static final int NOME_CADERNO=0x7f080049;
+        public static final int NOME_MATERIA=0x7f080052;
+        public static final int NOME_PROFESSOR=0x7f080054;
+        public static final int PREFS_NAME=0x7f080059;
+        public static final int SYNC=0x7f08005a;
+        public static final int VIEW=0x7f08004d;
         public static final int action_settings=0x7f080005;
         public static final int add=0x7f08000c;
         public static final int agenda=0x7f080001;
+        public static final int aguarde=0x7f080048;
         public static final int andre=0x7f080032;
         public static final int app_name=0x7f080000;
-        public static final int audio_record=0x7f080062;
-        public static final int btnGravarAudio=0x7f080060;
+        public static final int audio_record=0x7f080064;
+        public static final int btnGravarAudio=0x7f080062;
         /**  Tela Config 
          */
         public static final int button_login_drop=0x7f080021;
@@ -245,6 +260,7 @@ public final class R {
         public static final int caderno_duplicado=0x7f08003e;
         public static final int camera=0x7f08002e;
         public static final int cancelar=0x7f08000b;
+        public static final int carregando=0x7f080047;
         public static final int config=0x7f080003;
         public static final int configs_save=0x7f080043;
         public static final int contentImagem=0x7f080030;
@@ -259,7 +275,8 @@ public final class R {
         public static final int edit_nome_caderno_hint=0x7f080008;
         public static final int editar=0x7f080011;
         public static final int email_invalido=0x7f080040;
-        public static final int escolher_imagem=0x7f080056;
+        public static final int escolher=0x7f080066;
+        public static final int escolher_imagem=0x7f080058;
         public static final int galeria=0x7f08002f;
         public static final int henrique=0x7f080034;
         public static final int hint_email_professor=0x7f080016;
@@ -285,7 +302,7 @@ public final class R {
         public static final int menu_inserir_voz=0x7f08002d;
         public static final int menu_pesquisar=0x7f08002a;
         public static final int menu_sincronizar=0x7f080029;
-        public static final int noExtStorageAvailable=0x7f08005d;
+        public static final int noExtStorageAvailable=0x7f08005f;
         /**  Tela matéria 
          */
         public static final int nova_materia=0x7f080012;
@@ -304,18 +321,18 @@ public final class R {
         public static final int radio_config=0x7f080023;
         public static final int radio_naosinc=0x7f080026;
         public static final int radio_wifi=0x7f080024;
-        public static final int recordingError=0x7f08005e;
+        public static final int recordingError=0x7f080060;
         public static final int save=0x7f08000f;
-        public static final int saveRecordError=0x7f08005f;
+        public static final int saveRecordError=0x7f080061;
         public static final int sem_conexao=0x7f080045;
         public static final int sem_conexao_later=0x7f080046;
-        public static final int stopRecordBtn=0x7f080061;
+        public static final int stopRecordBtn=0x7f080063;
         public static final int sync_ok=0x7f080044;
         public static final int text_cor_capa=0x7f080009;
         public static final int text_novo_caderno=0x7f080007;
         public static final int text_pesq_hint=0x7f080006;
-        public static final int titulo_desenho=0x7f080063;
-        public static final int titulo_escolher_imagem=0x7f080055;
+        public static final int titulo_desenho=0x7f080065;
+        public static final int titulo_escolher_imagem=0x7f080057;
         public static final int usjt=0x7f080039;
         public static final int victor=0x7f080033;
         public static final int vincular_materia=0x7f08001c;
