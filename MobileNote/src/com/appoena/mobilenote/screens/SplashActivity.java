@@ -19,6 +19,9 @@ public class SplashActivity extends Activity implements Runnable{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		
+		Handler h = new Handler();
+		h.postDelayed(this, 4000);
 		SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.PREFS_NAME),0);
 		Boolean primeiraExec = sharedPreferences.getBoolean("primeiraExec", true);
 		if(primeiraExec){
@@ -48,9 +51,6 @@ public class SplashActivity extends Activity implements Runnable{
 			edit.commit();
 			
 		}
-		
-		Handler h = new Handler();
-		h.postDelayed(this, 3000);
 	}
 	
 	@Override

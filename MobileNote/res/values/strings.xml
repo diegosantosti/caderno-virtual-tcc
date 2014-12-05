@@ -124,8 +124,8 @@
     <string name="IMAGENS">imagens</string>
     <string name="AUDIOS">audios</string>
     <string name="noExtStorageAvailable">External storage is unavailable</string>
-    <string name="recordingError">Error recording audio</string>
-    <string name="saveRecordError">Error saving audio record</string>
+    <string name="recordingError">Erro ao gravar áudio</string>
+    <string name="saveRecordError">Erro ao salvar gravação</string>
     <string name="btnGravarAudio">Gravar</string>
     <string name="stopRecordBtn">Stop</string>    
     <string name="audio_record">Selecionar Audio</string>
@@ -133,10 +133,10 @@
     <string name="escolher">Escolher</string>
     <string name="DESENHO_WALLPAPER_SETEDUP">Papel de parede não foi configurado</string>
     <string name="DESENHO_IMAGE_SAVED">Desenho salvo com sucesso</string>
-    <string name="DESENHO_SAVED_ERROR">Erro no salvamento do desenho</string>
+    <string name="DESENHO_SAVED_ERROR">Erro ao salvar desenho</string>
     <string name="DESENHO_BG_COLOR">Cor de fundo</string>
-    <string name="DESENHO_COLOR">"Cor</string>
-    <string name="DESENHO_EMBOSS">Emboss</string>
+    <string name="DESENHO_COLOR">Selecionar cor</string>
+    <string name="DESENHO_EMBOSS">Entalhar</string>
 	<string name="DESENHO_BLUR">Borrar</string>
     <string name="DESENHO_ERASE">Apagar</string>
 	<string name="DESENHO_SRCATOP">Clarear</string>
