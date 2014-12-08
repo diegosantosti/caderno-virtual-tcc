@@ -218,13 +218,13 @@ public abstract class Dropbox {
 	 * @param context
 	 * 		Contexto da aplicacao.
 	 * @return
-	 * 		Retorna a conexao do usuario no momento, 0 se nao houver conexao.
+	 * 		Retorna a conexao do usuario no momento, -1 se nao houver conexao.
 	 */	
 	public static int getConexaoDispositivo(Context context){
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if(connectivityManager!=null){
 			NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-			if(info== null) return 0; //sem conexao
+			if(info== null) return -1; //sem conexao
 			if(info.isConnected()){
 				switch (info.getType()) {
 				case ConnectivityManager.TYPE_WIFI:
@@ -235,9 +235,9 @@ public abstract class Dropbox {
 			}
 			
 		}else{
-			return 0; //sem conexao
+			return -1; //sem conexao
 		}
-		return 0; //sem conexao
+		return -1; //sem conexao
 	}
 	
 	/**
@@ -249,16 +249,16 @@ public abstract class Dropbox {
 	 */
 	private static int getConfigConexao(Context context){
 		SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.PREFS_NAME), 0);
-		int conex = sp.getInt(context.getString(R.string.SYNC), 0);
+		int conex = sp.getInt(context.getString(R.string.SYNC), -1);
 		switch (conex) {
 		case R.id.radio_sinc_wifi:
 			return ConnectivityManager.TYPE_WIFI; //configuracao sincronizar wi-fi
 		case R.id.radio_sinc_3g:
 			return ConnectivityManager.TYPE_MOBILE; //configuracao sincronizar wi-fi e 3g
 		case R.id.radio_naosinc: //nao sincronizar
-			return 0;
+			return -1;
 		default:
-			return 0; //nao sincronizar
+			return -1; //nao sincronizar
 		}
 	}
 	
@@ -272,12 +272,12 @@ public abstract class Dropbox {
 	 * 		Se deve sincronizar ou nao
 	 */
 	private static boolean isSincronizar(int conexSalva, int conexDispositivo){
-		if(conexSalva==0){
+		if(conexSalva==-1){
 			Log.v("isSincronizar", "Nunca sincronizar");
 			return false;
 		}		
 		// se conexao do dispositivo for nula, salva operacao e sai do metodo.
-		if(conexDispositivo==0){
+		if(conexDispositivo==-1){
 			Log.v("isSincronizar", "Conexao do dispositovo nula");
 			return false;
 		}
