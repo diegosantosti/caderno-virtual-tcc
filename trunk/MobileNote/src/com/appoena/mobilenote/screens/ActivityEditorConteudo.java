@@ -471,7 +471,7 @@ public class ActivityEditorConteudo extends Activity{
 
 	public void sincronizar(final MenuItem item, final boolean forced){
 		//se clicou no botao sincronizar e esta sem acesso a internet, exibe o aviso e sai do metodo.
-		if(Dropbox.getConexaoDispositivo(getApplicationContext())==0 && forced){
+		if(Dropbox.getConexaoDispositivo(getApplicationContext())==-1 && forced){
 			Toast.makeText(getApplication(), getString(R.string.sem_conexao), Toast.LENGTH_SHORT).show();
 			return;
 		}
