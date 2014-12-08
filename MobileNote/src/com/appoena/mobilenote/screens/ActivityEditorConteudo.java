@@ -1,8 +1,6 @@
 package com.appoena.mobilenote.screens;
 
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -11,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
