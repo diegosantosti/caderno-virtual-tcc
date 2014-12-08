@@ -208,7 +208,20 @@ public class ActivityEditorConteudo extends Activity{
 			break;
 		case R.id.menu_compartilhar:
 			//codigo para compartilhar
-			compartilhar();
+			String texto = lerConteudoEditorTxt();
+			// removendo audio
+			do{
+				String sub = texto.substring(texto.indexOf("<p><audio"), texto.indexOf("dio>") + 8);
+				texto = texto.replace(sub,"" );
+			}while(texto.contains("<audio"));
+			
+			// removendo imagens
+			do{
+				String sub = texto.substring(texto.indexOf("<img"), texto.indexOf("width") + 12);
+				texto = texto.replace(sub,"" );
+			}while(texto.contains("<img"));
+			
+			compartilhar(texto);
 			break;
 
 		case R.id.menu_sincronizar:
@@ -400,16 +413,16 @@ public class ActivityEditorConteudo extends Activity{
 	private void inserirAudioEditor(String caminhoAudio) {
 		
 		//Recupera a data/hora atual do sistema
-		Locale locale = new Locale("pt","BR"); 
+		/*Locale locale = new Locale("pt","BR"); 
 		GregorianCalendar calendar = new GregorianCalendar(); 
 		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMM' de 'yyyy' - 'HH':'mm'h'",locale); 
-		String dataHoraAtual = formatador.format(calendar.getTime());
+		String dataHoraAtual = formatador.format(calendar.getTime());*/
 		
 		String tagHtml = 
 			"<p><audio controls>" +
 				"<source src=\"" + caminhoAudio + "\" type=\"audio/wav\">" +
 				"Your browser does not support the audio element."+
-			"</audio></p><p>"+dataHoraAtual+"</p>";
+			"</audio></p>";
 		
 //		String tagHtml = "<p><img src=\"" + caminhoAudio + "\" width='500' /></p>";
 		String novoConteudo = getConteudoTemp() + tagHtml;
@@ -421,22 +434,14 @@ public class ActivityEditorConteudo extends Activity{
 	
 
 	// compartilhar
-	public void compartilhar(){
+	public void compartilhar(String textoHtml){
 
-		//converter em pdf
-		/*try{
-			convert("<h1 style='color:red'>Hello PDF</h1>", new FileOutputStream("/sdcard"+caminho+"/conteudo.pdf"));
-		}catch(Exception e){
-			
-		}*/
+		String texto = android.text.Html.fromHtml(textoHtml).toString();
 		Resources res = getResources();  
-		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-		Log.i("Caminho", caminho);
-		Uri uri = Uri.parse("file:///sdcard"+caminho+"/conteudo.txt");
-		this.grantUriPermission("com.appoena.mobilenote", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-		emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard"+caminho+"/conteudo.txt"));  
-		emailIntent.setType("text/plain");  
-		this.startActivity( Intent.createChooser(emailIntent,res.getString(R.string.menu_compartilhar)));   
+		final Intent textoIntent = new Intent(android.content.Intent.ACTION_SEND);
+		textoIntent.putExtra(Intent.EXTRA_TEXT, texto);  
+		textoIntent.setType("text/plain");  
+		this.startActivity( Intent.createChooser(textoIntent,res.getString(R.string.menu_compartilhar)));   
 	}
 	
 	public void refreshEditor(){
