@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_components_popoup"
-        android:text="@string/titulo_escolher_imagem" />
+        android:text="@string/titulo_escolher_imagem" 
+        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -28,12 +29,17 @@
             android:id="@+id/btn_escolher_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+   			android:drawableTop="@drawable/ic_camera_alt_black_48dp"
+   			style="?android:attr/buttonBarButtonStyle"
             android:text="@string/camera" />
 
         <Button
             android:id="@+id/btn_escolher_galeria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_photo_library_black_48dp"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/galeria" />
     </LinearLayout>
 
@@ -43,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/contentImagem"
         android:src="@drawable/ic_launcher" />
 
@@ -52,6 +58,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/bg_popup"
         android:layout_alignParentLeft="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
@@ -60,12 +67,17 @@
             android:id="@+id/btn_escolher_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_clear_black_36dp"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginRight="30dp"
             android:text="@string/cancelar"/>
 
         <Button
             android:id="@+id/btn_escolher_ok"
+            android:drawableLeft="@drawable/ic_done_black_36dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/ok"/>
     </LinearLayout>
 

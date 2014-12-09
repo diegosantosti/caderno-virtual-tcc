@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import com.appoena.mobilenote.R;
+
 import android.os.Environment;
 import android.util.Log;
 
