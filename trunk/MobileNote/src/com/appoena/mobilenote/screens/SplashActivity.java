@@ -44,7 +44,7 @@ public class SplashActivity extends Activity implements Runnable{
 			//cria um conteudo de exemplo
 			String texto="<p>Esse é um conteúdo de exemplo, com o <strong class=\"cms-bold\">Mobile Note</strong>&nbsp;é &nbsp;possível :</p><p>Criar cadernos e matérias.&nbsp;</p><p>Crias agendas e vincular com o calendário do dispositivo.&nbsp;</p><p><span class=\"cms-color cms-red\">Inserir imagens.&nbsp;</span></p><p><span class=\"cms-color cms-green\">Inserir áudio</span>.&nbsp;</p><p><span class=\"cms-color cms-purple\">Inserir desenhos a mão livre.&nbsp;</span></p><p>Vincular com o dropbox e sincronizar o conteúdo completo.&nbsp;</p>";
 			Conteudo conteudo = new Conteudo();
-			conteudo.salvarConteudo("/com.appoena.mobilenote/"+c.getNome()+"/"+m.getNome(), texto);
+			conteudo.salvarConteudo("/.com.appoena.mobilenote/"+c.getNome()+"/"+m.getNome(), texto);
 			//seta o sharedPreferences como falso para nao executar novamente
 			SharedPreferences.Editor edit = sharedPreferences.edit();
 			edit.putBoolean("primeiraExec", false);
