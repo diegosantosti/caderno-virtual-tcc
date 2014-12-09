@@ -9,7 +9,7 @@ import android.util.Log;
 
 public abstract class Diretorio {
 	
-	private static String ROOT = "/com.appoena.mobilenote";
+	public static String ROOT = "/.com.appoena.mobilenote";
 	
 	//Método para criar um diretório
 		public static void criaDiretorio(String novoDiretorio){  

@@ -146,14 +146,7 @@
 	<string name="DESENHO_RECTANGLE">Retângulo</string>
 	<string name="DESENHO_NO_BORDER">Sem borda</string>
 	<string name="DESENHO_CLEAR">Limpar</string>
+	<string name="BROWSER_DOESNT_SUPPORT_AUDIO">Seu browser não suporta o elmento de audio.</string>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-       
 </resources>

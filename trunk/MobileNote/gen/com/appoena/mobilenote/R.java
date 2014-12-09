@@ -211,6 +211,7 @@ public final class R {
         public static final int APP_KEY=0x7f08005b;
         public static final int APP_SECRET=0x7f08005c;
         public static final int AUDIOS=0x7f08005e;
+        public static final int BROWSER_DOESNT_SUPPORT_AUDIO=0x7f080076;
         public static final int COR_CADERNO=0x7f08004a;
         public static final int COR_MATERIA=0x7f080056;
         public static final int DATA_AGENDA=0x7f08004f;
