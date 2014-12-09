@@ -172,10 +172,12 @@ public class ActivityEditorConteudo extends Activity{
 					wv.findAllAsync(query);
 					return false;
 				}
-
+				
+				@SuppressLint("NewApi")
 				@Override
 				public boolean onQueryTextChange(String newText) {
 					// DO NOTHING
+					wv.findAllAsync(newText);
 					return false;
 				}
 			});
@@ -415,11 +417,15 @@ public class ActivityEditorConteudo extends Activity{
 		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMM' de 'yyyy' - 'HH':'mm'h'",locale); 
 		String dataHoraAtual = formatador.format(calendar.getTime());*/
 		
+		//Remove o caminho absoluto do arquivo audio
+//		caminhoAudio = caminhoAudio.substring(caminhoAudio.indexOf("audios"));
+		Log.i("WebView","Teste remoção de string  --> " + caminhoAudio);
+		
 		String tagHtml = 
 			"<p><audio controls>" +
 				"<source src=\"" + caminhoAudio + "\" type=\"audio/wav\">" +
-				"Your browser does not support the audio element."+
-			"</audio></p>";
+				getString(R.string.BROWSER_DOESNT_SUPPORT_AUDIO) +
+			"</audio></p> <p>Audio - MobileNote</p> ";
 		
 //		String tagHtml = "<p><img src=\"" + caminhoAudio + "\" width='500' /></p>";
 		String novoConteudo = getConteudoTemp() + tagHtml;

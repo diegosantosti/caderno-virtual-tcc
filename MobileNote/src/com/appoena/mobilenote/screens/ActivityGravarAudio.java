@@ -20,7 +20,7 @@ import com.skd.androidrecording.visualizer.renderer.BarGraphRenderer;
 
 public class ActivityGravarAudio extends Activity{
 	
-	private static String fileName = null;
+	private static String fileName= null;
     
 	private Button recordBtn;
 	private VisualizerView visualizerView;

@@ -76,8 +76,8 @@ public class ActivityMateria extends Activity implements CustomDialogListener{
 				String nomeCadernoCaminho = Diretorio.substituirEspacosBrancosUnderline(nome_caderno);
 				String nomeMateriaCaminho = Diretorio.substituirEspacosBrancosUnderline(nomeMateria);
 				
-				paramsMateria.putString("caminhoCadernoMateria", "/com.appoena.mobilenote"+"/"+nomeCadernoCaminho+"/"+nomeMateriaCaminho);
-				it.putExtras(paramsMateria);				
+				paramsMateria.putString("caminhoCadernoMateria", Diretorio.ROOT+"/"+nomeCadernoCaminho+"/"+nomeMateriaCaminho);
+				it.putExtras(paramsMateria);
 				startActivity(it);
 				
 			}
