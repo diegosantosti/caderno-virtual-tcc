@@ -400,7 +400,8 @@ public class ActivityEditorConteudo extends Activity{
 	}
 
 	private void inserirImagemEditor(String caminhoImagem) {
-
+		
+		Log.i("WebView","Teste caminho imagem  --> " + caminhoImagem);
 		String tagHtml = "<img src=\"" + caminhoImagem + "\" width='400' />";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);

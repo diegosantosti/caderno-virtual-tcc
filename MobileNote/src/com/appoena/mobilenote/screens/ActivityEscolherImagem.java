@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
+import com.appoena.mobilenote.util.BitmapProcessor;
+
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.util.StorageUtils;
 
@@ -30,6 +32,8 @@ public class ActivityEscolherImagem extends Activity{
 	private Button buttonImage;
 	private Button buttonCancelar;
 	private Button buttonOk;
+	
+	private Bitmap image;
 	
 	private String filePath;
 	
@@ -77,7 +81,7 @@ public class ActivityEscolherImagem extends Activity{
 				
 				//Verifica se o caminho foi passado, se sim então salva a imagem original dentro da pasta do app.
 				if(!filePath.isEmpty()){
-					moveImageToMobileNote(filePath);
+					filePath = moveImageToMobileNote(filePath);
 				}
 				
 				Bundle params = new Bundle();
@@ -90,7 +94,7 @@ public class ActivityEscolherImagem extends Activity{
 			}
 			
 			//método responsável por copiar todas as imagens selecionadas para dentro do app
-			private void moveImageToMobileNote(String filePath) {
+			private String moveImageToMobileNote(String filePath) {
 				// TODO Auto-generated method stub
 				try {
 //					File file=new File(Environment.getExternalStorageDirectory()+caminho);
@@ -112,11 +116,14 @@ public class ActivityEscolherImagem extends Activity{
 				            dst.close();
 				            
 				            //Sobrescreve o caminho original com o caminho gerado 
-				            filePath = destinationImagePath;
+				            filePath = destination.getAbsolutePath();
 				            
 				        }
 				    }
-				} catch (Exception e) {}
+				} catch (Exception e) {
+					
+				}
+				return filePath;
 			}
 		});		
     }
@@ -146,7 +153,11 @@ public class ActivityEscolherImagem extends Activity{
      */
     private void updateImageView(Bitmap newImage) {
     	
-    	this.imageView.setImageBitmap(newImage);
+//    	this.imageView.setImageBitmap(newImage);
+    	
+    	BitmapProcessor bitmapProcessor = new BitmapProcessor(newImage, 1000, 1000, 0);
+    	this.image = bitmapProcessor.getBitmap();
+    	this.imageView.setImageBitmap(this.image);
     }
     
     /**
