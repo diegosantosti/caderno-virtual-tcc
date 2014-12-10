@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ActivityEscolherImagem extends Activity{
 	
@@ -35,7 +36,7 @@ public class ActivityEscolherImagem extends Activity{
 	
 	private Bitmap image;
 	
-	private String filePath;
+	private String filePath = "";
 	
 	private String caminho;
 	private Bundle params;
@@ -78,18 +79,19 @@ public class ActivityEscolherImagem extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+												
 				//Verifica se o caminho foi passado, se sim então salva a imagem original dentro da pasta do app.
 				if(!filePath.isEmpty()){
 					filePath = moveImageToMobileNote(filePath);
-				}
-				
-				Bundle params = new Bundle();
-				params.putString("filePathImage", filePath);
-				
-				getIntent().replaceExtras(params);
-				setResult(RESULT_OK , getIntent());
-				finish();
+					Bundle params = new Bundle();
+					params.putString("filePathImage", filePath);
+					
+					getIntent().replaceExtras(params);
+					setResult(RESULT_OK , getIntent());
+					finish();
+				}else{
+					Toast.makeText(getApplication(), getString(R.string.imagem_nao_selecionada), Toast.LENGTH_SHORT).show();
+				}			
 				
 			}
 			

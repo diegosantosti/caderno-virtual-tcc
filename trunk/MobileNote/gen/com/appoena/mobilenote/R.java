@@ -291,6 +291,7 @@ public final class R {
         public static final int hint_nome_professor=0x7f080015;
         public static final int hint_sala=0x7f080017;
         public static final int hist_descricao=0x7f080019;
+        public static final int imagem_nao_selecionada=0x7f080077;
         public static final int informe_descricao_agenda=0x7f08003d;
         /**  Mensagens e avisos 
  Mensagens e avisos 
