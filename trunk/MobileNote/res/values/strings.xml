@@ -129,7 +129,7 @@
     <string name="btnGravarAudio">Gravar</string>
     <string name="stopRecordBtn">Stop</string>    
     <string name="audio_record">Selecionar Audio</string>
-    <string name="titulo_desenho">Inserir Desenho</string>
+    <string name="titulo_desenho">Cancelar</string>
     <string name="escolher">Escolher</string>
     <string name="DESENHO_WALLPAPER_SETEDUP">Papel de parede não foi configurado</string>
     <string name="DESENHO_IMAGE_SAVED">Desenho salvo com sucesso</string>
