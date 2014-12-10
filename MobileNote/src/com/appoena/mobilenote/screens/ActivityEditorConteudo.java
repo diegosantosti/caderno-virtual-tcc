@@ -209,16 +209,16 @@ public class ActivityEditorConteudo extends Activity{
 			//codigo para compartilhar
 			String texto = lerConteudoEditorTxt();
 			// removendo audio
-			do{
-				String sub = texto.substring(texto.indexOf("<p><audio"), texto.indexOf("dio>") + 8);
+			while(texto.contains("<audio")){
+				String sub = texto.substring(texto.indexOf("<p><audio"), texto.indexOf("dio>") + 30);
 				texto = texto.replace(sub,"" );
-			}while(texto.contains("<audio"));
-			
+				Log.i("texto", texto);
+			}			
 			// removendo imagens
-			do{
+			while(texto.contains("<img")){
 				String sub = texto.substring(texto.indexOf("<img"), texto.indexOf("width") + 12);
 				texto = texto.replace(sub,"" );
-			}while(texto.contains("<img"));
+			}
 			
 			compartilhar(texto);
 			break;
@@ -439,8 +439,9 @@ public class ActivityEditorConteudo extends Activity{
 
 	// compartilhar
 	public void compartilhar(String textoHtml){
-
+		Log.i("Texto com Tag", textoHtml);
 		String texto = android.text.Html.fromHtml(textoHtml).toString();
+		Log.i("Texto sem Tag", texto);
 		Resources res = getResources();  
 		final Intent textoIntent = new Intent(android.content.Intent.ACTION_SEND);
 		textoIntent.putExtra(Intent.EXTRA_TEXT, texto);  
