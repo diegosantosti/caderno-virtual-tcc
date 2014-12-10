@@ -307,6 +307,9 @@ public abstract class Dropbox {
 		if(caminho.contains("storage/emulated/0/")){
 			caminho = caminho.replace("storage/emulated/0/", "");
 		}
+		if(caminho.contains("storage/sdcard0/")){
+		   caminho = caminho.replace("storage/sdcard0/", "");
+		}
 		return caminho;
 	}
 	
