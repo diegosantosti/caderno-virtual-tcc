@@ -146,7 +146,7 @@
 	<string name="DESENHO_RECTANGLE">Rectangle</string>
 	<string name="DESENHO_NO_BORDER">No border</string>
 	<string name="DESENHO_CLEAR">Clear</string>
-	<string name="BROWSER_DOESNT_SUPPORT_AUDIO">Your browser does not support the audio elmento.</string>
-	
+	<string name="BROWSER_DOESNT_SUPPORT_AUDIO">Your browser does not support the audio element.</string>
+	<string name="imagem_nao_selecionada">Image not selected</string>
 	
 </resources>
