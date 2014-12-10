@@ -302,6 +302,7 @@ public abstract class Dropbox {
 		}
 		if(caminho.contains("com.appoena.mobilenote")){
 			caminho = caminho.replace("com.appoena.mobilenote/", "");
+			if(caminho.contains("."))caminho = caminho.replace(".","");
 		}
 		if(caminho.contains("storage/emulated/0/")){
 			caminho = caminho.replace("storage/emulated/0/", "");
