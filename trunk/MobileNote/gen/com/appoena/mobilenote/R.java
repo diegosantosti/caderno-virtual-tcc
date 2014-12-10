@@ -85,22 +85,26 @@ public final class R {
         public static final int ic_action_add=0x7f02000d;
         public static final int ic_action_pesquisar=0x7f02000e;
         public static final int ic_calendario=0x7f02000f;
-        public static final int ic_camera_alt_white_48dp=0x7f020010;
-        public static final int ic_cloud_upload_white_48dp=0x7f020011;
-        public static final int ic_data=0x7f020012;
-        public static final int ic_hora=0x7f020013;
-        public static final int ic_launcher=0x7f020014;
-        public static final int ic_mic_none_white_48dp=0x7f020015;
-        public static final int ic_mode_edit_white_48dp=0x7f020016;
-        public static final int ic_palette_white_48dp=0x7f020017;
-        public static final int ic_relogio=0x7f020018;
-        public static final int ic_save_white_48dp=0x7f020019;
-        public static final int ic_search_white_48dp=0x7f02001a;
-        public static final int ic_share_white_48dp=0x7f02001b;
-        public static final int ic_tag=0x7f02001c;
-        public static final int logo_sobre=0x7f02001d;
-        public static final int main_content=0x7f02001e;
-        public static final int splash_content=0x7f02001f;
+        public static final int ic_camera_alt_black_48dp=0x7f020010;
+        public static final int ic_camera_alt_white_48dp=0x7f020011;
+        public static final int ic_clear_black_36dp=0x7f020012;
+        public static final int ic_cloud_upload_white_48dp=0x7f020013;
+        public static final int ic_data=0x7f020014;
+        public static final int ic_done_black_36dp=0x7f020015;
+        public static final int ic_hora=0x7f020016;
+        public static final int ic_launcher=0x7f020017;
+        public static final int ic_mic_none_white_48dp=0x7f020018;
+        public static final int ic_mode_edit_white_48dp=0x7f020019;
+        public static final int ic_palette_white_48dp=0x7f02001a;
+        public static final int ic_photo_library_black_48dp=0x7f02001b;
+        public static final int ic_relogio=0x7f02001c;
+        public static final int ic_save_white_48dp=0x7f02001d;
+        public static final int ic_search_white_48dp=0x7f02001e;
+        public static final int ic_share_white_48dp=0x7f02001f;
+        public static final int ic_tag=0x7f020020;
+        public static final int logo_sobre=0x7f020021;
+        public static final int main_content=0x7f020022;
+        public static final int splash_content=0x7f020023;
     }
     public static final class id {
         public static final int action_settings=0x7f0a003c;
@@ -239,6 +243,7 @@ public final class R {
         public static final int INDEX=0x7f08004b;
         public static final int LEMBRAR=0x7f080051;
         /**  Chaves e parametros 
+ Chaves e parametros 
          */
         public static final int NOME_CADERNO=0x7f080049;
         public static final int NOME_MATERIA=0x7f080052;
@@ -255,6 +260,7 @@ public final class R {
         public static final int audio_record=0x7f080064;
         public static final int btnGravarAudio=0x7f080062;
         /**  Tela Config 
+ Tela Config 
          */
         public static final int button_login_drop=0x7f080021;
         public static final int button_logout_drop=0x7f080022;
@@ -287,6 +293,7 @@ public final class R {
         public static final int hist_descricao=0x7f080019;
         public static final int informe_descricao_agenda=0x7f08003d;
         /**  Mensagens e avisos 
+ Mensagens e avisos 
          */
         public static final int informe_nome_caderno=0x7f08003b;
         public static final int informe_nome_materia=0x7f08003c;
@@ -296,6 +303,7 @@ public final class R {
         public static final int materia_duplicada=0x7f08003f;
         public static final int menu_compartilhar=0x7f080028;
         /**  Tela Editor 
+ Tela Editor 
          */
         public static final int menu_editar=0x7f080027;
         public static final int menu_inserir_desenho=0x7f08002c;
@@ -305,9 +313,11 @@ public final class R {
         public static final int menu_sincronizar=0x7f080029;
         public static final int noExtStorageAvailable=0x7f08005f;
         /**  Tela matéria 
+ Tela matéria 
          */
         public static final int nova_materia=0x7f080012;
         /**  Tela Agenda 
+ Tela Agenda 
          */
         public static final int novo_lembrete=0x7f080018;
         public static final int ok=0x7f08000a;
@@ -339,6 +349,7 @@ public final class R {
         public static final int vincular_materia=0x7f08001c;
         public static final int wesley=0x7f080035;
         /**  Integrantes e coordenador 
+ Integrantes e coordenador 
          */
         public static final int willian=0x7f080031;
     }

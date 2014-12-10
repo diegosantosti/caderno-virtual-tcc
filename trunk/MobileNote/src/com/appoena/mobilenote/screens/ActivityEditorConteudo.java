@@ -1,7 +1,5 @@
 package com.appoena.mobilenote.screens;
 
-
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -21,17 +19,13 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.modelo.Conteudo;
 import com.appoena.mobilenote.util.Dropbox;
 import com.appoena.mobilenote.util.drawning.ActivityInserirDesenho;
 import com.dropbox.sync.android.DbxAccountManager;
-//import org.xhtmlrenderer.pdf.ITextRenderer;  
-
 
 //Classe responsavel por criar o editor de conteudo do caderno
-
 public class ActivityEditorConteudo extends Activity{
 
 	private Bundle params;
@@ -73,7 +67,6 @@ public class ActivityEditorConteudo extends Activity{
 				//Recupera o conteúdo do arquivo e armazena na variável
 				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
 				if(getConteudoTemp().isEmpty()){
-//					setConteudoTemp("Conteudo");
 					editMode=true;
 				}
 				
@@ -83,7 +76,6 @@ public class ActivityEditorConteudo extends Activity{
 				//Recupera o conteúdo do arquivo e armazena na variável
 				setConteudoTemp(lerConteudoEditorTxt()); //se o conteudo do txt estiver em branco, significa que � um conteudo novo
 				if(getConteudoTemp().isEmpty()){
-//					setConteudoTemp("Conteudo");
 					editMode=true;
 				}
 		}
@@ -117,9 +109,6 @@ public class ActivityEditorConteudo extends Activity{
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				wv.pageDown(true);
-				//wv.requestFocus();
-				//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-				//wv.requestFocus(View.FOCUS_DOWN);
 			}
 
 			@Override
@@ -127,10 +116,7 @@ public class ActivityEditorConteudo extends Activity{
 				// TODO Auto-generated method stub
 				super.onPageStarted(view, url, favicon);
 				wv.pageDown(true);
-				//wv.requestFocus();
-				//wv.requestFocus(View.FOCUS_DOWN);
-				//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-			}			
+			}
 		});	
 	}
 	
@@ -163,6 +149,7 @@ public class ActivityEditorConteudo extends Activity{
 			int searchImg = getResources().getIdentifier("android:id/search_button", null, null);
 			ImageView img = (ImageView)search.findViewById(searchImg);
 			img.setImageResource(R.drawable.ic_action_pesquisar);
+						
 			search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
 				@SuppressLint("NewApi")
@@ -231,7 +218,7 @@ public class ActivityEditorConteudo extends Activity{
 		case R.id.menu_pesquisar:
 			//	---------------------
 			// 	DO NOTHING
-			// 	CODIGO DO PESQUISAR SERAO REALIZADO NO METODO onQueryTextSubmit DA CLASSE SEARCH TYPE
+			// 	CODIGO DO PESQUISAR SERA REALIZADO NO METODO onQueryTextSubmit DA CLASSE SEARCH TYPE
 			//	---------------------
 			break;
 
@@ -286,15 +273,14 @@ public class ActivityEditorConteudo extends Activity{
 		outState.putBoolean("edicao", editMode);
 		//inserir aqui metodo para salvar quando mudar orientacao da tela.
 
-		//Diego - Anotação
-		//Salvar conteúdo na variável para o arquivo txt
+		//Salvar conteudo na variavel para o arquivo txt
 		salvarConteudoTxt(getConteudoTemp());
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	protected void onDestroy() {
-		//Salvar o conteúdo quando a activity for finalizada
+		//Salvar o conteudo quando a activity for finalizada
 		salvarConteudoTxt(getConteudoTemp());
 		super.onDestroy();
 	}
@@ -402,7 +388,7 @@ public class ActivityEditorConteudo extends Activity{
 	private void inserirImagemEditor(String caminhoImagem) {
 		
 		Log.i("WebView","Teste caminho imagem  --> " + caminhoImagem);
-		String tagHtml = "<img src=\"" + caminhoImagem + "\" width='400' />";
+		String tagHtml = "<img src=\"" + caminhoImagem + "\" width='400' /><p></p>";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);
 		
@@ -412,23 +398,12 @@ public class ActivityEditorConteudo extends Activity{
 	
 	private void inserirAudioEditor(String caminhoAudio) {
 		
-		//Recupera a data/hora atual do sistema
-		/*Locale locale = new Locale("pt","BR"); 
-		GregorianCalendar calendar = new GregorianCalendar(); 
-		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMM' de 'yyyy' - 'HH':'mm'h'",locale); 
-		String dataHoraAtual = formatador.format(calendar.getTime());*/
-		
-		//Remove o caminho absoluto do arquivo audio
-//		caminhoAudio = caminhoAudio.substring(caminhoAudio.indexOf("audios"));
-		Log.i("WebView","Teste remo��o de string  --> " + caminhoAudio);
-		
 		String tagHtml = 
 			"<p><audio controls>" +
 				"<source src=\"" + caminhoAudio + "\" type=\"audio/wav\">" +
 				getString(R.string.BROWSER_DOESNT_SUPPORT_AUDIO) +
 			"</audio></p> <p>Audio - MobileNote</p> ";
 		
-//		String tagHtml = "<p><img src=\"" + caminhoAudio + "\" width='500' /></p>";
 		String novoConteudo = getConteudoTemp() + tagHtml;
 		setConteudoTemp(novoConteudo);
 		

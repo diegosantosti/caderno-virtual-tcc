@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
-import com.appoena.mobilenote.util.BitmapProcessor;
+//import com.appoena.mobilenote.util.BitmapProcessor;
 
 import com.appoena.mobilenote.R;
 import com.appoena.mobilenote.util.StorageUtils;
@@ -153,11 +153,11 @@ public class ActivityEscolherImagem extends Activity{
      */
     private void updateImageView(Bitmap newImage) {
     	
-//    	this.imageView.setImageBitmap(newImage);
+    	this.imageView.setImageBitmap(newImage);
     	
-    	BitmapProcessor bitmapProcessor = new BitmapProcessor(newImage, 1000, 1000, 0);
-    	this.image = bitmapProcessor.getBitmap();
-    	this.imageView.setImageBitmap(this.image);
+//    	BitmapProcessor bitmapProcessor = new BitmapProcessor(newImage, 1000, 1000, 0);
+//    	this.image = bitmapProcessor.getBitmap();
+//    	this.imageView.setImageBitmap(this.image);
     }
     
     /**
